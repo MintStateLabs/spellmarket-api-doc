@@ -1,0 +1,57 @@
+---
+id: resource-publication
+title: ResourcePublication
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+A resource publication represents that a resource either has been published or will be published to a publication.
+
+```graphql
+type ResourcePublication {
+  isPublished: Boolean!
+  publication: Publication!
+  publishDate: DateTime
+  publishable: Publishable!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>ResourcePublication.<b>isPublished</b></code>](#)<Bullet />[`Boolean!`](/scalars/boolean) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Whether the resource publication is published.
+If true, then the resource publication is published to the publication. If false, then the resource publication
+is staged to be published to the publication.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ResourcePublication.<b>publication</b></code>](#)<Bullet />[`Publication!`](/objects/publication) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The publication the resource publication is published to.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ResourcePublication.<b>publishDate</b></code>](#)<Bullet />[`DateTime`](/scalars/date-time) <Badge class="secondary" text="scalar"/>
+> The date that the resource publication was or is going to be published to the publication.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ResourcePublication.<b>publishable</b></code>](#)<Bullet />[`Publishable!`](/interfaces/publishable) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="interface"/>
+> The resource published to the publication.
+> 
+
+
+
+### Member of
+
+[`Product`](/objects/product)  <Badge class="secondary" text="object"/><Bullet />[`Publication`](/objects/publication)  <Badge class="secondary" text="object"/><Bullet />[`ResourcePublicationConnection`](/objects/resource-publication-connection)  <Badge class="secondary" text="object"/><Bullet />[`ResourcePublicationEdge`](/objects/resource-publication-edge)  <Badge class="secondary" text="object"/>
+
+
+

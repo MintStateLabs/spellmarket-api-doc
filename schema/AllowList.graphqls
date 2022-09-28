@@ -1,0 +1,113 @@
+
+"""
+An interface for objects that have allowlists associated with them
+"""
+interface HasAllowList {
+    """
+    Whether the object has an allowlist associated with it
+    """
+    hasAllowList: Boolean!
+    """
+    Whether the customer can purchase associated object
+    """
+    customerCanPurchase: Boolean!
+}
+
+"""
+An allowlist can be used to restrict the sales of specific products or product collections through the sales channel to
+a specific customer or wallet address
+"""
+type AllowList implements Node {
+    """
+    A globally-unique identifier.
+    """
+    id: ID!
+    """
+    The products that are included in the allowlist.
+    """
+    products(
+        first: Int
+        after: String
+        last: Int
+        before: String
+        reverse: Boolean = false
+        sortKey: ProductCollectionSortKeys = COLLECTION_DEFAULT
+    ): ProductConnection!
+
+    """
+    The products that are included in the allowlist.
+    """
+    products(
+        first: Int
+        after: String
+        last: Int
+        before: String
+        reverse: Boolean = false
+        sortKey: ProductCollectionSortKeys = COLLECTION_DEFAULT
+    ): ProductConnection!
+    """
+    List of the collections in the allowlist.
+    """
+    productCollections(
+        after: String
+        before: String
+        first: Int
+        last: Int
+        query: String
+        reverse: Boolean = false
+        sortKey: CollectionSortKeys = ID
+    ): ProductCollectionConnection!
+    """
+    List of the wallet addresses in the allow list.
+    """
+    walletAddresses(
+        after: String
+        before: String
+        first: Int
+        last: Int
+        query: String
+        reverse: Boolean = false
+    ): WalletAddressConnection!
+
+    """
+    List of the known customers in the allow list.
+    """
+    Customers(
+        after: String
+        before: String
+        first: Int
+        last: Int
+        query: String
+        reverse: Boolean = false
+    ): CustomerConnection!
+}
+
+type AllowListEdge {
+    """
+    A cursor for use in pagination.
+    """
+    cursor: String!
+    """
+    The item at the end of AllowListEdge
+    """
+    node: AllowList!
+}
+
+type AllowListConnection {
+    """
+    A list of edges.
+    """
+    edges: [AllowListEdge!]!
+    """
+    A list of the nodes contained in AllowListEdge.
+    """
+    nodes: [AllowList!]!
+    """
+    Information to aid in pagination.
+    """
+    pageInfo: PageInfo!
+    """
+    Identifies the total count of items in the connection.
+    """
+    totalCount: Int!
+}

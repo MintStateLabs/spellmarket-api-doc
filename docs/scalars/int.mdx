@@ -1,0 +1,32 @@
+---
+id: int
+title: Int
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.
+
+```graphql
+scalar Int
+```
+
+
+
+
+### Member of
+
+[`Cart`](/objects/cart)  <Badge class="secondary" text="object"/><Bullet />[`CartDeliveryGroupConnection`](/objects/cart-delivery-group-connection)  <Badge class="secondary" text="object"/><Bullet />[`CartLine`](/objects/cart-line)  <Badge class="secondary" text="object"/><Bullet />[`CartLineConnection`](/objects/cart-line-connection)  <Badge class="secondary" text="object"/><Bullet />[`CartLineInput`](/inputs/cart-line-input)  <Badge class="secondary" text="input"/><Bullet />[`CartLineUpdateInput`](/inputs/cart-line-update-input)  <Badge class="secondary" text="input"/><Bullet />[`CheckoutLineItem`](/objects/checkout-line-item)  <Badge class="secondary" text="object"/><Bullet />[`CheckoutLineItemConnection`](/objects/checkout-line-item-connection)  <Badge class="secondary" text="object"/><Bullet />[`CheckoutLineItemInput`](/inputs/checkout-line-item-input)  <Badge class="secondary" text="input"/><Bullet />[`CheckoutLineItemUpdateInput`](/inputs/checkout-line-item-update-input)  <Badge class="secondary" text="input"/><Bullet />[`CustomerConnection`](/objects/customer-connection)  <Badge class="secondary" text="object"/><Bullet />[`CustomerPaymentMethodConnection`](/objects/customer-payment-method-connection)  <Badge class="secondary" text="object"/><Bullet />[`DigitalAsset`](/objects/digital-asset)  <Badge class="secondary" text="object"/><Bullet />[`DigitalAssetConnection`](/objects/digital-asset-connection)  <Badge class="secondary" text="object"/><Bullet />[`EventConnection`](/objects/event-connection)  <Badge class="secondary" text="object"/><Bullet />[`FileConnection`](/objects/file-connection)  <Badge class="secondary" text="object"/><Bullet />[`FulfillmentConnection`](/objects/fulfillment-connection)  <Badge class="secondary" text="object"/><Bullet />[`FulfillmentLineItem`](/objects/fulfillment-line-item)  <Badge class="secondary" text="object"/><Bullet />[`FulfillmentLineItemConnection`](/objects/fulfillment-line-item-connection)  <Badge class="secondary" text="object"/><Bullet />[`GenericFile`](/objects/generic-file)  <Badge class="secondary" text="object"/><Bullet />[`Image`](/objects/image)  <Badge class="secondary" text="object"/><Bullet />[`ImageConnection`](/objects/image-connection)  <Badge class="secondary" text="object"/><Bullet />[`ImageTransformInput`](/inputs/image-transform-input)  <Badge class="secondary" text="input"/><Bullet />[`LineItem`](/objects/line-item)  <Badge class="secondary" text="object"/><Bullet />[`LineItemConnection`](/objects/line-item-connection)  <Badge class="secondary" text="object"/><Bullet />[`MediaConnection`](/objects/media-connection)  <Badge class="secondary" text="object"/><Bullet />[`Model3dSource`](/objects/model-3-d-source)  <Badge class="secondary" text="object"/><Bullet />[`Order`](/objects/order)  <Badge class="secondary" text="object"/><Bullet />[`OrderConnection`](/objects/order-connection)  <Badge class="secondary" text="object"/><Bullet />[`OrderTransactionConnection`](/objects/order-transaction-connection)  <Badge class="secondary" text="object"/><Bullet />[`Product`](/objects/product)  <Badge class="secondary" text="object"/><Bullet />[`ProductCollection`](/objects/product-collection)  <Badge class="secondary" text="object"/><Bullet />[`ProductCollectionConnection`](/objects/product-collection-connection)  <Badge class="secondary" text="object"/><Bullet />[`ProductConnection`](/objects/product-connection)  <Badge class="secondary" text="object"/><Bullet />[`ProjectConnection`](/objects/project-connection)  <Badge class="secondary" text="object"/><Bullet />[`ProjectStorefrontBranding`](/objects/project-storefront-branding)  <Badge class="secondary" text="object"/><Bullet />[`Publishable`](/interfaces/publishable)  <Badge class="secondary" text="interface"/><Bullet />[`SalesChannelConnection`](/objects/sales-channel-connection)  <Badge class="secondary" text="object"/><Bullet />[`StringConnection`](/objects/string-connection)  <Badge class="secondary" text="object"/><Bullet />[`SubChannelConnection`](/objects/sub-channel-connection)  <Badge class="secondary" text="object"/><Bullet />[`Video`](/objects/video)  <Badge class="secondary" text="object"/><Bullet />[`VideoSource`](/objects/video-source)  <Badge class="secondary" text="object"/>
+
+
+

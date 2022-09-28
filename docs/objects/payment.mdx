@@ -1,0 +1,87 @@
+---
+id: payment
+title: Payment
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+A payment applied to a checkout.
+
+```graphql
+type Payment implements Node {
+  amount: Schmeckle!
+  checkout: Checkout!
+  errorMessage: String
+  id: ID!
+  idempotencyKey: String
+  nextActionUrl: URL
+  ready: Boolean!
+  test: Boolean!
+  transaction: Transaction
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>Payment.<b>amount</b></code>](#)<Bullet />[`Schmeckle!`](/objects/schmeckle) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The amount of the payment.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Payment.<b>checkout</b></code>](#)<Bullet />[`Checkout!`](/objects/checkout) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The checkout to which the payment belongs.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Payment.<b>errorMessage</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> A message describing a processing error during asynchronous processing.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Payment.<b>id</b></code>](#)<Bullet />[`ID!`](/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> A globally-unique identifier.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Payment.<b>idempotencyKey</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> A client-side generated token to identify a payment and perform idempotent operations.
+For more information, refer to Idempotent requests.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Payment.<b>nextActionUrl</b></code>](#)<Bullet />[`URL`](/scalars/url) <Badge class="secondary" text="scalar"/>
+> The URL where the customer needs to be redirected so they can complete the 3D Secure payment flow.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Payment.<b>ready</b></code>](#)<Bullet />[`Boolean!`](/scalars/boolean) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Whether the payment is still processing asynchronously.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Payment.<b>test</b></code>](#)<Bullet />[`Boolean!`](/scalars/boolean) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> A flag to indicate if the payment is to be done in test mode for gateways that support it.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Payment.<b>transaction</b></code>](#)<Bullet />[`Transaction`](/objects/transaction) <Badge class="secondary" text="object"/>
+> The actual transaction recorded by SpellMarket after having processed the payment with the gateway.
+> 
+
+### Interfaces
+
+#### [`Node`](/interfaces/node) <Badge class="secondary" text="interface"/>
+> An interface for standard IDs. This is standard naming for this type of interface in Graphql
+> 
+
+
+
+### Member of
+
+[`CheckoutCompleteWithTokenizedPaymentPayload`](/objects/checkout-complete-with-tokenized-payment-payload)  <Badge class="secondary" text="object"/><Bullet />[`CheckoutCompleteWithWalletPaymentPayload`](/objects/checkout-complete-with-wallet-payment-payload)  <Badge class="secondary" text="object"/>
+
+
+

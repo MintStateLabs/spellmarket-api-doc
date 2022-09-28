@@ -1,0 +1,50 @@
+---
+id: order-risk-level
+title: OrderRiskLevel
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+The likelihood that an order is fraudulent.
+
+```graphql
+enum OrderRiskLevel {
+  HIGH
+  LOW
+  MEDIUM
+}
+```
+
+
+### Values
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderRiskLevel.<b>HIGH</b></code>](#) 
+> There is a high level of risk that this order is fraudulent.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderRiskLevel.<b>LOW</b></code>](#) 
+> There is a low level of risk that this order is fraudulent.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderRiskLevel.<b>MEDIUM</b></code>](#) 
+> There is a medium level of risk that this order is fraudulent.
+> 
+
+
+
+### Member of
+
+[`Order`](/objects/order)  <Badge class="secondary" text="object"/><Bullet />[`OrderRisk`](/objects/order-risk)  <Badge class="secondary" text="object"/>
+
+
+

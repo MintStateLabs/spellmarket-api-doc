@@ -1,0 +1,55 @@
+---
+id: fulfillment-line-item-status
+title: FulfillmentLineItemStatus
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+The possible statuses for a FulfillmentLineItem object.
+
+```graphql
+enum FulfillmentLineItemStatus {
+  FAILED
+  IN_PROGRESS
+  COMPLETED
+  PENDING
+}
+```
+
+
+### Values
+
+#### [<code style={{ fontWeight: 'normal' }}>FulfillmentLineItemStatus.<b>FAILED</b></code>](#) 
+> FulfilmentLineItem processing has failed.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>FulfillmentLineItemStatus.<b>IN_PROGRESS</b></code>](#) 
+> FulfilmentLineItem is being processed.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>FulfillmentLineItemStatus.<b>COMPLETED</b></code>](#) 
+> FulfilmentLineItem is done.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>FulfillmentLineItemStatus.<b>PENDING</b></code>](#) 
+> FulfilmentLineItem is pending for processing.
+> 
+
+
+
+### Member of
+
+[`FulfillmentLineItem`](/objects/fulfillment-line-item)  <Badge class="secondary" text="object"/>
+
+
+

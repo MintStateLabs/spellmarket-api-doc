@@ -1,0 +1,381 @@
+---
+id: product
+title: Product
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+The Product resource lets you manage products in a sales channel.
+You can add or update product Media. Products can be organized by grouping them into a Collection.
+
+```graphql
+type Product implements Node, Publishable {
+  availablePublicationCount: Int!
+  item: SellableItem!
+  createdAt: DateTime!
+  customProductType: String
+  defaultCursor: String!
+  description(
+  truncateAt: Int
+): String!
+  descriptionHtml: HTML!
+  featuredImage: Image
+  featuredMedia: Media
+  handle: String
+  id: ID!
+  mediaCount: Int!
+  onlineStorePreviewUrl: URL
+  onlineStoreUrl: URL
+  options(
+  first: Int
+): Int!
+  productType: String!
+  publicationCount(
+  onlyPublished: Boolean = true
+): Int!
+  publishedAt: DateTime!
+  publishedOnCurrentPublication: Boolean!
+  publishedOnPublication(
+  publicationId: ID!
+): Boolean!
+  resourcePublicationOnCurrentPublication: ResourcePublication
+  seo: SEO!
+  status: ProductStatus!
+  tags: StringConnection!
+  title: String!
+  totalInventory: Int!
+  tracksInventory: Boolean!
+  updatedAt: DateTime!
+  vendor: String!
+  productCollections(
+  first: Int
+  after: String
+  last: Int
+  before: String
+  reverse: Boolean = false
+  sortKey: CollectionSortKeys
+  query: String
+): ProductCollectionConnection!
+  images(
+  first: Int
+  after: String
+  last: Int
+  before: String
+  reverse: Boolean = false
+  sortKey: ProductImageSortKeys = POSITION
+): ImageConnection!
+  media(
+  first: Int
+  after: String
+  last: Int
+  before: String
+  reverse: Boolean = false
+  sortKey: ProductMediaSortKeys = POSITION
+): MediaConnection!
+  resourcePublications(
+  onlyPublished: Boolean = true
+  first: Int
+  after: String
+  last: Int
+  before: String
+  reverse: Boolean = false
+): ResourcePublicationConnection!
+  unpublishedPublications(
+  first: Int
+  after: String
+  last: Int
+  before: String
+  reverse: Boolean = false
+): PublicationConnection!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>Product.<b>availablePublicationCount</b></code>](#)<Bullet />[`Int!`](/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The number of publications a resource is published.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Product.<b>item</b></code>](#)<Bullet />[`SellableItem!`](/unions/sellable-item) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="union"/>
+> The the item being sold
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Product.<b>createdAt</b></code>](#)<Bullet />[`DateTime!`](/scalars/date-time) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The date and time (ISO 8601 format) when the product was created.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Product.<b>customProductType</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> The custom product type specified by the merchant.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Product.<b>defaultCursor</b></code>](#)<Bullet />[`String!`](/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> A default cursor that returns the single next record, sorted ascending by ID.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Product.<b>description</b></code>](#)<Bullet />[`String!`](/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> A stripped description of the product, single line with HTML tags removed.
+> ##### [<code style={{ fontWeight: 'normal' }}>Product.description.<b>truncateAt</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Product.<b>descriptionHtml</b></code>](#)<Bullet />[`HTML!`](/scalars/html) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The description of the product, complete with HTML formatting.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Product.<b>featuredImage</b></code>](#)<Bullet />[`Image`](/objects/image) <Badge class="secondary" text="object"/>
+> The featured image for the product.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Product.<b>featuredMedia</b></code>](#)<Bullet />[`Media`](/interfaces/media) <Badge class="secondary" text="interface"/>
+> The featured media for the product.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Product.<b>handle</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> A unique human-friendly string of the product's title.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Product.<b>id</b></code>](#)<Bullet />[`ID!`](/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> A globally-unique identifier.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Product.<b>mediaCount</b></code>](#)<Bullet />[`Int!`](/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Total count of media belonging to a product.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Product.<b>onlineStorePreviewUrl</b></code>](#)<Bullet />[`URL`](/scalars/url) <Badge class="secondary" text="scalar"/>
+> The online store preview URL.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Product.<b>onlineStoreUrl</b></code>](#)<Bullet />[`URL`](/scalars/url) <Badge class="secondary" text="scalar"/>
+> The online store URL for the product.
+A value of null indicates that the product is not published to the Spell Market sales channel.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Product.<b>options</b></code>](#)<Bullet />[`Int!`](/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> A list of product options.
+> ##### [<code style={{ fontWeight: 'normal' }}>Product.options.<b>first</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Product.<b>productType</b></code>](#)<Bullet />[`String!`](/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The product type specified by the merchant.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Product.<b>publicationCount</b></code>](#)<Bullet />[`Int!`](/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The number of publications a resource is published on
+> ##### [<code style={{ fontWeight: 'normal' }}>Product.publicationCount.<b>onlyPublished</b></code>](#)<Bullet />[`Boolean`](/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Product.<b>publishedAt</b></code>](#)<Bullet />[`DateTime!`](/scalars/date-time) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The date and time (ISO 8601 format) when the product was published to the SpellMarket.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Product.<b>publishedOnCurrentPublication</b></code>](#)<Bullet />[`Boolean!`](/scalars/boolean) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Check to see whether the resource is published to the calling sales channel's publication.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Product.<b>publishedOnPublication</b></code>](#)<Bullet />[`Boolean!`](/scalars/boolean) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Check to see whether the resource is published to a given publication.
+> ##### [<code style={{ fontWeight: 'normal' }}>Product.publishedOnPublication.<b>publicationId</b></code>](#)<Bullet />[`ID!`](/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Product.<b>resourcePublicationOnCurrentPublication</b></code>](#)<Bullet />[`ResourcePublication`](/objects/resource-publication) <Badge class="secondary" text="object"/>
+> The resource that is either published or staged to be published to the calling app's publication. Requires the
+read_product_listings scope.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Product.<b>seo</b></code>](#)<Bullet />[`SEO!`](/objects/seo) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> SEO information of the product.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Product.<b>status</b></code>](#)<Bullet />[`ProductStatus!`](/enums/product-status) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> The product status. This controls visibility across all channels.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Product.<b>tags</b></code>](#)<Bullet />[`StringConnection!`](/objects/string-connection) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> A list of tags associated with the product.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Product.<b>title</b></code>](#)<Bullet />[`String!`](/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The title of the product.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Product.<b>totalInventory</b></code>](#)<Bullet />[`Int!`](/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The quantity of inventory in stock.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Product.<b>tracksInventory</b></code>](#)<Bullet />[`Boolean!`](/scalars/boolean) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Whether inventory tracking has been enabled for the product.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Product.<b>updatedAt</b></code>](#)<Bullet />[`DateTime!`](/scalars/date-time) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The date and time when the product was last modified. A product's updatedAt value can change for different reasons.
+For example, if an order is placed for a product that has inventory tracking set up,
+then the inventory adjustment is counted as an update.    
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Product.<b>vendor</b></code>](#)<Bullet />[`String!`](/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The name of the product's vendor.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Product.<b>productCollections</b></code>](#)<Bullet />[`ProductCollectionConnection!`](/objects/product-collection-connection) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> A list of the collections that include the product.
+> ##### [<code style={{ fontWeight: 'normal' }}>Product.productCollections.<b>first</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Product.productCollections.<b>after</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Product.productCollections.<b>last</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Product.productCollections.<b>before</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Product.productCollections.<b>reverse</b></code>](#)<Bullet />[`Boolean`](/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Product.productCollections.<b>sortKey</b></code>](#)<Bullet />[`CollectionSortKeys`](/enums/collection-sort-keys) <Badge class="secondary" text="enum"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Product.productCollections.<b>query</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Product.<b>images</b></code>](#)<Bullet />[`ImageConnection!`](/objects/image-connection) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The images associated with the product.
+> ##### [<code style={{ fontWeight: 'normal' }}>Product.images.<b>first</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Product.images.<b>after</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Product.images.<b>last</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Product.images.<b>before</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Product.images.<b>reverse</b></code>](#)<Bullet />[`Boolean`](/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Product.images.<b>sortKey</b></code>](#)<Bullet />[`ProductImageSortKeys`](/enums/product-image-sort-keys) <Badge class="secondary" text="enum"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Product.<b>media</b></code>](#)<Bullet />[`MediaConnection!`](/objects/media-connection) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The media associated with the product. This can include images, 3D models, or videos.
+> ##### [<code style={{ fontWeight: 'normal' }}>Product.media.<b>first</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Product.media.<b>after</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Product.media.<b>last</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Product.media.<b>before</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Product.media.<b>reverse</b></code>](#)<Bullet />[`Boolean`](/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Product.media.<b>sortKey</b></code>](#)<Bullet />[`ProductMediaSortKeys`](/enums/product-media-sort-keys) <Badge class="secondary" text="enum"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Product.<b>resourcePublications</b></code>](#)<Bullet />[`ResourcePublicationConnection!`](/objects/resource-publication-connection) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The list of resources that are either published or staged to be published to a publication.
+> ##### [<code style={{ fontWeight: 'normal' }}>Product.resourcePublications.<b>onlyPublished</b></code>](#)<Bullet />[`Boolean`](/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Product.resourcePublications.<b>first</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Product.resourcePublications.<b>after</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Product.resourcePublications.<b>last</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Product.resourcePublications.<b>before</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Product.resourcePublications.<b>reverse</b></code>](#)<Bullet />[`Boolean`](/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Product.<b>unpublishedPublications</b></code>](#)<Bullet />[`PublicationConnection!`](/objects/publication-connection) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The list of publications that the resource is not published to.
+> ##### [<code style={{ fontWeight: 'normal' }}>Product.unpublishedPublications.<b>first</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Product.unpublishedPublications.<b>after</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Product.unpublishedPublications.<b>last</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Product.unpublishedPublications.<b>before</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Product.unpublishedPublications.<b>reverse</b></code>](#)<Bullet />[`Boolean`](/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+### Interfaces
+
+#### [`Node`](/interfaces/node) <Badge class="secondary" text="interface"/>
+> An interface for standard IDs. This is standard naming for this type of interface in Graphql
+> 
+
+#### [`Publishable`](/interfaces/publishable) <Badge class="secondary" text="interface"/>
+> Represents a resource that can be published to a channel. A publishable resource can be either a Product or Collection.
+> 
+
+
+
+### Member of
+
+[`CartLine`](/objects/cart-line)  <Badge class="secondary" text="object"/><Bullet />[`CheckoutLineItem`](/objects/checkout-line-item)  <Badge class="secondary" text="object"/><Bullet />[`LineItem`](/objects/line-item)  <Badge class="secondary" text="object"/><Bullet />[`ProductConnection`](/objects/product-connection)  <Badge class="secondary" text="object"/><Bullet />[`ProductEdge`](/objects/product-edge)  <Badge class="secondary" text="object"/><Bullet />[`QueryRoot`](/objects/query-root)  <Badge class="secondary" text="object"/>
+
+
+

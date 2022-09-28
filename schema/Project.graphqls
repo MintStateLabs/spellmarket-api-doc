@@ -1,0 +1,259 @@
+"""
+Possible types of project developer.
+"""
+enum ProjectDeveloperType {
+    """
+    Indicates the project developer is a Partner with MSL.
+    """
+    PARTNER
+    """
+    Indicates the project developer is Mint State Labs
+    """
+    MSL
+    """
+    Indicates the project developer is unknown. It is not categorized as any of the other developer types.
+    """
+    UNKNOWN
+}
+
+
+"""
+A navigation item, holding basic link attributes.
+"""
+type NavigationItem {
+    """
+    The unique identifier of the navigation item.
+    """
+    id: ID!
+    """
+    The name of the navigation item.
+    """
+    title: String!
+    """
+    The URL of the page that the navigation item links to.
+    """
+    url: URL!
+}
+
+
+"""
+Requirements that must be met before an project can be available on SpellMarket
+"""
+type FailedRequirement {
+    """
+    Action to be taken to resolve a failed requirement, including URL link.
+    """
+    action: NavigationItem
+    """
+    A concise set of strings to be displayed to organizations, to guide them in resolving problems encountered with
+    publishing project
+    """
+    message: [String!]!
+}
+"""
+Branding information for project
+"""
+type ProjectStorefrontBranding {
+    """
+    Banner image for the project.
+    """
+    bannerURL: Image!
+    """
+    Primary color to use for project storefront
+    """
+    primaryColor: [Int]!
+    """
+    Secondary color to use for project storefront
+    """
+    SecondaryColor: [Int]!
+    """
+    Icon that represents the project.
+    """
+    icon: Image!
+}
+
+"""
+The tags applied to project
+"""
+enum ProjectTag {
+    """
+    Other purposes
+    """
+    OTHER
+}
+
+"""
+The visibility of the project on SpellMarket.
+Public means it'll be listed on the SpellMarket store
+"""
+enum ProjectVisibility {
+    """
+    The project's visibility is custom.
+    """
+    CUSTOM
+    """
+    The project's not shown on SpellMarket Store for sale (e.g. in-game only store)
+    """
+    PRIVATE
+    """
+    The project is to be shown on the SpellMarket site.
+    """
+    PUBLIC
+}
+
+"""
+A Project within an organization
+"""
+type Project implements Node {
+    """
+    Assets owned by project
+    """
+    assets(
+        first: Int,
+        after: String,
+        last: Int,
+        before: String,
+        reverse: Boolean=false,
+        query: String): DigitalAssetConnection!
+    """
+    Collections owned by project
+    """
+   collections(
+        first: Int,
+        after: String,
+        last: Int,
+        before: String,
+        reverse: Boolean=false,
+        sortKey: CollectionSortKeys,
+        query: String): ProductCollectionConnection!
+    """
+    Project store page URL of the project.
+    """
+    projectStoreUrl: URL
+    """
+    Project store page URL of the developer who created the app. (e.g. the website of the company who created it)
+    """
+    projectStoreDeveloperUrl: URL
+    """
+    Tags associated with project
+    """
+    projectTags: [ProjectTag!]!
+    """
+    The access scopes available to the project on the SpellMarket API
+    """
+    availableAccessScopes: [AccessScope!]!
+    """
+    The date and time when the project was created.
+    """
+    createdAt: DateTime!
+    """
+    Branding information associated with project
+    """
+    brandingInfo: ProjectStorefrontBranding!
+    """
+    Description of the Project.
+    """
+    description: String
+    """
+    The name of the project developer.
+    """
+    developerName: String
+    """
+    Requirements that must be met before an project can be available on SpellMarket.
+    """
+    failedRequirements: [FailedRequirement!]!
+    """
+    A list of project features that are shown in the SpellMarket Store listing.
+    """
+    features: [String!]!
+    """
+    Handle of the project. A unique name associated with the project
+    """
+    handle: String
+    """
+    A globally-unique identifier.
+    """
+    id: ID!
+    """
+    Whether the project was developed by MSL.
+    """
+    mslDeveloped: Boolean!
+    """
+    Link to project privacy policy (e.g. the privacy policy of the games)
+    """
+    privacyPolicyUrl: URL
+    """
+    The visibility category for the project.
+    """
+    projectVisibility: ProjectVisibility!
+    """
+    Whether the project is published to SpellMarket site/game.
+    """
+    published: Boolean!
+    """
+    The access scopes that can be requested by other project
+    """
+    requestableAccessScopes: [AccessScope!]!
+    """
+    Whether project has been suspended
+    """
+    suspended: Boolean!
+    """
+    Name of the project.
+    """
+    title: String!
+    """
+    The date and time when the project was updated.
+    """
+    updatedAt: DateTime!
+}
+
+
+type ProjectEdge {
+    """
+    A cursor for use in pagination.
+    """
+    cursor: String!
+    """
+    The item at the end of ProjectEdge.
+    """
+    node: Project!
+}
+
+type ProjectConnection {
+    """
+    A list of edges.
+    """
+    edges: [ProjectEdge!]!
+    """
+    A list of the nodes contained in ProjectEdge.
+    """
+    nodes: [Project!]!
+    """
+    Information to aid in pagination.
+    """
+    pageInfo: PageInfo!
+    """
+    Identifies the total count of items in the connection.
+    """
+    totalCount: Int!
+}
+
+extend type QueryRoot {
+    """
+    Lookup an Project by ID or return the currently authenticated Project. Returns null if the project doesn't exist.
+    """
+    project(
+        """
+        The ID to lookup the Project by.
+        """
+        id: ID!): Project
+    """
+    Fetches project by handle. Returns null if the project doesn't exist.
+    """
+    projectByHandle(
+        """
+        Handle of the Project.
+        """
+        handle: String!): Project
+}

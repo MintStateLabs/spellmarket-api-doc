@@ -1,0 +1,85 @@
+---
+id: collection-rule-relation
+title: CollectionRuleRelation
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Specifies the relationship between the column and the condition.
+
+```graphql
+enum CollectionRuleRelation {
+  CONTAINS
+  ENDS_WITH
+  EQUALS
+  GREATER_THAN
+  IS_NOT_SET
+  IS_SET
+  LESS_THAN
+  NOT_CONTAINS
+  NOT_EQUALS
+  STARTS_WITH
+}
+```
+
+
+### Values
+
+#### [<code style={{ fontWeight: 'normal' }}>CollectionRuleRelation.<b>CONTAINS</b></code>](#) 
+> The attribute contains the condition.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CollectionRuleRelation.<b>ENDS_WITH</b></code>](#) 
+> The attribute ends with the condition.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CollectionRuleRelation.<b>EQUALS</b></code>](#) 
+> The attribute is equal to the condition.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CollectionRuleRelation.<b>GREATER_THAN</b></code>](#) 
+> The attribute is greater than the condition.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CollectionRuleRelation.<b>IS_NOT_SET</b></code>](#) 
+> The attribute is not set (equal to null).
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CollectionRuleRelation.<b>IS_SET</b></code>](#) 
+> The attribute is set (not equal to null).
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CollectionRuleRelation.<b>LESS_THAN</b></code>](#) 
+> The attribute is less than the condition.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CollectionRuleRelation.<b>NOT_CONTAINS</b></code>](#) 
+> The attribute does not contain the condition.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CollectionRuleRelation.<b>NOT_EQUALS</b></code>](#) 
+> The attribute does not equal the condition.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CollectionRuleRelation.<b>STARTS_WITH</b></code>](#) 
+> The attribute starts with the condition.
+> 
+
+
+
+### Member of
+
+[`CollectionRule`](/objects/collection-rule)  <Badge class="secondary" text="object"/>
+
+
+

@@ -1,0 +1,66 @@
+"""
+The schema’s entry-point for mutations. This acts as the public, top-level API from which all mutation queries must
+start.
+
+This section focuses on the buying apis
+"""
+type Mutation {
+    """
+    Creates a new cart.
+    """
+    cartCreate(input: CartInput): CartCreatePayload
+    """
+    Adds a product line to the cart.
+    """
+    cartLinesAdd(lines: [CartLineInput!]!, cartId: ID!): CartLinesAddPayload
+    """
+    Removes one or more product lines from the cart.
+    """
+    cartLinesRemove(cartId: ID!, lineIds: [ID!]!): CartLinesRemovePayload
+    """
+    Updates one or more product lines on a cart.
+    """
+    cartLinesUpdate(cartId: ID!, lines: [CartLineUpdateInput!]!): CartLinesUpdatePayload
+    """
+    Completes a checkout without providing payment information. You can use this mutation for free items
+    """
+    checkoutCompleteFree(checkoutId: ID!): CheckoutCompleteFreePayload
+    """
+    Completes a checkout with a tokenized payment for fiat.
+    """
+    checkoutCompleteWithTokenizedPayment(checkoutId: ID!, payment: TokenizedPaymentInput!): CheckoutCompleteWithTokenizedPaymentPayload
+    """
+    Completes a checkout with a wallet payment.
+    """
+    checkoutCompleteWithWalletPayment(checkoutId: ID!, payment: WalletPaymentInput!): CheckoutCompleteWithWalletPaymentPayload
+    """
+    Creates a new checkout.
+    """
+    checkoutCreate(input: CheckoutCreateInput!, queueToken: String): CheckoutCreatePayload
+    """
+    Adds a list of line items to a checkout.
+    """
+    checkoutLineItemsAdd(lineItems: [CheckoutLineItemInput!]!, checkoutId: ID!): CheckoutLineItemsAddPayload
+    """
+    Removes line items from an existing checkout.
+    """
+    checkoutLineItemsRemove(checkoutId: ID!, lineItemIds: [ID!]!): CheckoutLineItemsRemovePayload
+    """
+    Sets a list of line items to a checkout.
+    """
+    checkoutLineItemsReplace(lineItems: [CheckoutLineItemInput!]!, checkoutId: ID!): CheckoutLineItemsReplacePayload
+    """
+    Updates line items on a checkout.
+    """
+    checkoutLineItemsUpdate(checkoutId: ID!, lineItems: [CheckoutLineItemUpdateInput!]!): CheckoutLineItemsUpdatePayload
+    """
+    Add customer to allowlist by customer ID. If customerID is null then it'll add the currently logged in customer
+    to allowlist.
+    """
+    allowListAddCustomer(allowListId: ID!, customerId: ID): AllowListAddCustomerPayload!
+    """
+    Add wallet to allowlist.
+    """
+    allowListAddWalletAddress(allowListId: ID!, walletAddress: WalletAddress!): AllowListAddWalletAddressPayload!
+}
+

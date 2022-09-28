@@ -1,0 +1,46 @@
+---
+id: access-scope
+title: AccessScope
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Represents a permission resource details
+
+```graphql
+type AccessScope {
+  description: String!
+  AccessScope: String!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>AccessScope.<b>description</b></code>](#)<Bullet />[`String!`](/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> A description of the actions that the access scope allows a project to perform.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>AccessScope.<b>AccessScope</b></code>](#)<Bullet />[`String!`](/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> A string that represents the access scope. It will be in the form of &#x007B;action&#x007D;_&#x007B;resource&#x007D;. &#x007B;action&#x007D; is read or write,
+and &#x007B;resource&#x007D; is the resource that the action can be performed on.
+> 
+
+
+
+### Member of
+
+[`Project`](/objects/project)  <Badge class="secondary" text="object"/><Bullet />[`SalesChannel`](/objects/sales-channel)  <Badge class="secondary" text="object"/>
+
+
+

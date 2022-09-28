@@ -2,22 +2,23 @@
 // Note: type annotations allow type checking and IDEs autocompletion
 
 const graphqlMarkdownConfig = require("./graphql-markdown.config");
-
 const lightCodeTheme = require("prism-react-renderer/themes/github");
 const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "My GraphQL documentation",
-  tagline: "GraphQL-Markdown is cool",
-  url: "https://your-docusaurus-test-site.com",
+  title: "SpellMarket API",
+  tagline: "Supercharge Metacommerce",
+  url: "https://mintstatelabs.com/",
   baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
-  organizationName: "graphql-markdown", // Usually your GitHub org/user name.
-  projectName: "graphql-markdown-demo", // Usually your repo name.
-  plugins: [["@edno/docusaurus2-graphql-doc-generator", graphqlMarkdownConfig]],
+  organizationName: "Mint State Labs", // Usually your GitHub org/user name.
+  projectName: "spellmarket-api", // Usually your repo name.
+  plugins: [
+    ["@edno/docusaurus2-graphql-doc-generator", graphqlMarkdownConfig],
+  ],
   presets: [
     [
       "classic",
@@ -39,23 +40,16 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: "GraphQL-Markdown",
+        title: "SpellMarketAPI",
         logo: {
-          alt: "graphql-markdown",
+          alt: "spellmarket-api",
           src: "img/graphql-markdown.svg"
-        },
-        items: [
-          {
-            href: "https://github.com/edno/graphql-markdown",
-            label: "GitHub",
-            position: "right"
-          }
-        ]
+        }
       },
       footer: {
         style: "light",
         links: [],
-        copyright: `Copyright © ${new Date().getFullYear()} My Website, Inc. Built with GraphQL-Markdown & Docusaurus.`
+        copyright: `Copyright © ${new Date().getFullYear()} Mint State Labs, Inc.`
       },
       prism: {
         theme: lightCodeTheme,

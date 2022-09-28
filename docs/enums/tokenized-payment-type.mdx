@@ -1,0 +1,40 @@
+---
+id: tokenized-payment-type
+title: TokenizedPaymentType
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+The valid values for the types of payment token.
+
+```graphql
+enum TokenizedPaymentType {
+  STRIPE_VAULT_TOKEN
+}
+```
+
+
+### Values
+
+#### [<code style={{ fontWeight: 'normal' }}>TokenizedPaymentType.<b>STRIPE_VAULT_TOKEN</b></code>](#) 
+> Stripe token type.
+> 
+
+
+
+### Member of
+
+[`TokenizedPaymentInput`](/inputs/tokenized-payment-input)  <Badge class="secondary" text="input"/>
+
+
+

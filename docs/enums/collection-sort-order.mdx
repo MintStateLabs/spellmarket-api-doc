@@ -1,0 +1,75 @@
+---
+id: collection-sort-order
+title: CollectionSortOrder
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Specifies the sort order for the products in the collection.
+
+```graphql
+enum CollectionSortOrder {
+  ALPHA_ASC
+  ALPHA_DESC
+  BEST_SELLING
+  CREATED
+  CREATED_DESC
+  MANUAL
+  PRICE_ASC
+  PRICE_DESC
+}
+```
+
+
+### Values
+
+#### [<code style={{ fontWeight: 'normal' }}>CollectionSortOrder.<b>ALPHA_ASC</b></code>](#) 
+> Alphabetically, in ascending order (A - Z).
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CollectionSortOrder.<b>ALPHA_DESC</b></code>](#) 
+> Alphabetically, in descending order (Z - A).
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CollectionSortOrder.<b>BEST_SELLING</b></code>](#) 
+> By best-selling products.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CollectionSortOrder.<b>CREATED</b></code>](#) 
+> By date created, in ascending order (oldest - newest).
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CollectionSortOrder.<b>CREATED_DESC</b></code>](#) 
+> By date created, in descending order (newest - oldest).
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CollectionSortOrder.<b>MANUAL</b></code>](#) 
+> In the order set manually.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CollectionSortOrder.<b>PRICE_ASC</b></code>](#) 
+> By price, in ascending order (lowest - highest).
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CollectionSortOrder.<b>PRICE_DESC</b></code>](#) 
+> By price, in descending order (highest - lowest).
+> 
+
+
+
+### Member of
+
+[`ProductCollection`](/objects/product-collection)  <Badge class="secondary" text="object"/>
+
+
+

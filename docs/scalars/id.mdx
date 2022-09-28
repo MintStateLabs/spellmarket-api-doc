@@ -1,0 +1,32 @@
+---
+id: id
+title: ID
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
+
+```graphql
+scalar ID
+```
+
+
+
+
+### Member of
+
+[`Cart`](/objects/cart)  <Badge class="secondary" text="object"/><Bullet />[`CartDeliveryGroup`](/objects/cart-delivery-group)  <Badge class="secondary" text="object"/><Bullet />[`CartLine`](/objects/cart-line)  <Badge class="secondary" text="object"/><Bullet />[`CartLineInput`](/inputs/cart-line-input)  <Badge class="secondary" text="input"/><Bullet />[`cartLinesAdd`](/mutations/cart-lines-add)  <Badge class="secondary" text="mutation"/><Bullet />[`cartLinesRemove`](/mutations/cart-lines-remove)  <Badge class="secondary" text="mutation"/><Bullet />[`cartLinesUpdate`](/mutations/cart-lines-update)  <Badge class="secondary" text="mutation"/><Bullet />[`CartLineUpdateInput`](/inputs/cart-line-update-input)  <Badge class="secondary" text="input"/><Bullet />[`Channel`](/interfaces/channel)  <Badge class="secondary" text="interface"/><Bullet />[`Checkout`](/objects/checkout)  <Badge class="secondary" text="object"/><Bullet />[`checkoutCompleteFree`](/mutations/checkout-complete-free)  <Badge class="secondary" text="mutation"/><Bullet />[`checkoutCompleteWithTokenizedPayment`](/mutations/checkout-complete-with-tokenized-payment)  <Badge class="secondary" text="mutation"/><Bullet />[`checkoutCompleteWithWalletPayment`](/mutations/checkout-complete-with-wallet-payment)  <Badge class="secondary" text="mutation"/><Bullet />[`CheckoutLineItem`](/objects/checkout-line-item)  <Badge class="secondary" text="object"/><Bullet />[`CheckoutLineItemInput`](/inputs/checkout-line-item-input)  <Badge class="secondary" text="input"/><Bullet />[`checkoutLineItemsAdd`](/mutations/checkout-line-items-add)  <Badge class="secondary" text="mutation"/><Bullet />[`checkoutLineItemsRemove`](/mutations/checkout-line-items-remove)  <Badge class="secondary" text="mutation"/><Bullet />[`checkoutLineItemsReplace`](/mutations/checkout-line-items-replace)  <Badge class="secondary" text="mutation"/><Bullet />[`checkoutLineItemsUpdate`](/mutations/checkout-line-items-update)  <Badge class="secondary" text="mutation"/><Bullet />[`CheckoutLineItemUpdateInput`](/inputs/checkout-line-item-update-input)  <Badge class="secondary" text="input"/><Bullet />[`Customer`](/objects/customer)  <Badge class="secondary" text="object"/><Bullet />[`CustomerPaymentMethod`](/objects/customer-payment-method)  <Badge class="secondary" text="object"/><Bullet />[`DigitalAsset`](/objects/digital-asset)  <Badge class="secondary" text="object"/><Bullet />[`Event`](/interfaces/event)  <Badge class="secondary" text="interface"/><Bullet />[`ExternalVideo`](/objects/external-video)  <Badge class="secondary" text="object"/><Bullet />[`FulfillmentLineItem`](/objects/fulfillment-line-item)  <Badge class="secondary" text="object"/><Bullet />[`GenericFile`](/objects/generic-file)  <Badge class="secondary" text="object"/><Bullet />[`Image`](/objects/image)  <Badge class="secondary" text="object"/><Bullet />[`LineItem`](/objects/line-item)  <Badge class="secondary" text="object"/><Bullet />[`MediaImage`](/objects/media-image)  <Badge class="secondary" text="object"/><Bullet />[`Model3d`](/objects/model-3-d)  <Badge class="secondary" text="object"/><Bullet />[`NavigationItem`](/objects/navigation-item)  <Badge class="secondary" text="object"/><Bullet />[`Node`](/interfaces/node)  <Badge class="secondary" text="interface"/><Bullet />[`Order`](/objects/order)  <Badge class="secondary" text="object"/><Bullet />[`OrderTransaction`](/objects/order-transaction)  <Badge class="secondary" text="object"/><Bullet />[`Payment`](/objects/payment)  <Badge class="secondary" text="object"/><Bullet />[`PaymentMandate`](/objects/payment-mandate)  <Badge class="secondary" text="object"/><Bullet />[`Product`](/objects/product)  <Badge class="secondary" text="object"/><Bullet />[`ProductCollection`](/objects/product-collection)  <Badge class="secondary" text="object"/><Bullet />[`Project`](/objects/project)  <Badge class="secondary" text="object"/><Bullet />[`Publication`](/objects/publication)  <Badge class="secondary" text="object"/><Bullet />[`SalesChannel`](/objects/sales-channel)  <Badge class="secondary" text="object"/><Bullet />[`SubChannel`](/objects/sub-channel)  <Badge class="secondary" text="object"/><Bullet />[`TransactionFee`](/objects/transaction-fee)  <Badge class="secondary" text="object"/><Bullet />[`Video`](/objects/video)  <Badge class="secondary" text="object"/>
+
+
+

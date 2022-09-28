@@ -1,0 +1,56 @@
+---
+id: cart-user-error
+title: CartUserError
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Represents an error that happens during execution of a cart mutation.
+
+```graphql
+type CartUserError implements DisplayableError {
+  code: CartErrorCode
+  field: [String!]
+  message: String!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>CartUserError.<b>code</b></code>](#)<Bullet />[`CartErrorCode`](/enums/cart-error-code) <Badge class="secondary" text="enum"/>
+> The error code.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CartUserError.<b>field</b></code>](#)<Bullet />[`[String!]`](/scalars/string) <Badge class="secondary" text="list"/> <Badge class="secondary" text="scalar"/>
+> The path to the input field that caused the error.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CartUserError.<b>message</b></code>](#)<Bullet />[`String!`](/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The error message.
+> 
+
+### Interfaces
+
+#### [`DisplayableError`](/interfaces/displayable-error) <Badge class="secondary" text="interface"/>
+> Represents an error in the input of a mutation.
+> 
+
+
+
+### Member of
+
+[`CartCreatePayload`](/objects/cart-create-payload)  <Badge class="secondary" text="object"/><Bullet />[`CartLinesAddPayload`](/objects/cart-lines-add-payload)  <Badge class="secondary" text="object"/><Bullet />[`CartLinesRemovePayload`](/objects/cart-lines-remove-payload)  <Badge class="secondary" text="object"/><Bullet />[`CartLinesUpdatePayload`](/objects/cart-lines-update-payload)  <Badge class="secondary" text="object"/>
+
+
+

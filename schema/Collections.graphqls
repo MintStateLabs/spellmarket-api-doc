@@ -1,0 +1,375 @@
+"""
+Specifies the relationship between the column and the condition.
+"""
+enum CollectionRuleRelation {
+    """
+    The attribute contains the condition.
+    """
+    CONTAINS
+    """
+    The attribute ends with the condition.
+    """
+    ENDS_WITH
+    """
+    The attribute is equal to the condition.
+    """
+    EQUALS
+    """
+    The attribute is greater than the condition.
+    """
+    GREATER_THAN
+    """
+    The attribute is not set (equal to null).
+    """
+    IS_NOT_SET
+    """
+    The attribute is set (not equal to null).
+    """
+    IS_SET
+    """
+    The attribute is less than the condition.
+    """
+    LESS_THAN
+    """
+    The attribute does not contain the condition.
+    """
+    NOT_CONTAINS
+    """
+    The attribute does not equal the condition.
+    """
+    NOT_EQUALS
+    """
+    The attribute starts with the condition.
+    """
+    STARTS_WITH
+}
+
+"""
+Specifies the attribute of a product being used to populate the smart collection.
+"""
+enum CollectionRuleColumn {
+    """
+    The tag attribute.
+    """
+    TAG
+    """
+    The title attribute.
+    """
+    TITLE
+    """
+    The type attribute.
+    """
+    TYPE
+    """
+    The vendor attribute.
+    """
+    VENDOR
+    """
+    The price attribute.
+    """
+    PRICE
+    """
+    The variant_inventory attribute.
+    """
+    INVENTORY
+}
+
+
+"""
+The set of rules that are used to determine which products are included in the collection.
+"""
+type CollectionRuleSet {
+    """
+    Whether products must match any or all of the rules to be included in the collection.
+    If true, then products must match at least one of the rules to be included in the collection.
+    If false, then products must match all of the rules to be included in the collection.
+    """
+    appliedDisjunctively: Boolean!
+    """
+    The rules used to assign products to the collection.
+    """
+    rules: [CollectionRule!]!
+}
+
+"""
+Represents at rule that's used to assign products to a collection.
+"""
+type CollectionRule {
+    """
+    The attribute that the rule focuses on. For example, title or product_type.
+    """
+    column: CollectionRuleColumn!
+    """
+    The value that the operator is applied to. For example, Hats.
+    """
+    condition: String!
+    """
+    The type of operator that the rule is based on. For example, equals, contains, or not_equals.
+    """
+    relation: CollectionRuleRelation!
+}
+
+"""
+The set of valid sort keys for the ProductCollection query.
+"""
+enum ProductCollectionSortKeys {
+    """
+    Sort by the title value.
+    """
+    TITLE
+    """
+    Sort by the price value.
+    """
+    PRICE
+    """
+    Sort by the best-selling value.
+    """
+    BEST_SELLING
+    """
+    Sort by the created value.
+    """
+    CREATED
+    """
+    Sort by the id value.
+    """
+    ID
+    """
+    Sort by the manual value.
+    """
+    MANUAL
+    """
+    Sort by the collection-default value.
+    """
+    COLLECTION_DEFAULT
+    """
+    Sort by relevance to the search terms when the query parameter is specified on the connection.
+    Don't use this sort key when no search query is specified
+    """
+    RELEVANCE
+}
+
+"""
+The set of valid sort keys for the Collection query.
+"""
+enum CollectionSortKeys {
+    """
+    Sort by the title value.
+    """
+    TITLE
+    """
+    Sort by the updated_at value.
+    """
+    UPDATED_AT
+    """
+    Sort by the id value.
+    """
+    ID
+    """
+    Sort by relevance to the search terms when the query parameter is specified on the connection.
+    Don't use this sort key when no search query is specified.  """
+    RELEVANCE
+}
+
+"""
+Specifies the sort order for the products in the collection.
+"""
+enum CollectionSortOrder {
+    """
+    Alphabetically, in ascending order (A - Z).
+    """
+    ALPHA_ASC
+    """
+    Alphabetically, in descending order (Z - A).
+    """
+    ALPHA_DESC
+    """
+    By best-selling products.
+    """
+    BEST_SELLING
+    """
+    By date created, in ascending order (oldest - newest).
+    """
+    CREATED
+    """
+    By date created, in descending order (newest - oldest).
+    """
+    CREATED_DESC
+    """
+    In the order set manually.
+    """
+    MANUAL
+    """
+    By price, in ascending order (lowest - highest).
+    """
+    PRICE_ASC
+    """
+    By price, in descending order (highest - lowest).
+    """
+    PRICE_DESC
+}
+
+
+"""
+Represents a group of products that can be displayed in online stores and other sales channels in categories,
+which makes it easy for customers to find them.
+
+Collections can be defined by conditions, such as whether they match certain product tags.
+These are called smart or automated collections.
+
+Collections can also be created for a custom group of products. These are called custom or manual collections.
+"""
+type ProductCollection implements Node & Publishable & HasAllowList{
+    """
+    The number of publications a resource is published.
+    """
+    availablePublicationCount: Int!
+    """
+    A single-line, text-only description of the collection, stripped of any HTML tags and formatting that were included
+    in the description.
+    """
+    description(truncateAt: Int): String!
+    """
+    The description of the collection, including any HTML tags and formatting. This content is typically displayed to
+    customers, such as on an online store, depending on the theme.
+    """
+    descriptionHtml: HTML!
+    """
+    A unique string that identifies the collection.
+    If a handle isn't specified when a collection is created, it's automatically generated from the collection's
+    original title, and typically includes words from the title separated by hyphens. For example, a collection that was
+    created with the title Summer Catalog 2022 might have the handle summer-catalog-2022.
+
+    If the title is changed, the handle doesn't automatically change.
+
+    The handle can be used in themes by the Liquid templating language to refer to the collection, but using the ID is
+    preferred because it never changes
+    """
+    handle: String!
+    """
+    Whether the collection includes the specified product.
+    """
+    hasProduct(id: ID!): Boolean!
+    """
+    A globally-unique identifier.
+    """
+    id: ID!
+    """
+    The image associated with the collection.
+    """
+    image: Image
+    """
+    The products that are included in the collection.
+    """
+    products(
+        first: Int
+        after: String
+        last: Int
+        before: String
+        reverse: Boolean = false
+        sortKey: ProductCollectionSortKeys = COLLECTION_DEFAULT
+    ): ProductConnection!
+    """
+    The number of products in the collection.
+    """
+    productsCount: Int!
+    """
+    The number of publications a resource is published on.
+    """
+    publicationCount(onlyPublished: Boolean = true): Int!
+    """
+    Check to see whether the resource is published to the calling sale channel's publication.
+    """
+    publishedOnCurrentPublication: Boolean!
+    """
+    Check to see whether the resource is published to a given publication.
+    """
+    publishedOnPublication(publicationId: ID!): Boolean!
+    """
+    The list of resources that are either published or staged to be published to a publication.
+    """
+    resourcePublications(
+        onlyPublished: Boolean = true
+        first: Int
+        after: String
+        last: Int
+        before: String
+        reverse: Boolean = false
+    ): ResourcePublicationConnection!
+    """
+    For a smart (automated) collection, specifies the rules that determine whether a product is included.
+    """
+    ruleSet: CollectionRuleSet
+    """
+    If the default SEO fields for page title and description have been modified, contains the modified information.
+    """
+    seo: SEO!
+    """
+    The order in which the products in the collection are displayed by default in the SpellMarket admin and in sales
+    channels, such as an online store.
+    """
+    sortOrder: CollectionSortOrder!
+    """
+    The suffix of the Liquid template being used to show the collection in an online store. For example, if the value is
+    custom, then the collection is using the collection.custom.liquid template. If the value is null, then the
+    collection is using the default collection.liquid template.
+    """
+    templateSuffix: String
+    """
+    The name of the collection. It's displayed in the SpellMarket admin and is typically displayed in sales channels,
+    such as an online store.
+    """
+    title: String!
+    """
+    The list of publications that the resource is not published to.
+    """
+    unpublishedPublications(
+        first: Int
+        after: String
+        last: Int
+        before: String
+        reverse: Boolean = false
+    ): PublicationConnection!
+    """
+    The date and time (ISO 8601 format) when the collection was last modified.
+    """
+    updatedAt: DateTime!
+    """
+    Whether the product collection has allowlist
+    """
+    hasAllowList: Boolean!
+    """
+    Whether the product collection
+    """
+    customerCanPurchase: Boolean!
+}
+
+
+type ProductCollectionEdge {
+    """
+    A cursor for use in pagination.
+    """
+    cursor: String!
+    """
+    The item at the end of CollectionEdge.
+    """
+    node: ProductCollection!
+}
+
+type ProductCollectionConnection {
+    """
+    A list of edges.
+    """
+    edges: [ProductCollectionEdge!]!
+    """
+    A list of the nodes contained in CollectionEdge.
+    """
+    nodes: [ProductCollection!]!
+    """
+    Information to aid in pagination.
+    """
+    pageInfo: PageInfo!
+    """
+    Identifies the total count of items in the connection.
+    """
+    totalCount: Int!
+}

@@ -1,0 +1,45 @@
+---
+id: resource-alert-icon
+title: ResourceAlertIcon
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+The available icons for resource alerts.
+
+```graphql
+enum ResourceAlertIcon {
+  CHECKMARK_CIRCLE
+  INFORMATION_CIRCLE
+}
+```
+
+
+### Values
+
+#### [<code style={{ fontWeight: 'normal' }}>ResourceAlertIcon.<b>CHECKMARK_CIRCLE</b></code>](#) 
+> A checkmark inside a circle.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ResourceAlertIcon.<b>INFORMATION_CIRCLE</b></code>](#) 
+> A lowercase i inside a circle
+> 
+
+
+
+### Member of
+
+[`ResourceAlert`](/objects/resource-alert)  <Badge class="secondary" text="object"/>
+
+
+

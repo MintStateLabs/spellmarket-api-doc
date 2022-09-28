@@ -1,0 +1,184 @@
+"""
+Represents a resource that can be published to a channel. A publishable resource can be either a Product or Collection.
+"""
+interface Publishable {
+    """
+    The number of publications a resource is published to without feedback errors.
+    """
+    availablePublicationCount: Int!
+    """
+    The number of publications a resource is published on.
+    """
+    publicationCount(onlyPublished: Boolean = true): Int!
+    """
+    Check to see whether the resource is published to the calling project's publication.
+    """
+    publishedOnCurrentPublication: Boolean!
+    """
+    Check to see whether the resource is published to a given publication.
+    """
+    publishedOnPublication(publicationId: ID!): Boolean!
+    """
+    The list of resources that are either published or staged to be published to a publication.
+    """
+    resourcePublications (
+        onlyPublished: Boolean=true,
+        first: Int,
+        after: String,
+        last: Int,
+        before: String,
+        reverse: Boolean=false):  ResourcePublicationConnection!
+    """
+    The list of publications that the resource is not published to.
+    """
+    unpublishedPublications(first: Int,
+        after: String,
+        last: Int,
+        before: String,
+        reverse: Boolean=false): PublicationConnection!
+}
+
+
+
+"""
+A publication is a group of products and collections that is published to sales channels.
+"""
+type Publication {
+    """
+    The project associated with the publication.
+    """
+    project: Project!
+    """
+    Whether the collection is available to the publication.
+    """
+    hasCollection(id:ID!): Boolean!
+    """
+    A globally-unique identifier.
+    """
+    id: ID!
+    """
+    Name of the publication.
+    """
+    name: String!
+    """
+    Whether the publication supports future publishing (e.g. publications that activate at a specific data/time)
+    """
+    supportsFuturePublishing: Boolean!
+    """
+    The collection publications for the list of collections published to the publication.
+    """
+    collectionPublications(
+        first: Int,
+        after: String,
+        last: Int,
+        before: String,
+        reverse: Boolean=false): ResourcePublication!
+    """
+    The list of collections published to the publication.
+    """
+    collections(
+        first: Int,
+        after: String,
+        last: Int,
+        before: String,
+        reverse: Boolean=false): ProductCollectionConnection!
+    """
+    The product publications for the list of products published to the publication.
+    """
+    productPublications(
+        first: Int,
+        after: String,
+        last: Int,
+        before: String,
+        reverse: Boolean=false): ResourcePublicationConnection!
+    """
+    The list of products published to the publication.
+    """
+    products(
+        first: Int,
+        after: String,
+        last: Int,
+        before: String,
+        reverse: Boolean=false): ProductConnection!
+}
+type PublicationEdge {
+    node: Publication!
+    cursor: String!
+}
+
+type PublicationConnection {
+    edges: [PublicationEdge!]!
+    nodes: [Publication!]!
+    pageInfo: PageInfo!
+}
+
+"""
+Represents the publications where a collection is published.
+"""
+type CollectionPublication {
+    """
+    The collection to be published on the publication.
+    """
+    collection: PublicationConnection!
+    """
+    Whether the publication is published or not.
+    """
+    isPublished: Boolean!
+    """
+    The publication where the collection will be published.
+    """
+    publication: Publication!
+    """
+    The date that the publication was or is going to be published.
+    """
+    publishDate: DateTime!
+}
+
+"""
+A resource publication represents that a resource either has been published or will be published to a publication.
+"""
+type ResourcePublication {
+    """
+    Whether the resource publication is published.
+    If true, then the resource publication is published to the publication. If false, then the resource publication
+    is staged to be published to the publication.
+    """
+    isPublished: Boolean!
+    """
+    The publication the resource publication is published to.
+    """
+    publication: Publication!
+    """
+    The date that the resource publication was or is going to be published to the publication.
+    """
+    publishDate: DateTime
+    """
+    The resource published to the publication.
+    """
+    publishable: Publishable!
+}
+
+type ResourcePublicationEdge {
+    node: ResourcePublication!
+    cursor: String!
+}
+
+type ResourcePublicationConnection {
+    edges: [ResourcePublicationEdge!]!
+    nodes: [ResourcePublication!]!
+    pageInfo: PageInfo!
+}
+
+"""
+SEO information.
+"""
+type SEO {
+    """
+    SEO Description.
+    """
+    description: String
+    """
+    SEO Title.
+    """
+    title: String
+}

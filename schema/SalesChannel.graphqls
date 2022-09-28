@@ -1,0 +1,156 @@
+interface Channel implements Node {
+    """
+    Whether the Sale Channel is currently Active
+    """
+    active: Boolean!
+    """
+    The date and time when the SalesChannel was created.
+    """
+    createdAt: DateTime!
+    """
+    Handle of the Channel. A unique name associated with the Channel
+    """
+    handle: String
+    """
+    A globally-unique identifier.
+    """
+    id: ID!
+
+    """
+    Publications that are published to a channel
+    """
+    publications: PublicationConnection!
+    """
+    The date and time when the SalesChannel was updated.
+    """
+    updatedAt: DateTime!
+}
+
+
+type SubChannel implements Node & Channel {
+    """
+    Whether the Sale Channel is currently Active
+    """
+    active: Boolean!
+    """
+    The date and time when the SalesChannel was created.
+    """
+    createdAt: DateTime!
+    """
+    Handle of the Channel. A unique name associated with the Channel
+    """
+    handle: String
+    """
+    A globally-unique identifier.
+    """
+    id: ID!
+    """
+    Publications that are published to a channel
+    """
+    publications: PublicationConnection!
+    """
+    The date and time when the SalesChannel was updated.
+    """
+    updatedAt: DateTime!
+}
+
+
+type SubChannelEdge {
+    """
+    A cursor for use in pagination.
+    """
+    cursor: String!
+    """
+    The item at the end of SalesChannelEdge.
+    """
+    node: SubChannel!
+}
+
+type SubChannelConnection {
+    """
+    A list of edges.
+    """
+    edges: [SubChannelEdge!]!
+    """
+    A list of the nodes contained in SalesChannelEdge.
+    """
+    nodes: [SubChannel!]!
+    """
+    Information to aid in pagination.
+    """
+    pageInfo: PageInfo!
+    """
+    Identifies the total count of items in the connection.
+    """
+    totalCount: Int!
+}
+
+
+"""
+A SalesChannel is owned by an organization and can be associated with multiple projects. When associated with the projects,
+assets and/or collections can be published to the channel so it can be sold.
+"""
+type SalesChannel implements Node & Channel{
+    """
+    The access scopes available to the SalesChannel for the given API key
+    """
+    requestedAccessScopes: [AccessScope!]!
+    """
+    The date and time when the SalesChannel was created.
+    """
+    createdAt: DateTime!
+    """
+    Handle of the SalesChannel. A unique name associated with the SalesChannel
+    """
+    handle: String
+    """
+    A globally-unique identifier.
+    """
+    id: ID!
+    """
+    The date and time when the SalesChannel was updated.
+    """
+    updatedAt: DateTime!
+    """
+    Whether the Sale Channel is currently Active
+    """
+    active: Boolean!
+    """
+    Sub Sales Channels which can be used as sub-store within the subchannel
+    """
+    subChannels: SubChannelConnection!
+    """
+    Publications that are published to a sales channel
+    """
+    publications: PublicationConnection!
+}
+
+type SalesChannelEdge {
+    """
+    A cursor for use in pagination.
+    """
+    cursor: String!
+    """
+    The item at the end of SalesChannelEdge.
+    """
+    node: SalesChannel!
+}
+
+type SalesChannelConnection {
+    """
+    A list of edges.
+    """
+    edges: [SalesChannelEdge!]!
+    """
+    A list of the nodes contained in SalesChannelEdge.
+    """
+    nodes: [SalesChannel!]!
+    """
+    Information to aid in pagination.
+    """
+    pageInfo: PageInfo!
+    """
+    Identifies the total count of items in the connection.
+    """
+    totalCount: Int!
+}

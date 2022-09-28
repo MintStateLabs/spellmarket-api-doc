@@ -1,0 +1,1029 @@
+"""
+The parameters required to authenticate a file upload request using a StagedMediaUploadTarget's url field.
+"""
+type StagedUploadParameter {
+    """
+    The parameter's name.
+    """
+    name: String!
+    """
+    The parameter's value.
+    """
+    value: String!
+}
+
+"""
+Information about a staged upload target, which should be used to send a request to upload the file.
+"""
+type StagedMediaUploadTarget {
+    """
+    Parameters needed to authenticate a request to upload the file.
+    """
+    parameters: StagedUploadParameter!
+    """
+    The URL to be passed as originalSource in CreateMediaInput and FileCreateInput for the productCreateMedia and
+    fileCreate mutations.
+    """
+    resourceUrl: URL
+    """
+    The URL to use when sending an request to upload the file. Should be used in conjunction with the parameters field.
+    """
+    url: URL
+}
+
+"""
+The possible statuses for a File object.
+"""
+enum FileStatus {
+    """
+    File processing has failed.
+    """
+    FAILED
+    """
+    File is being processed.
+    """
+    PROCESSING
+    """
+    File is ready to be displayed.
+    """
+    READY
+    """
+    File has been uploaded but not yet processed.
+    """
+    UPLOADED
+}
+
+"""
+Represents a file error.
+"""
+type FileError {
+    """
+    Code representing the type of error.
+    """
+    code: MediaErrorCode!
+    """
+    Additional details regarding the error.
+    """
+    message: String
+}
+
+"""
+A file interface.
+"""
+interface File {
+    """
+    A word or phrase to describe the contents or the function of a file.
+    """
+    alt: String
+    """
+    The date and time (ISO 8601 format) when the file was created.
+    """
+    createdAt: DateTime!
+    """
+    Any errors that have occurred on the file.
+    """
+    fileErrors: [FileError!]!
+    """
+    The status of the file.
+    """
+    fileStatus: FileStatus!
+    """
+    The preview image for the media.
+    """
+    preview: MediaPreviewImage
+}
+
+type FileEdge {
+    """
+    A cursor for use in pagination.
+    """
+    cursor: String!
+    """
+    The item at the end of FileEdge.
+    """
+    node: File!
+}
+
+type FileConnection {
+    """
+    A list of edges.
+    """
+    edges: [FileEdge!]!
+    """
+    A list of the nodes contained in FileEdge.
+    """
+    nodes: [File!]!
+    """
+    Information to aid in pagination.
+    """
+    pageInfo: PageInfo!
+    """
+    Identifies the total count of items in the connection.
+    """
+    totalCount: Int!
+}
+
+"""
+The set of valid sort keys for the File query.
+"""
+enum FileSortKeys {
+    """
+    Sort by the filename value.
+    """
+    FILENAME
+    """
+    Sort by the original_upload_size value.
+    """
+    ORIGINAL_UPLOAD_SIZE
+    """
+    Sort by the created_at value.
+    """
+    CREATED_AT
+    """
+    Sort by the id value.
+    """
+    ID
+    """
+    Sort by relevance to the search terms when the query parameter is specified on the connection.
+    Don't use this sort key when no search query is specified
+    """
+    RELEVANCE
+}
+
+"""
+The possible content types for a file object.
+"""
+enum FileContentType {
+    """
+    A MSL hosted image.
+    """
+    IMAGE
+    """
+    A MSL-hosted generic file.
+    """
+    FILE
+    """
+    A MSL-hosted video file. It's recommended to use this type for all video files.
+    """
+    VIDEO
+}
+
+"""
+Represents any file other than HTML.
+"""
+type GenericFile implements Node & File {
+    """
+    A globally-unique identifier.
+    """
+    id: ID!
+    """
+    A word or phrase to describe the contents or the function of a file.
+    """
+    alt: String
+    """
+    The date and time (ISO 8601 format) when the file was created.
+    """
+    createdAt: DateTime!
+    """
+    Any errors that have occurred on the file.
+    """
+    fileErrors: [FileError!]!
+    """
+    The status of the file.
+    """
+    fileStatus: FileStatus!
+    """
+    The preview image for the media.
+    """
+    preview: MediaPreviewImage
+    """
+    The generic file's MIME type.
+    """
+    mimeType: String
+    """
+    The generic file's size in bytes.
+    """
+    originalFileSize: Int
+    """
+    The generic file's URL.
+    """
+    url: URL
+}
+
+
+
+"""
+The possible statuses for a media object.
+"""
+enum MediaStatus{
+    """
+    Media processing has failed.
+    """
+    FAILED
+    """
+    Media is being processed.
+    """
+    PROCESSING
+    """
+    Media is ready to be displayed.
+    """
+    READY
+    """
+    Media has been uploaded but not yet processed.
+    """
+    UPLOADED
+}
+
+"""
+Represents the preview image for a media.
+"""
+type MediaPreviewImage{
+    """
+    The preview image for the media. Returns null until status is READY.
+    """
+    image: Image
+    """
+    Current status of the preview image.
+    """
+    status: MediaStatus!
+}
+
+"""
+Host for a Media Resource.
+"""
+enum MediaHost {
+    """
+    Host for Vimeo embedded videos.
+    """
+    VIMEO
+    """
+    Host for YouTube embedded videos.
+    """
+    YOUTUBE
+}
+
+
+"""
+Warning types for media.
+"""
+enum MediaWarningCode{
+    """
+    3D model physical size might be invalid. The dimensions of your model are very large. Consider reviewing your model
+    to ensure they are correct.
+    """
+    MODEL_LARGE_PHYSICAL_SIZE
+    """
+    3D model physical size might be invalid. The dimensions of your model are very small. Consider reviewing your model
+    to ensure they are correct.
+    """
+    MODEL_SMALL_PHYSICAL_SIZE
+}
+
+"""
+Error types for media.
+"""
+enum MediaErrorCode {
+    """
+    Media could not be created because embed permissions are disabled for this video.
+    """
+    EXTERNAL_VIDEO_EMBED_DISABLED
+    """
+    Media could not be created because video is either not found or still transcoding.
+    """
+    EXTERNAL_VIDEO_EMBED_NOT_FOUND_OR_TRANSCODING
+    """
+    Media could not be created because the external video has an invalid aspect ratio.
+    """
+    EXTERNAL_VIDEO_INVALID_ASPECT_RATIO
+    """
+    Media could not be created because the external video could not be found.
+    """
+    EXTERNAL_VIDEO_NOT_FOUND
+    """
+    Media could not be created because the external video is not listed or is private.
+    """
+    EXTERNAL_VIDEO_UNLISTED
+    """
+    Media could not be created because the cumulative file storage limit would be exceeded.
+    """
+    FILE_STORAGE_LIMIT_EXCEEDED
+    """
+    File could not be processed because the source could not be downloaded.
+    """
+    GENERIC_FILE_DOWNLOAD_FAILURE
+    """
+    File could not be created because the size is too large.
+    """
+    GENERIC_FILE_INVALID_SIZE
+    """
+    Media could not be processed because the image could not be downloaded.
+    """
+    IMAGE_DOWNLOAD_FAILURE
+    """
+    Media could not be processed because the image could not be processed.
+    """
+    IMAGE_PROCESSING_FAILURE
+    """
+    Media could not be created because the image has an invalid aspect ratio.
+    """
+    INVALID_IMAGE_ASPECT_RATIO
+    """
+    Media could not be created because the image size is too large.
+    """
+    INVALID_IMAGE_FILE_SIZE
+    """
+    Media could not be created because the image's resolution exceeds the max limit.
+    """
+    INVALID_IMAGE_RESOLUTION
+    """
+    Media could not be processed because the signed URL was invalid.
+    """
+    INVALID_SIGNED_URL
+    """
+    Media timed out because it is currently being modified by another operation.
+    """
+    MEDIA_TIMEOUT_ERROR
+    """
+    Media could not be created because the model file failed processing.
+    """
+    MODEL3D_GLB_OUTPUT_CREATION_ERROR
+    """
+    Media could not be created because the model can't be converted to USDZ format.
+    """
+    MODEL3D_GLB_TO_USDZ_CONVERSION_ERROR
+    """
+    Media could not be created because the model file failed processing.
+    """
+    MODEL3D_PROCESSING_FAILURE
+    """
+    Media could not be created because the model's thumbnail generation failed.
+    """
+    MODEL3D_THUMBNAIL_GENERATION_ERROR
+    """
+    Model failed validation.
+    """
+    MODEL3D_VALIDATION_ERROR
+    """
+    Media error has occured for unknown reason.
+    """
+    UNKNOWN
+    """
+    Media could not be created because the image is an unsupported file type.
+    """
+    UNSUPPORTED_IMAGE_FILE_TYPE
+    """
+    Media could not be created because it has an invalid file type.
+    """
+    VIDEO_INVALID_FILETYPE_ERROR
+    """
+    Media could not be created because it does not meet the maximum duration requirement.
+    """
+    VIDEO_MAX_DURATION_ERROR
+    """
+    Media could not be created because it does not meet the maximum height requirement.
+    """
+    VIDEO_MAX_HEIGHT_ERROR
+    """
+    Media could not be created because it does not meet the maximum width requirement.
+    """
+    VIDEO_MAX_WIDTH_ERROR
+    """
+    Media could not be created because the metadata could not be read.
+    """
+    VIDEO_METADATA_READ_ERROR
+    """
+    Media could not be created because it does not meet the minimum duration requirement.
+    """
+    VIDEO_MIN_DURATION_ERROR
+    """
+    Media could not be created because it does not meet the minimum height requirement.
+    """
+    VIDEO_MIN_HEIGHT_ERROR
+    """
+    Media could not be created because it does not meet the minimum width requirement.
+    """
+    VIDEO_MIN_WIDTH_ERROR
+    """
+    Video failed validation.
+    """
+    VIDEO_VALIDATION_ERROR
+}
+
+
+"""
+A hosted image.
+"""
+type MediaImage implements Media & File{
+    """
+    A globally-unique identifier.
+    """
+    id: ID!
+    """
+    A word or phrase to share the nature or contents of a media.
+    """
+    alt: String
+    """
+    A date and time the file was created
+    """
+    createdAt: DateTime!
+    """
+    The image for the media. Returns null until status is READY.
+    """
+    image: Image
+    """
+    Any errors that have occurred on the file.
+    """
+    fileErrors: [FileError!]!
+    """
+    The status of the file.
+    """
+    fileStatus: FileStatus!
+    """
+    The media content type.
+    """
+    mediaContentType: MediaContentType!
+    """
+    Any errors which have occurred on the media.
+    """
+    mediaErrors: [MediaError!]!
+    """
+    The warnings attached to the media.
+    """
+    mediaWarnings: [MediaWarning!]!
+    """
+    The preview image for the media.
+    """
+    preview: MediaPreviewImage
+    """
+    The MIME type of the image.
+    """
+    mimeType: String
+    """
+    Current status of the media.
+    """
+    status: MediaStatus!
+}
+
+"""
+Represents a hosted 3D model.
+"""
+type Model3d implements Media {
+    """
+    A globally-unique identifier.
+    """
+    id: ID!
+    """
+    A word or phrase to share the nature or contents of a media.
+    """
+    alt: String
+    """
+    The 3d model's bounding box information.
+    """
+    boundingBox: Model3DBoundingBox
+    """
+    The 3d model's filename.
+    """
+    filename: String!
+    """
+    The media content type.
+    """
+    mediaContentType: MediaContentType!
+    """
+    Any errors which have occurred on the media.
+    """
+    mediaErrors: [MediaError!]!
+    """
+    The warnings attached to the media.
+    """
+    mediaWarnings: [MediaWarning!]!
+    """
+    The 3d model's original source.
+    """
+    originalSource: Model3dSource
+    """
+    The preview image for the media.
+    """
+    preview: MediaPreviewImage
+    """
+    The 3d model's sources.
+    """
+    sources: [Model3dSource!]!
+    """
+    Current status of the media.
+    """
+    status: MediaStatus!
+}
+
+"""
+Representation of 3d vectors and points. It can represent either the coordinates of a point in space, a direction, or size. Presented as an object with three floating-point values.
+"""
+type Vector3{
+    """
+    The x coordinate of Vector3.
+    """
+    x: Float!
+    """
+    The y coordinate of Vector3.
+    """
+    y: Float!
+    """
+    The z coordinate of Vector3.
+    """
+    z: Float!
+}
+
+
+"""
+Bounding box information of a 3d model.
+"""
+type Model3DBoundingBox{
+    """
+    Size in meters of the smallest volume which contains the 3d model.
+    """
+    size: Vector3!
+}
+
+"""
+A source for a hosted 3d model.
+
+Types of sources include GLB and USDZ formatted 3d models, where the former is an original 3d model and the latter has
+been converted from the original.
+
+If the original source is in GLB format and over 15 MBs in size, then both the original and the USDZ formatted source
+are optimized to reduce the file size.
+"""
+type Model3dSource {
+    """
+    The 3d model source's filesize.
+    """
+    filesize: Int!
+    """
+    The 3d model source's format.
+    """
+    format: String!
+    """
+    The 3d model source's MIME type.
+    """
+    mimeType: String!
+    """
+    The 3d model source's URL.
+    """
+    url: URL!
+}
+
+
+"""
+Represents a media error.
+"""
+type MediaError {
+    """
+    Code representing the type of error.
+    """
+    code: MediaErrorCode!
+    """
+    Additional details regarding the error.
+    """
+    message: String
+}
+
+"""
+Represents a media warning.
+"""
+type MediaWarning {
+    """
+    Code representing the type of warning.
+    """
+    code: MediaWarningCode!
+    """
+    Additional details regarding the warning.
+    """
+    message: String
+}
+
+"""
+The possible content types for a media object.
+"""
+enum MediaContentType {
+    """
+    An externally hosted video.
+    """
+    EXTERNAL_VIDEO
+    """
+    A hosted image.
+    """
+    IMAGE
+    """
+    A 3d model.
+    """
+    MODEL_3D
+    """
+    A hosted video.
+    """
+    VIDEO
+}
+
+"""
+Represents a media interface
+"""
+interface Media {
+    """
+    A word or phrase to describe the contents or the function of a media.
+    """
+    alt: String
+    """
+    The media content type.
+    """
+    mediaContentType: MediaContentType!
+    """
+    Any errors that have occurred on the file.
+    """
+    mediaErrors: [MediaError!]!
+    """
+    The warnings attached to the media.
+    """
+    mediaWarnings: [MediaWarning!]!
+    """
+    The status of the media.
+    """
+    status: MediaStatus!
+    """
+    The preview image for the media.
+    """
+    preview: MediaPreviewImage
+}
+
+type MediaEdge {
+    """
+    A cursor for use in pagination.
+    """
+    cursor: String!
+    """
+    The item at the end of MediaEdge.
+    """
+    node: Media!
+}
+
+type MediaConnection {
+    """
+    A list of edges.
+    """
+    edges: [MediaEdge!]!
+    """
+    A list of the nodes contained in MediaEdge.
+    """
+    nodes: [Media!]!
+    """
+    Information to aid in pagination.
+    """
+    pageInfo: PageInfo!
+    """
+    Identifies the total count of items in the connection.
+    """
+    totalCount: Int!
+}
+
+"""
+Represents a source for a hosted video.
+
+Types of sources include the original video, lower resolution versions of the original video, and an m3u8 playlist file.
+
+Only videos with a status field of READY have sources.
+"""
+type VideoSource {
+    """
+    The video source's file size in bytes.
+    """
+    fileSize: Int
+    """
+    The video source's file format extension.
+    """
+    format: String!
+    """
+    The video source's height.
+    """
+    height: Int!
+    """
+    The video source's MIME type.
+    """
+    mimeType: String!
+    """
+    The video source's URL.
+    """
+    url: URL!
+    """
+    The video source's width.
+    """
+    width: Int!
+}
+
+"""
+A hosted video.
+"""
+type Video implements Media & File{
+    """
+    A globally-unique identifier.
+    """
+    id: ID!
+    """
+    A word or phrase to share the nature or contents of a media.
+    """
+    alt: String
+    """
+    A date and time the file was created
+    """
+    createdAt: DateTime!
+    """
+    The video's duration in milliseconds. This value is null unless the video's status field is READY.
+    """
+    duration: Int
+    """
+    Any errors that have occurred on the file.
+    """
+    fileErrors: [FileError!]!
+    """
+    The status of the file.
+    """
+    fileStatus: FileStatus!
+    """
+    The media content type.
+    """
+    mediaContentType: MediaContentType!
+    """
+    Any errors which have occurred on the media.
+    """
+    mediaErrors: [MediaError!]!
+    """
+    The warnings attached to the media.
+    """
+    mediaWarnings: [MediaWarning!]!
+    """
+    The preview image for the media.
+    """
+    preview: MediaPreviewImage
+    """
+    Current status of the media.
+    """
+    status: MediaStatus!
+    """
+    The video's sources. This value is empty unless the video's status field is READY.
+    """
+    sources: [VideoSource!]!
+    """
+    The video's original source. This value is null unless the video's status field is READY.
+    """
+    source: VideoSource
+}
+
+"""
+Represents an externally hosted video
+"""
+type ExternalVideo implements Media{
+    """
+    A globally-unique identifier.
+    """
+    id: ID!
+    """
+    A word or phrase to share the nature or contents of a media.
+    """
+    alt: String
+    """
+    The embed URL of the video for the respective host.
+    """
+    embedUrl: URL!
+    """
+    The host of the external video.
+    """
+    host: MediaHost!
+    """
+    The origin URL of the video on the respective host.
+    """
+    originUrl: URL!
+    """
+    The media content type.
+    """
+    mediaContentType: MediaContentType!
+    """
+    Any errors which have occurred on the media.
+    """
+    mediaErrors: [MediaError!]!
+    """
+    The warnings attached to the media.
+    """
+    mediaWarnings: [MediaWarning!]!
+    """
+    The preview image for the media.
+    """
+    preview: MediaPreviewImage
+    """
+    Current status of the media.
+    """
+    status: MediaStatus!
+
+}
+
+
+type Image {
+    "A unique identifier for the image."
+    id: ID!
+    "A word or phrase to share the nature or contents of an image."
+    altText: String
+    "The original height of the image in pixels. Returns null if the image is not hosted by SpellMarket."
+    height: Int
+    "The original width of the image in pixels. Returns null if the image is not hosted by SpellMarket."
+    width: Int
+    """
+    The location of the image as a URL. If no transform options are specified, then the original image will be preserved
+    including any pre-applied transforms. All transformation options are considered "best-effort". Any transformation
+    that the original image type doesn't support will be ignored.
+    """
+    url(transform: ImageTransformInput!): URL
+}
+
+type ImageEdge {
+    """
+    A cursor for use in pagination.
+    """
+    cursor: String!
+    """
+    The item at the end of ImageEdge.
+    """
+    node: Image!
+}
+
+type ImageConnection {
+    """
+    A list of edges.
+    """
+    edges: [ImageEdge!]!
+    """
+    A list of the nodes contained in ImageEdge.
+    """
+    nodes: [Image!]!
+    """
+    Information to aid in pagination.
+    """
+    pageInfo: PageInfo!
+    """
+    Identifies the total count of items in the connection.
+    """
+    totalCount: Int!
+}
+
+"""
+The format of the Image
+"""
+enum ImageContentType {
+    """ A JPG image """
+    JPG
+    """ A PNG image """
+    PNG
+    """ A WEBP image """
+    WEBP
+}
+
+"""
+The part of the image that should remain after cropping.
+"""
+enum CropRegion {
+    """
+    Keep the center of the image.
+    """
+    CENTER
+    """
+    Keep the top of the image.
+    """
+    TOP
+    """
+    Keep the bottom of the image.
+    """
+    BOTTOM
+    """
+    Keep the left of the image.
+    """
+    LEFT
+    """
+    Keep the right of the image.
+    """
+    RIGHT
+}
+
+"""
+The available options for transforming an image.
+
+All transformation options are considered best effort. Any transformation that the original image type doesn't support
+will be ignored.
+"""
+input ImageTransformInput {
+    """
+    The region of the image to remain after cropping.
+    Must be used in conjunction with the maxWidth and/or maxHeight fields, where the maxWidth and maxHeight aren't equal.
+    The crop argument should coincide with the smaller value. A smaller maxWidth indicates a LEFT or RIGHT crop, while
+    a smaller maxHeight indicates a TOP or BOTTOM crop. For example, { maxWidth: 5, maxHeight: 10, crop: LEFT } will
+    result in an image with a width of 5 and height of 10, where the right side of the image is removed.
+    """
+    crop: CropRegion
+    """
+    Image width in pixels between 1 and 5760.
+    """
+    maxWidth: Int
+    """
+    Image height in pixels between 1 and 5760.
+    """
+    maxHeight: Int
+    """
+    Image size multiplier for high-resolution retina displays. Must be within 1..3.
+    """
+    scale: Int = 1
+    """
+    Convert the source image into the preferred content type.
+    Supported conversions: .svg to .png, any file type to .jpg, and any file type to .webp.
+    """
+    preferredContentType: ImageContentType
+}
+
+
+"""
+The resource type to receive
+"""
+enum StagedUploadTargetGenerateUploadResource {
+    """
+    An image associated with a collection.
+
+    For example, after uploading an image, you can use the
+    collectionUpdate mutation to add the image to a collection.
+    """
+    COLLECTION_IMAGE
+    """
+    Represents any file other than HTML.
+
+    For example, after uploading the file, you can add the file to the
+    Files page in SpellMarket admin using the fileCreate mutation.
+    """
+    FILE
+    """
+    An image.
+
+    For example, after uploading an image, you can add the image to a product using the
+    productCreateMedia mutation or to the Files page in SpellMarket admin using the
+    fileCreate mutation.
+    """
+    IMAGE
+    """
+    A SpellMarket hosted 3d model.
+
+    For example, after uploading the 3d model, you can add the 3d model to a product using the
+    productCreateMedia mutation.
+    """
+    MODEL_3D
+    """
+    An image that's associated with a product.
+
+    For example, after uploading the image, you can add the image to a product using the
+    productCreateMedia mutation.
+    """
+    PRODUCT_IMAGE
+    """
+    An image.
+
+    For example, after uploading the image, you can add the image to the
+    Files page in SpellMarket admin using the fileCreate mutation.
+    """
+    APP_STORE_IMAGE
+    """
+    A SpellMarket-hosted video.
+
+    For example, after uploading the video, you can add the video to a product using the
+    productCreateMedia mutation or to the Files page in SpellMarket admin using the fileCreate mutation.
+    """
+    VIDEO
+    """
+    Represents bulk mutation variables.
+
+    For example, bulk mutation variables can be used for bulk operations using the
+    bulkOperationRunMutation mutation.
+    """
+    BULK_MUTATION_VARIABLES
+    """
+    Represents a redirect CSV file.
+
+    Example usage: This resource can be used for creating a
+    UrlRedirectImport  object for use in the urlRedirectImportCreate mutation.
+    """
+    URL_REDIRECT_IMPORT
+}
+
+
+"""
+The possible HTTP methods that can be used when sending a request to upload a file using information from a
+StagedMediaUploadTarget.
+"""
+enum StagedUploadHttpMethodType {
+    """
+    The POST HTTP method.
+    """
+    POST
+    """
+    The PUT HTTP method.
+    """
+    PUT
+}

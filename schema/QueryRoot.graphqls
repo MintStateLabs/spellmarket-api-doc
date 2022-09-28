@@ -1,0 +1,133 @@
+"""
+The schema’s entry-point for queries. This acts as the public, top-level API from which all queries must start.
+
+This section focus on the buying experience
+"""
+type QueryRoot {
+    """
+    Retrieve a cart by its ID
+    """
+    cart(id: ID!): Cart
+    """
+    Fetch a specific Product Collection by ID
+    """
+    productCollection(id: ID!): ProductCollection
+    """
+    Return a Product Collection by its handle.
+    """
+    productCollectionByHandle(handle: String!): ProductCollection
+    """
+    List of the collections in the sales channels collections.
+    """
+    productCollections(
+        after: String
+        before: String
+        first: Int
+        last: Int
+        query: String
+        reverse: Boolean = false
+        sortKey: CollectionSortKeys = ID
+    ): ProductCollectionConnection!
+    """
+    Returns a Customer resource by ID.
+    """
+    customer(id: ID!): Customer
+    """
+    Returns a Fulfillment resource by ID.
+    """
+    fulfillment(id: ID!): Fulfillment
+    """
+    Returns an Order resource by ID.
+    """
+    order(id: ID!): Order
+    """
+    Returns a list of orders placed for user
+    """
+    orders(
+        after: String
+        before: String
+        first: Int
+        last: Int
+        query: String
+        reverse: Boolean = false
+        savedSearchId: ID
+        sortKey: OrderSortKeys = PROCESSED_AT
+    ): OrderConnection!
+    """
+    Fetch a specific Product by it's id
+    """
+    product(id: ID): Product
+    """
+    List of the subchannel’s products or return the all products in saleschannel if subchannelHandle is null
+    """
+    products(
+        subChannelHandle: String
+        after: String
+        before: String
+        first: Int
+        last: Int
+        query: String
+        reverse: Boolean = false
+        sortKey: ProductSortKeys = ID
+    ): ProductConnection!
+    """
+    Tags added to products.
+    """
+    productTags(first: Int!, subChannelID: ID): StringConnection!
+    """
+    List of product types for the shop's products that are published to your channel/subchannel.
+    """
+    productTypes(first: Int!, subChannelID: ID): StringConnection!
+    """
+    The list of public SpellMarket API versions, including supported, release candidate and unstable versions.
+    """
+    publicApiVersions: [ApiVersion!]!
+    """
+    Sub-channels associated with the Sale Channel API key
+    """
+    subSalesChannels(
+        after: String
+        before: String
+        first: Int
+        last: Int
+        query: String
+        reverse: Boolean = false
+    ): SubChannelConnection!
+    """
+    Associated with the Sale Channel API key
+    """
+    SalesChannel: SalesChannel!
+    """
+    Associated with the sales channel
+    """
+    AllowLists(
+        after: String
+        before: String
+        first: Int
+        last: Int
+        query: String
+        reverse: Boolean = false
+    ): AllowListConnection!
+    """
+    Allowlist that customer is included in by ID. If ID is null then it'll give allowlist for the current logged in
+    customer.
+    """
+    AllowListsByCustomer(
+        customerID: ID
+        after: String
+        before: String
+        first: Int
+        last: Int
+        query: String
+        reverse: Boolean = false
+    ): AllowListConnection!
+    """
+    Allowlist that is associated with given product ID. Returns null if there is not one associated with it.
+    """
+    AllowListByProduct(productID: ID!): AllowList!
+    """
+    Allowlist that is associated with given product collection ID. Returns null if there is not one associated with it.
+    """
+    AllowListsByProductCollection(productCollectionID: ID!): AllowList!
+
+}

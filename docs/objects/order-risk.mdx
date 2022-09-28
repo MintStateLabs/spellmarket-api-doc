@@ -1,0 +1,53 @@
+---
+id: order-risk
+title: OrderRisk
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Represents a fraud check on an order.
+
+```graphql
+type OrderRisk {
+  display: Boolean!
+  level: OrderRiskLevel
+  message: String
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderRisk.<b>display</b></code>](#)<Bullet />[`Boolean!`](/scalars/boolean) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Whether the risk level is shown in the SpellMarket admin. If false, then this order risk is ignored when SpellMarket
+determines the overall risk level for the order.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderRisk.<b>level</b></code>](#)<Bullet />[`OrderRiskLevel`](/enums/order-risk-level) <Badge class="secondary" text="enum"/>
+> The likelihood that an order is fraudulent, based on this order risk.
+
+The level can be set by SpellMarket risk analysis or by an project.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderRisk.<b>message</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> The risk message that's shown to the merchant in the SpellMarket admin.
+> 
+
+
+
+### Member of
+
+[`Order`](/objects/order)  <Badge class="secondary" text="object"/>
+
+
+

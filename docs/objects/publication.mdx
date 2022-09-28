@@ -1,0 +1,180 @@
+---
+id: publication
+title: Publication
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+A publication is a group of products and collections that is published to sales channels.
+
+```graphql
+type Publication {
+  project: Project!
+  hasCollection(
+  id: ID!
+): Boolean!
+  id: ID!
+  name: String!
+  supportsFuturePublishing: Boolean!
+  collectionPublications(
+  first: Int
+  after: String
+  last: Int
+  before: String
+  reverse: Boolean = false
+): ResourcePublication!
+  collections(
+  first: Int
+  after: String
+  last: Int
+  before: String
+  reverse: Boolean = false
+): ProductCollectionConnection!
+  productPublications(
+  first: Int
+  after: String
+  last: Int
+  before: String
+  reverse: Boolean = false
+): ResourcePublicationConnection!
+  products(
+  first: Int
+  after: String
+  last: Int
+  before: String
+  reverse: Boolean = false
+): ProductConnection!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>Publication.<b>project</b></code>](#)<Bullet />[`Project!`](/objects/project) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The project associated with the publication.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Publication.<b>hasCollection</b></code>](#)<Bullet />[`Boolean!`](/scalars/boolean) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Whether the collection is available to the publication.
+> ##### [<code style={{ fontWeight: 'normal' }}>Publication.hasCollection.<b>id</b></code>](#)<Bullet />[`ID!`](/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Publication.<b>id</b></code>](#)<Bullet />[`ID!`](/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> A globally-unique identifier.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Publication.<b>name</b></code>](#)<Bullet />[`String!`](/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Name of the publication.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Publication.<b>supportsFuturePublishing</b></code>](#)<Bullet />[`Boolean!`](/scalars/boolean) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Whether the publication supports future publishing (e.g. publications that activate at a specific data/time)
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Publication.<b>collectionPublications</b></code>](#)<Bullet />[`ResourcePublication!`](/objects/resource-publication) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The collection publications for the list of collections published to the publication.
+> ##### [<code style={{ fontWeight: 'normal' }}>Publication.collectionPublications.<b>first</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Publication.collectionPublications.<b>after</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Publication.collectionPublications.<b>last</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Publication.collectionPublications.<b>before</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Publication.collectionPublications.<b>reverse</b></code>](#)<Bullet />[`Boolean`](/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Publication.<b>collections</b></code>](#)<Bullet />[`ProductCollectionConnection!`](/objects/product-collection-connection) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The list of collections published to the publication.
+> ##### [<code style={{ fontWeight: 'normal' }}>Publication.collections.<b>first</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Publication.collections.<b>after</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Publication.collections.<b>last</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Publication.collections.<b>before</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Publication.collections.<b>reverse</b></code>](#)<Bullet />[`Boolean`](/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Publication.<b>productPublications</b></code>](#)<Bullet />[`ResourcePublicationConnection!`](/objects/resource-publication-connection) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The product publications for the list of products published to the publication.
+> ##### [<code style={{ fontWeight: 'normal' }}>Publication.productPublications.<b>first</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Publication.productPublications.<b>after</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Publication.productPublications.<b>last</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Publication.productPublications.<b>before</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Publication.productPublications.<b>reverse</b></code>](#)<Bullet />[`Boolean`](/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Publication.<b>products</b></code>](#)<Bullet />[`ProductConnection!`](/objects/product-connection) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The list of products published to the publication.
+> ##### [<code style={{ fontWeight: 'normal' }}>Publication.products.<b>first</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Publication.products.<b>after</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Publication.products.<b>last</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Publication.products.<b>before</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Publication.products.<b>reverse</b></code>](#)<Bullet />[`Boolean`](/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+
+
+### Member of
+
+[`CollectionPublication`](/objects/collection-publication)  <Badge class="secondary" text="object"/><Bullet />[`Order`](/objects/order)  <Badge class="secondary" text="object"/><Bullet />[`PublicationConnection`](/objects/publication-connection)  <Badge class="secondary" text="object"/><Bullet />[`PublicationEdge`](/objects/publication-edge)  <Badge class="secondary" text="object"/><Bullet />[`ResourcePublication`](/objects/resource-publication)  <Badge class="secondary" text="object"/>
+
+
+

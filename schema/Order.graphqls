@@ -1,0 +1,903 @@
+
+"""
+Represents the reason that the order is being canceled. Valid values are: customer, fraud, inventory, declined, other.
+"""
+enum OrderCancelReason {
+    """
+    The customer wanted to cancel the order.
+    """
+    CUSTOMER
+    """
+    Payment was declined.
+    """
+    DECLINED
+    """
+    The order was fraudulent.
+    """
+    FRAUD
+    """
+    There was insufficient inventory.
+    """
+    INVENTORY
+    """
+    Some other reason not listed.
+    """
+    OTHER
+}
+
+"""
+The likelihood that an order is fraudulent.
+"""
+enum OrderRiskLevel {
+    """
+    There is a high level of risk that this order is fraudulent.
+    """
+    HIGH
+    """
+    There is a low level of risk that this order is fraudulent.
+    """
+    LOW
+    """
+    There is a medium level of risk that this order is fraudulent.
+    """
+    MEDIUM
+}
+
+"""
+Represents a fraud check on an order.
+"""
+type OrderRisk {
+    """
+    Whether the risk level is shown in the SpellMarket admin. If false, then this order risk is ignored when SpellMarket
+    determines the overall risk level for the order.
+    """
+    display: Boolean!
+    """
+    The likelihood that an order is fraudulent, based on this order risk.
+
+    The level can be set by SpellMarket risk analysis or by an project.
+    """
+    level: OrderRiskLevel
+    """
+    The risk message that's shown to the merchant in the SpellMarket admin.
+    """
+    message: String
+}
+
+"""
+Represents the order's current financial status.
+"""
+enum OrderFinancialStatus {
+    """
+    Displayed as Authorized.
+    """
+    AUTHORIZED
+    """
+    Displayed as Paid.
+    """
+    PAID
+    """
+    Displayed as Partially paid.
+    """
+    PARTIALLY_PAID
+    """
+    Displayed as Pending.
+    """
+    PENDING
+    """
+    Displayed as Voided.
+    """
+    VOIDED
+}
+
+
+"""
+Represents the order's aggregated fulfillment status for display purposes.
+"""
+enum OrderFulfillmentStatus {
+    """
+    Displayed as Fulfilled. All the items in the order have been fulfilled.
+    """
+    FULFILLED
+    """
+    Displayed as In progress. Some of the items in the order have been fulfilled, or a request for fulfillment has been
+    sent to the fulfillment service.
+    """
+    IN_PROGRESS
+    """
+    Displayed as Partially fulfilled. Some of the items in the order have been fulfilled.
+    """
+    PARTIALLY_FULFILLED
+    """
+    Displayed as Unfulfilled. None of the items in the order have been fulfilled.
+    """
+    UNFULFILLED
+}
+
+"""
+Represents a web3 wallet billing agreement payment instrument.
+"""
+type VaultWeb3Wallet {
+    """
+    Whether the web3 wallet connection active
+    """
+    connected: Boolean!
+    """
+    The name for wallet account name.
+    """
+    walletName: String!
+    """
+    The wallet account email address.
+    """
+    walletAddress: String!
+    """
+    The wallet Chains
+    """
+    chains: [Settlement!]!
+}
+
+
+union PaymentInstrument = VaultWeb3Wallet
+
+"""
+A payment instrument and the permission the owner of the instrument gives to the merchant to debit it.
+"""
+type PaymentMandate {
+    """
+    The unique identifier of a payment mandate.
+    """
+    id: ID!
+    """
+    The outputs details of the payment instrument.
+    """
+    paymentInstrument: PaymentInstrument!
+
+}
+
+"""
+The payment collection details for an order that requires additional payment following an edit to the order.
+"""
+type OrderPaymentCollectionDetails {
+    """
+    The URL to use for collecting an additional payment on the order.
+    """
+    additionalPaymentCollectionUrl: URL
+    """
+    The list of vaulted payment methods for the order with their permissions.
+    """
+    vaultedPaymentMethods: PaymentMandate
+}
+
+"""
+A customers request to purchase one or more products
+"""
+type Order implements Node {
+    """
+    A list of messages that appear on the order page in the dashboard admin.
+    """
+    alerts: [ResourceAlert!]!
+    """
+    The SalesChannel that created the order.
+    """
+    salesChannel: SalesChannel
+    """
+    The subchannel that created the order.
+    """
+    subChannel: SalesChannel
+    """
+    Whether a customer email exists for the order.
+    """
+    canNotifyCustomer: Boolean!
+    """
+    The reason provided when the order was canceled. Returns null if the order wasn't canceled.
+    """
+    cancelReason: OrderCancelReason
+    """
+    The date and time when the order was canceled. Returns null if the order wasn't canceled.
+    """
+    cancelledAt: DateTime
+    """
+    The total order-level discount amount, before returns, in shop and presentment currencies.
+    """
+    cartDiscountAmountSet: SchmecklePouch
+    """
+    The IP address of the API client that created the order.
+    """
+    clientIP: String
+    """
+    Whether the order is closed.
+    """
+    closed: Boolean!
+    """
+    The date and time when the order was closed. Returns null if the order is not closed.
+    """
+    closedAt: DateTime
+    """
+    Whether inventory has been reserved for the order.
+    """
+    confirmed: Boolean!
+    """
+    Date and time when the order was created.
+    """
+    createdAt: DateTime!
+    """
+    The shop currency when the order was placed.
+    """
+    currencyCode: CurrencyCode!
+    """
+    The current order-level discount amount after all order updates, in shop and presentment currencies.
+    """
+    currentCartDiscountAmountSet: SchmecklePouch!
+    """
+    The sum of the quantities for all line items that contribute to the order's current subtotal price.
+    """
+    currentSubtotalLineItemsQuantity: Int!
+    """
+    The sum of the prices for all line items after discounts and returns, in shop and presentment currencies.
+    If taxesIncluded is true, then the subtotal also includes tax.
+    """
+    currentSubtotalPriceSet: SchmecklePouch!
+    """
+    A list of all tax lines applied to line items on the order, after returns. Tax line prices represent the total price
+    for all tax lines with the same rate and title.
+    """
+    currentTaxLines: TaxLine
+    """
+    The total amount discounted on the order after returns, in shop and presentment currencies. This includes both order
+    and line level discounts.
+    """
+    currentTotalDiscountsSet: SchmecklePouch!
+    """
+    The total price of the order, after returns, in shop and presentment currencies. This includes taxes and discounts.
+    """
+    currentTotalPriceSet: SchmecklePouch!
+    """
+    The sum of the prices of all tax lines applied to line items on the order, after returns, in shop and presentment
+    currencies.
+    """
+    currentTotalTaxSet: SchmecklePouch!
+    """
+    The customer that placed the order.
+    """
+    customer: Customer
+    """
+    Whether the customer agreed to receive marketing materials.
+    """
+    customerAcceptsMarketing: Boolean!
+    """
+    A two-letter or three-letter language code, optionally followed by a region modifier.
+    """
+    customerLocale: String
+    """
+    The primary wallet address of the customer.
+    """
+    displayAddress: WalletAddress!
+    """
+    The email address associated with the customer.
+    """
+    email: String
+    """
+    Whether taxes on the order are estimated. This field returns false when taxes on the order are finalized and aren't
+    subject to any changes.
+    """
+    estimatedTaxes: Boolean!
+    """
+    The financial status of the order that can be shown to the merchant.
+    """
+    financialStatus: OrderFinancialStatus
+    """
+    Whether there are line items that can be fulfilled. This field returns false when the order has no fulfillable line
+    items. For a more granular view of the fulfillment status, refer to the FulfillmentOrder object.
+    """
+    fulfillable: Boolean!
+    """
+    The fulfillment status for the order that can be shown to the merchant.
+    """
+    fulfillmentStatus: OrderFulfillmentStatus!
+    """
+    Whether the order has been paid in full.
+    """
+    fullyPaid: Boolean!
+    """
+    A globally-unique identifier.
+    """
+    id: ID!
+    """
+    The contents of the note associated with the order.
+    """
+    note: String
+    """
+    The total price of the order at the time of order creation, in shop and presentment currencies.
+    """
+    originalTotalPriceSet: SchmecklePouch!
+    """
+    The payment collection details for the order.
+    """
+    paymentCollectionDetails: OrderPaymentCollectionDetails!
+    """
+    A list of the names of all payment gateways used for the order. E.g. Stripe or Web3
+    """
+    paymentGatewayNames: String!
+    """
+    The payment CurrencyCode of the customer for the order.
+    """
+    presentmentCurrencyCode: CurrencyCode!
+    """
+    The date and time when the order was processed. This date and time might not match the date and time when the order
+    was created.
+    """
+    processedAt: DateTime
+    """
+    The publication that the order was created from.
+    """
+    publication: Publication
+    """
+    The URL of the source that the order originated from, if found in the domain registry.
+    """
+    registeredSourceUrl: URL
+    """
+    Whether any line item on the order can be restocked.
+    """
+    restockable: Boolean!
+    """
+    The fraud risk level of the order.
+    """
+    riskLevel: OrderRiskLevel!
+    """
+    A list of risks associated with the order.
+    """
+    risks: [OrderRisk!]!
+    """
+    A unique POS or third party order identifier.
+    """
+    sourceIdentifier: String
+    """
+    The sum of the quantities for all line items that contribute to the order's subtotal price.
+    """
+    subtotalLineItemsQuantity: Int!
+    """
+    The sum of the prices for all line items after discounts and before returns, in shop and presentment currencies.
+    If taxesIncluded is true, then the subtotal also includes tax.
+    """
+    subtotalPriceSet: SchmecklePouch
+    """
+    A comma separated list of tags associated with the order. Updating tags overwrites any existing tags that were
+    previously added to the order. To add new tags without overwriting existing tags, use the tagsAdd mutation.
+    """
+    tags: String!
+    """
+    A list of all tax lines applied to line items on the order, before returns. Tax line prices represent the total
+    price for all tax lines with the same rate and title.
+    """
+    taxLines: [TaxLine!]!
+    """
+    Whether taxes are included in the subtotal price of the order.
+    """
+    taxesIncluded: Boolean!
+    """
+    Whether the order is a test. Test orders are made using testnet or a payment provider with test mode enabled.
+    A test order cannot be converted into a real order and vice versa.
+    """
+    test: Boolean!
+    """
+    The total amount not yet transacted for the order, in shop and presentment currencies.
+    A positive value indicates a difference in the merchant's favor (payment from customer to merchant).
+    """
+    totalOutstandingSet: SchmecklePouch!
+    """
+    The total price of the order, before returns, in shop and presentment currencies. This includes taxes and discounts.
+    """
+    totalPriceSet: SchmecklePouch!
+    """
+    The total amount received from the customer before returns, in shop and presentment currencies.
+    """
+    totalReceivedSet: SchmecklePouch!
+    """
+    The total tax amount before returns, in shop and presentment currencies.
+    """
+    totalTaxSet: SchmecklePouch
+    """
+    A list of transactions associated with the order.
+    """
+    transactions(
+        "Truncate the array result to this size."
+        first: Int): [OrderTransaction!]!
+    """
+    Whether no payments have been made for the order.
+    """
+    unpaid: Boolean!
+    """
+    The date and time when the order was modified last.
+    """
+    updatedAt: DateTime!
+    """
+    A list of events associated with the order.
+    """
+    events(
+        first: Int,
+        after: String,
+        last: Int, before: String,
+        reverse: Boolean=false,
+        sortKey: EventSortKeys=ID,
+        query: String): EventConnection!
+    """
+    List of fulfillments for the order.
+    """
+    fulfillments(
+        first: Int,
+        after: String,
+        last: Int,
+        before: String,
+        reverse: Boolean=false): FulfillmentConnection!
+    """
+    A list of the order's line items.
+    """
+    lineItems(
+        first: Int,
+        after: String,
+        last: Int,
+        before: String,
+        reverse: Boolean=false): LineItemConnection!
+    """
+    A list of line items that can't be fulfilled.
+    """
+    nonFulfillableLineItems(
+        first: Int,
+        after: String,
+        last: Int, before: String,
+        reverse: Boolean=false,
+        query: String): LineItemConnection!
+}
+
+type OrderEdge {
+    """
+    A cursor for use in pagination.
+    """
+    cursor: String!
+    """
+    The item at the end of OrderEdge.
+    """
+    node: Order!
+}
+
+type OrderConnection {
+    """
+    A list of edges.
+    """
+    edges: [OrderEdge!]!
+    """
+    A list of the nodes contained in OrderEdge.
+    """
+    nodes: [Order!]!
+    """
+    Information to aid in pagination.
+    """
+    pageInfo: PageInfo!
+    """
+    Identifies the total count of items in the connection.
+    """
+    totalCount: Int!
+}
+
+"""
+The set of valid sort keys for the Order query.
+"""
+enum OrderSortKeys {
+    """
+    Sort by the created_at value.
+    """
+    CREATED_AT
+    """
+    Sort by the customer_name value.
+    """
+    CUSTOMER_NAME
+    """
+    Sort by the financial_status value.
+    """
+    FINANCIAL_STATUS
+    """
+    Sort by the fulfillment_status value.
+    """
+    FULFILLMENT_STATUS
+    """
+    Sort by the order_number value.
+    """
+    ORDER_NUMBER
+    """
+    Sort by the processed_at value.
+    """
+    PROCESSED_AT
+    """
+    Sort by the total_price value.
+    """
+    TOTAL_PRICE
+    """
+    Sort by the updated_at value.
+    """
+    UPDATED_AT
+    """
+    Sort by the id value.
+    """
+    ID
+    """
+    Sort by relevance to the search terms when the query parameter is specified on the connection.
+    Don't use this sort key when no search query is specified
+    """
+    RELEVANCE
+}
+
+"""
+The different states that an OrderTransaction can have.
+"""
+enum OrderTransactionStatus{
+    """
+    Awaiting a response.
+    """
+    AWAITING_RESPONSE
+    """
+    There was an error while processing the transaction.
+    """
+    ERROR
+    """
+    The transaction failed.
+    """
+    FAILURE
+    """
+    The transaction is pending.
+    """
+    PENDING
+    """
+    The transaction succeeded.
+    """
+    SUCCESS
+    """
+    The transaction status is unknown.
+    """
+    UNKNOWN
+}
+
+"""
+A standardized error code, independent of the payment provider.
+"""
+enum OrderTransactionErrorCode {
+    """
+    The card was declined.
+    """
+    CARD_DECLINED
+    """
+    There is an error in the gateway configuration.
+    """
+    CONFIG_ERROR
+    """
+    The card is expired.
+    """
+    EXPIRED_CARD
+    """
+    There was an unknown error with processing the payment.
+    """
+    GENERIC_ERROR
+    """
+    The address does not match the card number.
+    """
+    INCORRECT_ADDRESS
+    """
+    The CVC does not match the card number.
+    """
+    INCORRECT_CVC
+    """
+    The card number is incorrect.
+    """
+    INCORRECT_NUMBER
+    """
+    The entered PIN is incorrect.
+    """
+    INCORRECT_PIN
+    """
+    The ZIP or postal code does not match the card number.
+    """
+    INCORRECT_ZIP
+    """
+    The amount is either too high or too low for the provider.
+    """
+    INVALID_AMOUNT
+    """
+    The payment method is not available in the customer's country.
+    """
+    INVALID_COUNTRY
+    """
+    The format of the CVC is incorrect.
+    """
+    INVALID_CVC
+    """
+    The format of the expiry date is incorrect.
+    """
+    INVALID_EXPIRY_DATE
+    """
+    The format of the card number is incorrect.
+    """
+    INVALID_NUMBER
+    """
+    The payment method is momentarily unavailable.
+    """
+    PAYMENT_METHOD_UNAVAILABLE
+    """
+    The wallet on wrong chain to process crypto payments.
+    """
+    WALLET_ON_WRONG_CHAIN
+    """
+    No wallet was connected to process crypto payments.
+    """
+    NO_WALLET_DETECTED_CHAIN
+    """
+    The card has been reported as lost or stolen, and the card issuer has requested that the merchant keep the card and call the number on the back.
+    """
+    PICK_UP_CARD
+    """
+    There was an error while processing the payment.
+    """
+    PROCESSING_ERROR
+    """
+    A real card was used but the gateway was in test mode.
+    """
+    TEST_MODE_LIVE_CARD
+    """
+    The gateway or merchant configuration doesn't support a feature, such as network tokenization.
+    """
+    UNSUPPORTED_FEATURE
+}
+
+"""
+Transaction fee related to an order transaction.
+"""
+type TransactionFee {
+    """
+    A globally-unique identifier.
+    """
+    id: ID!
+    """
+    Amount of the fee.
+    """
+    amount: Schmeckle!
+    """
+    Flat rate charge for a transaction.
+    """
+    flatFee: Schmeckle!
+    """
+    Name of the flat fee.
+    """
+    flatFeeName: String!
+    """
+    Percentage charge.
+    """
+    rate: Decimal!
+    """
+    Name of the rate fee.
+    """
+    rateName: String!
+    """
+    Tax amount charged on the fee.
+    """
+    taxAmount: Schmeckle!
+    """
+    Name of the type of fee.
+    """
+    type: String!
+}
+
+"""
+A payment transaction in the context of an order.
+"""
+type OrderTransaction implements Node {
+    """
+    A globally-unique identifier.
+    """
+    id: ID!
+    """
+    The amount and currency of the transaction in shop and presentment currencies.
+    """
+    amountSet: SchmecklePouch!
+    """
+    The associated order.
+    """
+    order: Order
+    """
+    Date and time when the transaction was created.
+    """
+    createdAt: DateTime!
+    """
+    A standardized error code, independent of the payment provider.
+    """
+    errorCode: OrderTransactionErrorCode
+    """
+    The transaction fees charged on the order transaction.
+    """
+    fees: TransactionFee!
+    """
+    The human-readable payment gateway name used to process the transaction.
+    """
+    formattedGateway: String
+    """
+    The payment gateway used to process the transaction.
+    """
+    gateway: String
+    """
+    Date and time when the transaction was processed.
+    """
+    processedAt: DateTime
+    """
+    The transaction receipt that the payment gateway attaches to the transaction.
+    The value of this field depends on which payment gateway processed the transaction.
+    """
+    receiptJson: JSON
+    """
+    The settlement currency.
+    """
+    settlementCurrency: CurrencyCode!
+    """
+    The rate used when converting the transaction amount to settlement currency.
+    """
+    settlementCurrencyRate: Decimal
+    """
+    The status of this transaction.
+    """
+    status: OrderTransactionStatus
+
+}
+
+type OrderTransactionEdge {
+    """
+    A cursor for use in pagination.
+    """
+    cursor: String!
+    """
+    The item at the end of OrderTransactionEdge.
+    """
+    node: OrderTransaction!
+}
+
+type OrderTransactionConnection {
+    """
+    A list of edges.
+    """
+    edges: [OrderTransactionEdge!]!
+    """
+    A list of the nodes contained in OrderTransactionEdge.
+    """
+    nodes: [OrderTransaction!]!
+    """
+    Information to aid in pagination.
+    """
+    pageInfo: PageInfo!
+    """
+    Identifies the total count of items in the connection.
+    """
+    totalCount: Int!
+}
+
+
+"""
+Represents a single line item on an order.
+"""
+type LineItem {
+    """
+    The line item's quantity, minus the removed quantity.
+    """
+    currentQuantity: Int!
+    """
+    The total line price after discounts are applied, in shop and presentment currencies.
+    """
+    discountedTotalSet: SchmecklePouch!
+    """
+    The approximate split price of a line item unit, in shop and presentment currencies. This value doesn't include discounts applied to the entire order.
+    """
+    discountedUnitPriceSet: SchmecklePouch!
+    """
+    A globally-unique identifier.
+    """
+    id: ID!
+    """
+    The image associated to the line item's product.
+    """
+    image: Image
+    """
+    The name of the product.
+    """
+    name: String!
+    """
+    The total number of units that can't be fulfilled. For example, if the item is not something that can be fulfilled/
+    """
+    nonFulfillableQuantity: Int!
+    """
+    The total price in shop and presentment currencies, without discounts applied. This value is based on the unit price
+    of the product x quantity.
+    """
+    originalTotalSet: SchmecklePouch!
+    """
+    The product unit price without discounts applied, in shop and presentment currencies.
+    """
+    originalUnitPriceSet: SchmecklePouch!
+    """
+    The Product object associated with this line item.
+    """
+    product: Product
+    """
+    The number of product units ordered.
+    """
+    quantity: Int!
+    """
+    Whether the line item can be restocked.
+    """
+    restockable: Boolean!
+    """
+    The product token id.
+    """
+    tokenID: String
+    """
+    The taxes charged for this line item.
+    """
+    taxLines(first: Int): [TaxLine!]!
+    """
+    Whether the product is taxable.
+    """
+    taxable: Boolean!
+    """
+    The title of the product.
+    """
+    title: String!
+    """
+    The total amount of the discount that's allocated to the line item, in the shop and presentment currencies.
+    This field must be explicitly set using draft orders, SpellMarket scripts, or the API.
+    """
+    totalDiscountSet: SchmecklePouch!
+    """
+    The total discounted value of unfulfilled units, in shop and presentment currencies.
+    """
+    unfulfilledDiscountedTotalSet: SchmecklePouch!
+    """
+    The total price, without any discounts applied. This value is based on the unit price of the product x quantity of
+    all unfulfilled units, in shop and presentment currencies.
+    """
+    unfulfilledOriginalTotalSet: SchmecklePouch!
+    """
+    The number of units not yet fulfilled.
+    """
+    unfulfilledQuantity: Int!
+    """
+    The name of the product.
+    """
+    Title: String
+    """
+    The name of the vendor who made the product.
+    """
+    vendor: String
+}
+
+type LineItemEdge {
+    """
+    A cursor for use in pagination.
+    """
+    cursor: String!
+    """
+    The item at the end of LineItemEdge.
+    """
+    node: LineItem!
+}
+
+type LineItemConnection {
+    """
+    A list of edges.
+    """
+    edges: [LineItemEdge!]!
+    """
+    A list of the nodes contained in LineItemEdge.
+    """
+    nodes: [LineItem!]!
+    """
+    Information to aid in pagination.
+    """
+    pageInfo: PageInfo!
+    """
+    Identifies the total count of items in the connection.
+    """
+    totalCount: Int!
+}

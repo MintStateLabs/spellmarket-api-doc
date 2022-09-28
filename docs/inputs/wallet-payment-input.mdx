@@ -1,0 +1,57 @@
+---
+id: wallet-payment-input
+title: WalletPaymentInput
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Specifies the fields required to complete a checkout with a wallet payment. Used for paying on the blockchain.
+
+```graphql
+input WalletPaymentInput {
+  walletAddress: WalletAddress!
+  paymentAmount: SchmeckleInput!
+  idempotencyKey: String!
+  test: Boolean
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>WalletPaymentInput.<b>walletAddress</b></code>](#)<Bullet />[`WalletAddress!`](/scalars/wallet-address) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The wallet address for the payment.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>WalletPaymentInput.<b>paymentAmount</b></code>](#)<Bullet />[`SchmeckleInput!`](/inputs/schmeckle-input) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="input"/>
+> The amount and currency of the payment.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>WalletPaymentInput.<b>idempotencyKey</b></code>](#)<Bullet />[`String!`](/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> A unique client generated key used to avoid duplicate charges. When a duplicate payment is found,
+the original is returned instead of creating a new one. For more information, refer to Idempotent requests.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>WalletPaymentInput.<b>test</b></code>](#)<Bullet />[`Boolean`](/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> Whether to execute the payment in test mode, if possible. Test mode is not supported in production stores.
+Defaults to false.
+> 
+
+
+
+### Member of
+
+[`checkoutCompleteWithWalletPayment`](/mutations/checkout-complete-with-wallet-payment)  <Badge class="secondary" text="mutation"/>
+
+
+

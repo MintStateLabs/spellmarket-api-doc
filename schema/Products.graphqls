@@ -1,0 +1,291 @@
+"""
+The Product resource lets you manage products in a sales channel.
+You can add or update product Media. Products can be organized by grouping them into a Collection.
+"""
+type Product implements Node & Publishable & HasAllowList {
+    """
+    The number of publications a resource is published.
+    """
+    availablePublicationCount: Int!
+    """
+    The the item being sold
+    """
+    item: SellableItem!
+    """
+    The date and time (ISO 8601 format) when the product was created.
+    """
+    createdAt: DateTime!
+    """
+    The custom product type specified by the merchant.
+    """
+    customProductType: String
+    """
+    A default cursor that returns the single next record, sorted ascending by ID.
+    """
+    defaultCursor: String!
+    """
+    A stripped description of the product, single line with HTML tags removed.
+    """
+    description (truncateAt: Int): String!
+    """
+    The description of the product, complete with HTML formatting.
+    """
+    descriptionHtml: HTML!
+    """
+    The featured image for the product.
+    """
+    featuredImage: Image
+    """
+    The featured media for the product.
+    """
+    featuredMedia: Media
+    """
+    A unique human-friendly string of the product's title.
+    """
+    handle: String
+    """
+    A globally-unique identifier.
+    """
+    id: ID!
+    """
+    Total count of media belonging to a product.
+    """
+    mediaCount: Int!
+    """
+    The online store preview URL.
+    """
+    onlineStorePreviewUrl: URL
+    """
+    The online store URL for the product.
+    A value of null indicates that the product is not published to the Spell Market sales channel.
+    """
+    onlineStoreUrl: URL
+    """
+    A list of product options.
+    """
+    options(first: Int): Int!
+    """
+    The product type specified by the merchant.
+    """
+    productType: String!
+    """
+    The number of publications a resource is published on
+    """
+    publicationCount (onlyPublished: Boolean=true): Int!
+    """
+    The date and time (ISO 8601 format) when the product was published to the SpellMarket.
+    """
+    publishedAt: DateTime!
+    """
+    Check to see whether the resource is published to the calling sales channel's publication.
+    """
+    publishedOnCurrentPublication: Boolean!
+    """
+    Check to see whether the resource is published to a given publication.
+    """
+    publishedOnPublication(publicationId: ID!): Boolean!
+    """
+    The resource that is either published or staged to be published to the calling app's publication. Requires the
+    read_product_listings scope.
+    """
+    resourcePublicationOnCurrentPublication: ResourcePublication
+    """
+    SEO information of the product.
+    """
+    seo: SEO!
+    """
+    The product status. This controls visibility across all channels.
+    """
+    status: ProductStatus!
+    """
+    A list of tags associated with the product.
+    """
+    tags: StringConnection!
+    """
+    The title of the product.
+    """
+    title: String!
+    """
+    The quantity of inventory in stock.
+    """
+    totalInventory: Int!
+    """
+    Whether inventory tracking has been enabled for the product.
+    """
+    tracksInventory: Boolean!
+    """
+    The date and time when the product was last modified. A product's updatedAt value can change for different reasons.
+    For example, if an order is placed for a product that has inventory tracking set up,
+    then the inventory adjustment is counted as an update.    """
+    updatedAt: DateTime!
+    """
+    The name of the product's vendor.
+    """
+    vendor: String!
+    """
+    A list of the collections that include the product.
+    """
+    productCollections(first: Int, after: String, last: Int, before: String, reverse: Boolean=false, sortKey: CollectionSortKeys, query: String): ProductCollectionConnection!
+    """
+    The images associated with the product.
+    """
+    images(first: Int, after: String, last: Int, before: String, reverse: Boolean=false, sortKey: ProductImageSortKeys=POSITION): ImageConnection!
+    """
+    The media associated with the product. This can include images, 3D models, or videos.
+    """
+    media(first: Int, after: String, last: Int, before: String, reverse: Boolean=false, sortKey: ProductMediaSortKeys=POSITION): MediaConnection!
+    """
+    The list of resources that are either published or staged to be published to a publication.
+    """
+    resourcePublications(onlyPublished: Boolean=true,
+        first: Int, after: String, last: Int, before: String, reverse: Boolean=false): ResourcePublicationConnection!
+    """
+    The list of publications that the resource is not published to.
+    """
+    unpublishedPublications(first: Int, after: String, last: Int, before: String, reverse: Boolean=false): PublicationConnection!
+
+    """
+    Whether the product collection has allowlist
+    """
+    hasAllowList: Boolean!
+    """
+    Whether the product collection
+    """
+    customerCanPurchase: Boolean!
+}
+
+type ProductEdge {
+    """
+    A cursor for use in pagination.
+    """
+    cursor: String!
+    """
+    The item at the end of ProductEdge.
+    """
+    node: Product!
+}
+
+type ProductConnection {
+    """
+    A list of edges.
+    """
+    edges: [ProductEdge!]!
+    """
+    A list of the nodes contained in ProductEdge.
+    """
+    nodes: [Product!]!
+    """
+    Information to aid in pagination.
+    """
+    pageInfo: PageInfo!
+    """
+    Identifies the total count of items in the connection.
+    """
+    totalCount: Int!
+}
+
+"""
+The possible product statuses.
+"""
+enum ProductStatus {
+    """
+    The product is ready to sell and can be published to sales channels and apps.
+    Products with an active status aren't automatically published to sales channels,
+    such as the online store, or apps. By default, existing products are set to active.
+    """
+    ACTIVE
+    """
+    The product is no longer being sold and isn't available to customers on sales channels and apps.
+    """
+    ARCHIVED
+    """
+    The product isn't ready to sell and is unavailable to customers on sales channels and apps.
+    By default, duplicated and unarchived products are set to draft.
+    """
+    DRAFT
+}
+
+
+"""
+The set of valid sort keys for the Product query.
+"""
+enum ProductSortKeys {
+    """
+    Sort by the title value.
+    """
+    TITLE
+    """
+    Sort by the product_type value.
+    """
+    PRODUCT_TYPE
+    """
+    Sort by the project value.
+    """
+    PROJECT
+    """
+    Sort by the inventory_total value.
+    """
+    INVENTORY_TOTAL
+    """
+    Sort by the updated_at value.
+    """
+    UPDATED_AT
+    """
+    Sort by the created_at value.
+    """
+    CREATED_AT
+    """
+    Sort by the published_at value.
+    """
+    PUBLISHED_AT
+    """
+    Sort by the id value.
+    """
+    ID
+    """
+    Sort by relevance to the search terms when the query parameter is specified on the connection.
+    Don't use this sort key when no search query is specified.
+    """
+    RELEVANCE
+}
+
+
+"""
+The set of valid sort keys for the ProductMedia query.
+"""
+enum ProductMediaSortKeys {
+    """
+    Sort by the id value.
+    """
+    ID
+    """
+    Sort by the position value.
+    """
+    POSITION
+    """
+    Sort by relevance to the search terms when the query parameter is specified on the connection. Don't use this sort key when no search query is specified.
+    """
+    RELEVANCE
+}
+
+"""
+Sort by the created_at value.
+"""
+enum ProductImageSortKeys {
+    """
+    Sort by the created_at value.
+    """
+    CREATED_AT
+    """
+    Sort by the id value.
+    """
+    ID
+    """
+    Sort by the position value.
+    """
+    POSITION
+    """
+    Sort by relevance to the search terms when the query parameter is specified on the connection. Don't use this sort key when no search query is specified.
+    """
+    RELEVANCE
+}

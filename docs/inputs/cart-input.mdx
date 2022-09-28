@@ -1,0 +1,50 @@
+---
+id: cart-input
+title: CartInput
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Specifies the input fields to create a cart.
+
+```graphql
+input CartInput {
+  lines: [CartLineInput!]
+  discountCodes: [String!]
+  buyerIdentity: CartBuyerIdentityInput
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>CartInput.<b>lines</b></code>](#)<Bullet />[`[CartLineInput!]`](/inputs/cart-line-input) <Badge class="secondary" text="list"/> <Badge class="secondary" text="input"/>
+> A list of product lines to add to the cart.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CartInput.<b>discountCodes</b></code>](#)<Bullet />[`[String!]`](/scalars/string) <Badge class="secondary" text="list"/> <Badge class="secondary" text="scalar"/>
+> The case-insensitive discount codes that the customer added at checkout.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CartInput.<b>buyerIdentity</b></code>](#)<Bullet />[`CartBuyerIdentityInput`](/inputs/cart-buyer-identity-input) <Badge class="secondary" text="input"/>
+> The customer associated with the cart. Used to determine international pricing. Buyer identity should match the customer's address.
+> 
+
+
+
+### Member of
+
+[`cartCreate`](/mutations/cart-create)  <Badge class="secondary" text="mutation"/>
+
+
+

@@ -1,0 +1,85 @@
+"""
+A digital asset is a resource that can be owned by an project and/or user account. These assets can be listed for sale or
+traded through the SpellMarket API.
+"""
+type DigitalAsset implements Node {
+    """
+    A globally-unique identifier.
+    """
+    id: ID!
+    """
+    Path is either a ipfs, filecoin, local project, or aws hosted asset dependent on chain
+    """
+    path: String!
+    """
+    Meta provides information supplemental to the main file stored in the same place as path
+    """
+    meta: String
+    """
+    MD5 Checksum of file data
+    """
+    fileChecksum: Int
+    """
+    MD5 Checksum of file meta data
+    """
+    metaChecksum: Int
+    """
+    The type of Digital Asset
+    """
+    type: DigitalAssetType!
+    """
+    Tags applied to the asset
+    """
+    tags: [String!]!
+}
+
+type DigitalAssetEdge {
+    """
+    A cursor for use in pagination.
+    """
+    cursor: String!
+    """
+    The item at the end of ProjectEdge.
+    """
+    node: DigitalAsset!
+}
+
+type DigitalAssetConnection {
+    """
+    A list of edges.
+    """
+    edges: [DigitalAssetEdge!]!
+    """
+    A list of the nodes contained in ProjectEdge.
+    """
+    nodes: [DigitalAsset!]!
+    """
+    Information to aid in pagination.
+    """
+    pageInfo: PageInfo!
+    """
+    Identifies the total count of items in the connection.
+    """
+    totalCount: Int!
+}
+
+"""
+The type of potential assets
+"""
+enum DigitalAssetType {
+    """
+    An image asset
+    """
+    Image
+    """
+    A Video asset
+    """
+    Video
+}
+
+"""
+A sellable item is union of all things that can be sold as a product through a sales channel
+"""
+union SellableItem = DigitalAsset
+
+

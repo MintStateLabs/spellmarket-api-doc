@@ -1,0 +1,501 @@
+
+"""
+The valid tiers for the predicted spend of a customer.
+"""
+enum CustomerPredictedSpendTier {
+    """
+    The customer's spend is higher than the 70th percentile of the sale channel's customer sales.
+    """
+    HIGH
+    """
+    The customer's spend is between the 10th and 70th percentile of the sale channel's customer sales.
+    """
+    MEDIUM
+    """
+    The customer's spend is lower than the 10th percentile of the sale channel's customer sales, including customers who
+    didn't repurchase.
+    """
+    LOW
+}
+
+"""
+A customer's computed statistics.
+"""
+type CustomerStatistics {
+    """
+    The predicted spend tier of a customer with a shop.
+    """
+    predictedSpendTier: CustomerPredictedSpendTier
+}
+
+"""
+The valid values for the state of a customer's account.
+"""
+enum CustomerState {
+    """
+    The customer declined the email invite to create an account.
+    """
+    DECLINED
+    """
+    The customer doesn't have an active account. Customer accounts can be disabled from the SpellMarket admin at any time.
+    """
+    DISABLED
+    """
+    The customer has created an account.
+    """
+    ENABLED
+    """
+    The customer has received an email invite to create an account.
+    """
+    INVITED
+}
+
+"""
+The possible email marketing states for a customer.
+"""
+enum CustomerEmailMarketingState {
+    """
+    The customer isn't subscribed to email marketing.
+    """
+    NOT_SUBSCRIBED
+    """
+    The customer is in the process of subscribing to email marketing.
+    """
+    PENDING
+    """
+    The customer is subscribed to email marketing.
+    """
+    SUBSCRIBED
+    """
+    The customer isn't currently subscribed to email marketing but was previously subscribed.
+    """
+    UNSUBSCRIBED
+    """
+    The customer's personal data is erased. This value is internally-set and read-only.
+    """
+    REDACTED
+    """
+    The customer’s email address marketing state is invalid.
+    """
+    INVALID
+}
+
+"""
+The possible values for the marketing subscription opt-in level enabled at the time the customer consented to
+receive marketing information.
+
+The levels are defined by the M3AAWG best practices guideline document.
+"""
+enum CustomerMarketingOptInLevel {
+    """
+    After providing their information, the customer receives marketing information without any
+    intermediate steps
+    """
+    SINGLE_OPT_IN
+    """
+    After providing their information, the customer receives a confirmation and is required to
+    perform a intermediate step before receiving marketing information
+    """
+    CONFIRMED_OPT_IN
+    """
+    The customer receives marketing information but how they were opted in is unknown.
+    """
+    UNKNOWN
+}
+"""
+The record of when a customer consented to receive marketing material by email.
+"""
+type CustomerEmailMarketingConsentState {
+    """
+    The date and time at which the customer consented to receive marketing material by email.
+    The customer's consent state reflects the consent record with the most recent consent_updated_at date.
+    If no date is provided, then the date and time at which the consent information was sent is used
+    """
+    consentUpdatedAt: DateTime
+    """
+    The marketing subscription opt-in level, as described by the M3AAWG best practices guidelines,
+    that the customer gave when they consented to receive marketing material by email
+    """
+    marketingOptInLevel: CustomerMarketingOptInLevel
+
+    """
+    The current email marketing state for the customer
+    """
+    marketingState: CustomerEmailMarketingState!
+
+}
+
+"""
+The source that collected the customer's consent to receive marketing materials.
+"""
+enum CustomerConsentCollectedFrom {
+    """
+    The customer consent was collected by Mint State Labs.
+    """
+    MSL
+    """
+    The customer consent was collected outside of Mint State Labs.
+    """
+    OTHER
+}
+
+"""
+The revocation reason types for a customer payment method.
+"""
+enum CustomerPaymentMethodRevocationReason {
+    """
+    Failed to connect to web3 API.
+    """
+    WEB3_AUTHENTICATION_ERROR
+    """
+    The web3 payment gateway is not enabled.
+    """
+    WEB3_GATEWAY_NOT_ENABLED
+    """
+    The web3 payment method type should be a wallet address
+    """
+    WEB3_PAYMENT_METHOD_NOT_DIGITAL_WALLET
+    """
+    The payment method was manually revoked.
+    """
+    MANUALLY_REVOKED
+    """
+    Failed to contact the Stripe API.
+    """
+    STRIPE_API_AUTHENTICATION_ERROR
+    """
+    Invalid request. Failed to retrieve payment method from Stripe.
+    """
+    STRIPE_API_INVALID_REQUEST_ERROR
+    """
+    The Stripe payment gateway is not enabled.
+    """
+    STRIPE_GATEWAY_NOT_ENABLED
+    """
+    The Stripe payment method type should be card.
+    """
+    STRIPE_PAYMENT_METHOD_NOT_CARD
+    """
+    Stripe did not return any payment methods. Make sure that the correct Stripe account is linked.
+    """
+    STRIPE_RETURNED_NO_PAYMENT_METHOD
+}
+
+"""
+Represents a web3 wallet payment instrument.
+"""
+type CustomerWeb3Wallet {
+    """
+    The name for wallet account name.
+    """
+    walletName: String!
+    """
+    The wallet address.
+    """
+    walletAddress: WalletAddress!
+    """
+    The wallet Chains
+    """
+    chains: [Settlement!]!
+}
+
+"""
+Represents a web3 wallet payment instrument.
+"""
+type CustomerStripeWallet {
+    """
+    The name for wallet account name.
+    """
+    tokenizedWal: String!
+    """
+    The wallet address.
+    """
+    walletAddress: WalletAddress!
+    """
+    The wallet Chains
+    """
+    chains: [Settlement!]!
+}
+
+union CustomerPaymentInstrument = CustomerWeb3Wallet
+
+"""
+Customer's payment method.
+"""
+type CustomerPaymentMethod implements Node{
+    """
+    The customer to whom the payment method belongs.
+    """
+    customer: Customer
+    """
+    The ID of this payment method.
+    """
+    id: ID!
+    """
+    The instrument for this payment method.
+    """
+    instrument: CustomerPaymentInstrument!
+    """
+    The time that the payment method was revoked.
+    """
+    revokedAt: DateTime
+    """
+    The revocation reason for this payment method.
+    """
+    revokedReason: CustomerPaymentMethodRevocationReason
+}
+
+type CustomerPaymentMethodEdge {
+    """
+    A cursor for use in pagination.
+    """
+    cursor: String!
+    """
+    The item at the end of CustomerPaymentMethodEdge.
+    """
+    node: CustomerPaymentMethod!
+}
+
+type CustomerPaymentMethodConnection {
+    """
+    A list of edges.
+    """
+    edges: [CustomerPaymentMethodEdge!]!
+    """
+    A list of the nodes contained in CustomerPaymentMethodEdge.
+    """
+    nodes: [CustomerPaymentMethod!]!
+    """
+    Information to aid in pagination.
+    """
+    pageInfo: PageInfo!
+    """
+    Identifies the total count of items in the connection.
+    """
+    totalCount: Int!
+}
+
+
+"""
+Represents information about a customer of the Project, such as the customer's contact details, their order
+history, and whether they've agreed to receive marketing material by email.
+
+Caution: Only use this data if it's required for your Project's functionality. will restrict access to scopes for apps that
+don't have a legitimate use for the associated data.
+"""
+type Customer implements HasEvents & Node {
+    """
+    Settlement types associated with the customer.
+    """
+    Settlements(first: Int): [Settlement!]!
+    """
+    The total amount that the customer has spent on orders in their lifetime.
+    """
+    amountSpent(currency: CurrencyCode): Schmeckle!
+    """
+    The average amount that the customer spent per order.
+    """
+    averageOrderAmount: Schmeckle
+    """
+    Whether the app can delete the customer from their store.
+
+    A customer can be deleted from a store only if they have not yet made an order. After a customer makes an
+    order, they can't be deleted from a store
+    """
+    canDelete: Boolean!
+    """
+    The date and time when the customer was added to the store.
+    """
+    createdAt: DateTime!
+    """
+    The full name of the customer, based on the values for first_name and last_name. If the first_name and
+    last_name are not available, then this falls back to the customer's email address.
+    """
+    displayName: String!
+    """
+    The customer's email address.
+    """
+    email: String
+    """
+    The current email marketing state for the customer.
+    If the customer doesn't have an email address, then this property is null
+    """
+    emailMarketingConsent: CustomerEmailMarketingConsentState
+    """
+    A list of events associated with the customer.
+    """
+    events(
+        first: Int
+        after: String
+        last: Int
+        before: String
+        reverse: Boolean = false
+        sortKey: EventSortKeys = ID
+        query: String
+    ): EventConnection!
+    """
+    The customer's first name if available
+    """
+    firstName: String
+    """
+    A globally-unique identifier.
+    """
+    id: ID!
+    """
+    The image associated with the customer.
+    """
+    image: Image!
+    """
+    The customer's last name.
+    """
+    lastName: String
+    """
+    The customer's last order
+    """
+    lastOrder: Order
+    """
+    The amount of time since the customer was first added. Example: '10 days'
+    """
+    lifetimeDuration: String!
+    """
+    The customer's locale.
+    """
+    locale: String!
+    """
+    A unique identifier for the customer that's used with Multipass login. (e.g. can login to SpellMarket store from a
+    game)
+    """
+    multipassIdentifier: String
+    """
+    The number of orders that the customer has made at the store in their lifetime.
+    """
+    numberOfOrders: UnsignedInt64!
+    """
+    A list of the customer's orders.
+    """
+    orders(
+        first: Int
+        after: String
+        last: Int
+        before: String
+        reverse: Boolean = false
+        sortKey: OrderSortKeys = ID
+        query: String
+    ): OrderConnection!
+    """
+    A list of the customer's payment methods.
+    """
+    paymentMethods(
+        showRevoked: Boolean = false
+        first: Int
+        after: String
+        last: Int
+        before: String
+        reverse: Boolean = false
+    ): CustomerPaymentMethodConnection!
+    """
+    The state of the customer's account with SpellMarket.
+    """
+    state: CustomerState!
+    """
+    The statistics for a given customer.
+    """
+    statistics: CustomerStatistics!
+    """
+    A comma separated list of tags that have been added to the customer.
+    """
+    tags: [String!]!
+    """
+    The URL to unsubscribe the customer from the mailing list.
+    """
+    unsubscribeUrl: URL!
+    """
+    The date and time when the customer was last updated.
+    """
+    updatedAt: DateTime!
+    """
+    Whether the email address is formatted correctly.
+
+    Returns true when the email is formatted correctly and
+    belongs to an existing domain. This doesn't guarantee that
+    the email address actually exists
+    """
+    validEmailAddress: Boolean!
+    """
+    Whether the customer has verified their email address. Defaults to true if the customer is created through the SpellMarket admin or API.
+    """
+    verifiedEmail: Boolean!
+}
+
+type CustomerEdge {
+    """
+    A cursor for use in pagination.
+    """
+    cursor: String!
+    """
+    The item at the end of CustomerEdge.
+    """
+    node: Customer!
+}
+
+type CustomerConnection {
+    """
+    A list of edges.
+    """
+    edges: [CustomerEdge!]!
+    """
+    A list of the nodes contained in CustomerEdge.
+    """
+    nodes: [Customer!]!
+    """
+    Information to aid in pagination.
+    """
+    pageInfo: PageInfo!
+    """
+    Identifies the total count of items in the connection.
+    """
+    totalCount: Int!
+}
+
+"""
+The set of valid sort keys for the Customer query.
+"""
+enum CustomerSortKeys {
+    """
+    Sort by the created_at value.
+    """
+    CREATED_AT
+    """
+    Sort by the name value.
+    """
+    NAME
+    """
+    Sort by the location value.
+    """
+    LOCATION
+    """
+    Sort by the orders_count value.
+    """
+    ORDERS_COUNT
+    """
+    Sort by the last_order_date value.
+    """
+    LAST_ORDER_DATE
+    """
+    Sort by the total_spent value.
+    """
+    TOTAL_SPENT
+    """
+    Sort by the updated_at value.
+    """
+    UPDATED_AT
+    """
+    Sort by the id value.
+    """
+    ID
+    """
+    Sort by relevance to the search terms when the query parameter is specified on the connection.
+    Don't use this sort key when no search query is specified
+    """
+    RELEVANCE
+}

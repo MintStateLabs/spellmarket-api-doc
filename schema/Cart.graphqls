@@ -1,0 +1,274 @@
+"""
+The costs that the buyer will pay at checkout.
+"""
+type CartCost{
+    """
+    The amount, before taxes and cart-level discounts, for the customer to pay.
+    """
+    subtotalAmount: Schmeckle!
+    """
+    Whether the subtotal amount is estimated.
+    """
+    subtotalAmountEstimated: Boolean!
+    """
+    The total amount for the customer to pay.
+    """
+    totalAmount: Schmeckle!
+    """
+    Whether the total amount is estimated.
+    """
+    totalAmountEstimated: Boolean!
+    """
+    The tax amount for the customer to pay at checkout.
+    """
+    totalTaxAmount: Schmeckle
+    """
+    Whether the total tax amount is estimated.
+    """
+    totalTaxAmountEstimated: Boolean!
+}
+
+"""
+The cost of the product line that the buyer will pay at checkout.
+"""
+type CartLineCost {
+    """
+    The amount of the product line.
+    """
+    amountPerQuantity: Schmeckle!
+    """
+    The cost of the product line before line-level discounts.
+    """
+    subtotalAmount: Schmeckle!
+    """
+    The total cost of the product line.
+    """
+    totalAmount: Schmeckle!
+
+}
+
+"""
+Represents information about the product in the cart.
+"""
+type CartLine implements Node {
+    """
+    The cost of the product that the buyer will pay for at checkout. The costs are subject to change and changes will
+    be reflected at checkout.
+    """
+    cost: CartLineCost!
+    """
+    A globally-unique identifier.
+    """
+    id: ID!
+    """
+    The product that the buyer intends to purchase.
+    """
+    product: Product!
+    """
+    The quantity of the product that the customer intends to purchase.
+    """
+    quantity: Int!
+}
+
+type CartLineEdge {
+    """
+    A cursor for use in pagination.
+    """
+    cursor: String!
+    """
+    The item at the end of CartLineEdge.
+    """
+    node: CartLine!
+}
+
+type CartLineConnection {
+    """
+    A list of edges.
+    """
+    edges: [CartLineEdge!]!
+    """
+    A list of the nodes contained in CartLineEdge.
+    """
+    nodes: [CartLine!]!
+    """
+    Information to aid in pagination.
+    """
+    pageInfo: PageInfo!
+    """
+    Identifies the total count of items in the connection.
+    """
+    totalCount: Int!
+}
+
+
+"""
+Possible method types that a delivery method can have.
+"""
+enum DeliveryMethodType {
+    """
+    The order is delivered via WEB3 Mint
+    """
+    DIGITAL_WEB3_MINT
+    """
+    The order is delivered via WEB3 Airdrop
+    """
+    DIGITAL_WEB3_AIRDROP
+}
+
+"""
+Information about a delivery option.
+"""
+type CartDeliveryOption {
+    """
+    The code of the delivery option.
+    """
+    code: String
+    """
+    The method for the delivery option.
+    """
+    deliveryMethodType: DeliveryMethodType!
+    """
+    The description of the delivery option.
+    """
+    description: String
+    """
+    The estimated gas cost for delivery option.
+    """
+    estimatedCost: Schmeckle!
+    """
+    The title of the delivery option.
+    """
+    title: String
+}
+
+"""
+Information about the options available for one or more line items to be delivered to a specific wallet address.
+"""
+type CartDeliveryGroup{
+    """
+    A list of cart lines for the delivery group.
+    """
+    cartLines(
+        first: Int
+        after: String
+        last: Int
+        before: String
+        reverse: Boolean = false
+    ): CartLineConnection!
+    """
+    The destination address for the delivery group.
+    """
+    deliveryAddress: CustomerWeb3Wallet!
+    """
+    The delivery options available for the delivery group.
+    """
+    deliveryOptions: [CartDeliveryOption!]!
+    """
+    The ID for the delivery group.
+    """
+    id: ID!
+}
+
+type CartDeliveryGroupEdge {
+    """
+    A cursor for use in pagination.
+    """
+    cursor: String!
+    """
+    The item at the end of CartDeliveryGroupEdg
+    """
+    node: CartDeliveryGroup!
+}
+
+type CartDeliveryGroupConnection {
+    """
+    A list of edges.
+    """
+    edges: [CartDeliveryGroupEdge!]!
+    """
+    A list of the nodes contained in CartDeliveryGroupEdge.
+    """
+    nodes: [CartDeliveryGroup!]!
+    """
+    Information to aid in pagination.
+    """
+    pageInfo: PageInfo!
+    """
+    Identifies the total count of items in the connection.
+    """
+    totalCount: Int!
+}
+
+"""
+Represents information about the buyer that is interacting with the cart.
+"""
+type CartBuyerIdentity {
+    """
+    The country where the buyer is located.
+    """
+    countryCode: CountryCode
+    """
+    The customer account associated with the cart.
+    """
+    customer: Customer
+    """
+    The email address of the buyer that is interacting with the cart.
+    """
+    email: String
+}
+
+"""
+A cart represents the products that a buyer intends to purchase, and the estimated cost associated with the cart.
+"""
+type Cart implements Node {
+    """
+    Information about the buyer that is interacting with the cart.
+    """
+    buyerIdentity: CartBuyerIdentity!
+    """
+    The URL of the checkout for the cart.
+    """
+    checkoutUrl: URL!
+    """
+    The estimated costs that the buyer will pay at checkout.
+    The costs are subject to change and changes will be reflected at checkout.
+    The cost field uses the buyerIdentity field to determine international pricing.
+    """
+    cost: CartCost!
+    """
+    The date and time when the cart was created.
+    """
+    createdAt: DateTime!
+    """
+    The wallet delivery groups available for the cart, based on the default address of the logged-in customer.
+    """
+    deliveryGroups(
+        after: String
+        before: String
+        first: Int
+        last: Int
+        reverse: Boolean = false
+    ): CartDeliveryGroupConnection!
+    """
+    A globally-unique identifier.
+    """
+    id: ID!
+    """
+    A list of lines containing information about the items the customer intends to purchase.
+    """
+    lines(
+        after: String
+        before: String
+        first: Int
+        last: Int
+        reverse: Boolean = false
+    ): CartLineConnection!
+    """
+    The total number of items in the cart.
+    """
+    totalQuantity: Int!
+    """
+    The date and time when the cart was updated.
+    """
+    updatedAt: DateTime!
+}

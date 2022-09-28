@@ -1,0 +1,50 @@
+---
+id: api-version
+title: ApiVersion
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+A version of the SpellMarket API.
+
+```graphql
+type ApiVersion {
+  displayName: String!
+  handle: String!
+  supported: Boolean!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>ApiVersion.<b>displayName</b></code>](#)<Bullet />[`String!`](/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The human-readable name of the version.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ApiVersion.<b>handle</b></code>](#)<Bullet />[`String!`](/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The unique identifier of an ApiVersion. All supported API versions have a date-based (YYYY-MM.Subversion) or unstable handle.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ApiVersion.<b>supported</b></code>](#)<Bullet />[`Boolean!`](/scalars/boolean) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Whether the version is still receiving support by SpellMarket.
+> 
+
+
+
+### Member of
+
+[`QueryRoot`](/objects/query-root)  <Badge class="secondary" text="object"/>
+
+
+

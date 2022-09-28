@@ -1,0 +1,55 @@
+---
+id: currency-code
+title: CurrencyCode
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Currency Type
+
+```graphql
+enum CurrencyCode {
+  ETH
+  SUI
+  USDC
+  USD
+}
+```
+
+
+### Values
+
+#### [<code style={{ fontWeight: 'normal' }}>CurrencyCode.<b>ETH</b></code>](#) 
+> Ethereum Token
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CurrencyCode.<b>SUI</b></code>](#) 
+> SUI Token
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CurrencyCode.<b>USDC</b></code>](#) 
+> USDC Token
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CurrencyCode.<b>USD</b></code>](#) 
+> United States Dollar
+> 
+
+
+
+### Member of
+
+[`Checkout`](/objects/checkout)  <Badge class="secondary" text="object"/><Bullet />[`Order`](/objects/order)  <Badge class="secondary" text="object"/><Bullet />[`OrderTransaction`](/objects/order-transaction)  <Badge class="secondary" text="object"/><Bullet />[`Schmeckle`](/objects/schmeckle)  <Badge class="secondary" text="object"/><Bullet />[`SchmeckleInput`](/inputs/schmeckle-input)  <Badge class="secondary" text="input"/>
+
+
+

@@ -1,0 +1,75 @@
+---
+id: sub-channel
+title: SubChannel
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+No description
+
+```graphql
+type SubChannel implements Node, Channel {
+  active: Boolean!
+  createdAt: DateTime!
+  handle: String
+  id: ID!
+  publications: PublicationConnection!
+  updatedAt: DateTime!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>SubChannel.<b>active</b></code>](#)<Bullet />[`Boolean!`](/scalars/boolean) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Whether the Sale Channel is currently Active
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>SubChannel.<b>createdAt</b></code>](#)<Bullet />[`DateTime!`](/scalars/date-time) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The date and time when the SalesChannel was created.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>SubChannel.<b>handle</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> Handle of the Channel. A unique name associated with the Channel
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>SubChannel.<b>id</b></code>](#)<Bullet />[`ID!`](/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> A globally-unique identifier.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>SubChannel.<b>publications</b></code>](#)<Bullet />[`PublicationConnection!`](/objects/publication-connection) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Publications that are published to a channel
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>SubChannel.<b>updatedAt</b></code>](#)<Bullet />[`DateTime!`](/scalars/date-time) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The date and time when the SalesChannel was updated.
+> 
+
+### Interfaces
+
+#### [`Node`](/interfaces/node) <Badge class="secondary" text="interface"/>
+> An interface for standard IDs. This is standard naming for this type of interface in Graphql
+> 
+
+#### [`Channel`](/interfaces/channel) <Badge class="secondary" text="interface"/>
+> 
+> 
+
+
+
+### Member of
+
+[`SubChannelConnection`](/objects/sub-channel-connection)  <Badge class="secondary" text="object"/><Bullet />[`SubChannelEdge`](/objects/sub-channel-edge)  <Badge class="secondary" text="object"/>
+
+
+

@@ -1,0 +1,55 @@
+---
+id: page-info
+title: PageInfo
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Returns information about pagination in a connection, in accordance with the Relay specification.
+
+```graphql
+type PageInfo {
+  endCursor: String
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>PageInfo.<b>endCursor</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> The cursor corresponding to the last node in edges.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>PageInfo.<b>hasNextPage</b></code>](#)<Bullet />[`Boolean!`](/scalars/boolean) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Whether there are more pages to fetch following the current page.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>PageInfo.<b>hasPreviousPage</b></code>](#)<Bullet />[`Boolean!`](/scalars/boolean) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Whether there are any pages prior to the current page.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>PageInfo.<b>startCursor</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> The cursor corresponding to the first node in edges.
+> 
+
+
+
+### Member of
+
+[`CartDeliveryGroupConnection`](/objects/cart-delivery-group-connection)  <Badge class="secondary" text="object"/><Bullet />[`CartLineConnection`](/objects/cart-line-connection)  <Badge class="secondary" text="object"/><Bullet />[`CheckoutLineItemConnection`](/objects/checkout-line-item-connection)  <Badge class="secondary" text="object"/><Bullet />[`CustomerConnection`](/objects/customer-connection)  <Badge class="secondary" text="object"/><Bullet />[`CustomerPaymentMethodConnection`](/objects/customer-payment-method-connection)  <Badge class="secondary" text="object"/><Bullet />[`DigitalAssetConnection`](/objects/digital-asset-connection)  <Badge class="secondary" text="object"/><Bullet />[`EventConnection`](/objects/event-connection)  <Badge class="secondary" text="object"/><Bullet />[`FileConnection`](/objects/file-connection)  <Badge class="secondary" text="object"/><Bullet />[`FulfillmentConnection`](/objects/fulfillment-connection)  <Badge class="secondary" text="object"/><Bullet />[`FulfillmentLineItemConnection`](/objects/fulfillment-line-item-connection)  <Badge class="secondary" text="object"/><Bullet />[`ImageConnection`](/objects/image-connection)  <Badge class="secondary" text="object"/><Bullet />[`LineItemConnection`](/objects/line-item-connection)  <Badge class="secondary" text="object"/><Bullet />[`MediaConnection`](/objects/media-connection)  <Badge class="secondary" text="object"/><Bullet />[`OrderConnection`](/objects/order-connection)  <Badge class="secondary" text="object"/><Bullet />[`OrderTransactionConnection`](/objects/order-transaction-connection)  <Badge class="secondary" text="object"/><Bullet />[`ProductCollectionConnection`](/objects/product-collection-connection)  <Badge class="secondary" text="object"/><Bullet />[`ProductConnection`](/objects/product-connection)  <Badge class="secondary" text="object"/><Bullet />[`ProjectConnection`](/objects/project-connection)  <Badge class="secondary" text="object"/><Bullet />[`PublicationConnection`](/objects/publication-connection)  <Badge class="secondary" text="object"/><Bullet />[`ResourcePublicationConnection`](/objects/resource-publication-connection)  <Badge class="secondary" text="object"/><Bullet />[`SalesChannelConnection`](/objects/sales-channel-connection)  <Badge class="secondary" text="object"/><Bullet />[`StringConnection`](/objects/string-connection)  <Badge class="secondary" text="object"/><Bullet />[`SubChannelConnection`](/objects/sub-channel-connection)  <Badge class="secondary" text="object"/>
+
+
+

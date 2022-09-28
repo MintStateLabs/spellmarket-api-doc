@@ -1,0 +1,199 @@
+"""
+The available icons for resource alerts.
+"""
+enum ResourceAlertIcon {
+    """
+    A checkmark inside a circle.
+    """
+    CHECKMARK_CIRCLE
+    """
+    A lowercase i inside a circle
+    """
+    INFORMATION_CIRCLE
+}
+
+"""
+An action associated to a resource alert, such as editing variants.
+"""
+type ResourceAlertAction {
+    """
+    Whether the action appears as a button or as a link.
+    """
+    primary: Boolean!
+    """
+    Resource for the action to show.
+    """
+    show: String
+    """
+    The text for the button in the alert. For example, Edit variants.
+    """
+    title: String!
+    """
+    The target URL that the button links to.
+    """
+    url: URL!
+}
+
+
+
+"""
+The possible severity levels for a resource alert.
+"""
+enum ResourceAlertSeverity {
+    """
+    Indicates a critical alert. For example, a blocked project.
+    """
+    CRITICAL
+    """
+    Indicates a neutral alert. For example, an accepted dispute.
+    """
+    DEFAULT
+    """
+    Indicates an informative alert. For example, an escalated dispute.
+    """
+    INFO
+    """
+    Indicates a success alert. For example, a winning a dispute.
+    """
+    SUCCESS
+    """
+    Indicates an informative alert. For example, a new dispute.
+    """
+    WARNING
+}
+
+"""
+An alert message that appears in the dashboard admin about a problem with a sales channel resource, with 1
+or more actions to take. For example, you could use an alert to indicate that you're not charging taxes on some products.
+They can optionally have a specific icon and be dismissed.
+"""
+type ResourceAlert {
+    """
+    Buttons in the alert that link to related information. For example, Edit variants.
+    """
+    actions: ResourceAlertAction!
+    """
+    The secondary text in the alert that includes further information or instructions about how to solve a problem.
+    """
+    content: HTML!
+    """
+    Unique identifier that appears when an alert is manually closed by the merchant. Most alerts cannot be manually
+    closed.
+    """
+    dismissibleHandle: String
+    """
+    An icon that is optionally displayed with the alert.
+    """
+    icon: ResourceAlertIcon
+    """
+    Indication of how important the alert is.
+    """
+    severity: ResourceAlertSeverity!
+    """
+    The primary text in the alert that includes information or describes the problem.
+    """
+    title: String!
+}
+
+
+"""
+The set of valid sort keys for the Event query.
+"""
+enum EventSortKeys {
+    """
+    Sort by the created_at value.
+    """
+    CREATED_AT
+    """
+    Sort by the id value.
+    """
+    ID
+    """
+    Sort by relevance to the search terms when the query parameter is specified on the connection. Don't use this sort
+    key when no search query is specified.}
+    """
+    RELEVANCE
+}
+
+"""
+Represents an object that has a list of events.
+"""
+interface HasEvents {
+    """
+    The paginated list of events associated with the host subject.
+    """
+    events(
+        first: Int
+        after: String
+        last: Int
+        before: String
+        reverse: Boolean = false
+        sortKey: EventSortKeys = ID
+        query: String
+    ): EventConnection!
+}
+
+"""
+Events chronicle resource activities such as the fulfillment of an order, or the addition of a product.
+"""
+interface Event {
+    """
+    The name of the project that created the event.
+    """
+    projectTitle: String
+    """
+    Whether the event was created by an app.
+    """
+    attributeToApp: Boolean!
+    """
+    Whether the event was caused by an admin user.
+    """
+    attributeToUser: Boolean!
+    """
+    The date and time when the event was created.
+    """
+    createdAt: DateTime!
+    """
+    Whether the event is critical.
+    """
+    criticalAlert: Boolean!
+    """
+    A globally-unique identifier.
+    """
+    id: ID!
+    """
+    Human readable text that describes the event.
+    """
+    message: FormattedString!
+}
+
+type EventEdge {
+    """
+    A cursor for use in pagination.
+    """
+    cursor: String!
+    """
+    The item at the end of EventEdge.
+    """
+    node: Event!
+}
+
+type EventConnection {
+    """
+    A list of edges.
+    """
+    edges: [EventEdge!]!
+    """
+    A list of the nodes contained in EventEdge.
+    """
+    nodes: [Event!]!
+    """
+    Information to aid in pagination.
+    """
+    pageInfo: PageInfo!
+    """
+    Identifies the total count of items in the connection.
+    """
+    totalCount: Int!
+}
+

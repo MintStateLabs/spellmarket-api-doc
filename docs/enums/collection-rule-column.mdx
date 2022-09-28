@@ -1,0 +1,65 @@
+---
+id: collection-rule-column
+title: CollectionRuleColumn
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Specifies the attribute of a product being used to populate the smart collection.
+
+```graphql
+enum CollectionRuleColumn {
+  TAG
+  TITLE
+  TYPE
+  VENDOR
+  PRICE
+  INVENTORY
+}
+```
+
+
+### Values
+
+#### [<code style={{ fontWeight: 'normal' }}>CollectionRuleColumn.<b>TAG</b></code>](#) 
+> The tag attribute.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CollectionRuleColumn.<b>TITLE</b></code>](#) 
+> The title attribute.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CollectionRuleColumn.<b>TYPE</b></code>](#) 
+> The type attribute.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CollectionRuleColumn.<b>VENDOR</b></code>](#) 
+> The vendor attribute.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CollectionRuleColumn.<b>PRICE</b></code>](#) 
+> The price attribute.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CollectionRuleColumn.<b>INVENTORY</b></code>](#) 
+> The variant_inventory attribute.
+> 
+
+
+
+### Member of
+
+[`CollectionRule`](/objects/collection-rule)  <Badge class="secondary" text="object"/>
+
+
+

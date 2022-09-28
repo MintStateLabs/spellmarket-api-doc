@@ -1,0 +1,56 @@
+---
+id: order-fulfillment-status
+title: OrderFulfillmentStatus
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Represents the order's aggregated fulfillment status for display purposes.
+
+```graphql
+enum OrderFulfillmentStatus {
+  FULFILLED
+  IN_PROGRESS
+  PARTIALLY_FULFILLED
+  UNFULFILLED
+}
+```
+
+
+### Values
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderFulfillmentStatus.<b>FULFILLED</b></code>](#) 
+> Displayed as Fulfilled. All the items in the order have been fulfilled.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderFulfillmentStatus.<b>IN_PROGRESS</b></code>](#) 
+> Displayed as In progress. Some of the items in the order have been fulfilled, or a request for fulfillment has been
+sent to the fulfillment service.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderFulfillmentStatus.<b>PARTIALLY_FULFILLED</b></code>](#) 
+> Displayed as Partially fulfilled. Some of the items in the order have been fulfilled.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderFulfillmentStatus.<b>UNFULFILLED</b></code>](#) 
+> Displayed as Unfulfilled. None of the items in the order have been fulfilled.
+> 
+
+
+
+### Member of
+
+[`Order`](/objects/order)  <Badge class="secondary" text="object"/>
+
+
+

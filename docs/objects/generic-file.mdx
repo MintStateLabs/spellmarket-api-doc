@@ -1,0 +1,86 @@
+---
+id: generic-file
+title: GenericFile
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Represents any file other than HTML.
+
+```graphql
+type GenericFile implements Node, File {
+  id: ID!
+  alt: String
+  createdAt: DateTime!
+  fileErrors: [FileError!]!
+  fileStatus: FileStatus!
+  preview: MediaPreviewImage
+  mimeType: String
+  originalFileSize: Int
+  url: URL
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>GenericFile.<b>id</b></code>](#)<Bullet />[`ID!`](/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> A globally-unique identifier.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>GenericFile.<b>alt</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> A word or phrase to describe the contents or the function of a file.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>GenericFile.<b>createdAt</b></code>](#)<Bullet />[`DateTime!`](/scalars/date-time) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The date and time (ISO 8601 format) when the file was created.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>GenericFile.<b>fileErrors</b></code>](#)<Bullet />[`[FileError!]!`](/objects/file-error) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Any errors that have occurred on the file.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>GenericFile.<b>fileStatus</b></code>](#)<Bullet />[`FileStatus!`](/enums/file-status) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> The status of the file.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>GenericFile.<b>preview</b></code>](#)<Bullet />[`MediaPreviewImage`](/objects/media-preview-image) <Badge class="secondary" text="object"/>
+> The preview image for the media.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>GenericFile.<b>mimeType</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> The generic file's MIME type.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>GenericFile.<b>originalFileSize</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> The generic file's size in bytes.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>GenericFile.<b>url</b></code>](#)<Bullet />[`URL`](/scalars/url) <Badge class="secondary" text="scalar"/>
+> The generic file's URL.
+> 
+
+### Interfaces
+
+#### [`Node`](/interfaces/node) <Badge class="secondary" text="interface"/>
+> An interface for standard IDs. This is standard naming for this type of interface in Graphql
+> 
+
+#### [`File`](/interfaces/file) <Badge class="secondary" text="interface"/>
+> A file interface.
+> 
+
+
+
+
+

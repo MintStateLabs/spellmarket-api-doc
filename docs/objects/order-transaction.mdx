@@ -1,0 +1,107 @@
+---
+id: order-transaction
+title: OrderTransaction
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+A payment transaction in the context of an order.
+
+```graphql
+type OrderTransaction implements Node {
+  id: ID!
+  amountSet: SchmecklePouch!
+  order: Order
+  createdAt: DateTime!
+  errorCode: OrderTransactionErrorCode
+  fees: TransactionFee!
+  formattedGateway: String
+  gateway: String
+  processedAt: DateTime
+  receiptJson: JSON
+  settlementCurrency: CurrencyCode!
+  settlementCurrencyRate: Decimal
+  status: OrderTransactionStatus
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderTransaction.<b>id</b></code>](#)<Bullet />[`ID!`](/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> A globally-unique identifier.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderTransaction.<b>amountSet</b></code>](#)<Bullet />[`SchmecklePouch!`](/objects/schmeckle-pouch) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The amount and currency of the transaction in shop and presentment currencies.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderTransaction.<b>order</b></code>](#)<Bullet />[`Order`](/objects/order) <Badge class="secondary" text="object"/>
+> The associated order.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderTransaction.<b>createdAt</b></code>](#)<Bullet />[`DateTime!`](/scalars/date-time) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Date and time when the transaction was created.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderTransaction.<b>errorCode</b></code>](#)<Bullet />[`OrderTransactionErrorCode`](/enums/order-transaction-error-code) <Badge class="secondary" text="enum"/>
+> A standardized error code, independent of the payment provider.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderTransaction.<b>fees</b></code>](#)<Bullet />[`TransactionFee!`](/objects/transaction-fee) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The transaction fees charged on the order transaction.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderTransaction.<b>formattedGateway</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> The human-readable payment gateway name used to process the transaction.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderTransaction.<b>gateway</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> The payment gateway used to process the transaction.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderTransaction.<b>processedAt</b></code>](#)<Bullet />[`DateTime`](/scalars/date-time) <Badge class="secondary" text="scalar"/>
+> Date and time when the transaction was processed.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderTransaction.<b>receiptJson</b></code>](#)<Bullet />[`JSON`](/scalars/json) <Badge class="secondary" text="scalar"/>
+> The transaction receipt that the payment gateway attaches to the transaction.
+The value of this field depends on which payment gateway processed the transaction.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderTransaction.<b>settlementCurrency</b></code>](#)<Bullet />[`CurrencyCode!`](/enums/currency-code) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> The settlement currency.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderTransaction.<b>settlementCurrencyRate</b></code>](#)<Bullet />[`Decimal`](/scalars/decimal) <Badge class="secondary" text="scalar"/>
+> The rate used when converting the transaction amount to settlement currency.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderTransaction.<b>status</b></code>](#)<Bullet />[`OrderTransactionStatus`](/enums/order-transaction-status) <Badge class="secondary" text="enum"/>
+> The status of this transaction.
+> 
+
+### Interfaces
+
+#### [`Node`](/interfaces/node) <Badge class="secondary" text="interface"/>
+> An interface for standard IDs. This is standard naming for this type of interface in Graphql
+> 
+
+
+
+### Member of
+
+[`Order`](/objects/order)  <Badge class="secondary" text="object"/><Bullet />[`OrderTransactionConnection`](/objects/order-transaction-connection)  <Badge class="secondary" text="object"/><Bullet />[`OrderTransactionEdge`](/objects/order-transaction-edge)  <Badge class="secondary" text="object"/>
+
+
+

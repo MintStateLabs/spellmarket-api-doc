@@ -1,0 +1,378 @@
+
+"""
+Possible error codes that can be returned by AllowListUserError.
+"""
+enum AllowListErrorCode {
+    """
+    The input value is blank.
+    """
+    BLANK
+    """
+    The input value is invalid.
+    """
+    INVALID
+    """
+    The allowlist is full.
+    """
+    FULL
+    """
+    The input is already added to the allowlist
+    """
+    ALREADY_ADDED
+}
+"""
+Represents an error that happens during execution of a checkout mutation.
+"""
+type AllowListUserError implements DisplayableError {
+    """
+    The error code.
+    """
+    code: AllowListErrorCode
+    """
+    The path to the input field that caused the error.
+    """
+    field: [String!]
+    """
+    The error message.
+    """
+    message: String!
+}
+
+"""
+Return type for AllowListAddCustomer mutation.
+"""
+type AllowListAddCustomerPayload {
+    """
+    The updated allowlist object.
+    """
+    allowlist: AllowList
+    """
+    The list of errors that occurred from executing the mutation.
+    """
+    allowlistUserErrors: [AllowListUserError!]!
+}
+
+"""
+Return type for AllowListAddWalletAddressPayload mutation.
+"""
+type AllowListAddWalletAddressPayload {
+    """
+    The updated allowlist object.
+    """
+    allowlist: AllowList
+    """
+    The list of errors that occurred from executing the mutation.
+    """
+    userErrors: [AllowListUserError!]!
+}
+
+"""
+Possible error codes that can be returned by CheckoutUserError.
+"""
+enum CheckoutErrorCode {
+    """
+    The input value is blank.
+    """
+    BLANK
+    """
+    The input value is invalid.
+    """
+    INVALID
+    """
+    The input value is too long.
+    """
+    TOO_LONG
+    """
+    The input value needs to be blank.
+    """
+    PRESENT
+    """
+    The input value should be less than the maximum value allowed.
+    """
+    LESS_THAN
+    """
+    The input value should be greater than or equal to the minimum value allowed.
+    """
+    GREATER_THAN_OR_EQUAL_TO
+    """
+    The input value should be less than or equal to the maximum value allowed.
+    """
+    LESS_THAN_OR_EQUAL_TO
+    """
+    Checkout is already completed.
+    """
+    ALREADY_COMPLETED
+    """
+    Input value is not supported.
+    """
+    NOT_SUPPORTED
+    """
+    Checkout is already completed.
+    """
+    EMPTY
+    """
+    Not enough in stock.
+    """
+    NOT_ENOUGH_IN_STOCK
+    """
+    Missing payment input.
+    """
+    MISSING_PAYMENT_INPUT
+    """
+    Line item was not found in checkout.
+    """
+    LINE_ITEM_NOT_FOUND
+    """
+    Throttled during checkout.
+    """
+    THROTTLED_DURING_CHECKOUT
+    """
+    Queue token has expired.
+    """
+    EXPIRED_QUEUE_TOKEN
+    """
+    Queue token is invalid.
+    """
+    INVALID_QUEUE_TOKEN
+    """
+    Cannot specify country and presentment currency code.
+    """
+    INVALID_COUNTRY_AND_CURRENCY
+}
+
+"""
+Represents an error that happens during execution of a checkout mutation.
+"""
+type CheckoutUserError implements DisplayableError {
+    """
+    The error code.
+    """
+    code: CheckoutErrorCode
+    """
+    The path to the input field that caused the error.
+    """
+    field: [String!]
+    """
+    The error message.
+    """
+    message: String!
+}
+
+"""
+Return type for checkoutLineItemsUpdate mutation.
+"""
+type CheckoutLineItemsUpdatePayload {
+    """
+    The updated checkout object.
+    """
+    checkout: Checkout
+    """
+    The list of errors that occurred from executing the mutation.
+    """
+    checkoutUserErrors: [CheckoutUserError!]!
+}
+
+"""
+Return type for checkoutLineItemsReplace mutation.
+"""
+type CheckoutLineItemsReplacePayload {
+    """
+    The updated checkout object.
+    """
+    checkout: Checkout
+    """
+    The list of errors that occurred from executing the mutation.
+    """
+    userErrors: [CheckoutUserError!]!
+}
+
+"""
+Return type for checkoutLineItemsRemove mutation.
+"""
+type CheckoutLineItemsRemovePayload {
+    """
+    The updated checkout object.
+    """
+    checkout: Checkout
+    """
+    The list of errors that occurred from executing the mutation.
+    """
+    checkoutUserErrors: [CheckoutUserError!]!
+}
+
+
+"""
+Return type for checkoutLineItemsAdd mutation.
+"""
+type CheckoutLineItemsAddPayload {
+    """
+    The updated checkout object.
+    """
+    checkout: Checkout
+    """
+    The list of errors that occurred from executing the mutation.
+    """
+    checkoutUserErrors: [CheckoutUserError!]!
+}
+
+
+"""
+Return type for checkoutCreate mutation.
+"""
+type CheckoutCreatePayload {
+    """
+    The new checkout object.
+    """
+    checkout: Checkout
+    """
+    The list of errors that occurred from executing the mutation.
+    """
+    checkoutUserErrors: [CheckoutUserError!]!
+    """
+    The checkout queue token. Available only to selected stores.
+    """
+    queueToken: String
+}
+
+"""
+Return type for CheckoutCompleteWithWalletPaymentPayload mutation.
+"""
+type CheckoutCompleteWithWalletPaymentPayload {
+    """
+    The checkout on which the payment was applied.
+    """
+    checkout: Checkout
+    """
+    The list of errors that occurred from executing the mutation.
+    """
+    checkoutUserErrors: [CheckoutUserError!]!
+    """
+    A representation of the attempted payment.
+    """
+    payment: Payment
+}
+
+"""
+Return type for checkoutCompleteWithTokenizedPayment mutation.
+"""
+type CheckoutCompleteWithTokenizedPaymentPayload {
+    """
+    The checkout on which the payment was applied.
+    """
+    checkout: Checkout
+    """
+    The list of errors that occurred from executing the mutation.
+    """
+    checkoutUserErrors: [CheckoutUserError!]!
+    """
+    A representation of the attempted payment.
+    """
+    payment: Payment
+}
+
+"""
+Return type for checkoutCompleteFree mutation.
+"""
+type CheckoutCompleteFreePayload {
+    """
+    The updated checkout object.
+    """
+    checkout: Checkout
+    """
+    The list of errors that occurred from executing the mutation.
+    """
+    checkoutUserErrors: [CheckoutUserError!]!
+}
+
+"""
+Possible error codes that can be returned by CartUserError.
+"""
+enum CartErrorCode {
+    """
+    The input value is invalid.
+    """
+    INVALID
+    """
+    The input value should be less than the maximum value allowed.
+    """
+    LESS_THAN
+    """
+    Product line was not found in cart.
+    """
+    INVALID_PRODUCT_LINE
+}
+
+"""
+Represents an error that happens during execution of a cart mutation.
+"""
+type CartUserError implements DisplayableError {
+    """
+    The error code.
+    """
+    code: CartErrorCode
+    """
+    The path to the input field that caused the error.
+    """
+    field: [String!]
+    """
+    The error message.
+    """
+    message: String!
+}
+
+
+"""
+Return type for cartLinesUpdate mutation.
+"""
+type CartLinesUpdatePayload {
+    """
+    The updated cart.
+    """
+    cart: Cart
+    """
+    The list of errors that occurred from executing the mutation.
+    """
+    userErrors: [CartUserError!]!
+}
+
+"""
+Return type for cartLinesRemove mutation.
+"""
+type CartLinesRemovePayload {
+    """
+    The updated cart.
+    """
+    cart: Cart
+    """
+    The list of errors that occurred from executing the mutation.
+    """
+    userErrors: [CartUserError!]!
+}
+
+"""
+Return type for cartLinesAdd mutation.
+"""
+type CartLinesAddPayload {
+    """
+    The updated cart.
+    """
+    cart: Cart
+    """
+    The list of errors that occurred from executing the mutation.
+    """
+    userErrors: [CartUserError!]!
+}
+
+"""
+Return type for cartCreate mutation.
+"""
+type CartCreatePayload {
+    """
+    The new cart.
+    """
+    cart: Cart
+    """
+    The list of errors that occurred from executing the mutation.
+    """
+    userErrors: [CartUserError!]!
+}

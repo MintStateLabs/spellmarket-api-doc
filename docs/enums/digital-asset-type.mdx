@@ -1,0 +1,45 @@
+---
+id: digital-asset-type
+title: DigitalAssetType
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+The type of potential assets
+
+```graphql
+enum DigitalAssetType {
+  Image
+  Video
+}
+```
+
+
+### Values
+
+#### [<code style={{ fontWeight: 'normal' }}>DigitalAssetType.<b>Image</b></code>](#) 
+> An image asset
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>DigitalAssetType.<b>Video</b></code>](#) 
+> A Video asset
+> 
+
+
+
+### Member of
+
+[`DigitalAsset`](/objects/digital-asset)  <Badge class="secondary" text="object"/>
+
+
+

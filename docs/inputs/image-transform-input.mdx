@@ -1,0 +1,64 @@
+---
+id: image-transform-input
+title: ImageTransformInput
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+The available options for transforming an image.
+
+All transformation options are considered best effort. Any transformation that the original image type doesn't support
+will be ignored.
+
+```graphql
+input ImageTransformInput {
+  crop: CropRegion
+  maxWidth: Int
+  maxHeight: Int
+  scale: Int
+  preferredContentType: ImageContentType
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>ImageTransformInput.<b>crop</b></code>](#)<Bullet />[`CropRegion`](/enums/crop-region) <Badge class="secondary" text="enum"/>
+> The region of the image to remain after cropping.
+Must be used in conjunction with the maxWidth and/or maxHeight fields, where the maxWidth and maxHeight aren't equal.
+The crop argument should coincide with the smaller value. A smaller maxWidth indicates a LEFT or RIGHT crop, while
+a smaller maxHeight indicates a TOP or BOTTOM crop. For example, &#x007B; maxWidth: 5, maxHeight: 10, crop: LEFT &#x007D; will
+result in an image with a width of 5 and height of 10, where the right side of the image is removed.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ImageTransformInput.<b>maxWidth</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> Image width in pixels between 1 and 5760.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ImageTransformInput.<b>maxHeight</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> Image height in pixels between 1 and 5760.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ImageTransformInput.<b>scale</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> Image size multiplier for high-resolution retina displays. Must be within 1..3.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ImageTransformInput.<b>preferredContentType</b></code>](#)<Bullet />[`ImageContentType`](/enums/image-content-type) <Badge class="secondary" text="enum"/>
+> Convert the source image into the preferred content type.
+Supported conversions: .svg to .png, any file type to .jpg, and any file type to .webp.
+> 
+
+
+
+
+

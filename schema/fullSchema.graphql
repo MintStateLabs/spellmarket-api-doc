@@ -1,0 +1,6662 @@
+﻿"""
+A digital asset is a resource that can be owned by an project and/or user account. These assets can be listed for sale or
+traded through the SpellMarket API.
+"""
+type DigitalAsset implements Node {
+    """
+    A globally-unique identifier.
+    """
+    id: ID!
+    """
+    Path is either a ipfs, filecoin, local project, or aws hosted asset dependent on chain
+    """
+    path: String!
+    """
+    Meta provides information supplemental to the main file stored in the same place as path
+    """
+    meta: String
+    """
+    MD5 Checksum of file data
+    """
+    fileChecksum: Int
+    """
+    MD5 Checksum of file meta data
+    """
+    metaChecksum: Int
+    """
+    The type of Digital Asset
+    """
+    type: DigitalAssetType!
+    """
+    Tags applied to the asset
+    """
+    tags: [String!]!
+}
+
+type DigitalAssetEdge {
+    """
+    A cursor for use in pagination.
+    """
+    cursor: String!
+    """
+    The item at the end of ProjectEdge.
+    """
+    node: DigitalAsset!
+}
+
+type DigitalAssetConnection {
+    """
+    A list of edges.
+    """
+    edges: [DigitalAssetEdge!]!
+    """
+    A list of the nodes contained in ProjectEdge.
+    """
+    nodes: [DigitalAsset!]!
+    """
+    Information to aid in pagination.
+    """
+    pageInfo: PageInfo!
+    """
+    Identifies the total count of items in the connection.
+    """
+    totalCount: Int!
+}
+
+"""
+The type of potential assets
+"""
+enum DigitalAssetType {
+    """
+    An image asset
+    """
+    Image
+    """
+    A Video asset
+    """
+    Video
+}
+
+"""
+A sellable item is union of all things that can be sold as a product through a sales channel
+"""
+union SellableItem = DigitalAsset
+
+
+"""
+The costs that the buyer will pay at checkout.
+"""
+type CartCost{
+    """
+    The amount, before taxes and cart-level discounts, for the customer to pay.
+    """
+    subtotalAmount: Schmeckle!
+    """
+    Whether the subtotal amount is estimated.
+    """
+    subtotalAmountEstimated: Boolean!
+    """
+    The total amount for the customer to pay.
+    """
+    totalAmount: Schmeckle!
+    """
+    Whether the total amount is estimated.
+    """
+    totalAmountEstimated: Boolean!
+    """
+    The tax amount for the customer to pay at checkout.
+    """
+    totalTaxAmount: Schmeckle
+    """
+    Whether the total tax amount is estimated.
+    """
+    totalTaxAmountEstimated: Boolean!
+}
+
+"""
+The cost of the product line that the buyer will pay at checkout.
+"""
+type CartLineCost {
+    """
+    The amount of the product line.
+    """
+    amountPerQuantity: Schmeckle!
+    """
+    The cost of the product line before line-level discounts.
+    """
+    subtotalAmount: Schmeckle!
+    """
+    The total cost of the product line.
+    """
+    totalAmount: Schmeckle!
+
+}
+
+"""
+Represents information about the product in the cart.
+"""
+type CartLine implements Node {
+    """
+    The cost of the product that the buyer will pay for at checkout. The costs are subject to change and changes will
+    be reflected at checkout.
+    """
+    cost: CartLineCost!
+    """
+    A globally-unique identifier.
+    """
+    id: ID!
+    """
+    The product that the buyer intends to purchase.
+    """
+    product: Product!
+    """
+    The quantity of the product that the customer intends to purchase.
+    """
+    quantity: Int!
+}
+
+type CartLineEdge {
+    """
+    A cursor for use in pagination.
+    """
+    cursor: String!
+    """
+    The item at the end of CartLineEdge.
+    """
+    node: CartLine!
+}
+
+type CartLineConnection {
+    """
+    A list of edges.
+    """
+    edges: [CartLineEdge!]!
+    """
+    A list of the nodes contained in CartLineEdge.
+    """
+    nodes: [CartLine!]!
+    """
+    Information to aid in pagination.
+    """
+    pageInfo: PageInfo!
+    """
+    Identifies the total count of items in the connection.
+    """
+    totalCount: Int!
+}
+
+
+"""
+Possible method types that a delivery method can have.
+"""
+enum DeliveryMethodType {
+    """
+    The order is delivered via WEB3 Mint
+    """
+    DIGITAL_WEB3_MINT
+    """
+    The order is delivered via WEB3 Airdrop
+    """
+    DIGITAL_WEB3_AIRDROP
+}
+
+"""
+Information about a delivery option.
+"""
+type CartDeliveryOption {
+    """
+    The code of the delivery option.
+    """
+    code: String
+    """
+    The method for the delivery option.
+    """
+    deliveryMethodType: DeliveryMethodType!
+    """
+    The description of the delivery option.
+    """
+    description: String
+    """
+    The estimated gas cost for delivery option.
+    """
+    estimatedCost: Schmeckle!
+    """
+    The title of the delivery option.
+    """
+    title: String
+}
+
+"""
+Information about the options available for one or more line items to be delivered to a specific wallet address.
+"""
+type CartDeliveryGroup{
+    """
+    A list of cart lines for the delivery group.
+    """
+    cartLines(
+        first: Int
+        after: String
+        last: Int
+        before: String
+        reverse: Boolean = false
+    ): CartLineConnection!
+    """
+    The destination address for the delivery group.
+    """
+    deliveryAddress: CustomerWeb3Wallet!
+    """
+    The delivery options available for the delivery group.
+    """
+    deliveryOptions: [CartDeliveryOption!]!
+    """
+    The ID for the delivery group.
+    """
+    id: ID!
+}
+
+type CartDeliveryGroupEdge {
+    """
+    A cursor for use in pagination.
+    """
+    cursor: String!
+    """
+    The item at the end of CartDeliveryGroupEdg
+    """
+    node: CartDeliveryGroup!
+}
+
+type CartDeliveryGroupConnection {
+    """
+    A list of edges.
+    """
+    edges: [CartDeliveryGroupEdge!]!
+    """
+    A list of the nodes contained in CartDeliveryGroupEdge.
+    """
+    nodes: [CartDeliveryGroup!]!
+    """
+    Information to aid in pagination.
+    """
+    pageInfo: PageInfo!
+    """
+    Identifies the total count of items in the connection.
+    """
+    totalCount: Int!
+}
+
+"""
+Represents information about the buyer that is interacting with the cart.
+"""
+type CartBuyerIdentity {
+    """
+    The country where the buyer is located.
+    """
+    countryCode: CountryCode
+    """
+    The customer account associated with the cart.
+    """
+    customer: Customer
+    """
+    The email address of the buyer that is interacting with the cart.
+    """
+    email: String
+}
+
+"""
+A cart represents the products that a buyer intends to purchase, and the estimated cost associated with the cart.
+"""
+type Cart implements Node {
+    """
+    Information about the buyer that is interacting with the cart.
+    """
+    buyerIdentity: CartBuyerIdentity!
+    """
+    The URL of the checkout for the cart.
+    """
+    checkoutUrl: URL!
+    """
+    The estimated costs that the buyer will pay at checkout.
+    The costs are subject to change and changes will be reflected at checkout.
+    The cost field uses the buyerIdentity field to determine international pricing.
+    """
+    cost: CartCost!
+    """
+    The date and time when the cart was created.
+    """
+    createdAt: DateTime!
+    """
+    The wallet delivery groups available for the cart, based on the default address of the logged-in customer.
+    """
+    deliveryGroups(
+        after: String
+        before: String
+        first: Int
+        last: Int
+        reverse: Boolean = false
+    ): CartDeliveryGroupConnection!
+    """
+    A globally-unique identifier.
+    """
+    id: ID!
+    """
+    A list of lines containing information about the items the customer intends to purchase.
+    """
+    lines(
+        after: String
+        before: String
+        first: Int
+        last: Int
+        reverse: Boolean = false
+    ): CartLineConnection!
+    """
+    The total number of items in the cart.
+    """
+    totalQuantity: Int!
+    """
+    The date and time when the cart was updated.
+    """
+    updatedAt: DateTime!
+}
+"""
+A container for all the information required to checkout items and pay.
+"""
+type Checkout {
+    """
+    The identity of the customer associated with the checkout.
+    """
+    buyerIdentity: CheckoutBuyerIdentity!
+    """
+    The date and time when the checkout was completed.
+    """
+    completedAt: DateTime
+    """
+    The date and time when the checkout was created.
+    """
+    createdAt: DateTime!
+    """
+    The currency code for the checkout.
+    """
+    currencyCode: CurrencyCode!
+    """
+    The email attached to this checkout.
+    """
+    email: String
+    """
+    A globally-unique identifier.
+    """
+    id: ID!
+    """
+    A list of line item objects, each one containing information about an item in the checkout.
+    """
+    lineItems(
+        first: Int
+        after: String
+        last: Int
+        before: String
+        reverse: Boolean = false
+    ): CheckoutLineItemConnection!
+    """
+    The sum of all the prices of all the items in the checkout. taxes and discounts excluded.
+    """
+    lineItemsSubtotalPrice: Schmeckle!
+    """
+    The resulting order from a paid checkout.
+    """
+    order: Order
+    """
+    The Order Status Page for this Checkout, null when checkout is not completed.
+    """
+    orderStatusUrl: URL
+    """
+    The amount left to be paid. This is equal to the cost of the line items, taxes, minus discounts.
+    """
+    paymentDue: Schmeckle!
+    """
+    Whether or not the Checkout is ready and can be completed. Checkouts may have asynchronous operations that can take
+    time to finish. If you want to complete a checkout or ensure all the fields are populated and up to date, polling is
+    required until the value is true.
+    """
+    ready: Boolean!
+    """
+    The price at checkout before taxes.
+    """
+    subtotalPrice: Schmeckle!
+    """
+    Whether taxes are included in the line item.
+    """
+    taxesIncluded: Boolean!
+    """
+    The sum of all the prices of all the items in the checkout, including taxes, and discounts.
+    """
+    totalPrice: Schmeckle!
+    """
+    The sum of all the taxes applied to the line items in the checkout.
+    """
+    totalTax: Schmeckle!
+    """
+    The date and time when the checkout was last updated.
+    """
+    updatedAt: DateTime!
+    """
+    The url pointing to the checkout accessible from the web.
+    """
+    webUrl: URL!
+}
+
+"""
+The identity of the customer associated with the checkout.
+"""
+type CheckoutBuyerIdentity {
+    """
+    The country code for the checkout. For example, CA.
+    """
+    countryCode: CountryCode
+    """
+    The customer account associated with the checkout.
+    """
+    customer: Customer
+    """
+    The email address of the buyer that is interacting with the checkout.
+    """
+    email: String
+}
+
+"""
+A single line item in the checkout, grouped by product and attributes.
+"""
+type CheckoutLineItem implements Node {
+    """
+    A globally-unique identifier.
+    """
+    id: ID!
+    """
+    The quantity of the line item.
+    """
+    quantity: Int!
+    """
+    Title of the line item. Defaults to the product's title.
+    """
+    title: String!
+    """
+    Unit price of the line item.
+    """
+    unitPrice: Schmeckle
+    """
+    Product of the line item.
+    """
+    product: Product
+    """
+    Expiration time
+    """
+    expireAt: DateTime!
+}
+
+type CheckoutLineItemEdge {
+    """
+    A cursor for use in pagination.
+    """
+    cursor: String!
+    """
+    The item at the end of CheckoutLineItemEdge.
+    """
+    node: CheckoutLineItem!
+}
+
+type CheckoutLineItemConnection {
+    """
+    A list of edges.
+    """
+    edges: [CheckoutLineItemEdge!]!
+    """
+    A list of the nodes contained in CheckoutLineItemEdge.
+    """
+    nodes: [CheckoutLineItem!]!
+    """
+    Information to aid in pagination.
+    """
+    pageInfo: PageInfo!
+    """
+    Identifies the total count of items in the connection.
+    """
+    totalCount: Int!
+}
+"""
+Specifies the relationship between the column and the condition.
+"""
+enum CollectionRuleRelation {
+    """
+    The attribute contains the condition.
+    """
+    CONTAINS
+    """
+    The attribute ends with the condition.
+    """
+    ENDS_WITH
+    """
+    The attribute is equal to the condition.
+    """
+    EQUALS
+    """
+    The attribute is greater than the condition.
+    """
+    GREATER_THAN
+    """
+    The attribute is not set (equal to null).
+    """
+    IS_NOT_SET
+    """
+    The attribute is set (not equal to null).
+    """
+    IS_SET
+    """
+    The attribute is less than the condition.
+    """
+    LESS_THAN
+    """
+    The attribute does not contain the condition.
+    """
+    NOT_CONTAINS
+    """
+    The attribute does not equal the condition.
+    """
+    NOT_EQUALS
+    """
+    The attribute starts with the condition.
+    """
+    STARTS_WITH
+}
+
+"""
+Specifies the attribute of a product being used to populate the smart collection.
+"""
+enum CollectionRuleColumn {
+    """
+    The tag attribute.
+    """
+    TAG
+    """
+    The title attribute.
+    """
+    TITLE
+    """
+    The type attribute.
+    """
+    TYPE
+    """
+    The vendor attribute.
+    """
+    VENDOR
+    """
+    The price attribute.
+    """
+    PRICE
+    """
+    The variant_inventory attribute.
+    """
+    INVENTORY
+}
+
+
+"""
+The set of rules that are used to determine which products are included in the collection.
+"""
+type CollectionRuleSet {
+    """
+    Whether products must match any or all of the rules to be included in the collection.
+    If true, then products must match at least one of the rules to be included in the collection.
+    If false, then products must match all of the rules to be included in the collection.
+    """
+    appliedDisjunctively: Boolean!
+    """
+    The rules used to assign products to the collection.
+    """
+    rules: [CollectionRule!]!
+}
+
+"""
+Represents at rule that's used to assign products to a collection.
+"""
+type CollectionRule {
+    """
+    The attribute that the rule focuses on. For example, title or product_type.
+    """
+    column: CollectionRuleColumn!
+    """
+    The value that the operator is applied to. For example, Hats.
+    """
+    condition: String!
+    """
+    The type of operator that the rule is based on. For example, equals, contains, or not_equals.
+    """
+    relation: CollectionRuleRelation!
+}
+
+"""
+The set of valid sort keys for the ProductCollection query.
+"""
+enum ProductCollectionSortKeys {
+    """
+    Sort by the title value.
+    """
+    TITLE
+    """
+    Sort by the price value.
+    """
+    PRICE
+    """
+    Sort by the best-selling value.
+    """
+    BEST_SELLING
+    """
+    Sort by the created value.
+    """
+    CREATED
+    """
+    Sort by the id value.
+    """
+    ID
+    """
+    Sort by the manual value.
+    """
+    MANUAL
+    """
+    Sort by the collection-default value.
+    """
+    COLLECTION_DEFAULT
+    """
+    Sort by relevance to the search terms when the query parameter is specified on the connection.
+    Don't use this sort key when no search query is specified
+    """
+    RELEVANCE
+}
+
+"""
+The set of valid sort keys for the Collection query.
+"""
+enum CollectionSortKeys {
+    """
+    Sort by the title value.
+    """
+    TITLE
+    """
+    Sort by the updated_at value.
+    """
+    UPDATED_AT
+    """
+    Sort by the id value.
+    """
+    ID
+    """
+    Sort by relevance to the search terms when the query parameter is specified on the connection.
+    Don't use this sort key when no search query is specified.  """
+    RELEVANCE
+}
+
+"""
+Specifies the sort order for the products in the collection.
+"""
+enum CollectionSortOrder {
+    """
+    Alphabetically, in ascending order (A - Z).
+    """
+    ALPHA_ASC
+    """
+    Alphabetically, in descending order (Z - A).
+    """
+    ALPHA_DESC
+    """
+    By best-selling products.
+    """
+    BEST_SELLING
+    """
+    By date created, in ascending order (oldest - newest).
+    """
+    CREATED
+    """
+    By date created, in descending order (newest - oldest).
+    """
+    CREATED_DESC
+    """
+    In the order set manually.
+    """
+    MANUAL
+    """
+    By price, in ascending order (lowest - highest).
+    """
+    PRICE_ASC
+    """
+    By price, in descending order (highest - lowest).
+    """
+    PRICE_DESC
+}
+
+
+"""
+Represents a group of products that can be displayed in online stores and other sales channels in categories,
+which makes it easy for customers to find them.
+
+Collections can be defined by conditions, such as whether they match certain product tags.
+These are called smart or automated collections.
+
+Collections can also be created for a custom group of products. These are called custom or manual collections.
+"""
+type ProductCollection implements Node & Publishable {
+    """
+    The number of publications a resource is published.
+    """
+    availablePublicationCount: Int!
+    """
+    A single-line, text-only description of the collection, stripped of any HTML tags and formatting that were included
+    in the description.
+    """
+    description(truncateAt: Int): String!
+    """
+    The description of the collection, including any HTML tags and formatting. This content is typically displayed to
+    customers, such as on an online store, depending on the theme.
+    """
+    descriptionHtml: HTML!
+    """
+    A unique string that identifies the collection.
+    If a handle isn't specified when a collection is created, it's automatically generated from the collection's
+    original title, and typically includes words from the title separated by hyphens. For example, a collection that was
+    created with the title Summer Catalog 2022 might have the handle summer-catalog-2022.
+
+    If the title is changed, the handle doesn't automatically change.
+
+    The handle can be used in themes by the Liquid templating language to refer to the collection, but using the ID is
+    preferred because it never changes
+    """
+    handle: String!
+    """
+    Whether the collection includes the specified product.
+    """
+    hasProduct(id: ID!): Boolean!
+    """
+    A globally-unique identifier.
+    """
+    id: ID!
+    """
+    The image associated with the collection.
+    """
+    image: Image
+    """
+    The products that are included in the collection.
+    """
+    products(
+        first: Int
+        after: String
+        last: Int
+        before: String
+        reverse: Boolean = false
+        sortKey: ProductCollectionSortKeys = COLLECTION_DEFAULT
+    ): ProductConnection!
+    """
+    The number of products in the collection.
+    """
+    productsCount: Int!
+    """
+    The number of publications a resource is published on.
+    """
+    publicationCount(onlyPublished: Boolean = true): Int!
+    """
+    Check to see whether the resource is published to the calling sale channel's publication.
+    """
+    publishedOnCurrentPublication: Boolean!
+    """
+    Check to see whether the resource is published to a given publication.
+    """
+    publishedOnPublication(publicationId: ID!): Boolean!
+    """
+    The list of resources that are either published or staged to be published to a publication.
+    """
+    resourcePublications(
+        onlyPublished: Boolean = true
+        first: Int
+        after: String
+        last: Int
+        before: String
+        reverse: Boolean = false
+    ): ResourcePublicationConnection!
+    """
+    For a smart (automated) collection, specifies the rules that determine whether a product is included.
+    """
+    ruleSet: CollectionRuleSet
+    """
+    If the default SEO fields for page title and description have been modified, contains the modified information.
+    """
+    seo: SEO!
+    """
+    The order in which the products in the collection are displayed by default in the SpellMarket admin and in sales
+    channels, such as an online store.
+    """
+    sortOrder: CollectionSortOrder!
+    """
+    The suffix of the Liquid template being used to show the collection in an online store. For example, if the value is
+    custom, then the collection is using the collection.custom.liquid template. If the value is null, then the
+    collection is using the default collection.liquid template.
+    """
+    templateSuffix: String
+    """
+    The name of the collection. It's displayed in the SpellMarket admin and is typically displayed in sales channels,
+    such as an online store.
+    """
+    title: String!
+    """
+    The list of publications that the resource is not published to.
+    """
+    unpublishedPublications(
+        first: Int
+        after: String
+        last: Int
+        before: String
+        reverse: Boolean = false
+    ): PublicationConnection!
+    """
+    The date and time (ISO 8601 format) when the collection was last modified.
+    """
+    updatedAt: DateTime!
+}
+
+
+type ProductCollectionEdge {
+    """
+    A cursor for use in pagination.
+    """
+    cursor: String!
+    """
+    The item at the end of CollectionEdge.
+    """
+    node: ProductCollection!
+}
+
+type ProductCollectionConnection {
+    """
+    A list of edges.
+    """
+    edges: [ProductCollectionEdge!]!
+    """
+    A list of the nodes contained in CollectionEdge.
+    """
+    nodes: [ProductCollection!]!
+    """
+    Information to aid in pagination.
+    """
+    pageInfo: PageInfo!
+    """
+    Identifies the total count of items in the connection.
+    """
+    totalCount: Int!
+}
+"""
+An ISO-8601 encoded UTC date and time string.
+"""
+scalar DateTime
+
+"""
+An ISO-8601 encoded UTC date string.
+"""
+scalar Date
+
+"""
+A string containing HTML code
+"""
+scalar HTML
+
+"""
+A JSON object
+"""
+scalar JSON
+
+"""
+Fixed decimal place float as a String
+"""
+scalar Decimal
+
+"""
+A RFC 3986 and 3987 compliant URL String
+"""
+scalar URL
+
+"""
+An unsigned 64-bit integer. Represents whole numeric values between 0 and 2^64 - 1 encoded as a string of base-10 digits.
+"""
+scalar UnsignedInt64
+
+"""
+A Blockchain Wallet Address
+"""
+scalar WalletAddress
+
+"""
+A string containing a strict subset of HTML code. Non-allowed tags will be stripped out. Allowed tags:
+
+a (allowed attributes: href)
+b
+br
+em
+i
+strong
+u Use HTML instead if you need to include other HTML tags.
+Example value: "Your current domain is <strong>mintstatelabs.com</strong>."
+"""
+scalar FormattedString
+
+
+type StringEdge {
+    """
+    A cursor for use in pagination.
+    """
+    cursor: String!
+    """
+    The item at the end of StringEdge.
+    """
+    node: String!
+}
+
+type StringConnection {
+    """
+    A list of edges.
+    """
+    edges: [StringEdge!]!
+    """
+    A list of the nodes contained in StringEdge.
+    """
+    nodes: [String!]!
+    """
+    Information to aid in pagination.
+    """
+    pageInfo: PageInfo!
+    """
+    Identifies the total count of items in the connection.
+    """
+    totalCount: Int!
+}
+
+
+"An interface for standard IDs. This is standard naming for this type of interface in Graphql"
+interface Node {
+    "ID of the object."
+    id: ID!
+}
+
+"""
+Returns information about pagination in a connection, in accordance with the Relay specification.
+"""
+type PageInfo {
+    """
+    The cursor corresponding to the last node in edges.
+    """
+    endCursor: String
+    """
+    Whether there are more pages to fetch following the current page.
+    """
+    hasNextPage: Boolean!
+    """
+    Whether there are any pages prior to the current page.
+    """
+    hasPreviousPage: Boolean!
+    """
+    The cursor corresponding to the first node in edges.
+    """
+    startCursor: String
+}
+
+"""
+A version of the SpellMarket API.
+"""
+type ApiVersion {
+    """
+    The human-readable name of the version.
+    """
+    displayName: String!
+    """
+    The unique identifier of an ApiVersion. All supported API versions have a date-based (YYYY-MM.Subversion) or unstable handle.
+    """
+    handle: String!
+    """
+    Whether the version is still receiving support by SpellMarket.
+    """
+    supported: Boolean!
+}
+
+"""
+Represents an error in the input of a mutation.
+"""
+interface DisplayableError {
+    """
+    The path to the input field that caused the error.
+    """
+    field: [String!]
+    """
+    The error message.
+    """
+    message: String!
+}
+
+"""
+Represents an error in the input of a mutation.
+"""
+type UserError implements DisplayableError{
+    """
+    The path to the input field that caused the error.
+    """
+    field: [String!]
+    """
+    The error message.
+    """
+    message: String!
+}
+
+"""
+Currency Type
+"""
+enum CurrencyCode {
+    """
+    Ethereum Token
+    """
+    ETH
+    """
+    SUI Token
+    """
+    SUI
+    """
+    USDC Token
+    """
+    USDC
+    """
+    United States Dollar
+    """
+    USD
+}
+
+"""
+A monetary value with currency.
+"""
+type Schmeckle {
+    """
+    Decimal money amount.
+    """
+    amount: Decimal!
+    """
+    Currency of the money
+    """
+    currencyCode: CurrencyCode!
+}
+
+"""
+A collection of monetary values in their respective currencies. Typically used in the context of multi-currency pricing
+and transactions, when an amount in the shop's currency isconverted to the customer's currency of choice
+(the presentment currency).
+"""
+type SchmecklePouch {
+    """
+    Amount in presentment currency.
+    """
+    presentmentFunds: Schmeckle!
+    """
+    Amount in settlement currency.
+    """
+    settlementFunds: Schmeckle!
+}
+
+"""
+Settlement method
+"""
+enum Settlement {
+    ETH
+    SUI
+    AWS
+}
+
+"""
+Represents a permission resource details
+"""
+type AccessScope {
+    """
+    A description of the actions that the access scope allows a project to perform.
+    """
+    description : String!
+
+    """
+    A string that represents the access scope. It will be in the form of {action}_{resource}. {action} is read or write,
+    and {resource} is the resource that the action can be performed on.
+    """
+    AccessScope: String!
+}
+
+
+
+"""
+The code designating a country/region, which generally follows ISO 3166-1 alpha-2 guidelines.If a territory doesn't have
+a country code value in the CountryCode enum, then it might be considered a subdivision of another country. For example,
+the territories associated with Spain are represented by the country code ES, and the territories associated with the
+United States of America are represented by the country code US.
+"""
+enum CountryCode {
+    """
+    Ascension Island.
+    """
+    AC
+    """
+    Andorra.
+    """
+    AD
+    """
+    United Arab Emirates.
+    """
+    AE
+    """
+    Afghanistan.
+    """
+    AF
+    """
+    Antigua & Barbuda.
+    """
+    AG
+    """
+    Anguilla.
+    """
+    AI
+    """
+    Albania.
+    """
+    AL
+    """
+    Armenia.
+    """
+    AM
+    """
+    Netherlands Antilles.
+    """
+    AN
+    """
+    Angola.
+    """
+    AO
+    """
+    Argentina.
+    """
+    AR
+    """
+    Austria.
+    """
+    AT
+    """
+    Australia.
+    """
+    AU
+    """
+    Aruba.
+    """
+    AW
+    """
+    Ã…land Islands.
+    """
+    AX
+    """
+    Azerbaijan.
+    """
+    AZ
+    """
+    Bosnia & Herzegovina.
+    """
+    BA
+    """
+    Barbados.
+    """
+    BB
+    """
+    Bangladesh.
+    """
+    BD
+    """
+    Belgium.
+    """
+    BE
+    """
+    Burkina Faso.
+    """
+    BF
+    """
+    Bulgaria.
+    """
+    BG
+    """
+    Bahrain.
+    """
+    BH
+    """
+    Burundi.
+    """
+    BI
+    """
+    Benin.
+    """
+    BJ
+    """
+    St. BarthÃ©lemy.
+    """
+    BL
+    """
+    Bermuda.
+    """
+    BM
+    """
+    Brunei.
+    """
+    BN
+    """
+    Bolivia.
+    """
+    BO
+    """
+    Caribbean Netherlands.
+    """
+    BQ
+    """
+    Brazil.
+    """
+    BR
+    """
+    Bahamas.
+    """
+    BS
+    """
+    Bhutan.
+    """
+    BT
+    """
+    Bouvet Island.
+    """
+    BV
+    """
+    Botswana.
+    """
+    BW
+    """
+    Belarus.
+    """
+    BY
+    """
+    Belize.
+    """
+    BZ
+    """
+    Canada.
+    """
+    CA
+    """
+    Cocos (Keeling) Islands.
+    """
+    CC
+    """
+    Congo - Kinshasa.
+    """
+    CD
+    """
+    Central African Republic.
+    """
+    CF
+    """
+    Congo - Brazzaville.
+    """
+    CG
+    """
+    Switzerland.
+    """
+    CH
+    """
+    CÃ´te dâ€™Ivoire.
+    """
+    CI
+    """
+    Cook Islands.
+    """
+    CK
+    """
+    Chile.
+    """
+    CL
+    """
+    Cameroon.
+    """
+    CM
+    """
+    China.
+    """
+    CN
+    """
+    Colombia.
+    """
+    CO
+    """
+    Costa Rica.
+    """
+    CR
+    """
+    Cuba.
+    """
+    CU
+    """
+    Cape Verde.
+    """
+    CV
+    """
+    CuraÃ§ao.
+    """
+    CW
+    """
+    Christmas Island.
+    """
+    CX
+    """
+    Cyprus.
+    """
+    CY
+    """
+    Czechia.
+    """
+    CZ
+    """
+    Germany.
+    """
+    DE
+    """
+    Djibouti.
+    """
+    DJ
+    """
+    Denmark.
+    """
+    DK
+    """
+    Dominica.
+    """
+    DM
+    """
+    Dominican Republic.
+    """
+    DO
+    """
+    Algeria.
+    """
+    DZ
+    """
+    Ecuador.
+    """
+    EC
+    """
+    Estonia.
+    """
+    EE
+    """
+    Egypt.
+    """
+    EG
+    """
+    Western Sahara.
+    """
+    EH
+    """
+    Eritrea.
+    """
+    ER
+    """
+    Spain.
+    """
+    ES
+    """
+    Ethiopia.
+    """
+    ET
+    """
+    Finland.
+    """
+    FI
+    """
+    Fiji.
+    """
+    FJ
+    """
+    Falkland Islands.
+    """
+    FK
+    """
+    Faroe Islands.
+    """
+    FO
+    """
+    France.
+    """
+    FR
+    """
+    Gabon.
+    """
+    GA
+    """
+    United Kingdom.
+    """
+    GB
+    """
+    Grenada.
+    """
+    GD
+    """
+    Georgia.
+    """
+    GE
+    """
+    French Guiana.
+    """
+    GF
+    """
+    Guernsey.
+    """
+    GG
+    """
+    Ghana.
+    """
+    GH
+    """
+    Gibraltar.
+    """
+    GI
+    """
+    Greenland.
+    """
+    GL
+    """
+    Gambia.
+    """
+    GM
+    """
+    Guinea.
+    """
+    GN
+    """
+    Guadeloupe.
+    """
+    GP
+    """
+    Equatorial Guinea.
+    """
+    GQ
+    """
+    Greece.
+    """
+    GR
+    """
+    South Georgia & South Sandwich Islands.
+    """
+    GS
+    """
+    Guatemala.
+    """
+    GT
+    """
+    Guinea-Bissau.
+    """
+    GW
+    """
+    Guyana.
+    """
+    GY
+    """
+    Hong Kong SAR.
+    """
+    HK
+    """
+    Heard & McDonald Islands.
+    """
+    HM
+    """
+    Honduras.
+    """
+    HN
+    """
+    Croatia.
+    """
+    HR
+    """
+    Haiti.
+    """
+    HT
+    """
+    Hungary.
+    """
+    HU
+    """
+    Indonesia.
+    """
+    ID
+    """
+    Ireland.
+    """
+    IE
+    """
+    Israel.
+    """
+    IL
+    """
+    Isle of Man.
+    """
+    IM
+    """
+    India.
+    """
+    IN
+    """
+    British Indian Ocean Territory.
+    """
+    IO
+    """
+    Iraq.
+    """
+    IQ
+    """
+    Iran.
+    """
+    IR
+    """
+    Iceland.
+    """
+    IS
+    """
+    Italy.
+    """
+    IT
+    """
+    Jersey.
+    """
+    JE
+    """
+    Jamaica.
+    """
+    JM
+    """
+    Jordan.
+    """
+    JO
+    """
+    Japan.
+    """
+    JP
+    """
+    Kenya.
+    """
+    KE
+    """
+    Kyrgyzstan.
+    """
+    KG
+    """
+    Cambodia.
+    """
+    KH
+    """
+    Kiribati.
+    """
+    KI
+    """
+    Comoros.
+    """
+    KM
+    """
+    St. Kitts & Nevis.
+    """
+    KN
+    """
+    North Korea.
+    """
+    KP
+    """
+    South Korea.
+    """
+    KR
+    """
+    Kuwait.
+    """
+    KW
+    """
+    Cayman Islands.
+    """
+    KY
+    """
+    Kazakhstan.
+    """
+    KZ
+    """
+    Laos.
+    """
+    LA
+    """
+    Lebanon.
+    """
+    LB
+    """
+    St. Lucia.
+    """
+    LC
+    """
+    Liechtenstein.
+    """
+    LI
+    """
+    Sri Lanka.
+    """
+    LK
+    """
+    Liberia.
+    """
+    LR
+    """
+    Lesotho.
+    """
+    LS
+    """
+    Lithuania.
+    """
+    LT
+    """
+    Luxembourg.
+    """
+    LU
+    """
+    Latvia.
+    """
+    LV
+    """
+    Libya.
+    """
+    LY
+    """
+    Morocco.
+    """
+    MA
+    """
+    Monaco.
+    """
+    MC
+    """
+    Moldova.
+    """
+    MD
+    """
+    Montenegro.
+    """
+    ME
+    """
+    St. Martin.
+    """
+    MF
+    """
+    Madagascar.
+    """
+    MG
+    """
+    North Macedonia.
+    """
+    MK
+    """
+    Mali.
+    """
+    ML
+    """
+    Myanmar (Burma).
+    """
+    MM
+    """
+    Mongolia.
+    """
+    MN
+    """
+    Macao SAR.
+    """
+    MO
+    """
+    Martinique.
+    """
+    MQ
+    """
+    Mauritania.
+    """
+    MR
+    """
+    Montserrat.
+    """
+    MS
+    """
+    Malta.
+    """
+    MT
+    """
+    Mauritius.
+    """
+    MU
+    """
+    Maldives.
+    """
+    MV
+    """
+    Malawi.
+    """
+    MW
+    """
+    Mexico
+    """
+    MX
+    """
+    Malaysia.
+    """
+    MY
+    """
+    Mozambique.
+    """
+    MZ
+    """
+    Namibia.
+    """
+    NA
+    """
+    New Caledonia.
+    """
+    NC
+    """
+    Niger.
+    """
+    NE
+    """
+    Norfolk Island.
+    """
+    NF
+    """
+    Nigeria.
+    """
+    NG
+    """
+    Nicaragua.
+    """
+    NI
+    """
+    Netherlands.
+    """
+    NL
+    """
+    Norway.
+    """
+    NO
+    """
+    Nepal.
+    """
+    NP
+    """
+    Nauru.
+    """
+    NR
+    """
+    Niue.
+    """
+    NU
+    """
+    New Zealand.
+    """
+    NZ
+    """
+    Oman.
+    """
+    OM
+    """
+    Panama.
+    """
+    PA
+    """
+    Peru.
+    """
+    PE
+    """
+    French Polynesia.
+    """
+    PF
+    """
+    Papua New Guinea.
+    """
+    PG
+    """
+    Philippines.
+    """
+    PH
+    """
+    Pakistan.
+    """
+    PK
+    """
+    Poland.
+    """
+    PL
+    """
+    St. Pierre & Miquelon.
+    """
+    PM
+    """
+    Pitcairn Islands.
+    """
+    PN
+    """
+    Palestinian Territories.
+    """
+    PS
+    """
+    Portugal.
+    """
+    PT
+    """
+    Paraguay.
+    """
+    PY
+    """
+    Qatar.
+    """
+    QA
+    """
+    RÃ©union.
+    """
+    RE
+    """
+    Romania.
+    """
+    RO
+    """
+    Serbia.
+    """
+    RS
+    """
+    Russia.
+    """
+    RU
+    """
+    Rwanda.
+    """
+    RW
+    """
+    Saudi Arabia.
+    """
+    SA
+    """
+    Solomon Islands.
+    """
+    SB
+    """
+    Seychelles.
+    """
+    SC
+    """
+    Sudan.
+    """
+    SD
+    """
+    Sweden.
+    """
+    SE
+    """
+    Singapore.
+    """
+    SG
+    """
+    St. Helena.
+    """
+    SH
+    """
+    Slovenia.
+    """
+    SI
+    """
+    Svalbard & Jan Mayen.
+    """
+    SJ
+    """
+    Slovakia.
+    """
+    SK
+    """
+    Sierra Leone.
+    """
+    SL
+    """
+    San Marino.
+    """
+    SM
+    """
+    Senegal.
+    """
+    SN
+    """
+    Somalia.
+    """
+    SO
+    """
+    Suriname.
+    """
+    SR
+    """
+    South Sudan.
+    """
+    SS
+    """
+    SÃ£o TomÃ© & PrÃ­ncipe.
+    """
+    ST
+    """
+    El Salvador.
+    """
+    SV
+    """
+    Sint Maarten.
+    """
+    SX
+    """
+    Syria.
+    """
+    SY
+    """
+    Eswatini.
+    """
+    SZ
+    """
+    Tristan da Cunha.
+    """
+    TA
+    """
+    Turks & Caicos Islands.
+    """
+    TC
+    """
+    Chad.
+    """
+    TD
+    """
+    French Southern Territories.
+    """
+    TF
+    """
+    Togo.
+    """
+    TG
+    """
+    Thailand.
+    """
+    TH
+    """
+    Tajikistan.
+    """
+    TJ
+    """
+    Tokelau.
+    """
+    TK
+    """
+    Timor-Leste.
+    """
+    TL
+    """
+    Turkmenistan.
+    """
+    TM
+    """
+    Tunisia.
+    """
+    TN
+    """
+    Tonga.
+    """
+    TO
+    """
+    Turkey.
+    """
+    TR
+    """
+    Trinidad & Tobago.
+    """
+    TT
+    """
+    Tuvalu.
+    """
+    TV
+    """
+    Taiwan.
+    """
+    TW
+    """
+    Tanzania.
+    """
+    TZ
+    """
+    Ukraine.
+    """
+    UA
+    """
+    Uganda.
+    """
+    UG
+    """
+    U.S. Outlying Islands.
+    """
+    UM
+    """
+    United States.
+    """
+    US
+    """
+    Uruguay.
+    """
+    UY
+    """
+    Uzbekistan.
+    """
+    UZ
+    """
+    Vatican City.
+    """
+    VA
+    """
+    St. Vincent & Grenadines.
+    """
+    VC
+    """
+    Venezuela.
+    """
+    VE
+    """
+    British Virgin Islands.
+    """
+    VG
+    """
+    Vietnam.
+    """
+    VN
+    """
+    Vanuatu.
+    """
+    VU
+    """
+    Wallis & Futuna.
+    """
+    WF
+    """
+    Samoa.
+    """
+    WS
+    """
+    Kosovo.
+    """
+    XK
+    """
+    Yemen.
+    """
+    YE
+    """
+    Mayotte.
+    """
+    YT
+    """
+    South Africa.
+    """
+    ZA
+    """
+    Zambia.
+    """
+    ZM
+    """
+    Zimbabwe.
+    """
+    ZW
+    """
+    Unknown Region.
+    """
+    ZZ
+}
+
+"""
+The valid tiers for the predicted spend of a customer.
+"""
+enum CustomerPredictedSpendTier {
+    """
+    The customer's spend is higher than the 70th percentile of the sale channel's customer sales.
+    """
+    HIGH
+    """
+    The customer's spend is between the 10th and 70th percentile of the sale channel's customer sales.
+    """
+    MEDIUM
+    """
+    The customer's spend is lower than the 10th percentile of the sale channel's customer sales, including customers who
+    didn't repurchase.
+    """
+    LOW
+}
+
+"""
+A customer's computed statistics.
+"""
+type CustomerStatistics {
+    """
+    The predicted spend tier of a customer with a shop.
+    """
+    predictedSpendTier: CustomerPredictedSpendTier
+}
+
+"""
+The valid values for the state of a customer's account.
+"""
+enum CustomerState {
+    """
+    The customer declined the email invite to create an account.
+    """
+    DECLINED
+    """
+    The customer doesn't have an active account. Customer accounts can be disabled from the SpellMarket admin at any time.
+    """
+    DISABLED
+    """
+    The customer has created an account.
+    """
+    ENABLED
+    """
+    The customer has received an email invite to create an account.
+    """
+    INVITED
+}
+
+"""
+The possible email marketing states for a customer.
+"""
+enum CustomerEmailMarketingState {
+    """
+    The customer isn't subscribed to email marketing.
+    """
+    NOT_SUBSCRIBED
+    """
+    The customer is in the process of subscribing to email marketing.
+    """
+    PENDING
+    """
+    The customer is subscribed to email marketing.
+    """
+    SUBSCRIBED
+    """
+    The customer isn't currently subscribed to email marketing but was previously subscribed.
+    """
+    UNSUBSCRIBED
+    """
+    The customer's personal data is erased. This value is internally-set and read-only.
+    """
+    REDACTED
+    """
+    The customerâ€™s email address marketing state is invalid.
+    """
+    INVALID
+}
+
+"""
+The possible values for the marketing subscription opt-in level enabled at the time the customer consented to
+receive marketing information.
+
+The levels are defined by the M3AAWG best practices guideline document.
+"""
+enum CustomerMarketingOptInLevel {
+    """
+    After providing their information, the customer receives marketing information without any
+    intermediate steps
+    """
+    SINGLE_OPT_IN
+    """
+    After providing their information, the customer receives a confirmation and is required to
+    perform a intermediate step before receiving marketing information
+    """
+    CONFIRMED_OPT_IN
+    """
+    The customer receives marketing information but how they were opted in is unknown.
+    """
+    UNKNOWN
+}
+"""
+The record of when a customer consented to receive marketing material by email.
+"""
+type CustomerEmailMarketingConsentState {
+    """
+    The date and time at which the customer consented to receive marketing material by email.
+    The customer's consent state reflects the consent record with the most recent consent_updated_at date.
+    If no date is provided, then the date and time at which the consent information was sent is used
+    """
+    consentUpdatedAt: DateTime
+    """
+    The marketing subscription opt-in level, as described by the M3AAWG best practices guidelines,
+    that the customer gave when they consented to receive marketing material by email
+    """
+    marketingOptInLevel: CustomerMarketingOptInLevel
+
+    """
+    The current email marketing state for the customer
+    """
+    marketingState: CustomerEmailMarketingState!
+
+}
+
+"""
+The source that collected the customer's consent to receive marketing materials.
+"""
+enum CustomerConsentCollectedFrom {
+    """
+    The customer consent was collected by Mint State Labs.
+    """
+    MSL
+    """
+    The customer consent was collected outside of Mint State Labs.
+    """
+    OTHER
+}
+
+"""
+The revocation reason types for a customer payment method.
+"""
+enum CustomerPaymentMethodRevocationReason {
+    """
+    Failed to connect to web3 API.
+    """
+    WEB3_AUTHENTICATION_ERROR
+    """
+    The web3 payment gateway is not enabled.
+    """
+    WEB3_GATEWAY_NOT_ENABLED
+    """
+    The web3 payment method type should be a wallet address
+    """
+    WEB3_PAYMENT_METHOD_NOT_DIGITAL_WALLET
+    """
+    The payment method was manually revoked.
+    """
+    MANUALLY_REVOKED
+    """
+    Failed to contact the Stripe API.
+    """
+    STRIPE_API_AUTHENTICATION_ERROR
+    """
+    Invalid request. Failed to retrieve payment method from Stripe.
+    """
+    STRIPE_API_INVALID_REQUEST_ERROR
+    """
+    The Stripe payment gateway is not enabled.
+    """
+    STRIPE_GATEWAY_NOT_ENABLED
+    """
+    The Stripe payment method type should be card.
+    """
+    STRIPE_PAYMENT_METHOD_NOT_CARD
+    """
+    Stripe did not return any payment methods. Make sure that the correct Stripe account is linked.
+    """
+    STRIPE_RETURNED_NO_PAYMENT_METHOD
+}
+
+"""
+Represents a web3 wallet payment instrument.
+"""
+type CustomerWeb3Wallet {
+    """
+    The name for wallet account name.
+    """
+    walletName: String!
+    """
+    The wallet address.
+    """
+    walletAddress: WalletAddress!
+    """
+    The wallet Chains
+    """
+    chains: [Settlement!]!
+}
+
+"""
+Represents a web3 wallet payment instrument.
+"""
+type CustomerStripeWallet {
+    """
+    The name for wallet account name.
+    """
+    tokenizedWal: String!
+    """
+    The wallet address.
+    """
+    walletAddress: WalletAddress!
+    """
+    The wallet Chains
+    """
+    chains: [Settlement!]!
+}
+
+union CustomerPaymentInstrument = CustomerWeb3Wallet
+
+"""
+Customer's payment method.
+"""
+type CustomerPaymentMethod implements Node{
+    """
+    The customer to whom the payment method belongs.
+    """
+    customer: Customer
+    """
+    The ID of this payment method.
+    """
+    id: ID!
+    """
+    The instrument for this payment method.
+    """
+    instrument: CustomerPaymentInstrument!
+    """
+    The time that the payment method was revoked.
+    """
+    revokedAt: DateTime
+    """
+    The revocation reason for this payment method.
+    """
+    revokedReason: CustomerPaymentMethodRevocationReason
+}
+
+type CustomerPaymentMethodEdge {
+    """
+    A cursor for use in pagination.
+    """
+    cursor: String!
+    """
+    The item at the end of CustomerPaymentMethodEdge.
+    """
+    node: CustomerPaymentMethod!
+}
+
+type CustomerPaymentMethodConnection {
+    """
+    A list of edges.
+    """
+    edges: [CustomerPaymentMethodEdge!]!
+    """
+    A list of the nodes contained in CustomerPaymentMethodEdge.
+    """
+    nodes: [CustomerPaymentMethod!]!
+    """
+    Information to aid in pagination.
+    """
+    pageInfo: PageInfo!
+    """
+    Identifies the total count of items in the connection.
+    """
+    totalCount: Int!
+}
+
+
+"""
+Represents information about a customer of the Project, such as the customer's contact details, their order
+history, and whether they've agreed to receive marketing material by email.
+
+Caution: Only use this data if it's required for your Project's functionality. will restrict access to scopes for apps that
+don't have a legitimate use for the associated data.
+"""
+type Customer implements HasEvents & Node {
+    """
+    Settlement types associated with the customer.
+    """
+    Settlements(first: Int): [Settlement!]!
+    """
+    The total amount that the customer has spent on orders in their lifetime.
+    """
+    amountSpent(currency: CurrencyCode): Schmeckle!
+    """
+    The average amount that the customer spent per order.
+    """
+    averageOrderAmount: Schmeckle
+    """
+    Whether the app can delete the customer from their store.
+
+    A customer can be deleted from a store only if they have not yet made an order. After a customer makes an
+    order, they can't be deleted from a store
+    """
+    canDelete: Boolean!
+    """
+    The date and time when the customer was added to the store.
+    """
+    createdAt: DateTime!
+    """
+    The full name of the customer, based on the values for first_name and last_name. If the first_name and
+    last_name are not available, then this falls back to the customer's email address.
+    """
+    displayName: String!
+    """
+    The customer's email address.
+    """
+    email: String
+    """
+    The current email marketing state for the customer.
+    If the customer doesn't have an email address, then this property is null
+    """
+    emailMarketingConsent: CustomerEmailMarketingConsentState
+    """
+    A list of events associated with the customer.
+    """
+    events(
+        first: Int
+        after: String
+        last: Int
+        before: String
+        reverse: Boolean = false
+        sortKey: EventSortKeys = ID
+        query: String
+    ): EventConnection!
+    """
+    The customer's first name if available
+    """
+    firstName: String
+    """
+    A globally-unique identifier.
+    """
+    id: ID!
+    """
+    The image associated with the customer.
+    """
+    image: Image!
+    """
+    The customer's last name.
+    """
+    lastName: String
+    """
+    The customer's last order
+    """
+    lastOrder: Order
+    """
+    The amount of time since the customer was first added. Example: '10 days'
+    """
+    lifetimeDuration: String!
+    """
+    The customer's locale.
+    """
+    locale: String!
+    """
+    A unique identifier for the customer that's used with Multipass login. (e.g. can login to SpellMarket store from a
+    game)
+    """
+    multipassIdentifier: String
+    """
+    The number of orders that the customer has made at the store in their lifetime.
+    """
+    numberOfOrders: UnsignedInt64!
+    """
+    A list of the customer's orders.
+    """
+    orders(
+        first: Int
+        after: String
+        last: Int
+        before: String
+        reverse: Boolean = false
+        sortKey: OrderSortKeys = ID
+        query: String
+    ): OrderConnection!
+    """
+    A list of the customer's payment methods.
+    """
+    paymentMethods(
+        showRevoked: Boolean = false
+        first: Int
+        after: String
+        last: Int
+        before: String
+        reverse: Boolean = false
+    ): CustomerPaymentMethodConnection!
+    """
+    The state of the customer's account with SpellMarket.
+    """
+    state: CustomerState!
+    """
+    The statistics for a given customer.
+    """
+    statistics: CustomerStatistics!
+    """
+    A comma separated list of tags that have been added to the customer.
+    """
+    tags: [String!]!
+    """
+    The URL to unsubscribe the customer from the mailing list.
+    """
+    unsubscribeUrl: URL!
+    """
+    The date and time when the customer was last updated.
+    """
+    updatedAt: DateTime!
+    """
+    Whether the email address is formatted correctly.
+
+    Returns true when the email is formatted correctly and
+    belongs to an existing domain. This doesn't guarantee that
+    the email address actually exists
+    """
+    validEmailAddress: Boolean!
+    """
+    Whether the customer has verified their email address. Defaults to true if the customer is created through the SpellMarket admin or API.
+    """
+    verifiedEmail: Boolean!
+}
+
+type CustomerEdge {
+    """
+    A cursor for use in pagination.
+    """
+    cursor: String!
+    """
+    The item at the end of CustomerEdge.
+    """
+    node: Customer!
+}
+
+type CustomerConnection {
+    """
+    A list of edges.
+    """
+    edges: [CustomerEdge!]!
+    """
+    A list of the nodes contained in CustomerEdge.
+    """
+    nodes: [Customer!]!
+    """
+    Information to aid in pagination.
+    """
+    pageInfo: PageInfo!
+    """
+    Identifies the total count of items in the connection.
+    """
+    totalCount: Int!
+}
+
+"""
+The set of valid sort keys for the Customer query.
+"""
+enum CustomerSortKeys {
+    """
+    Sort by the created_at value.
+    """
+    CREATED_AT
+    """
+    Sort by the name value.
+    """
+    NAME
+    """
+    Sort by the location value.
+    """
+    LOCATION
+    """
+    Sort by the orders_count value.
+    """
+    ORDERS_COUNT
+    """
+    Sort by the last_order_date value.
+    """
+    LAST_ORDER_DATE
+    """
+    Sort by the total_spent value.
+    """
+    TOTAL_SPENT
+    """
+    Sort by the updated_at value.
+    """
+    UPDATED_AT
+    """
+    Sort by the id value.
+    """
+    ID
+    """
+    Sort by relevance to the search terms when the query parameter is specified on the connection.
+    Don't use this sort key when no search query is specified
+    """
+    RELEVANCE
+}
+"""
+The available icons for resource alerts.
+"""
+enum ResourceAlertIcon {
+    """
+    A checkmark inside a circle.
+    """
+    CHECKMARK_CIRCLE
+    """
+    A lowercase i inside a circle
+    """
+    INFORMATION_CIRCLE
+}
+
+"""
+An action associated to a resource alert, such as editing variants.
+"""
+type ResourceAlertAction {
+    """
+    Whether the action appears as a button or as a link.
+    """
+    primary: Boolean!
+    """
+    Resource for the action to show.
+    """
+    show: String
+    """
+    The text for the button in the alert. For example, Edit variants.
+    """
+    title: String!
+    """
+    The target URL that the button links to.
+    """
+    url: URL!
+}
+
+
+
+"""
+The possible severity levels for a resource alert.
+"""
+enum ResourceAlertSeverity {
+    """
+    Indicates a critical alert. For example, a blocked project.
+    """
+    CRITICAL
+    """
+    Indicates a neutral alert. For example, an accepted dispute.
+    """
+    DEFAULT
+    """
+    Indicates an informative alert. For example, an escalated dispute.
+    """
+    INFO
+    """
+    Indicates a success alert. For example, a winning a dispute.
+    """
+    SUCCESS
+    """
+    Indicates an informative alert. For example, a new dispute.
+    """
+    WARNING
+}
+
+"""
+An alert message that appears in the dashboard admin about a problem with a sales channel resource, with 1
+or more actions to take. For example, you could use an alert to indicate that you're not charging taxes on some products.
+They can optionally have a specific icon and be dismissed.
+"""
+type ResourceAlert {
+    """
+    Buttons in the alert that link to related information. For example, Edit variants.
+    """
+    actions: ResourceAlertAction!
+    """
+    The secondary text in the alert that includes further information or instructions about how to solve a problem.
+    """
+    content: HTML!
+    """
+    Unique identifier that appears when an alert is manually closed by the merchant. Most alerts cannot be manually
+    closed.
+    """
+    dismissibleHandle: String
+    """
+    An icon that is optionally displayed with the alert.
+    """
+    icon: ResourceAlertIcon
+    """
+    Indication of how important the alert is.
+    """
+    severity: ResourceAlertSeverity!
+    """
+    The primary text in the alert that includes information or describes the problem.
+    """
+    title: String!
+}
+
+
+"""
+The set of valid sort keys for the Event query.
+"""
+enum EventSortKeys {
+    """
+    Sort by the created_at value.
+    """
+    CREATED_AT
+    """
+    Sort by the id value.
+    """
+    ID
+    """
+    Sort by relevance to the search terms when the query parameter is specified on the connection. Don't use this sort
+    key when no search query is specified.}
+    """
+    RELEVANCE
+}
+
+"""
+Represents an object that has a list of events.
+"""
+interface HasEvents {
+    """
+    The paginated list of events associated with the host subject.
+    """
+    events(
+        first: Int
+        after: String
+        last: Int
+        before: String
+        reverse: Boolean = false
+        sortKey: EventSortKeys = ID
+        query: String
+    ): EventConnection!
+}
+
+"""
+Events chronicle resource activities such as the fulfillment of an order, or the addition of a product.
+"""
+interface Event {
+    """
+    The name of the project that created the event.
+    """
+    projectTitle: String
+    """
+    Whether the event was created by an app.
+    """
+    attributeToApp: Boolean!
+    """
+    Whether the event was caused by an admin user.
+    """
+    attributeToUser: Boolean!
+    """
+    The date and time when the event was created.
+    """
+    createdAt: DateTime!
+    """
+    Whether the event is critical.
+    """
+    criticalAlert: Boolean!
+    """
+    A globally-unique identifier.
+    """
+    id: ID!
+    """
+    Human readable text that describes the event.
+    """
+    message: FormattedString!
+}
+
+type EventEdge {
+    """
+    A cursor for use in pagination.
+    """
+    cursor: String!
+    """
+    The item at the end of EventEdge.
+    """
+    node: Event!
+}
+
+type EventConnection {
+    """
+    A list of edges.
+    """
+    edges: [EventEdge!]!
+    """
+    A list of the nodes contained in EventEdge.
+    """
+    nodes: [Event!]!
+    """
+    Information to aid in pagination.
+    """
+    pageInfo: PageInfo!
+    """
+    Identifies the total count of items in the connection.
+    """
+    totalCount: Int!
+}
+
+"""
+The possible statuses for a Fulfilment object.
+"""
+enum FulfillmentStatus {
+    """
+    Fulfilment processing has failed.
+    """
+    FAILED
+    """
+    Fulfilment is being processed.
+    """
+    IN_PROGRESS
+    """
+    Fulfilment is ready to be displayed.
+    """
+    COMPLETED
+    """
+    Fulfilment is pending for processing.
+    """
+    PENDING
+}
+
+"""
+Represents a single fulfillment in an order.
+"""
+type Fulfillment {
+    """
+    Overall fulfillment status of all the line items.
+    """
+    fulfillmentStatus: FulfillmentStatus
+    """
+    List of the fulfillment's line items.
+    """
+    fulfillmentLineItems(
+        first: Int,
+        after: String,
+        last: Int,
+        before: String,
+        reverse: Boolean=false): FulfillmentLineItemConnection!
+}
+
+type FulfillmentEdge {
+    """
+    A cursor for use in pagination.
+    """
+    cursor: String!
+    """
+    The item at the end of FulfillmentEdge.
+    """
+    node: Fulfillment!
+}
+
+type FulfillmentConnection {
+    """
+    A list of edges.
+    """
+    edges: [FulfillmentEdge!]!
+    """
+    A list of the nodes contained in FulfillmentEdge.
+    """
+    nodes: [Fulfillment!]!
+    """
+    Information to aid in pagination.
+    """
+    pageInfo: PageInfo!
+    """
+    Identifies the total count of items in the connection.
+    """
+    totalCount: Int!
+}
+
+
+"""
+The possible statuses for a FulfillmentLineItem object.
+"""
+enum FulfillmentLineItemStatus {
+    """
+    FulfilmentLineItem processing has failed.
+    """
+    FAILED
+    """
+    FulfilmentLineItem is being processed.
+    """
+    IN_PROGRESS
+    """
+    FulfilmentLineItem is done.
+    """
+    COMPLETED
+    """
+    FulfilmentLineItem is pending for processing.
+    """
+    PENDING
+}
+
+"""
+Represents a single line item in a fulfillment. There is at most one fulfillment line item for each order line item.
+"""
+type FulfillmentLineItem implements Node{
+    """
+    The name of the chain where the nft is stored.
+    """
+    chain: String
+    """
+    The total price after discounts are applied in shop and presentment currencies.
+    """
+    discountedTotalSet: SchmecklePouch!
+    """
+    A globally-unique identifier.
+    """
+    id: ID!
+    """
+    The associated order's line item.
+    """
+    lineItem: LineItem!
+    """
+    The total price before discounts are applied in shop and presentment currencies.
+    """
+    originalTotalSet: SchmecklePouch!
+    """
+    Number of line items in the fulfillment.
+    """
+    quantity: Int
+    """
+    Fulfillment status of line item.
+    """
+    fulfillmentStatusOverall: FulfillmentLineItemStatus
+}
+
+type FulfillmentLineItemEdge {
+    """
+    A cursor for use in pagination.
+    """
+    cursor: String!
+    """
+    The item at the end of FulfillmentLineItemEdge.
+    """
+    node: FulfillmentLineItem!
+}
+
+type FulfillmentLineItemConnection {
+    """
+    A list of edges.
+    """
+    edges: [FulfillmentLineItemEdge!]!
+    """
+    A list of the nodes contained in FulfillmentLineItemEdge.
+    """
+    nodes: [FulfillmentLineItem!]!
+    """
+    Information to aid in pagination.
+    """
+    pageInfo: PageInfo!
+    """
+    Identifies the total count of items in the connection.
+    """
+    totalCount: Int!
+}
+"""
+Specifies the fields for a monetary value with currency.
+"""
+input SchmeckleInput {
+    """
+    Decimal money amount.
+    """
+    amount: Decimal!
+    """
+    Currency of the money.
+    """
+    currencyCode: CurrencyCode!
+}
+
+"""
+Specifies the input fields to update the buyer information associated with a cart.
+Buyer identity is used to determine taxes.
+"""
+input CartBuyerIdentityInput {
+    """
+    The email address of the buyer that is interacting with the cart.
+    """
+    email: String
+    """
+    The phone number of the buyer that is interacting with the cart.
+    """
+    phone: String
+    """
+    The country where the buyer is located.
+    """
+    countryCode: CountryCode
+    """
+    The access token used to identify the customer associated with the cart.
+    """
+    customerAccessToken: String
+}
+
+"""
+Specifies the input fields to update the buyer information associated with a checkout.
+Buyer identity is used to determine taxes.
+"""
+input CheckoutBuyerIdentityInput {
+    """
+    The email address of the buyer that is interacting with the cart.
+    """
+    email: String
+    """
+    The phone number of the buyer that is interacting with the cart.
+    """
+    phone: String
+    """
+    The country where the buyer is located.
+    """
+    countryCode: CountryCode
+    """
+    The access token used to identify the customer associated with the cart.
+    """
+    customerAccessToken: String
+}
+
+
+"""
+Specifies the input fields to create a cart.
+"""
+input CartInput {
+    """
+    A list of product lines to add to the cart.
+    """
+    lines: [CartLineInput!]
+    """
+    The case-insensitive discount codes that the customer added at checkout.
+    """
+    discountCodes: [String!]
+    """
+    The customer associated with the cart. Used to determine international pricing. Buyer identity should match the customer's address.
+    """
+    buyerIdentity: CartBuyerIdentityInput
+}
+
+"""
+Specifies the input fields to update a line item on the checkout.
+"""
+input CheckoutLineItemUpdateInput {
+    """
+    The identifier of the line item.
+    """
+    id: ID
+    """
+    The product identifier of the line item.
+    """
+    productId: ID
+    """
+    The quantity of the line item.
+    """
+    quantity: Int
+}
+
+"""
+Specifies the input fields to create a line item on a checkout.
+"""
+input CheckoutLineItemInput {
+    """
+    The quantity of the line item.
+    """
+    quantity: Int!
+    """
+    The identifier of the product for the line item.
+    """
+    productId: ID!
+}
+
+"""
+Specifies the fields required to create a checkout.
+"""
+input CheckoutCreateInput {
+    """
+    The email with which the customer wants to checkout.
+    """
+    email: String
+    """
+    A list of line item objects, each one containing information about an item in the checkout.
+    """
+    lineItems: [CheckoutLineItemInput!]
+    """
+    The identity of the customer associated with the checkout.
+    """
+    buyerIdentity: CheckoutBuyerIdentityInput
+}
+
+"""
+Specifies the fields required to complete a checkout with a wallet payment. Used for paying on the blockchain.
+"""
+
+input WalletPaymentInput {
+    """
+    The wallet address for the payment.
+    """
+    walletAddress: WalletAddress!
+    """
+    The amount and currency of the payment.
+    """
+    paymentAmount: SchmeckleInput!
+    """
+    A unique client generated key used to avoid duplicate charges. When a duplicate payment is found,
+    the original is returned instead of creating a new one. For more information, refer to Idempotent requests.
+    """
+    idempotencyKey: String!
+    """
+    Whether to execute the payment in test mode, if possible. Test mode is not supported in production stores.
+    Defaults to false.
+    """
+    test: Boolean = false
+}
+
+
+"""
+The fields used to create or update a mailing address.
+"""
+input MailingAddressInput {
+    """
+    The first line of the address. Typically the street address or PO Box number.
+    """
+    address1: String
+    """
+    The second line of the address. Typically the number of the apartment, suite, or unit.
+    """
+    address2: String
+    """
+    The name of the city, district, village, or town.
+    """
+    city: String
+    """
+    The name of the customer's company or organization.
+    """
+    company: String
+    """
+    The two-letter code for the country of the address.
+    """
+    countryCode: CountryCode
+    """
+    The first name of the customer.
+    """
+    firstName: String
+    """
+    The last name of the customer.
+    """
+    lastName: String
+    """
+    A unique phone number for the customer.
+    Formatted using E.164 standard. For example, +16135551111.
+    """
+    phone: String
+    """
+    The code for the region of the address, such as the province, state, or district.
+    For example QC for Quebec, Canada.
+    """
+    provinceCode: String
+    """
+    The zip or postal code of the address.
+    """
+    zip: String
+}
+
+
+"""
+Specifies the fields required to complete a checkout with a tokenized payment. Used for integration with to process
+fiat via Stripe Payment Gateway.
+"""
+input TokenizedPaymentInput {
+    """
+    The billing address for the payment.
+    """
+    billingAddress: MailingAddressInput!
+    """
+    The amount and currency of the payment.
+    """
+    paymentAmount: SchmeckleInput!
+    """
+    A unique client generated key used to avoid duplicate charges. When a duplicate payment is found,
+    the original is returned instead of creating a new one. For more information, refer to Idempotent requests.
+    """
+    idempotencyKey: String!
+    """
+    A simple string or JSON containing the required payment data for the tokenized payment.
+    Tokenization for via Stripe performed via their API  https://stripe.com/docs/api/tokens/create_card
+    """
+    paymentData: String!
+    """
+    Whether to execute the payment in test mode, if possible. Test mode is not supported in production stores.
+    Defaults to false.
+    """
+    test: Boolean = false
+    """
+    The type of payment token.
+    """
+    type: TokenizedPaymentType!
+}
+
+"""
+Specifies the input fields to update a line item on a cart.
+"""
+input CartLineUpdateInput {
+    """
+    The identifier of the product line.
+    """
+    id: ID!
+    """
+    The quantity of the line item.
+    """
+    quantity: Int
+    """
+    The identifier of the product for the line item.
+    """
+    productId: ID
+    """
+    The identifier of the selling plan that the product is being purchased with.
+    """
+    sellingPlanId: ID
+}
+"""
+Specifies the input fields to create a product line on a cart.
+"""
+input CartLineInput {
+    """
+    The quantity of the product.
+    """
+    quantity: Int = 1
+    """
+    The identifier of the product that the buyer intends to purchase.
+    """
+    productId: ID!
+}
+"""
+The parameters required to authenticate a file upload request using a StagedMediaUploadTarget's url field.
+"""
+type StagedUploadParameter {
+    """
+    The parameter's name.
+    """
+    name: String!
+    """
+    The parameter's value.
+    """
+    value: String!
+}
+
+"""
+Information about a staged upload target, which should be used to send a request to upload the file.
+"""
+type StagedMediaUploadTarget {
+    """
+    Parameters needed to authenticate a request to upload the file.
+    """
+    parameters: StagedUploadParameter!
+    """
+    The URL to be passed as originalSource in CreateMediaInput and FileCreateInput for the productCreateMedia and
+    fileCreate mutations.
+    """
+    resourceUrl: URL
+    """
+    The URL to use when sending an request to upload the file. Should be used in conjunction with the parameters field.
+    """
+    url: URL
+}
+
+"""
+The possible statuses for a File object.
+"""
+enum FileStatus {
+    """
+    File processing has failed.
+    """
+    FAILED
+    """
+    File is being processed.
+    """
+    PROCESSING
+    """
+    File is ready to be displayed.
+    """
+    READY
+    """
+    File has been uploaded but not yet processed.
+    """
+    UPLOADED
+}
+
+"""
+Represents a file error.
+"""
+type FileError {
+    """
+    Code representing the type of error.
+    """
+    code: MediaErrorCode!
+    """
+    Additional details regarding the error.
+    """
+    message: String
+}
+
+"""
+A file interface.
+"""
+interface File {
+    """
+    A word or phrase to describe the contents or the function of a file.
+    """
+    alt: String
+    """
+    The date and time (ISO 8601 format) when the file was created.
+    """
+    createdAt: DateTime!
+    """
+    Any errors that have occurred on the file.
+    """
+    fileErrors: [FileError!]!
+    """
+    The status of the file.
+    """
+    fileStatus: FileStatus!
+    """
+    The preview image for the media.
+    """
+    preview: MediaPreviewImage
+}
+
+type FileEdge {
+    """
+    A cursor for use in pagination.
+    """
+    cursor: String!
+    """
+    The item at the end of FileEdge.
+    """
+    node: File!
+}
+
+type FileConnection {
+    """
+    A list of edges.
+    """
+    edges: [FileEdge!]!
+    """
+    A list of the nodes contained in FileEdge.
+    """
+    nodes: [File!]!
+    """
+    Information to aid in pagination.
+    """
+    pageInfo: PageInfo!
+    """
+    Identifies the total count of items in the connection.
+    """
+    totalCount: Int!
+}
+
+"""
+The set of valid sort keys for the File query.
+"""
+enum FileSortKeys {
+    """
+    Sort by the filename value.
+    """
+    FILENAME
+    """
+    Sort by the original_upload_size value.
+    """
+    ORIGINAL_UPLOAD_SIZE
+    """
+    Sort by the created_at value.
+    """
+    CREATED_AT
+    """
+    Sort by the id value.
+    """
+    ID
+    """
+    Sort by relevance to the search terms when the query parameter is specified on the connection.
+    Don't use this sort key when no search query is specified
+    """
+    RELEVANCE
+}
+
+"""
+The possible content types for a file object.
+"""
+enum FileContentType {
+    """
+    A MSL hosted image.
+    """
+    IMAGE
+    """
+    A MSL-hosted generic file.
+    """
+    FILE
+    """
+    A MSL-hosted video file. It's recommended to use this type for all video files.
+    """
+    VIDEO
+}
+
+"""
+Represents any file other than HTML.
+"""
+type GenericFile implements Node & File {
+    """
+    A globally-unique identifier.
+    """
+    id: ID!
+    """
+    A word or phrase to describe the contents or the function of a file.
+    """
+    alt: String
+    """
+    The date and time (ISO 8601 format) when the file was created.
+    """
+    createdAt: DateTime!
+    """
+    Any errors that have occurred on the file.
+    """
+    fileErrors: [FileError!]!
+    """
+    The status of the file.
+    """
+    fileStatus: FileStatus!
+    """
+    The preview image for the media.
+    """
+    preview: MediaPreviewImage
+    """
+    The generic file's MIME type.
+    """
+    mimeType: String
+    """
+    The generic file's size in bytes.
+    """
+    originalFileSize: Int
+    """
+    The generic file's URL.
+    """
+    url: URL
+}
+
+
+
+"""
+The possible statuses for a media object.
+"""
+enum MediaStatus{
+    """
+    Media processing has failed.
+    """
+    FAILED
+    """
+    Media is being processed.
+    """
+    PROCESSING
+    """
+    Media is ready to be displayed.
+    """
+    READY
+    """
+    Media has been uploaded but not yet processed.
+    """
+    UPLOADED
+}
+
+"""
+Represents the preview image for a media.
+"""
+type MediaPreviewImage{
+    """
+    The preview image for the media. Returns null until status is READY.
+    """
+    image: Image
+    """
+    Current status of the preview image.
+    """
+    status: MediaStatus!
+}
+
+"""
+Host for a Media Resource.
+"""
+enum MediaHost {
+    """
+    Host for Vimeo embedded videos.
+    """
+    VIMEO
+    """
+    Host for YouTube embedded videos.
+    """
+    YOUTUBE
+}
+
+
+"""
+Warning types for media.
+"""
+enum MediaWarningCode{
+    """
+    3D model physical size might be invalid. The dimensions of your model are very large. Consider reviewing your model
+    to ensure they are correct.
+    """
+    MODEL_LARGE_PHYSICAL_SIZE
+    """
+    3D model physical size might be invalid. The dimensions of your model are very small. Consider reviewing your model
+    to ensure they are correct.
+    """
+    MODEL_SMALL_PHYSICAL_SIZE
+}
+
+"""
+Error types for media.
+"""
+enum MediaErrorCode {
+    """
+    Media could not be created because embed permissions are disabled for this video.
+    """
+    EXTERNAL_VIDEO_EMBED_DISABLED
+    """
+    Media could not be created because video is either not found or still transcoding.
+    """
+    EXTERNAL_VIDEO_EMBED_NOT_FOUND_OR_TRANSCODING
+    """
+    Media could not be created because the external video has an invalid aspect ratio.
+    """
+    EXTERNAL_VIDEO_INVALID_ASPECT_RATIO
+    """
+    Media could not be created because the external video could not be found.
+    """
+    EXTERNAL_VIDEO_NOT_FOUND
+    """
+    Media could not be created because the external video is not listed or is private.
+    """
+    EXTERNAL_VIDEO_UNLISTED
+    """
+    Media could not be created because the cumulative file storage limit would be exceeded.
+    """
+    FILE_STORAGE_LIMIT_EXCEEDED
+    """
+    File could not be processed because the source could not be downloaded.
+    """
+    GENERIC_FILE_DOWNLOAD_FAILURE
+    """
+    File could not be created because the size is too large.
+    """
+    GENERIC_FILE_INVALID_SIZE
+    """
+    Media could not be processed because the image could not be downloaded.
+    """
+    IMAGE_DOWNLOAD_FAILURE
+    """
+    Media could not be processed because the image could not be processed.
+    """
+    IMAGE_PROCESSING_FAILURE
+    """
+    Media could not be created because the image has an invalid aspect ratio.
+    """
+    INVALID_IMAGE_ASPECT_RATIO
+    """
+    Media could not be created because the image size is too large.
+    """
+    INVALID_IMAGE_FILE_SIZE
+    """
+    Media could not be created because the image's resolution exceeds the max limit.
+    """
+    INVALID_IMAGE_RESOLUTION
+    """
+    Media could not be processed because the signed URL was invalid.
+    """
+    INVALID_SIGNED_URL
+    """
+    Media timed out because it is currently being modified by another operation.
+    """
+    MEDIA_TIMEOUT_ERROR
+    """
+    Media could not be created because the model file failed processing.
+    """
+    MODEL3D_GLB_OUTPUT_CREATION_ERROR
+    """
+    Media could not be created because the model can't be converted to USDZ format.
+    """
+    MODEL3D_GLB_TO_USDZ_CONVERSION_ERROR
+    """
+    Media could not be created because the model file failed processing.
+    """
+    MODEL3D_PROCESSING_FAILURE
+    """
+    Media could not be created because the model's thumbnail generation failed.
+    """
+    MODEL3D_THUMBNAIL_GENERATION_ERROR
+    """
+    Model failed validation.
+    """
+    MODEL3D_VALIDATION_ERROR
+    """
+    Media error has occured for unknown reason.
+    """
+    UNKNOWN
+    """
+    Media could not be created because the image is an unsupported file type.
+    """
+    UNSUPPORTED_IMAGE_FILE_TYPE
+    """
+    Media could not be created because it has an invalid file type.
+    """
+    VIDEO_INVALID_FILETYPE_ERROR
+    """
+    Media could not be created because it does not meet the maximum duration requirement.
+    """
+    VIDEO_MAX_DURATION_ERROR
+    """
+    Media could not be created because it does not meet the maximum height requirement.
+    """
+    VIDEO_MAX_HEIGHT_ERROR
+    """
+    Media could not be created because it does not meet the maximum width requirement.
+    """
+    VIDEO_MAX_WIDTH_ERROR
+    """
+    Media could not be created because the metadata could not be read.
+    """
+    VIDEO_METADATA_READ_ERROR
+    """
+    Media could not be created because it does not meet the minimum duration requirement.
+    """
+    VIDEO_MIN_DURATION_ERROR
+    """
+    Media could not be created because it does not meet the minimum height requirement.
+    """
+    VIDEO_MIN_HEIGHT_ERROR
+    """
+    Media could not be created because it does not meet the minimum width requirement.
+    """
+    VIDEO_MIN_WIDTH_ERROR
+    """
+    Video failed validation.
+    """
+    VIDEO_VALIDATION_ERROR
+}
+
+
+"""
+A hosted image.
+"""
+type MediaImage implements Media & File{
+    """
+    A globally-unique identifier.
+    """
+    id: ID!
+    """
+    A word or phrase to share the nature or contents of a media.
+    """
+    alt: String
+    """
+    A date and time the file was created
+    """
+    createdAt: DateTime!
+    """
+    The image for the media. Returns null until status is READY.
+    """
+    image: Image
+    """
+    Any errors that have occurred on the file.
+    """
+    fileErrors: [FileError!]!
+    """
+    The status of the file.
+    """
+    fileStatus: FileStatus!
+    """
+    The media content type.
+    """
+    mediaContentType: MediaContentType!
+    """
+    Any errors which have occurred on the media.
+    """
+    mediaErrors: [MediaError!]!
+    """
+    The warnings attached to the media.
+    """
+    mediaWarnings: [MediaWarning!]!
+    """
+    The preview image for the media.
+    """
+    preview: MediaPreviewImage
+    """
+    The MIME type of the image.
+    """
+    mimeType: String
+    """
+    Current status of the media.
+    """
+    status: MediaStatus!
+}
+
+"""
+Represents a hosted 3D model.
+"""
+type Model3d implements Media {
+    """
+    A globally-unique identifier.
+    """
+    id: ID!
+    """
+    A word or phrase to share the nature or contents of a media.
+    """
+    alt: String
+    """
+    The 3d model's bounding box information.
+    """
+    boundingBox: Model3DBoundingBox
+    """
+    The 3d model's filename.
+    """
+    filename: String!
+    """
+    The media content type.
+    """
+    mediaContentType: MediaContentType!
+    """
+    Any errors which have occurred on the media.
+    """
+    mediaErrors: [MediaError!]!
+    """
+    The warnings attached to the media.
+    """
+    mediaWarnings: [MediaWarning!]!
+    """
+    The 3d model's original source.
+    """
+    originalSource: Model3dSource
+    """
+    The preview image for the media.
+    """
+    preview: MediaPreviewImage
+    """
+    The 3d model's sources.
+    """
+    sources: [Model3dSource!]!
+    """
+    Current status of the media.
+    """
+    status: MediaStatus!
+}
+
+"""
+Representation of 3d vectors and points. It can represent either the coordinates of a point in space, a direction, or size. Presented as an object with three floating-point values.
+"""
+type Vector3{
+    """
+    The x coordinate of Vector3.
+    """
+    x: Float!
+    """
+    The y coordinate of Vector3.
+    """
+    y: Float!
+    """
+    The z coordinate of Vector3.
+    """
+    z: Float!
+}
+
+
+"""
+Bounding box information of a 3d model.
+"""
+type Model3DBoundingBox{
+    """
+    Size in meters of the smallest volume which contains the 3d model.
+    """
+    size: Vector3!
+}
+
+"""
+A source for a hosted 3d model.
+
+Types of sources include GLB and USDZ formatted 3d models, where the former is an original 3d model and the latter has
+been converted from the original.
+
+If the original source is in GLB format and over 15 MBs in size, then both the original and the USDZ formatted source
+are optimized to reduce the file size.
+"""
+type Model3dSource {
+    """
+    The 3d model source's filesize.
+    """
+    filesize: Int!
+    """
+    The 3d model source's format.
+    """
+    format: String!
+    """
+    The 3d model source's MIME type.
+    """
+    mimeType: String!
+    """
+    The 3d model source's URL.
+    """
+    url: URL!
+}
+
+
+"""
+Represents a media error.
+"""
+type MediaError {
+    """
+    Code representing the type of error.
+    """
+    code: MediaErrorCode!
+    """
+    Additional details regarding the error.
+    """
+    message: String
+}
+
+"""
+Represents a media warning.
+"""
+type MediaWarning {
+    """
+    Code representing the type of warning.
+    """
+    code: MediaWarningCode!
+    """
+    Additional details regarding the warning.
+    """
+    message: String
+}
+
+"""
+The possible content types for a media object.
+"""
+enum MediaContentType {
+    """
+    An externally hosted video.
+    """
+    EXTERNAL_VIDEO
+    """
+    A hosted image.
+    """
+    IMAGE
+    """
+    A 3d model.
+    """
+    MODEL_3D
+    """
+    A hosted video.
+    """
+    VIDEO
+}
+
+"""
+Represents a media interface
+"""
+interface Media {
+    """
+    A word or phrase to describe the contents or the function of a media.
+    """
+    alt: String
+    """
+    The media content type.
+    """
+    mediaContentType: MediaContentType!
+    """
+    Any errors that have occurred on the file.
+    """
+    mediaErrors: [MediaError!]!
+    """
+    The warnings attached to the media.
+    """
+    mediaWarnings: [MediaWarning!]!
+    """
+    The status of the media.
+    """
+    status: MediaStatus!
+    """
+    The preview image for the media.
+    """
+    preview: MediaPreviewImage
+}
+
+type MediaEdge {
+    """
+    A cursor for use in pagination.
+    """
+    cursor: String!
+    """
+    The item at the end of MediaEdge.
+    """
+    node: Media!
+}
+
+type MediaConnection {
+    """
+    A list of edges.
+    """
+    edges: [MediaEdge!]!
+    """
+    A list of the nodes contained in MediaEdge.
+    """
+    nodes: [Media!]!
+    """
+    Information to aid in pagination.
+    """
+    pageInfo: PageInfo!
+    """
+    Identifies the total count of items in the connection.
+    """
+    totalCount: Int!
+}
+
+"""
+Represents a source for a hosted video.
+
+Types of sources include the original video, lower resolution versions of the original video, and an m3u8 playlist file.
+
+Only videos with a status field of READY have sources.
+"""
+type VideoSource {
+    """
+    The video source's file size in bytes.
+    """
+    fileSize: Int
+    """
+    The video source's file format extension.
+    """
+    format: String!
+    """
+    The video source's height.
+    """
+    height: Int!
+    """
+    The video source's MIME type.
+    """
+    mimeType: String!
+    """
+    The video source's URL.
+    """
+    url: URL!
+    """
+    The video source's width.
+    """
+    width: Int!
+}
+
+"""
+A hosted video.
+"""
+type Video implements Media & File{
+    """
+    A globally-unique identifier.
+    """
+    id: ID!
+    """
+    A word or phrase to share the nature or contents of a media.
+    """
+    alt: String
+    """
+    A date and time the file was created
+    """
+    createdAt: DateTime!
+    """
+    The video's duration in milliseconds. This value is null unless the video's status field is READY.
+    """
+    duration: Int
+    """
+    Any errors that have occurred on the file.
+    """
+    fileErrors: [FileError!]!
+    """
+    The status of the file.
+    """
+    fileStatus: FileStatus!
+    """
+    The media content type.
+    """
+    mediaContentType: MediaContentType!
+    """
+    Any errors which have occurred on the media.
+    """
+    mediaErrors: [MediaError!]!
+    """
+    The warnings attached to the media.
+    """
+    mediaWarnings: [MediaWarning!]!
+    """
+    The preview image for the media.
+    """
+    preview: MediaPreviewImage
+    """
+    Current status of the media.
+    """
+    status: MediaStatus!
+    """
+    The video's sources. This value is empty unless the video's status field is READY.
+    """
+    sources: [VideoSource!]!
+    """
+    The video's original source. This value is null unless the video's status field is READY.
+    """
+    source: VideoSource
+}
+
+"""
+Represents an externally hosted video
+"""
+type ExternalVideo implements Media{
+    """
+    A globally-unique identifier.
+    """
+    id: ID!
+    """
+    A word or phrase to share the nature or contents of a media.
+    """
+    alt: String
+    """
+    The embed URL of the video for the respective host.
+    """
+    embedUrl: URL!
+    """
+    The host of the external video.
+    """
+    host: MediaHost!
+    """
+    The origin URL of the video on the respective host.
+    """
+    originUrl: URL!
+    """
+    The media content type.
+    """
+    mediaContentType: MediaContentType!
+    """
+    Any errors which have occurred on the media.
+    """
+    mediaErrors: [MediaError!]!
+    """
+    The warnings attached to the media.
+    """
+    mediaWarnings: [MediaWarning!]!
+    """
+    The preview image for the media.
+    """
+    preview: MediaPreviewImage
+    """
+    Current status of the media.
+    """
+    status: MediaStatus!
+
+}
+
+
+type Image {
+    "A unique identifier for the image."
+    id: ID!
+    "A word or phrase to share the nature or contents of an image."
+    altText: String
+    "The original height of the image in pixels. Returns null if the image is not hosted by SpellMarket."
+    height: Int
+    "The original width of the image in pixels. Returns null if the image is not hosted by SpellMarket."
+    width: Int
+    """
+    The location of the image as a URL. If no transform options are specified, then the original image will be preserved
+    including any pre-applied transforms. All transformation options are considered "best-effort". Any transformation
+    that the original image type doesn't support will be ignored.
+    """
+    url(transform: ImageTransformInput!): URL
+}
+
+type ImageEdge {
+    """
+    A cursor for use in pagination.
+    """
+    cursor: String!
+    """
+    The item at the end of ImageEdge.
+    """
+    node: Image!
+}
+
+type ImageConnection {
+    """
+    A list of edges.
+    """
+    edges: [ImageEdge!]!
+    """
+    A list of the nodes contained in ImageEdge.
+    """
+    nodes: [Image!]!
+    """
+    Information to aid in pagination.
+    """
+    pageInfo: PageInfo!
+    """
+    Identifies the total count of items in the connection.
+    """
+    totalCount: Int!
+}
+
+"""
+The format of the Image
+"""
+enum ImageContentType {
+    """ A JPG image """
+    JPG
+    """ A PNG image """
+    PNG
+    """ A WEBP image """
+    WEBP
+}
+
+"""
+The part of the image that should remain after cropping.
+"""
+enum CropRegion {
+    """
+    Keep the center of the image.
+    """
+    CENTER
+    """
+    Keep the top of the image.
+    """
+    TOP
+    """
+    Keep the bottom of the image.
+    """
+    BOTTOM
+    """
+    Keep the left of the image.
+    """
+    LEFT
+    """
+    Keep the right of the image.
+    """
+    RIGHT
+}
+
+"""
+The available options for transforming an image.
+
+All transformation options are considered best effort. Any transformation that the original image type doesn't support
+will be ignored.
+"""
+input ImageTransformInput {
+    """
+    The region of the image to remain after cropping.
+    Must be used in conjunction with the maxWidth and/or maxHeight fields, where the maxWidth and maxHeight aren't equal.
+    The crop argument should coincide with the smaller value. A smaller maxWidth indicates a LEFT or RIGHT crop, while
+    a smaller maxHeight indicates a TOP or BOTTOM crop. For example, { maxWidth: 5, maxHeight: 10, crop: LEFT } will
+    result in an image with a width of 5 and height of 10, where the right side of the image is removed.
+    """
+    crop: CropRegion
+    """
+    Image width in pixels between 1 and 5760.
+    """
+    maxWidth: Int
+    """
+    Image height in pixels between 1 and 5760.
+    """
+    maxHeight: Int
+    """
+    Image size multiplier for high-resolution retina displays. Must be within 1..3.
+    """
+    scale: Int = 1
+    """
+    Convert the source image into the preferred content type.
+    Supported conversions: .svg to .png, any file type to .jpg, and any file type to .webp.
+    """
+    preferredContentType: ImageContentType
+}
+
+
+"""
+The resource type to receive
+"""
+enum StagedUploadTargetGenerateUploadResource {
+    """
+    An image associated with a collection.
+
+    For example, after uploading an image, you can use the
+    collectionUpdate mutation to add the image to a collection.
+    """
+    COLLECTION_IMAGE
+    """
+    Represents any file other than HTML.
+
+    For example, after uploading the file, you can add the file to the
+    Files page in SpellMarket admin using the fileCreate mutation.
+    """
+    FILE
+    """
+    An image.
+
+    For example, after uploading an image, you can add the image to a product using the
+    productCreateMedia mutation or to the Files page in SpellMarket admin using the
+    fileCreate mutation.
+    """
+    IMAGE
+    """
+    A SpellMarket hosted 3d model.
+
+    For example, after uploading the 3d model, you can add the 3d model to a product using the
+    productCreateMedia mutation.
+    """
+    MODEL_3D
+    """
+    An image that's associated with a product.
+
+    For example, after uploading the image, you can add the image to a product using the
+    productCreateMedia mutation.
+    """
+    PRODUCT_IMAGE
+    """
+    An image.
+
+    For example, after uploading the image, you can add the image to the
+    Files page in SpellMarket admin using the fileCreate mutation.
+    """
+    APP_STORE_IMAGE
+    """
+    A SpellMarket-hosted video.
+
+    For example, after uploading the video, you can add the video to a product using the
+    productCreateMedia mutation or to the Files page in SpellMarket admin using the fileCreate mutation.
+    """
+    VIDEO
+    """
+    Represents bulk mutation variables.
+
+    For example, bulk mutation variables can be used for bulk operations using the
+    bulkOperationRunMutation mutation.
+    """
+    BULK_MUTATION_VARIABLES
+    """
+    Represents a redirect CSV file.
+
+    Example usage: This resource can be used for creating a
+    UrlRedirectImport  object for use in the urlRedirectImportCreate mutation.
+    """
+    URL_REDIRECT_IMPORT
+}
+
+
+"""
+The possible HTTP methods that can be used when sending a request to upload a file using information from a
+StagedMediaUploadTarget.
+"""
+enum StagedUploadHttpMethodType {
+    """
+    The POST HTTP method.
+    """
+    POST
+    """
+    The PUT HTTP method.
+    """
+    PUT
+}
+"""
+The schemaâ€™s entry-point for mutations. This acts as the public, top-level API from which all mutation queries must
+start.
+
+This section focuses on the buying apis
+"""
+type Mutation {
+    """
+    Creates a new cart.
+    """
+    cartCreate(input: CartInput): CartCreatePayload
+    """
+    Adds a product line to the cart.
+    """
+    cartLinesAdd(lines: [CartLineInput!]!, cartId: ID!): CartLinesAddPayload
+    """
+    Removes one or more product lines from the cart.
+    """
+    cartLinesRemove(cartId: ID!, lineIds: [ID!]!): CartLinesRemovePayload
+    """
+    Updates one or more product lines on a cart.
+    """
+    cartLinesUpdate(cartId: ID!, lines: [CartLineUpdateInput!]!): CartLinesUpdatePayload
+    """
+    Completes a checkout without providing payment information. You can use this mutation for free items
+    """
+    checkoutCompleteFree(checkoutId: ID!): CheckoutCompleteFreePayload
+    """
+    Completes a checkout with a tokenized payment for fiat.
+    """
+    checkoutCompleteWithTokenizedPayment(checkoutId: ID!, payment: TokenizedPaymentInput!): CheckoutCompleteWithTokenizedPaymentPayload
+    """
+    Completes a checkout with a wallet payment.
+    """
+    checkoutCompleteWithWalletPayment(checkoutId: ID!, payment: WalletPaymentInput!): CheckoutCompleteWithWalletPaymentPayload
+    """
+    Creates a new checkout.
+    """
+    checkoutCreate(input: CheckoutCreateInput!, queueToken: String): CheckoutCreatePayload
+    """
+    Adds a list of line items to a checkout.
+    """
+    checkoutLineItemsAdd(lineItems: [CheckoutLineItemInput!]!, checkoutId: ID!): CheckoutLineItemsAddPayload
+    """
+    Removes line items from an existing checkout.
+    """
+    checkoutLineItemsRemove(checkoutId: ID!, lineItemIds: [ID!]!): CheckoutLineItemsRemovePayload
+    """
+    Sets a list of line items to a checkout.
+    """
+    checkoutLineItemsReplace(lineItems: [CheckoutLineItemInput!]!, checkoutId: ID!): CheckoutLineItemsReplacePayload
+    """
+    Updates line items on a checkout.
+    """
+    checkoutLineItemsUpdate(checkoutId: ID!, lineItems: [CheckoutLineItemUpdateInput!]!): CheckoutLineItemsUpdatePayload
+}
+
+
+"""
+Represents the reason that the order is being canceled. Valid values are: customer, fraud, inventory, declined, other.
+"""
+enum OrderCancelReason {
+    """
+    The customer wanted to cancel the order.
+    """
+    CUSTOMER
+    """
+    Payment was declined.
+    """
+    DECLINED
+    """
+    The order was fraudulent.
+    """
+    FRAUD
+    """
+    There was insufficient inventory.
+    """
+    INVENTORY
+    """
+    Some other reason not listed.
+    """
+    OTHER
+}
+
+"""
+The likelihood that an order is fraudulent.
+"""
+enum OrderRiskLevel {
+    """
+    There is a high level of risk that this order is fraudulent.
+    """
+    HIGH
+    """
+    There is a low level of risk that this order is fraudulent.
+    """
+    LOW
+    """
+    There is a medium level of risk that this order is fraudulent.
+    """
+    MEDIUM
+}
+
+"""
+Represents a fraud check on an order.
+"""
+type OrderRisk {
+    """
+    Whether the risk level is shown in the SpellMarket admin. If false, then this order risk is ignored when SpellMarket
+    determines the overall risk level for the order.
+    """
+    display: Boolean!
+    """
+    The likelihood that an order is fraudulent, based on this order risk.
+
+    The level can be set by SpellMarket risk analysis or by an project.
+    """
+    level: OrderRiskLevel
+    """
+    The risk message that's shown to the merchant in the SpellMarket admin.
+    """
+    message: String
+}
+
+"""
+Represents the order's current financial status.
+"""
+enum OrderFinancialStatus {
+    """
+    Displayed as Authorized.
+    """
+    AUTHORIZED
+    """
+    Displayed as Paid.
+    """
+    PAID
+    """
+    Displayed as Partially paid.
+    """
+    PARTIALLY_PAID
+    """
+    Displayed as Pending.
+    """
+    PENDING
+    """
+    Displayed as Voided.
+    """
+    VOIDED
+}
+
+
+"""
+Represents the order's aggregated fulfillment status for display purposes.
+"""
+enum OrderFulfillmentStatus {
+    """
+    Displayed as Fulfilled. All the items in the order have been fulfilled.
+    """
+    FULFILLED
+    """
+    Displayed as In progress. Some of the items in the order have been fulfilled, or a request for fulfillment has been
+    sent to the fulfillment service.
+    """
+    IN_PROGRESS
+    """
+    Displayed as Partially fulfilled. Some of the items in the order have been fulfilled.
+    """
+    PARTIALLY_FULFILLED
+    """
+    Displayed as Unfulfilled. None of the items in the order have been fulfilled.
+    """
+    UNFULFILLED
+}
+
+"""
+Represents a web3 wallet billing agreement payment instrument.
+"""
+type VaultWeb3Wallet {
+    """
+    Whether the web3 wallet connection active
+    """
+    connected: Boolean!
+    """
+    The name for wallet account name.
+    """
+    walletName: String!
+    """
+    The wallet account email address.
+    """
+    walletAddress: String!
+    """
+    The wallet Chains
+    """
+    chains: [Settlement!]!
+}
+
+
+union PaymentInstrument = VaultWeb3Wallet
+
+"""
+A payment instrument and the permission the owner of the instrument gives to the merchant to debit it.
+"""
+type PaymentMandate {
+    """
+    The unique identifier of a payment mandate.
+    """
+    id: ID!
+    """
+    The outputs details of the payment instrument.
+    """
+    paymentInstrument: PaymentInstrument!
+
+}
+
+"""
+The payment collection details for an order that requires additional payment following an edit to the order.
+"""
+type OrderPaymentCollectionDetails {
+    """
+    The URL to use for collecting an additional payment on the order.
+    """
+    additionalPaymentCollectionUrl: URL
+    """
+    The list of vaulted payment methods for the order with their permissions.
+    """
+    vaultedPaymentMethods: PaymentMandate
+}
+
+"""
+A customers request to purchase one or more products
+"""
+type Order implements Node {
+    """
+    A list of messages that appear on the order page in the dashboard admin.
+    """
+    alerts: [ResourceAlert!]!
+    """
+    The SalesChannel that created the order.
+    """
+    salesChannel: SalesChannel
+    """
+    The subchannel that created the order.
+    """
+    subChannel: SalesChannel
+    """
+    Whether a customer email exists for the order.
+    """
+    canNotifyCustomer: Boolean!
+    """
+    The reason provided when the order was canceled. Returns null if the order wasn't canceled.
+    """
+    cancelReason: OrderCancelReason
+    """
+    The date and time when the order was canceled. Returns null if the order wasn't canceled.
+    """
+    cancelledAt: DateTime
+    """
+    The total order-level discount amount, before returns, in shop and presentment currencies.
+    """
+    cartDiscountAmountSet: SchmecklePouch
+    """
+    The IP address of the API client that created the order.
+    """
+    clientIP: String
+    """
+    Whether the order is closed.
+    """
+    closed: Boolean!
+    """
+    The date and time when the order was closed. Returns null if the order is not closed.
+    """
+    closedAt: DateTime
+    """
+    Whether inventory has been reserved for the order.
+    """
+    confirmed: Boolean!
+    """
+    Date and time when the order was created.
+    """
+    createdAt: DateTime!
+    """
+    The shop currency when the order was placed.
+    """
+    currencyCode: CurrencyCode!
+    """
+    The current order-level discount amount after all order updates, in shop and presentment currencies.
+    """
+    currentCartDiscountAmountSet: SchmecklePouch!
+    """
+    The sum of the quantities for all line items that contribute to the order's current subtotal price.
+    """
+    currentSubtotalLineItemsQuantity: Int!
+    """
+    The sum of the prices for all line items after discounts and returns, in shop and presentment currencies.
+    If taxesIncluded is true, then the subtotal also includes tax.
+    """
+    currentSubtotalPriceSet: SchmecklePouch!
+    """
+    A list of all tax lines applied to line items on the order, after returns. Tax line prices represent the total price
+    for all tax lines with the same rate and title.
+    """
+    currentTaxLines: TaxLine
+    """
+    The total amount discounted on the order after returns, in shop and presentment currencies. This includes both order
+    and line level discounts.
+    """
+    currentTotalDiscountsSet: SchmecklePouch!
+    """
+    The total price of the order, after returns, in shop and presentment currencies. This includes taxes and discounts.
+    """
+    currentTotalPriceSet: SchmecklePouch!
+    """
+    The sum of the prices of all tax lines applied to line items on the order, after returns, in shop and presentment
+    currencies.
+    """
+    currentTotalTaxSet: SchmecklePouch!
+    """
+    The customer that placed the order.
+    """
+    customer: Customer
+    """
+    Whether the customer agreed to receive marketing materials.
+    """
+    customerAcceptsMarketing: Boolean!
+    """
+    A two-letter or three-letter language code, optionally followed by a region modifier.
+    """
+    customerLocale: String
+    """
+    The primary wallet address of the customer.
+    """
+    displayAddress: WalletAddress!
+    """
+    The email address associated with the customer.
+    """
+    email: String
+    """
+    Whether taxes on the order are estimated. This field returns false when taxes on the order are finalized and aren't
+    subject to any changes.
+    """
+    estimatedTaxes: Boolean!
+    """
+    The financial status of the order that can be shown to the merchant.
+    """
+    financialStatus: OrderFinancialStatus
+    """
+    Whether there are line items that can be fulfilled. This field returns false when the order has no fulfillable line
+    items. For a more granular view of the fulfillment status, refer to the FulfillmentOrder object.
+    """
+    fulfillable: Boolean!
+    """
+    The fulfillment status for the order that can be shown to the merchant.
+    """
+    fulfillmentStatus: OrderFulfillmentStatus!
+    """
+    Whether the order has been paid in full.
+    """
+    fullyPaid: Boolean!
+    """
+    A globally-unique identifier.
+    """
+    id: ID!
+    """
+    The contents of the note associated with the order.
+    """
+    note: String
+    """
+    The total price of the order at the time of order creation, in shop and presentment currencies.
+    """
+    originalTotalPriceSet: SchmecklePouch!
+    """
+    The payment collection details for the order.
+    """
+    paymentCollectionDetails: OrderPaymentCollectionDetails!
+    """
+    A list of the names of all payment gateways used for the order. E.g. Stripe or Web3
+    """
+    paymentGatewayNames: String!
+    """
+    The payment CurrencyCode of the customer for the order.
+    """
+    presentmentCurrencyCode: CurrencyCode!
+    """
+    The date and time when the order was processed. This date and time might not match the date and time when the order
+    was created.
+    """
+    processedAt: DateTime
+    """
+    The publication that the order was created from.
+    """
+    publication: Publication
+    """
+    The URL of the source that the order originated from, if found in the domain registry.
+    """
+    registeredSourceUrl: URL
+    """
+    Whether any line item on the order can be restocked.
+    """
+    restockable: Boolean!
+    """
+    The fraud risk level of the order.
+    """
+    riskLevel: OrderRiskLevel!
+    """
+    A list of risks associated with the order.
+    """
+    risks: [OrderRisk!]!
+    """
+    A unique POS or third party order identifier.
+    """
+    sourceIdentifier: String
+    """
+    The sum of the quantities for all line items that contribute to the order's subtotal price.
+    """
+    subtotalLineItemsQuantity: Int!
+    """
+    The sum of the prices for all line items after discounts and before returns, in shop and presentment currencies.
+    If taxesIncluded is true, then the subtotal also includes tax.
+    """
+    subtotalPriceSet: SchmecklePouch
+    """
+    A comma separated list of tags associated with the order. Updating tags overwrites any existing tags that were
+    previously added to the order. To add new tags without overwriting existing tags, use the tagsAdd mutation.
+    """
+    tags: String!
+    """
+    A list of all tax lines applied to line items on the order, before returns. Tax line prices represent the total
+    price for all tax lines with the same rate and title.
+    """
+    taxLines: [TaxLine!]!
+    """
+    Whether taxes are included in the subtotal price of the order.
+    """
+    taxesIncluded: Boolean!
+    """
+    Whether the order is a test. Test orders are made using testnet or a payment provider with test mode enabled.
+    A test order cannot be converted into a real order and vice versa.
+    """
+    test: Boolean!
+    """
+    The total amount not yet transacted for the order, in shop and presentment currencies.
+    A positive value indicates a difference in the merchant's favor (payment from customer to merchant).
+    """
+    totalOutstandingSet: SchmecklePouch!
+    """
+    The total price of the order, before returns, in shop and presentment currencies. This includes taxes and discounts.
+    """
+    totalPriceSet: SchmecklePouch!
+    """
+    The total amount received from the customer before returns, in shop and presentment currencies.
+    """
+    totalReceivedSet: SchmecklePouch!
+    """
+    The total tax amount before returns, in shop and presentment currencies.
+    """
+    totalTaxSet: SchmecklePouch
+    """
+    A list of transactions associated with the order.
+    """
+    transactions(
+        "Truncate the array result to this size."
+        first: Int): [OrderTransaction!]!
+    """
+    Whether no payments have been made for the order.
+    """
+    unpaid: Boolean!
+    """
+    The date and time when the order was modified last.
+    """
+    updatedAt: DateTime!
+    """
+    A list of events associated with the order.
+    """
+    events(
+        first: Int,
+        after: String,
+        last: Int, before: String,
+        reverse: Boolean=false,
+        sortKey: EventSortKeys=ID,
+        query: String): EventConnection!
+    """
+    List of fulfillments for the order.
+    """
+    fulfillments(
+        first: Int,
+        after: String,
+        last: Int,
+        before: String,
+        reverse: Boolean=false): FulfillmentConnection!
+    """
+    A list of the order's line items.
+    """
+    lineItems(
+        first: Int,
+        after: String,
+        last: Int,
+        before: String,
+        reverse: Boolean=false): LineItemConnection!
+    """
+    A list of line items that can't be fulfilled.
+    """
+    nonFulfillableLineItems(
+        first: Int,
+        after: String,
+        last: Int, before: String,
+        reverse: Boolean=false,
+        query: String): LineItemConnection!
+}
+
+type OrderEdge {
+    """
+    A cursor for use in pagination.
+    """
+    cursor: String!
+    """
+    The item at the end of OrderEdge.
+    """
+    node: Order!
+}
+
+type OrderConnection {
+    """
+    A list of edges.
+    """
+    edges: [OrderEdge!]!
+    """
+    A list of the nodes contained in OrderEdge.
+    """
+    nodes: [Order!]!
+    """
+    Information to aid in pagination.
+    """
+    pageInfo: PageInfo!
+    """
+    Identifies the total count of items in the connection.
+    """
+    totalCount: Int!
+}
+
+"""
+The set of valid sort keys for the Order query.
+"""
+enum OrderSortKeys {
+    """
+    Sort by the created_at value.
+    """
+    CREATED_AT
+    """
+    Sort by the customer_name value.
+    """
+    CUSTOMER_NAME
+    """
+    Sort by the financial_status value.
+    """
+    FINANCIAL_STATUS
+    """
+    Sort by the fulfillment_status value.
+    """
+    FULFILLMENT_STATUS
+    """
+    Sort by the order_number value.
+    """
+    ORDER_NUMBER
+    """
+    Sort by the processed_at value.
+    """
+    PROCESSED_AT
+    """
+    Sort by the total_price value.
+    """
+    TOTAL_PRICE
+    """
+    Sort by the updated_at value.
+    """
+    UPDATED_AT
+    """
+    Sort by the id value.
+    """
+    ID
+    """
+    Sort by relevance to the search terms when the query parameter is specified on the connection.
+    Don't use this sort key when no search query is specified
+    """
+    RELEVANCE
+}
+
+"""
+The different states that an OrderTransaction can have.
+"""
+enum OrderTransactionStatus{
+    """
+    Awaiting a response.
+    """
+    AWAITING_RESPONSE
+    """
+    There was an error while processing the transaction.
+    """
+    ERROR
+    """
+    The transaction failed.
+    """
+    FAILURE
+    """
+    The transaction is pending.
+    """
+    PENDING
+    """
+    The transaction succeeded.
+    """
+    SUCCESS
+    """
+    The transaction status is unknown.
+    """
+    UNKNOWN
+}
+
+"""
+A standardized error code, independent of the payment provider.
+"""
+enum OrderTransactionErrorCode {
+    """
+    The card was declined.
+    """
+    CARD_DECLINED
+    """
+    There is an error in the gateway configuration.
+    """
+    CONFIG_ERROR
+    """
+    The card is expired.
+    """
+    EXPIRED_CARD
+    """
+    There was an unknown error with processing the payment.
+    """
+    GENERIC_ERROR
+    """
+    The address does not match the card number.
+    """
+    INCORRECT_ADDRESS
+    """
+    The CVC does not match the card number.
+    """
+    INCORRECT_CVC
+    """
+    The card number is incorrect.
+    """
+    INCORRECT_NUMBER
+    """
+    The entered PIN is incorrect.
+    """
+    INCORRECT_PIN
+    """
+    The ZIP or postal code does not match the card number.
+    """
+    INCORRECT_ZIP
+    """
+    The amount is either too high or too low for the provider.
+    """
+    INVALID_AMOUNT
+    """
+    The payment method is not available in the customer's country.
+    """
+    INVALID_COUNTRY
+    """
+    The format of the CVC is incorrect.
+    """
+    INVALID_CVC
+    """
+    The format of the expiry date is incorrect.
+    """
+    INVALID_EXPIRY_DATE
+    """
+    The format of the card number is incorrect.
+    """
+    INVALID_NUMBER
+    """
+    The payment method is momentarily unavailable.
+    """
+    PAYMENT_METHOD_UNAVAILABLE
+    """
+    The wallet on wrong chain to process crypto payments.
+    """
+    WALLET_ON_WRONG_CHAIN
+    """
+    No wallet was connected to process crypto payments.
+    """
+    NO_WALLET_DETECTED_CHAIN
+    """
+    The card has been reported as lost or stolen, and the card issuer has requested that the merchant keep the card and call the number on the back.
+    """
+    PICK_UP_CARD
+    """
+    There was an error while processing the payment.
+    """
+    PROCESSING_ERROR
+    """
+    A real card was used but the gateway was in test mode.
+    """
+    TEST_MODE_LIVE_CARD
+    """
+    The gateway or merchant configuration doesn't support a feature, such as network tokenization.
+    """
+    UNSUPPORTED_FEATURE
+}
+
+"""
+Transaction fee related to an order transaction.
+"""
+type TransactionFee {
+    """
+    A globally-unique identifier.
+    """
+    id: ID!
+    """
+    Amount of the fee.
+    """
+    amount: Schmeckle!
+    """
+    Flat rate charge for a transaction.
+    """
+    flatFee: Schmeckle!
+    """
+    Name of the flat fee.
+    """
+    flatFeeName: String!
+    """
+    Percentage charge.
+    """
+    rate: Decimal!
+    """
+    Name of the rate fee.
+    """
+    rateName: String!
+    """
+    Tax amount charged on the fee.
+    """
+    taxAmount: Schmeckle!
+    """
+    Name of the type of fee.
+    """
+    type: String!
+}
+
+"""
+A payment transaction in the context of an order.
+"""
+type OrderTransaction implements Node {
+    """
+    A globally-unique identifier.
+    """
+    id: ID!
+    """
+    The amount and currency of the transaction in shop and presentment currencies.
+    """
+    amountSet: SchmecklePouch!
+    """
+    The associated order.
+    """
+    order: Order
+    """
+    Date and time when the transaction was created.
+    """
+    createdAt: DateTime!
+    """
+    A standardized error code, independent of the payment provider.
+    """
+    errorCode: OrderTransactionErrorCode
+    """
+    The transaction fees charged on the order transaction.
+    """
+    fees: TransactionFee!
+    """
+    The human-readable payment gateway name used to process the transaction.
+    """
+    formattedGateway: String
+    """
+    The payment gateway used to process the transaction.
+    """
+    gateway: String
+    """
+    Date and time when the transaction was processed.
+    """
+    processedAt: DateTime
+    """
+    The transaction receipt that the payment gateway attaches to the transaction.
+    The value of this field depends on which payment gateway processed the transaction.
+    """
+    receiptJson: JSON
+    """
+    The settlement currency.
+    """
+    settlementCurrency: CurrencyCode!
+    """
+    The rate used when converting the transaction amount to settlement currency.
+    """
+    settlementCurrencyRate: Decimal
+    """
+    The status of this transaction.
+    """
+    status: OrderTransactionStatus
+
+}
+
+type OrderTransactionEdge {
+    """
+    A cursor for use in pagination.
+    """
+    cursor: String!
+    """
+    The item at the end of OrderTransactionEdge.
+    """
+    node: OrderTransaction!
+}
+
+type OrderTransactionConnection {
+    """
+    A list of edges.
+    """
+    edges: [OrderTransactionEdge!]!
+    """
+    A list of the nodes contained in OrderTransactionEdge.
+    """
+    nodes: [OrderTransaction!]!
+    """
+    Information to aid in pagination.
+    """
+    pageInfo: PageInfo!
+    """
+    Identifies the total count of items in the connection.
+    """
+    totalCount: Int!
+}
+
+
+"""
+Represents a single line item on an order.
+"""
+type LineItem {
+    """
+    The line item's quantity, minus the removed quantity.
+    """
+    currentQuantity: Int!
+    """
+    The total line price after discounts are applied, in shop and presentment currencies.
+    """
+    discountedTotalSet: SchmecklePouch!
+    """
+    The approximate split price of a line item unit, in shop and presentment currencies. This value doesn't include discounts applied to the entire order.
+    """
+    discountedUnitPriceSet: SchmecklePouch!
+    """
+    A globally-unique identifier.
+    """
+    id: ID!
+    """
+    The image associated to the line item's product.
+    """
+    image: Image
+    """
+    The name of the product.
+    """
+    name: String!
+    """
+    The total number of units that can't be fulfilled. For example, if the item is not something that can be fulfilled/
+    """
+    nonFulfillableQuantity: Int!
+    """
+    The total price in shop and presentment currencies, without discounts applied. This value is based on the unit price
+    of the product x quantity.
+    """
+    originalTotalSet: SchmecklePouch!
+    """
+    The product unit price without discounts applied, in shop and presentment currencies.
+    """
+    originalUnitPriceSet: SchmecklePouch!
+    """
+    The Product object associated with this line item.
+    """
+    product: Product
+    """
+    The number of product units ordered.
+    """
+    quantity: Int!
+    """
+    Whether the line item can be restocked.
+    """
+    restockable: Boolean!
+    """
+    The product token id.
+    """
+    tokenID: String
+    """
+    The taxes charged for this line item.
+    """
+    taxLines(first: Int): [TaxLine!]!
+    """
+    Whether the product is taxable.
+    """
+    taxable: Boolean!
+    """
+    The title of the product.
+    """
+    title: String!
+    """
+    The total amount of the discount that's allocated to the line item, in the shop and presentment currencies.
+    This field must be explicitly set using draft orders, SpellMarket scripts, or the API.
+    """
+    totalDiscountSet: SchmecklePouch!
+    """
+    The total discounted value of unfulfilled units, in shop and presentment currencies.
+    """
+    unfulfilledDiscountedTotalSet: SchmecklePouch!
+    """
+    The total price, without any discounts applied. This value is based on the unit price of the product x quantity of
+    all unfulfilled units, in shop and presentment currencies.
+    """
+    unfulfilledOriginalTotalSet: SchmecklePouch!
+    """
+    The number of units not yet fulfilled.
+    """
+    unfulfilledQuantity: Int!
+    """
+    The name of the product.
+    """
+    Title: String
+    """
+    The name of the vendor who made the product.
+    """
+    vendor: String
+}
+
+type LineItemEdge {
+    """
+    A cursor for use in pagination.
+    """
+    cursor: String!
+    """
+    The item at the end of LineItemEdge.
+    """
+    node: LineItem!
+}
+
+type LineItemConnection {
+    """
+    A list of edges.
+    """
+    edges: [LineItemEdge!]!
+    """
+    A list of the nodes contained in LineItemEdge.
+    """
+    nodes: [LineItem!]!
+    """
+    Information to aid in pagination.
+    """
+    pageInfo: PageInfo!
+    """
+    Identifies the total count of items in the connection.
+    """
+    totalCount: Int!
+}
+
+
+"""
+Possible error codes that can be returned by CheckoutUserError.
+"""
+enum CheckoutErrorCode {
+    """
+    The input value is blank.
+    """
+    BLANK
+    """
+    The input value is invalid.
+    """
+    INVALID
+    """
+    The input value is too long.
+    """
+    TOO_LONG
+    """
+    The input value needs to be blank.
+    """
+    PRESENT
+    """
+    The input value should be less than the maximum value allowed.
+    """
+    LESS_THAN
+    """
+    The input value should be greater than or equal to the minimum value allowed.
+    """
+    GREATER_THAN_OR_EQUAL_TO
+    """
+    The input value should be less than or equal to the maximum value allowed.
+    """
+    LESS_THAN_OR_EQUAL_TO
+    """
+    Checkout is already completed.
+    """
+    ALREADY_COMPLETED
+    """
+    Input value is not supported.
+    """
+    NOT_SUPPORTED
+    """
+    Checkout is already completed.
+    """
+    EMPTY
+    """
+    Not enough in stock.
+    """
+    NOT_ENOUGH_IN_STOCK
+    """
+    Missing payment input.
+    """
+    MISSING_PAYMENT_INPUT
+    """
+    Line item was not found in checkout.
+    """
+    LINE_ITEM_NOT_FOUND
+    """
+    Throttled during checkout.
+    """
+    THROTTLED_DURING_CHECKOUT
+    """
+    Queue token has expired.
+    """
+    EXPIRED_QUEUE_TOKEN
+    """
+    Queue token is invalid.
+    """
+    INVALID_QUEUE_TOKEN
+    """
+    Cannot specify country and presentment currency code.
+    """
+    INVALID_COUNTRY_AND_CURRENCY
+}
+
+"""
+Represents an error that happens during execution of a checkout mutation.
+"""
+type CheckoutUserError implements DisplayableError {
+    """
+    The error code.
+    """
+    code: CheckoutErrorCode
+    """
+    The path to the input field that caused the error.
+    """
+    field: [String!]
+    """
+    The error message.
+    """
+    message: String!
+}
+
+"""
+Return type for checkoutLineItemsUpdate mutation.
+"""
+type CheckoutLineItemsUpdatePayload {
+    """
+    The updated checkout object.
+    """
+    checkout: Checkout
+    """
+    The list of errors that occurred from executing the mutation.
+    """
+    checkoutUserErrors: [CheckoutUserError!]!
+}
+
+"""
+Return type for checkoutLineItemsReplace mutation.
+"""
+type CheckoutLineItemsReplacePayload {
+    """
+    The updated checkout object.
+    """
+    checkout: Checkout
+    """
+    The list of errors that occurred from executing the mutation.
+    """
+    userErrors: [CheckoutUserError!]!
+}
+
+"""
+Return type for checkoutLineItemsRemove mutation.
+"""
+type CheckoutLineItemsRemovePayload {
+    """
+    The updated checkout object.
+    """
+    checkout: Checkout
+    """
+    The list of errors that occurred from executing the mutation.
+    """
+    checkoutUserErrors: [CheckoutUserError!]!
+}
+
+
+"""
+Return type for checkoutLineItemsAdd mutation.
+"""
+type CheckoutLineItemsAddPayload {
+    """
+    The updated checkout object.
+    """
+    checkout: Checkout
+    """
+    The list of errors that occurred from executing the mutation.
+    """
+    checkoutUserErrors: [CheckoutUserError!]!
+}
+
+
+"""
+Return type for checkoutCreate mutation.
+"""
+type CheckoutCreatePayload {
+    """
+    The new checkout object.
+    """
+    checkout: Checkout
+    """
+    The list of errors that occurred from executing the mutation.
+    """
+    checkoutUserErrors: [CheckoutUserError!]!
+    """
+    The checkout queue token. Available only to selected stores.
+    """
+    queueToken: String
+}
+
+"""
+Return type for CheckoutCompleteWithWalletPaymentPayload mutation.
+"""
+type CheckoutCompleteWithWalletPaymentPayload {
+    """
+    The checkout on which the payment was applied.
+    """
+    checkout: Checkout
+    """
+    The list of errors that occurred from executing the mutation.
+    """
+    checkoutUserErrors: [CheckoutUserError!]!
+    """
+    A representation of the attempted payment.
+    """
+    payment: Payment
+}
+
+"""
+Return type for checkoutCompleteWithTokenizedPayment mutation.
+"""
+type CheckoutCompleteWithTokenizedPaymentPayload {
+    """
+    The checkout on which the payment was applied.
+    """
+    checkout: Checkout
+    """
+    The list of errors that occurred from executing the mutation.
+    """
+    checkoutUserErrors: [CheckoutUserError!]!
+    """
+    A representation of the attempted payment.
+    """
+    payment: Payment
+}
+
+"""
+Return type for checkoutCompleteFree mutation.
+"""
+type CheckoutCompleteFreePayload {
+    """
+    The updated checkout object.
+    """
+    checkout: Checkout
+    """
+    The list of errors that occurred from executing the mutation.
+    """
+    checkoutUserErrors: [CheckoutUserError!]!
+}
+
+"""
+Possible error codes that can be returned by CartUserError.
+"""
+enum CartErrorCode {
+    """
+    The input value is invalid.
+    """
+    INVALID
+    """
+    The input value should be less than the maximum value allowed.
+    """
+    LESS_THAN
+    """
+    Product line was not found in cart.
+    """
+    INVALID_PRODUCT_LINE
+}
+
+"""
+Represents an error that happens during execution of a cart mutation.
+"""
+type CartUserError implements DisplayableError {
+    """
+    The error code.
+    """
+    code: CartErrorCode
+    """
+    The path to the input field that caused the error.
+    """
+    field: [String!]
+    """
+    The error message.
+    """
+    message: String!
+}
+
+
+"""
+Return type for cartLinesUpdate mutation.
+"""
+type CartLinesUpdatePayload {
+    """
+    The updated cart.
+    """
+    cart: Cart
+    """
+    The list of errors that occurred from executing the mutation.
+    """
+    userErrors: [CartUserError!]!
+}
+
+"""
+Return type for cartLinesRemove mutation.
+"""
+type CartLinesRemovePayload {
+    """
+    The updated cart.
+    """
+    cart: Cart
+    """
+    The list of errors that occurred from executing the mutation.
+    """
+    userErrors: [CartUserError!]!
+}
+
+"""
+Return type for cartLinesAdd mutation.
+"""
+type CartLinesAddPayload {
+    """
+    The updated cart.
+    """
+    cart: Cart
+    """
+    The list of errors that occurred from executing the mutation.
+    """
+    userErrors: [CartUserError!]!
+}
+
+"""
+Return type for cartCreate mutation.
+"""
+type CartCreatePayload {
+    """
+    The new cart.
+    """
+    cart: Cart
+    """
+    The list of errors that occurred from executing the mutation.
+    """
+    userErrors: [CartUserError!]!
+}
+
+"""
+The different kinds of order transactions.
+"""
+enum TransactionKind {
+    """
+    Direct Sale
+    """
+    DIRECT_SALE
+}
+
+"""
+The valid values for the types of payment token.
+"""
+enum TokenizedPaymentType {
+    """
+    Stripe token type.
+    """
+    STRIPE_VAULT_TOKEN
+}
+
+"""
+Transaction statuses describe the status of a transaction.
+"""
+enum TransactionStatus {
+    """
+    The transaction is pending.
+    """
+    PENDING
+    """
+    The transaction succeeded.
+    """
+    SUCCESS
+    """
+    The transaction failed.
+    """
+    FAILURE
+    """
+    There was an error while processing the transaction.
+    """
+    ERROR
+}
+
+"""
+An object representing exchange of money for a product.
+"""
+type Transaction {
+    """
+    The amount of money that the transaction was for.
+    """
+    amount: Schmeckle!
+    """
+    The kind of the transaction.
+    """
+    kind: TransactionKind!
+    """
+    The status of the transaction.
+    """
+    status: TransactionStatus
+    """
+    Whether the transaction was done in test mode or not.
+    """
+    test: Boolean!
+}
+
+
+"""
+A payment applied to a checkout.
+"""
+type Payment implements Node {
+    """
+    The amount of the payment.
+    """
+    amount: Schmeckle!
+    """
+    The checkout to which the payment belongs.
+    """
+    checkout: Checkout!
+    """
+    A message describing a processing error during asynchronous processing.
+    """
+    errorMessage: String
+    """
+    A globally-unique identifier.
+    """
+    id: ID!
+    """
+    A client-side generated token to identify a payment and perform idempotent operations.
+    For more information, refer to Idempotent requests.
+    """
+    idempotencyKey: String
+    """
+    The URL where the customer needs to be redirected so they can complete the 3D Secure payment flow.
+    """
+    nextActionUrl: URL
+    """
+    Whether the payment is still processing asynchronously.
+    """
+    ready: Boolean!
+    """
+    A flag to indicate if the payment is to be done in test mode for gateways that support it.
+    """
+    test: Boolean!
+    """
+    The actual transaction recorded by SpellMarket after having processed the payment with the gateway.
+    """
+    transaction: Transaction
+}
+"""
+The Product resource lets you manage products in a sales channel.
+You can add or update product Media. Products can be organized by grouping them into a Collection.
+"""
+type Product implements Node & Publishable {
+    """
+    The number of publications a resource is published.
+    """
+    availablePublicationCount: Int!
+    """
+    The the item being sold
+    """
+    item: SellableItem!
+    """
+    The date and time (ISO 8601 format) when the product was created.
+    """
+    createdAt: DateTime!
+    """
+    The custom product type specified by the merchant.
+    """
+    customProductType: String
+    """
+    A default cursor that returns the single next record, sorted ascending by ID.
+    """
+    defaultCursor: String!
+    """
+    A stripped description of the product, single line with HTML tags removed.
+    """
+    description (truncateAt: Int): String!
+    """
+    The description of the product, complete with HTML formatting.
+    """
+    descriptionHtml: HTML!
+    """
+    The featured image for the product.
+    """
+    featuredImage: Image
+    """
+    The featured media for the product.
+    """
+    featuredMedia: Media
+    """
+    A unique human-friendly string of the product's title.
+    """
+    handle: String
+    """
+    A globally-unique identifier.
+    """
+    id: ID!
+    """
+    Total count of media belonging to a product.
+    """
+    mediaCount: Int!
+    """
+    The online store preview URL.
+    """
+    onlineStorePreviewUrl: URL
+    """
+    The online store URL for the product.
+    A value of null indicates that the product is not published to the Spell Market sales channel.
+    """
+    onlineStoreUrl: URL
+    """
+    A list of product options.
+    """
+    options(first: Int): Int!
+    """
+    The product type specified by the merchant.
+    """
+    productType: String!
+    """
+    The number of publications a resource is published on
+    """
+    publicationCount (onlyPublished: Boolean=true): Int!
+    """
+    The date and time (ISO 8601 format) when the product was published to the SpellMarket.
+    """
+    publishedAt: DateTime!
+    """
+    Check to see whether the resource is published to the calling sales channel's publication.
+    """
+    publishedOnCurrentPublication: Boolean!
+    """
+    Check to see whether the resource is published to a given publication.
+    """
+    publishedOnPublication(publicationId: ID!): Boolean!
+    """
+    The resource that is either published or staged to be published to the calling app's publication. Requires the
+    read_product_listings scope.
+    """
+    resourcePublicationOnCurrentPublication: ResourcePublication
+    """
+    SEO information of the product.
+    """
+    seo: SEO!
+    """
+    The product status. This controls visibility across all channels.
+    """
+    status: ProductStatus!
+    """
+    A list of tags associated with the product.
+    """
+    tags: StringConnection!
+    """
+    The title of the product.
+    """
+    title: String!
+    """
+    The quantity of inventory in stock.
+    """
+    totalInventory: Int!
+    """
+    Whether inventory tracking has been enabled for the product.
+    """
+    tracksInventory: Boolean!
+    """
+    The date and time when the product was last modified. A product's updatedAt value can change for different reasons.
+    For example, if an order is placed for a product that has inventory tracking set up,
+    then the inventory adjustment is counted as an update.    """
+    updatedAt: DateTime!
+    """
+    The name of the product's vendor.
+    """
+    vendor: String!
+    """
+    A list of the collections that include the product.
+    """
+    productCollections(first: Int, after: String, last: Int, before: String, reverse: Boolean=false, sortKey: CollectionSortKeys, query: String): ProductCollectionConnection!
+    """
+    The images associated with the product.
+    """
+    images(first: Int, after: String, last: Int, before: String, reverse: Boolean=false, sortKey: ProductImageSortKeys=POSITION): ImageConnection!
+    """
+    The media associated with the product. This can include images, 3D models, or videos.
+    """
+    media(first: Int, after: String, last: Int, before: String, reverse: Boolean=false, sortKey: ProductMediaSortKeys=POSITION): MediaConnection!
+    """
+    The list of resources that are either published or staged to be published to a publication.
+    """
+    resourcePublications(onlyPublished: Boolean=true,
+        first: Int, after: String, last: Int, before: String, reverse: Boolean=false): ResourcePublicationConnection!
+    """
+    The list of publications that the resource is not published to.
+    """
+    unpublishedPublications(first: Int, after: String, last: Int, before: String, reverse: Boolean=false): PublicationConnection!
+}
+
+type ProductEdge {
+    """
+    A cursor for use in pagination.
+    """
+    cursor: String!
+    """
+    The item at the end of ProductEdge.
+    """
+    node: Product!
+}
+
+type ProductConnection {
+    """
+    A list of edges.
+    """
+    edges: [ProductEdge!]!
+    """
+    A list of the nodes contained in ProductEdge.
+    """
+    nodes: [Product!]!
+    """
+    Information to aid in pagination.
+    """
+    pageInfo: PageInfo!
+    """
+    Identifies the total count of items in the connection.
+    """
+    totalCount: Int!
+}
+
+"""
+The possible product statuses.
+"""
+enum ProductStatus {
+    """
+    The product is ready to sell and can be published to sales channels and apps.
+    Products with an active status aren't automatically published to sales channels,
+    such as the online store, or apps. By default, existing products are set to active.
+    """
+    ACTIVE
+    """
+    The product is no longer being sold and isn't available to customers on sales channels and apps.
+    """
+    ARCHIVED
+    """
+    The product isn't ready to sell and is unavailable to customers on sales channels and apps.
+    By default, duplicated and unarchived products are set to draft.
+    """
+    DRAFT
+}
+
+
+"""
+The set of valid sort keys for the Product query.
+"""
+enum ProductSortKeys {
+    """
+    Sort by the title value.
+    """
+    TITLE
+    """
+    Sort by the product_type value.
+    """
+    PRODUCT_TYPE
+    """
+    Sort by the project value.
+    """
+    PROJECT
+    """
+    Sort by the inventory_total value.
+    """
+    INVENTORY_TOTAL
+    """
+    Sort by the updated_at value.
+    """
+    UPDATED_AT
+    """
+    Sort by the created_at value.
+    """
+    CREATED_AT
+    """
+    Sort by the published_at value.
+    """
+    PUBLISHED_AT
+    """
+    Sort by the id value.
+    """
+    ID
+    """
+    Sort by relevance to the search terms when the query parameter is specified on the connection.
+    Don't use this sort key when no search query is specified.
+    """
+    RELEVANCE
+}
+
+
+"""
+The set of valid sort keys for the ProductMedia query.
+"""
+enum ProductMediaSortKeys {
+    """
+    Sort by the id value.
+    """
+    ID
+    """
+    Sort by the position value.
+    """
+    POSITION
+    """
+    Sort by relevance to the search terms when the query parameter is specified on the connection. Don't use this sort key when no search query is specified.
+    """
+    RELEVANCE
+}
+
+"""
+Sort by the created_at value.
+"""
+enum ProductImageSortKeys {
+    """
+    Sort by the created_at value.
+    """
+    CREATED_AT
+    """
+    Sort by the id value.
+    """
+    ID
+    """
+    Sort by the position value.
+    """
+    POSITION
+    """
+    Sort by relevance to the search terms when the query parameter is specified on the connection. Don't use this sort key when no search query is specified.
+    """
+    RELEVANCE
+}
+"""
+Possible types of project developer.
+"""
+enum ProjectDeveloperType {
+    """
+    Indicates the project developer is a Partner with MSL.
+    """
+    PARTNER
+    """
+    Indicates the project developer is Mint State Labs
+    """
+    MSL
+    """
+    Indicates the project developer is unknown. It is not categorized as any of the other developer types.
+    """
+    UNKNOWN
+}
+
+
+"""
+A navigation item, holding basic link attributes.
+"""
+type NavigationItem {
+    """
+    The unique identifier of the navigation item.
+    """
+    id: ID!
+    """
+    The name of the navigation item.
+    """
+    title: String!
+    """
+    The URL of the page that the navigation item links to.
+    """
+    url: URL!
+}
+
+
+"""
+Requirements that must be met before an project can be available on SpellMarket
+"""
+type FailedRequirement {
+    """
+    Action to be taken to resolve a failed requirement, including URL link.
+    """
+    action: NavigationItem
+    """
+    A concise set of strings to be displayed to organizations, to guide them in resolving problems encountered with
+    publishing project
+    """
+    message: [String!]!
+}
+"""
+Branding information for project
+"""
+type ProjectStorefrontBranding {
+    """
+    Banner image for the project.
+    """
+    bannerURL: Image!
+    """
+    Primary color to use for project storefront
+    """
+    primaryColor: [Int]!
+    """
+    Secondary color to use for project storefront
+    """
+    SecondaryColor: [Int]!
+    """
+    Icon that represents the project.
+    """
+    icon: Image!
+}
+
+"""
+The tags applied to project
+"""
+enum ProjectTag {
+    """
+    Other purposes
+    """
+    OTHER
+}
+
+"""
+The visibility of the project on SpellMarket.
+Public means it'll be listed on the SpellMarket store
+"""
+enum ProjectVisibility {
+    """
+    The project's visibility is custom.
+    """
+    CUSTOM
+    """
+    The project's not shown on SpellMarket Store for sale (e.g. in-game only store)
+    """
+    PRIVATE
+    """
+    The project is to be shown on the SpellMarket site.
+    """
+    PUBLIC
+}
+
+"""
+A Project within an organization
+"""
+type Project implements Node {
+    """
+    Assets owned by project
+    """
+    assets(
+        first: Int,
+        after: String,
+        last: Int,
+        before: String,
+        reverse: Boolean=false,
+        query: String): DigitalAssetConnection!
+    """
+    Collections owned by project
+    """
+   collections(
+        first: Int,
+        after: String,
+        last: Int,
+        before: String,
+        reverse: Boolean=false,
+        sortKey: CollectionSortKeys,
+        query: String): ProductCollectionConnection!
+    """
+    Project store page URL of the project.
+    """
+    projectStoreUrl: URL
+    """
+    Project store page URL of the developer who created the app. (e.g. the website of the company who created it)
+    """
+    projectStoreDeveloperUrl: URL
+    """
+    Tags associated with project
+    """
+    projectTags: [ProjectTag!]!
+    """
+    The access scopes available to the project on the SpellMarket API
+    """
+    availableAccessScopes: [AccessScope!]!
+    """
+    The date and time when the project was created.
+    """
+    createdAt: DateTime!
+    """
+    Branding information associated with project
+    """
+    brandingInfo: ProjectStorefrontBranding!
+    """
+    Description of the Project.
+    """
+    description: String
+    """
+    The name of the project developer.
+    """
+    developerName: String
+    """
+    Requirements that must be met before an project can be available on SpellMarket.
+    """
+    failedRequirements: [FailedRequirement!]!
+    """
+    A list of project features that are shown in the SpellMarket Store listing.
+    """
+    features: [String!]!
+    """
+    Handle of the project. A unique name associated with the project
+    """
+    handle: String
+    """
+    A globally-unique identifier.
+    """
+    id: ID!
+    """
+    Whether the project was developed by MSL.
+    """
+    mslDeveloped: Boolean!
+    """
+    Link to project privacy policy (e.g. the privacy policy of the games)
+    """
+    privacyPolicyUrl: URL
+    """
+    The visibility category for the project.
+    """
+    projectVisibility: ProjectVisibility!
+    """
+    Whether the project is published to SpellMarket site/game.
+    """
+    published: Boolean!
+    """
+    The access scopes that can be requested by other project
+    """
+    requestableAccessScopes: [AccessScope!]!
+    """
+    Whether project has been suspended
+    """
+    suspended: Boolean!
+    """
+    Name of the project.
+    """
+    title: String!
+    """
+    The date and time when the project was updated.
+    """
+    updatedAt: DateTime!
+}
+
+
+type ProjectEdge {
+    """
+    A cursor for use in pagination.
+    """
+    cursor: String!
+    """
+    The item at the end of ProjectEdge.
+    """
+    node: Project!
+}
+
+type ProjectConnection {
+    """
+    A list of edges.
+    """
+    edges: [ProjectEdge!]!
+    """
+    A list of the nodes contained in ProjectEdge.
+    """
+    nodes: [Project!]!
+    """
+    Information to aid in pagination.
+    """
+    pageInfo: PageInfo!
+    """
+    Identifies the total count of items in the connection.
+    """
+    totalCount: Int!
+}
+
+extend type QueryRoot {
+    """
+    Lookup an Project by ID or return the currently authenticated Project. Returns null if the project doesn't exist.
+    """
+    project(
+        """
+        The ID to lookup the Project by.
+        """
+        id: ID!): Project
+    """
+    Fetches project by handle. Returns null if the project doesn't exist.
+    """
+    projectByHandle(
+        """
+        Handle of the Project.
+        """
+        handle: String!): Project
+}
+"""
+Represents a resource that can be published to a channel. A publishable resource can be either a Product or Collection.
+"""
+interface Publishable {
+    """
+    The number of publications a resource is published to without feedback errors.
+    """
+    availablePublicationCount: Int!
+    """
+    The number of publications a resource is published on.
+    """
+    publicationCount(onlyPublished: Boolean = true): Int!
+    """
+    Check to see whether the resource is published to the calling project's publication.
+    """
+    publishedOnCurrentPublication: Boolean!
+    """
+    Check to see whether the resource is published to a given publication.
+    """
+    publishedOnPublication(publicationId: ID!): Boolean!
+    """
+    The list of resources that are either published or staged to be published to a publication.
+    """
+    resourcePublications (
+        onlyPublished: Boolean=true,
+        first: Int,
+        after: String,
+        last: Int,
+        before: String,
+        reverse: Boolean=false):  ResourcePublicationConnection!
+    """
+    The list of publications that the resource is not published to.
+    """
+    unpublishedPublications(first: Int,
+        after: String,
+        last: Int,
+        before: String,
+        reverse: Boolean=false): PublicationConnection!
+}
+
+
+
+"""
+A publication is a group of products and collections that is published to sales channels.
+"""
+type Publication {
+    """
+    The project associated with the publication.
+    """
+    project: Project!
+    """
+    Whether the collection is available to the publication.
+    """
+    hasCollection(id:ID!): Boolean!
+    """
+    A globally-unique identifier.
+    """
+    id: ID!
+    """
+    Name of the publication.
+    """
+    name: String!
+    """
+    Whether the publication supports future publishing (e.g. publications that activate at a specific data/time)
+    """
+    supportsFuturePublishing: Boolean!
+    """
+    The collection publications for the list of collections published to the publication.
+    """
+    collectionPublications(
+        first: Int,
+        after: String,
+        last: Int,
+        before: String,
+        reverse: Boolean=false): ResourcePublication!
+    """
+    The list of collections published to the publication.
+    """
+    collections(
+        first: Int,
+        after: String,
+        last: Int,
+        before: String,
+        reverse: Boolean=false): ProductCollectionConnection!
+    """
+    The product publications for the list of products published to the publication.
+    """
+    productPublications(
+        first: Int,
+        after: String,
+        last: Int,
+        before: String,
+        reverse: Boolean=false): ResourcePublicationConnection!
+    """
+    The list of products published to the publication.
+    """
+    products(
+        first: Int,
+        after: String,
+        last: Int,
+        before: String,
+        reverse: Boolean=false): ProductConnection!
+}
+type PublicationEdge {
+    node: Publication!
+    cursor: String!
+}
+
+type PublicationConnection {
+    edges: [PublicationEdge!]!
+    nodes: [Publication!]!
+    pageInfo: PageInfo!
+}
+
+"""
+Represents the publications where a collection is published.
+"""
+type CollectionPublication {
+    """
+    The collection to be published on the publication.
+    """
+    collection: PublicationConnection!
+    """
+    Whether the publication is published or not.
+    """
+    isPublished: Boolean!
+    """
+    The publication where the collection will be published.
+    """
+    publication: Publication!
+    """
+    The date that the publication was or is going to be published.
+    """
+    publishDate: DateTime!
+}
+
+"""
+A resource publication represents that a resource either has been published or will be published to a publication.
+"""
+type ResourcePublication {
+    """
+    Whether the resource publication is published.
+    If true, then the resource publication is published to the publication. If false, then the resource publication
+    is staged to be published to the publication.
+    """
+    isPublished: Boolean!
+    """
+    The publication the resource publication is published to.
+    """
+    publication: Publication!
+    """
+    The date that the resource publication was or is going to be published to the publication.
+    """
+    publishDate: DateTime
+    """
+    The resource published to the publication.
+    """
+    publishable: Publishable!
+}
+
+type ResourcePublicationEdge {
+    node: ResourcePublication!
+    cursor: String!
+}
+
+type ResourcePublicationConnection {
+    edges: [ResourcePublicationEdge!]!
+    nodes: [ResourcePublication!]!
+    pageInfo: PageInfo!
+}
+
+"""
+SEO information.
+"""
+type SEO {
+    """
+    SEO Description.
+    """
+    description: String
+    """
+    SEO Title.
+    """
+    title: String
+}
+"""
+The schemaâ€™s entry-point for queries. This acts as the public, top-level API from which all queries must start.
+
+This section focus on the buying experience
+"""
+type QueryRoot {
+    """
+    Retrieve a cart by its ID
+    """
+    cart(id: ID!): Cart
+    """
+    Fetch a specific Collection by ID
+    """
+    productCollection(id: ID!): ProductCollection
+    """
+    Return a collection by its handle.
+    """
+    collectionByHandle(handle: String!): ProductCollection
+    """
+    List of the collections in the sales channels collections.
+    """
+    productCollections(
+        after: String
+        before: String
+        first: Int
+        last: Int
+        query: String
+        reverse: Boolean = false
+        sortKey: CollectionSortKeys = ID
+    ): ProductCollectionConnection!
+    """
+    Returns a Customer resource by ID.
+    """
+    customer(id: ID!): Customer
+    """
+    Returns a Fulfillment resource by ID.
+    """
+    fulfillment(id: ID!): Fulfillment
+    """
+    Returns an Order resource by ID.
+    """
+    order(id: ID!): Order
+    """
+    Returns a list of orders placed for user
+    """
+    orders(
+        after: String
+        before: String
+        first: Int
+        last: Int
+        query: String
+        reverse: Boolean = false
+        savedSearchId: ID
+        sortKey: OrderSortKeys = PROCESSED_AT
+    ): OrderConnection!
+    """
+    Fetch a specific Product by it's id
+    """
+    product(id: ID): Product
+    """
+    List of the subchannelâ€™s products or return the all products in saleschannel if subchannelHandle is null
+    """
+    products(
+        subChannelHandle: String
+        after: String
+        before: String
+        first: Int
+        last: Int
+        query: String
+        reverse: Boolean = false
+        sortKey: ProductSortKeys = ID
+    ): ProductConnection!
+    """
+    Tags added to products.
+    """
+    productTags(first: Int!, subChannelID: ID): StringConnection!
+    """
+    List of product types for the shop's products that are published to your channel/subchannel.
+    """
+    productTypes(first: Int!,  subChannelID: ID): StringConnection!
+    """
+    The list of public SpellMarket API versions, including supported, release candidate and unstable versions.
+    """
+    publicApiVersions: [ApiVersion!]!
+    """
+    Sub-channels associated with the Sale Channel API key
+    """
+    subSalesChannels(
+        after: String
+        before: String
+        first: Int
+        last: Int
+        query: String
+        reverse: Boolean = false
+    ): SubChannelConnection!
+    """
+    Associated with the Sale Channel API key
+    """
+    SalesChannel: SalesChannel!
+}
+interface Channel implements Node {
+    """
+    Whether the Sale Channel is currently Active
+    """
+    active: Boolean!
+    """
+    The date and time when the SalesChannel was created.
+    """
+    createdAt: DateTime!
+    """
+    Handle of the Channel. A unique name associated with the Channel
+    """
+    handle: String
+    """
+    A globally-unique identifier.
+    """
+    id: ID!
+
+    """
+    Publications that are published to a channel
+    """
+    publications: PublicationConnection!
+    """
+    The date and time when the SalesChannel was updated.
+    """
+    updatedAt: DateTime!
+}
+
+
+type SubChannel implements Node & Channel {
+    """
+    Whether the Sale Channel is currently Active
+    """
+    active: Boolean!
+    """
+    The date and time when the SalesChannel was created.
+    """
+    createdAt: DateTime!
+    """
+    Handle of the Channel. A unique name associated with the Channel
+    """
+    handle: String
+    """
+    A globally-unique identifier.
+    """
+    id: ID!
+    """
+    Publications that are published to a channel
+    """
+    publications: PublicationConnection!
+    """
+    The date and time when the SalesChannel was updated.
+    """
+    updatedAt: DateTime!
+}
+
+
+type SubChannelEdge {
+    """
+    A cursor for use in pagination.
+    """
+    cursor: String!
+    """
+    The item at the end of SalesChannelEdge.
+    """
+    node: SubChannel!
+}
+
+type SubChannelConnection {
+    """
+    A list of edges.
+    """
+    edges: [SubChannelEdge!]!
+    """
+    A list of the nodes contained in SalesChannelEdge.
+    """
+    nodes: [SubChannel!]!
+    """
+    Information to aid in pagination.
+    """
+    pageInfo: PageInfo!
+    """
+    Identifies the total count of items in the connection.
+    """
+    totalCount: Int!
+}
+
+
+"""
+A SalesChannel is owned by an organization and can be associated with multiple projects. When associated with the projects,
+assets and/or collections can be published to the channel so it can be sold.
+"""
+type SalesChannel implements Node & Channel{
+    """
+    The access scopes available to the SalesChannel for the given API key
+    """
+    requestedAccessScopes: [AccessScope!]!
+    """
+    The date and time when the SalesChannel was created.
+    """
+    createdAt: DateTime!
+    """
+    Handle of the SalesChannel. A unique name associated with the SalesChannel
+    """
+    handle: String
+    """
+    A globally-unique identifier.
+    """
+    id: ID!
+    """
+    The date and time when the SalesChannel was updated.
+    """
+    updatedAt: DateTime!
+    """
+    Whether the Sale Channel is currently Active
+    """
+    active: Boolean!
+    """
+    Sub Sales Channels which can be used as sub-store within the subchannel
+    """
+    subChannels: SubChannelConnection!
+    """
+    Publications that are published to a sales channel
+    """
+    publications: PublicationConnection!
+}
+
+type SalesChannelEdge {
+    """
+    A cursor for use in pagination.
+    """
+    cursor: String!
+    """
+    The item at the end of SalesChannelEdge.
+    """
+    node: SalesChannel!
+}
+
+type SalesChannelConnection {
+    """
+    A list of edges.
+    """
+    edges: [SalesChannelEdge!]!
+    """
+    A list of the nodes contained in SalesChannelEdge.
+    """
+    nodes: [SalesChannel!]!
+    """
+    Information to aid in pagination.
+    """
+    pageInfo: PageInfo!
+    """
+    Identifies the total count of items in the connection.
+    """
+    totalCount: Int!
+}
+
+"""
+Represents a single tax applied to the associated line item.
+"""
+type TaxLine {
+    """
+    Whether the channel that submitted the tax line is liable for remitting.
+    A value of null indicates unknown liability for this tax line.
+    """
+    channelLiable: Boolean
+    """
+    The amount of tax, in shop and presentment currencies, after discounts and before returns.
+    """
+    priceSet: SchmecklePouch
+    """
+    The proportion of the line item price that the tax represents as a decimal.
+    """
+    rate: Decimal
+    """
+    The proportion of the line item price that the tax represents as a percentage.
+    """
+    ratePercentage: Decimal
+    """
+    The name of the tax.
+    """
+    title: String!
+}

@@ -1,0 +1,27 @@
+
+"""
+Represents a single tax applied to the associated line item.
+"""
+type TaxLine {
+    """
+    Whether the channel that submitted the tax line is liable for remitting.
+    A value of null indicates unknown liability for this tax line.
+    """
+    channelLiable: Boolean
+    """
+    The amount of tax, in shop and presentment currencies, after discounts and before returns.
+    """
+    priceSet: SchmecklePouch
+    """
+    The proportion of the line item price that the tax represents as a decimal.
+    """
+    rate: Decimal
+    """
+    The proportion of the line item price that the tax represents as a percentage.
+    """
+    ratePercentage: Decimal
+    """
+    The name of the tax.
+    """
+    title: String!
+}

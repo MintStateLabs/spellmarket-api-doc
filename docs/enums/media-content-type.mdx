@@ -1,0 +1,55 @@
+---
+id: media-content-type
+title: MediaContentType
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+The possible content types for a media object.
+
+```graphql
+enum MediaContentType {
+  EXTERNAL_VIDEO
+  IMAGE
+  MODEL_3D
+  VIDEO
+}
+```
+
+
+### Values
+
+#### [<code style={{ fontWeight: 'normal' }}>MediaContentType.<b>EXTERNAL_VIDEO</b></code>](#) 
+> An externally hosted video.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MediaContentType.<b>IMAGE</b></code>](#) 
+> A hosted image.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MediaContentType.<b>MODEL_3D</b></code>](#) 
+> A 3d model.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MediaContentType.<b>VIDEO</b></code>](#) 
+> A hosted video.
+> 
+
+
+
+### Member of
+
+[`ExternalVideo`](/objects/external-video)  <Badge class="secondary" text="object"/><Bullet />[`Media`](/interfaces/media)  <Badge class="secondary" text="interface"/><Bullet />[`MediaImage`](/objects/media-image)  <Badge class="secondary" text="object"/><Bullet />[`Model3d`](/objects/model-3-d)  <Badge class="secondary" text="object"/><Bullet />[`Video`](/objects/video)  <Badge class="secondary" text="object"/>
+
+
+

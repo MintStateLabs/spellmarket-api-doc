@@ -1,0 +1,45 @@
+---
+id: schmeckle
+title: Schmeckle
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+A monetary value with currency.
+
+```graphql
+type Schmeckle {
+  amount: Decimal!
+  currencyCode: CurrencyCode!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>Schmeckle.<b>amount</b></code>](#)<Bullet />[`Decimal!`](/scalars/decimal) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Decimal money amount.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Schmeckle.<b>currencyCode</b></code>](#)<Bullet />[`CurrencyCode!`](/enums/currency-code) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> Currency of the money
+> 
+
+
+
+### Member of
+
+[`CartCost`](/objects/cart-cost)  <Badge class="secondary" text="object"/><Bullet />[`CartDeliveryOption`](/objects/cart-delivery-option)  <Badge class="secondary" text="object"/><Bullet />[`CartLineCost`](/objects/cart-line-cost)  <Badge class="secondary" text="object"/><Bullet />[`Checkout`](/objects/checkout)  <Badge class="secondary" text="object"/><Bullet />[`CheckoutLineItem`](/objects/checkout-line-item)  <Badge class="secondary" text="object"/><Bullet />[`Customer`](/objects/customer)  <Badge class="secondary" text="object"/><Bullet />[`Payment`](/objects/payment)  <Badge class="secondary" text="object"/><Bullet />[`SchmecklePouch`](/objects/schmeckle-pouch)  <Badge class="secondary" text="object"/><Bullet />[`Transaction`](/objects/transaction)  <Badge class="secondary" text="object"/><Bullet />[`TransactionFee`](/objects/transaction-fee)  <Badge class="secondary" text="object"/>
+
+
+

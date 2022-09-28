@@ -1,0 +1,157 @@
+"""
+The possible statuses for a Fulfilment object.
+"""
+enum FulfillmentStatus {
+    """
+    Fulfilment processing has failed.
+    """
+    FAILED
+    """
+    Fulfilment is being processed.
+    """
+    IN_PROGRESS
+    """
+    Fulfilment is ready to be displayed.
+    """
+    COMPLETED
+    """
+    Fulfilment is pending for processing.
+    """
+    PENDING
+}
+
+"""
+Represents a single fulfillment in an order.
+"""
+type Fulfillment {
+    """
+    Overall fulfillment status of all the line items.
+    """
+    fulfillmentStatus: FulfillmentStatus
+    """
+    List of the fulfillment's line items.
+    """
+    fulfillmentLineItems(
+        first: Int,
+        after: String,
+        last: Int,
+        before: String,
+        reverse: Boolean=false): FulfillmentLineItemConnection!
+}
+
+type FulfillmentEdge {
+    """
+    A cursor for use in pagination.
+    """
+    cursor: String!
+    """
+    The item at the end of FulfillmentEdge.
+    """
+    node: Fulfillment!
+}
+
+type FulfillmentConnection {
+    """
+    A list of edges.
+    """
+    edges: [FulfillmentEdge!]!
+    """
+    A list of the nodes contained in FulfillmentEdge.
+    """
+    nodes: [Fulfillment!]!
+    """
+    Information to aid in pagination.
+    """
+    pageInfo: PageInfo!
+    """
+    Identifies the total count of items in the connection.
+    """
+    totalCount: Int!
+}
+
+
+"""
+The possible statuses for a FulfillmentLineItem object.
+"""
+enum FulfillmentLineItemStatus {
+    """
+    FulfilmentLineItem processing has failed.
+    """
+    FAILED
+    """
+    FulfilmentLineItem is being processed.
+    """
+    IN_PROGRESS
+    """
+    FulfilmentLineItem is done.
+    """
+    COMPLETED
+    """
+    FulfilmentLineItem is pending for processing.
+    """
+    PENDING
+}
+
+"""
+Represents a single line item in a fulfillment. There is at most one fulfillment line item for each order line item.
+"""
+type FulfillmentLineItem implements Node{
+    """
+    The name of the chain where the nft is stored.
+    """
+    chain: String
+    """
+    The total price after discounts are applied in shop and presentment currencies.
+    """
+    discountedTotalSet: SchmecklePouch!
+    """
+    A globally-unique identifier.
+    """
+    id: ID!
+    """
+    The associated order's line item.
+    """
+    lineItem: LineItem!
+    """
+    The total price before discounts are applied in shop and presentment currencies.
+    """
+    originalTotalSet: SchmecklePouch!
+    """
+    Number of line items in the fulfillment.
+    """
+    quantity: Int
+    """
+    Fulfillment status of line item.
+    """
+    fulfillmentStatusOverall: FulfillmentLineItemStatus
+}
+
+type FulfillmentLineItemEdge {
+    """
+    A cursor for use in pagination.
+    """
+    cursor: String!
+    """
+    The item at the end of FulfillmentLineItemEdge.
+    """
+    node: FulfillmentLineItem!
+}
+
+type FulfillmentLineItemConnection {
+    """
+    A list of edges.
+    """
+    edges: [FulfillmentLineItemEdge!]!
+    """
+    A list of the nodes contained in FulfillmentLineItemEdge.
+    """
+    nodes: [FulfillmentLineItem!]!
+    """
+    Information to aid in pagination.
+    """
+    pageInfo: PageInfo!
+    """
+    Identifies the total count of items in the connection.
+    """
+    totalCount: Int!
+}

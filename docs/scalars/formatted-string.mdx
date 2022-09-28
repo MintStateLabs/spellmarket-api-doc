@@ -1,0 +1,41 @@
+---
+id: formatted-string
+title: FormattedString
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+A string containing a strict subset of HTML code. Non-allowed tags will be stripped out. Allowed tags:
+
+a (allowed attributes: href)
+b
+br
+em
+i
+strong
+u Use HTML instead if you need to include other HTML tags.
+Example value: "Your current domain is &#x003C;strong&#x003E;mintstatelabs.com&#x003C;/strong&#x003E;."
+
+```graphql
+scalar FormattedString
+```
+
+
+
+
+### Member of
+
+[`Event`](/interfaces/event)  <Badge class="secondary" text="interface"/>
+
+
+

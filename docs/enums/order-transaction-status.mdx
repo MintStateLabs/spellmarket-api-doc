@@ -1,0 +1,65 @@
+---
+id: order-transaction-status
+title: OrderTransactionStatus
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+The different states that an OrderTransaction can have.
+
+```graphql
+enum OrderTransactionStatus {
+  AWAITING_RESPONSE
+  ERROR
+  FAILURE
+  PENDING
+  SUCCESS
+  UNKNOWN
+}
+```
+
+
+### Values
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderTransactionStatus.<b>AWAITING_RESPONSE</b></code>](#) 
+> Awaiting a response.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderTransactionStatus.<b>ERROR</b></code>](#) 
+> There was an error while processing the transaction.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderTransactionStatus.<b>FAILURE</b></code>](#) 
+> The transaction failed.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderTransactionStatus.<b>PENDING</b></code>](#) 
+> The transaction is pending.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderTransactionStatus.<b>SUCCESS</b></code>](#) 
+> The transaction succeeded.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderTransactionStatus.<b>UNKNOWN</b></code>](#) 
+> The transaction status is unknown.
+> 
+
+
+
+### Member of
+
+[`OrderTransaction`](/objects/order-transaction)  <Badge class="secondary" text="object"/>
+
+
+

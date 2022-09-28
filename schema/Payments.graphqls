@@ -1,0 +1,108 @@
+
+"""
+The different kinds of order transactions.
+"""
+enum TransactionKind {
+    """
+    Direct Sale
+    """
+    DIRECT_SALE
+}
+
+"""
+The valid values for the types of payment token.
+"""
+enum TokenizedPaymentType {
+    """
+    Stripe token type.
+    """
+    STRIPE_VAULT_TOKEN
+}
+
+"""
+Transaction statuses describe the status of a transaction.
+"""
+enum TransactionStatus {
+    """
+    The transaction is pending.
+    """
+    PENDING
+    """
+    The transaction succeeded.
+    """
+    SUCCESS
+    """
+    The transaction failed.
+    """
+    FAILURE
+    """
+    There was an error while processing the transaction.
+    """
+    ERROR
+}
+
+"""
+An object representing exchange of money for a product.
+"""
+type Transaction {
+    """
+    The amount of money that the transaction was for.
+    """
+    amount: Schmeckle!
+    """
+    The kind of the transaction.
+    """
+    kind: TransactionKind!
+    """
+    The status of the transaction.
+    """
+    status: TransactionStatus
+    """
+    Whether the transaction was done in test mode or not.
+    """
+    test: Boolean!
+}
+
+
+"""
+A payment applied to a checkout.
+"""
+type Payment implements Node {
+    """
+    The amount of the payment.
+    """
+    amount: Schmeckle!
+    """
+    The checkout to which the payment belongs.
+    """
+    checkout: Checkout!
+    """
+    A message describing a processing error during asynchronous processing.
+    """
+    errorMessage: String
+    """
+    A globally-unique identifier.
+    """
+    id: ID!
+    """
+    A client-side generated token to identify a payment and perform idempotent operations.
+    For more information, refer to Idempotent requests.
+    """
+    idempotencyKey: String
+    """
+    The URL where the customer needs to be redirected so they can complete the 3D Secure payment flow.
+    """
+    nextActionUrl: URL
+    """
+    Whether the payment is still processing asynchronously.
+    """
+    ready: Boolean!
+    """
+    A flag to indicate if the payment is to be done in test mode for gateways that support it.
+    """
+    test: Boolean!
+    """
+    The actual transaction recorded by SpellMarket after having processed the payment with the gateway.
+    """
+    transaction: Transaction
+}

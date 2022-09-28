@@ -1,0 +1,272 @@
+"""
+Specifies the fields for a monetary value with currency.
+"""
+input SchmeckleInput {
+    """
+    Decimal money amount.
+    """
+    amount: Decimal!
+    """
+    Currency of the money.
+    """
+    currencyCode: CurrencyCode!
+}
+
+"""
+Specifies the input fields to update the buyer information associated with a cart.
+Buyer identity is used to determine taxes.
+"""
+input CartBuyerIdentityInput {
+    """
+    The email address of the buyer that is interacting with the cart.
+    """
+    email: String
+    """
+    The phone number of the buyer that is interacting with the cart.
+    """
+    phone: String
+    """
+    The country where the buyer is located.
+    """
+    countryCode: CountryCode
+    """
+    The access token used to identify the customer associated with the cart.
+    """
+    customerAccessToken: String
+}
+
+"""
+Specifies the input fields to update the buyer information associated with a checkout.
+Buyer identity is used to determine taxes.
+"""
+input CheckoutBuyerIdentityInput {
+    """
+    The email address of the buyer that is interacting with the cart.
+    """
+    email: String
+    """
+    The phone number of the buyer that is interacting with the cart.
+    """
+    phone: String
+    """
+    The country where the buyer is located.
+    """
+    countryCode: CountryCode
+    """
+    The access token used to identify the customer associated with the cart.
+    """
+    customerAccessToken: String
+}
+
+
+"""
+Specifies the input fields to create a cart.
+"""
+input CartInput {
+    """
+    A list of product lines to add to the cart.
+    """
+    lines: [CartLineInput!]
+    """
+    The case-insensitive discount codes that the customer added at checkout.
+    """
+    discountCodes: [String!]
+    """
+    The customer associated with the cart. Used to determine international pricing. Buyer identity should match the customer's address.
+    """
+    buyerIdentity: CartBuyerIdentityInput
+}
+
+"""
+Specifies the input fields to update a line item on the checkout.
+"""
+input CheckoutLineItemUpdateInput {
+    """
+    The identifier of the line item.
+    """
+    id: ID
+    """
+    The product identifier of the line item.
+    """
+    productId: ID
+    """
+    The quantity of the line item.
+    """
+    quantity: Int
+}
+
+"""
+Specifies the input fields to create a line item on a checkout.
+"""
+input CheckoutLineItemInput {
+    """
+    The quantity of the line item.
+    """
+    quantity: Int!
+    """
+    The identifier of the product for the line item.
+    """
+    productId: ID!
+}
+
+"""
+Specifies the fields required to create a checkout.
+"""
+input CheckoutCreateInput {
+    """
+    The email with which the customer wants to checkout.
+    """
+    email: String
+    """
+    A list of line item objects, each one containing information about an item in the checkout.
+    """
+    lineItems: [CheckoutLineItemInput!]
+    """
+    The identity of the customer associated with the checkout.
+    """
+    buyerIdentity: CheckoutBuyerIdentityInput
+}
+
+"""
+Specifies the fields required to complete a checkout with a wallet payment. Used for paying on the blockchain.
+"""
+
+input WalletPaymentInput {
+    """
+    The wallet address for the payment.
+    """
+    walletAddress: WalletAddress!
+    """
+    The amount and currency of the payment.
+    """
+    paymentAmount: SchmeckleInput!
+    """
+    A unique client generated key used to avoid duplicate charges. When a duplicate payment is found,
+    the original is returned instead of creating a new one. For more information, refer to Idempotent requests.
+    """
+    idempotencyKey: String!
+    """
+    Whether to execute the payment in test mode, if possible. Test mode is not supported in production stores.
+    Defaults to false.
+    """
+    test: Boolean = false
+}
+
+
+"""
+The fields used to create or update a mailing address.
+"""
+input MailingAddressInput {
+    """
+    The first line of the address. Typically the street address or PO Box number.
+    """
+    address1: String
+    """
+    The second line of the address. Typically the number of the apartment, suite, or unit.
+    """
+    address2: String
+    """
+    The name of the city, district, village, or town.
+    """
+    city: String
+    """
+    The name of the customer's company or organization.
+    """
+    company: String
+    """
+    The two-letter code for the country of the address.
+    """
+    countryCode: CountryCode
+    """
+    The first name of the customer.
+    """
+    firstName: String
+    """
+    The last name of the customer.
+    """
+    lastName: String
+    """
+    A unique phone number for the customer.
+    Formatted using E.164 standard. For example, +16135551111.
+    """
+    phone: String
+    """
+    The code for the region of the address, such as the province, state, or district.
+    For example QC for Quebec, Canada.
+    """
+    provinceCode: String
+    """
+    The zip or postal code of the address.
+    """
+    zip: String
+}
+
+
+"""
+Specifies the fields required to complete a checkout with a tokenized payment. Used for integration with to process
+fiat via Stripe Payment Gateway.
+"""
+input TokenizedPaymentInput {
+    """
+    The billing address for the payment.
+    """
+    billingAddress: MailingAddressInput!
+    """
+    The amount and currency of the payment.
+    """
+    paymentAmount: SchmeckleInput!
+    """
+    A unique client generated key used to avoid duplicate charges. When a duplicate payment is found,
+    the original is returned instead of creating a new one. For more information, refer to Idempotent requests.
+    """
+    idempotencyKey: String!
+    """
+    A simple string or JSON containing the required payment data for the tokenized payment.
+    Tokenization for via Stripe performed via their API  https://stripe.com/docs/api/tokens/create_card
+    """
+    paymentData: String!
+    """
+    Whether to execute the payment in test mode, if possible. Test mode is not supported in production stores.
+    Defaults to false.
+    """
+    test: Boolean = false
+    """
+    The type of payment token.
+    """
+    type: TokenizedPaymentType!
+}
+
+"""
+Specifies the input fields to update a line item on a cart.
+"""
+input CartLineUpdateInput {
+    """
+    The identifier of the product line.
+    """
+    id: ID!
+    """
+    The quantity of the line item.
+    """
+    quantity: Int
+    """
+    The identifier of the product for the line item.
+    """
+    productId: ID
+    """
+    The identifier of the selling plan that the product is being purchased with.
+    """
+    sellingPlanId: ID
+}
+"""
+Specifies the input fields to create a product line on a cart.
+"""
+input CartLineInput {
+    """
+    The quantity of the product.
+    """
+    quantity: Int = 1
+    """
+    The identifier of the product that the buyer intends to purchase.
+    """
+    productId: ID!
+}

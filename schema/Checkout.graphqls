@@ -1,0 +1,163 @@
+"""
+A container for all the information required to checkout items and pay.
+"""
+type Checkout {
+    """
+    The identity of the customer associated with the checkout.
+    """
+    buyerIdentity: CheckoutBuyerIdentity!
+    """
+    The date and time when the checkout was completed.
+    """
+    completedAt: DateTime
+    """
+    The date and time when the checkout was created.
+    """
+    createdAt: DateTime!
+    """
+    The currency code for the checkout.
+    """
+    currencyCode: CurrencyCode!
+    """
+    The email attached to this checkout.
+    """
+    email: String
+    """
+    A globally-unique identifier.
+    """
+    id: ID!
+    """
+    A list of line item objects, each one containing information about an item in the checkout.
+    """
+    lineItems(
+        first: Int
+        after: String
+        last: Int
+        before: String
+        reverse: Boolean = false
+    ): CheckoutLineItemConnection!
+    """
+    The sum of all the prices of all the items in the checkout. taxes and discounts excluded.
+    """
+    lineItemsSubtotalPrice: Schmeckle!
+    """
+    The resulting order from a paid checkout.
+    """
+    order: Order
+    """
+    The Order Status Page for this Checkout, null when checkout is not completed.
+    """
+    orderStatusUrl: URL
+    """
+    The amount left to be paid. This is equal to the cost of the line items, taxes, minus discounts.
+    """
+    paymentDue: Schmeckle!
+    """
+    Whether or not the Checkout is ready and can be completed. Checkouts may have asynchronous operations that can take
+    time to finish. If you want to complete a checkout or ensure all the fields are populated and up to date, polling is
+    required until the value is true.
+    """
+    ready: Boolean!
+    """
+    The price at checkout before taxes.
+    """
+    subtotalPrice: Schmeckle!
+    """
+    Whether taxes are included in the line item.
+    """
+    taxesIncluded: Boolean!
+    """
+    The sum of all the prices of all the items in the checkout, including taxes, and discounts.
+    """
+    totalPrice: Schmeckle!
+    """
+    The sum of all the taxes applied to the line items in the checkout.
+    """
+    totalTax: Schmeckle!
+    """
+    The date and time when the checkout was last updated.
+    """
+    updatedAt: DateTime!
+    """
+    The url pointing to the checkout accessible from the web.
+    """
+    webUrl: URL!
+}
+
+"""
+The identity of the customer associated with the checkout.
+"""
+type CheckoutBuyerIdentity {
+    """
+    The country code for the checkout. For example, CA.
+    """
+    countryCode: CountryCode
+    """
+    The customer account associated with the checkout.
+    """
+    customer: Customer
+    """
+    The email address of the buyer that is interacting with the checkout.
+    """
+    email: String
+}
+
+"""
+A single line item in the checkout, grouped by product and attributes.
+"""
+type CheckoutLineItem implements Node {
+    """
+    A globally-unique identifier.
+    """
+    id: ID!
+    """
+    The quantity of the line item.
+    """
+    quantity: Int!
+    """
+    Title of the line item. Defaults to the product's title.
+    """
+    title: String!
+    """
+    Unit price of the line item.
+    """
+    unitPrice: Schmeckle
+    """
+    Product of the line item.
+    """
+    product: Product
+    """
+    Expiration time
+    """
+    expireAt: DateTime!
+}
+
+type CheckoutLineItemEdge {
+    """
+    A cursor for use in pagination.
+    """
+    cursor: String!
+    """
+    The item at the end of CheckoutLineItemEdge.
+    """
+    node: CheckoutLineItem!
+}
+
+type CheckoutLineItemConnection {
+    """
+    A list of edges.
+    """
+    edges: [CheckoutLineItemEdge!]!
+    """
+    A list of the nodes contained in CheckoutLineItemEdge.
+    """
+    nodes: [CheckoutLineItem!]!
+    """
+    Information to aid in pagination.
+    """
+    pageInfo: PageInfo!
+    """
+    Identifies the total count of items in the connection.
+    """
+    totalCount: Int!
+}

@@ -1,0 +1,120 @@
+---
+id: checkout-error-code
+title: CheckoutErrorCode
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Possible error codes that can be returned by CheckoutUserError.
+
+```graphql
+enum CheckoutErrorCode {
+  BLANK
+  INVALID
+  TOO_LONG
+  PRESENT
+  LESS_THAN
+  GREATER_THAN_OR_EQUAL_TO
+  LESS_THAN_OR_EQUAL_TO
+  ALREADY_COMPLETED
+  NOT_SUPPORTED
+  EMPTY
+  NOT_ENOUGH_IN_STOCK
+  MISSING_PAYMENT_INPUT
+  LINE_ITEM_NOT_FOUND
+  THROTTLED_DURING_CHECKOUT
+  EXPIRED_QUEUE_TOKEN
+  INVALID_QUEUE_TOKEN
+  INVALID_COUNTRY_AND_CURRENCY
+}
+```
+
+
+### Values
+
+#### [<code style={{ fontWeight: 'normal' }}>CheckoutErrorCode.<b>BLANK</b></code>](#) 
+> The input value is blank.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CheckoutErrorCode.<b>INVALID</b></code>](#) 
+> The input value is invalid.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CheckoutErrorCode.<b>TOO_LONG</b></code>](#) 
+> The input value is too long.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CheckoutErrorCode.<b>PRESENT</b></code>](#) 
+> The input value needs to be blank.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CheckoutErrorCode.<b>LESS_THAN</b></code>](#) 
+> The input value should be less than the maximum value allowed.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CheckoutErrorCode.<b>GREATER_THAN_OR_EQUAL_TO</b></code>](#) 
+> The input value should be greater than or equal to the minimum value allowed.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CheckoutErrorCode.<b>LESS_THAN_OR_EQUAL_TO</b></code>](#) 
+> The input value should be less than or equal to the maximum value allowed.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CheckoutErrorCode.<b>ALREADY_COMPLETED</b></code>](#) 
+> Checkout is already completed.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CheckoutErrorCode.<b>NOT_SUPPORTED</b></code>](#) 
+> Input value is not supported.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CheckoutErrorCode.<b>EMPTY</b></code>](#) 
+> Checkout is already completed.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CheckoutErrorCode.<b>NOT_ENOUGH_IN_STOCK</b></code>](#) 
+> Not enough in stock.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CheckoutErrorCode.<b>MISSING_PAYMENT_INPUT</b></code>](#) 
+> Missing payment input.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CheckoutErrorCode.<b>LINE_ITEM_NOT_FOUND</b></code>](#) 
+> Line item was not found in checkout.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CheckoutErrorCode.<b>THROTTLED_DURING_CHECKOUT</b></code>](#) 
+> Throttled during checkout.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CheckoutErrorCode.<b>EXPIRED_QUEUE_TOKEN</b></code>](#) 
+> Queue token has expired.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CheckoutErrorCode.<b>INVALID_QUEUE_TOKEN</b></code>](#) 
+> Queue token is invalid.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CheckoutErrorCode.<b>INVALID_COUNTRY_AND_CURRENCY</b></code>](#) 
+> Cannot specify country and presentment currency code.
+> 
+
+
+
+### Member of
+
+[`CheckoutUserError`](/objects/checkout-user-error)  <Badge class="secondary" text="object"/>
+
+
+

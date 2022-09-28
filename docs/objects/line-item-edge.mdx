@@ -1,0 +1,45 @@
+---
+id: line-item-edge
+title: LineItemEdge
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+No description
+
+```graphql
+type LineItemEdge {
+  cursor: String!
+  node: LineItem!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>LineItemEdge.<b>cursor</b></code>](#)<Bullet />[`String!`](/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> A cursor for use in pagination.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>LineItemEdge.<b>node</b></code>](#)<Bullet />[`LineItem!`](/objects/line-item) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The item at the end of LineItemEdge.
+> 
+
+
+
+### Member of
+
+[`LineItemConnection`](/objects/line-item-connection)  <Badge class="secondary" text="object"/>
+
+
+

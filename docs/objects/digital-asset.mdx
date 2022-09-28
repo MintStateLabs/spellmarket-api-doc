@@ -1,0 +1,81 @@
+---
+id: digital-asset
+title: DigitalAsset
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+A digital asset is a resource that can be owned by an project and/or user account. These assets can be listed for sale or
+traded through the SpellMarket API.
+
+```graphql
+type DigitalAsset implements Node {
+  id: ID!
+  path: String!
+  meta: String
+  fileChecksum: Int
+  metaChecksum: Int
+  type: DigitalAssetType!
+  tags: [String!]!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>DigitalAsset.<b>id</b></code>](#)<Bullet />[`ID!`](/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> A globally-unique identifier.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>DigitalAsset.<b>path</b></code>](#)<Bullet />[`String!`](/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Path is either a ipfs, filecoin, local project, or aws hosted asset dependent on chain
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>DigitalAsset.<b>meta</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> Meta provides information supplemental to the main file stored in the same place as path
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>DigitalAsset.<b>fileChecksum</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> MD5 Checksum of file data
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>DigitalAsset.<b>metaChecksum</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> MD5 Checksum of file meta data
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>DigitalAsset.<b>type</b></code>](#)<Bullet />[`DigitalAssetType!`](/enums/digital-asset-type) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> The type of Digital Asset
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>DigitalAsset.<b>tags</b></code>](#)<Bullet />[`[String!]!`](/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Tags applied to the asset
+> 
+
+### Interfaces
+
+#### [`Node`](/interfaces/node) <Badge class="secondary" text="interface"/>
+> An interface for standard IDs. This is standard naming for this type of interface in Graphql
+> 
+
+
+
+### Member of
+
+[`DigitalAssetConnection`](/objects/digital-asset-connection)  <Badge class="secondary" text="object"/><Bullet />[`DigitalAssetEdge`](/objects/digital-asset-edge)  <Badge class="secondary" text="object"/>
+
+### Implemented by
+
+[`SellableItem`](/unions/sellable-item)  <Badge class="secondary" text="union"/>
+
+
+
