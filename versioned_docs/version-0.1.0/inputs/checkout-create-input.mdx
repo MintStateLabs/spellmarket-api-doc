@@ -1,0 +1,50 @@
+---
+id: checkout-create-input
+title: CheckoutCreateInput
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Specifies the fields required to create a checkout.
+
+```graphql
+input CheckoutCreateInput {
+  email: String
+  lineItems: [CheckoutLineItemInput!]
+  buyerIdentity: CheckoutBuyerIdentityInput
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>CheckoutCreateInput.<b>email</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> The email with which the customer wants to checkout.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CheckoutCreateInput.<b>lineItems</b></code>](#)<Bullet />[`[CheckoutLineItemInput!]`](/inputs/checkout-line-item-input) <Badge class="secondary" text="list"/> <Badge class="secondary" text="input"/>
+> A list of line item objects, each one containing information about an item in the checkout.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CheckoutCreateInput.<b>buyerIdentity</b></code>](#)<Bullet />[`CheckoutBuyerIdentityInput`](/inputs/checkout-buyer-identity-input) <Badge class="secondary" text="input"/>
+> The identity of the customer associated with the checkout.
+> 
+
+
+
+### Member of
+
+[`checkoutCreate`](/mutations/checkout-create)  <Badge class="secondary" text="mutation"/>
+
+
+

@@ -1,0 +1,45 @@
+---
+id: media-warning
+title: MediaWarning
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Represents a media warning.
+
+```graphql
+type MediaWarning {
+  code: MediaWarningCode!
+  message: String
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>MediaWarning.<b>code</b></code>](#)<Bullet />[`MediaWarningCode!`](/enums/media-warning-code) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> Code representing the type of warning.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MediaWarning.<b>message</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> Additional details regarding the warning.
+> 
+
+
+
+### Member of
+
+[`ExternalVideo`](/objects/external-video)  <Badge class="secondary" text="object"/><Bullet />[`Media`](/interfaces/media)  <Badge class="secondary" text="interface"/><Bullet />[`MediaImage`](/objects/media-image)  <Badge class="secondary" text="object"/><Bullet />[`Model3d`](/objects/model-3-d)  <Badge class="secondary" text="object"/><Bullet />[`Video`](/objects/video)  <Badge class="secondary" text="object"/>
+
+
+

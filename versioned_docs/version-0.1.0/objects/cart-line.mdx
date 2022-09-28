@@ -1,0 +1,62 @@
+---
+id: cart-line
+title: CartLine
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Represents information about the product in the cart.
+
+```graphql
+type CartLine implements Node {
+  cost: CartLineCost!
+  id: ID!
+  product: Product!
+  quantity: Int!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>CartLine.<b>cost</b></code>](#)<Bullet />[`CartLineCost!`](/objects/cart-line-cost) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The cost of the product that the buyer will pay for at checkout. The costs are subject to change and changes will
+be reflected at checkout.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CartLine.<b>id</b></code>](#)<Bullet />[`ID!`](/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> A globally-unique identifier.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CartLine.<b>product</b></code>](#)<Bullet />[`Product!`](/objects/product) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The product that the buyer intends to purchase.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CartLine.<b>quantity</b></code>](#)<Bullet />[`Int!`](/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The quantity of the product that the customer intends to purchase.
+> 
+
+### Interfaces
+
+#### [`Node`](/interfaces/node) <Badge class="secondary" text="interface"/>
+> An interface for standard IDs. This is standard naming for this type of interface in Graphql
+> 
+
+
+
+### Member of
+
+[`CartLineConnection`](/objects/cart-line-connection)  <Badge class="secondary" text="object"/><Bullet />[`CartLineEdge`](/objects/cart-line-edge)  <Badge class="secondary" text="object"/>
+
+
+

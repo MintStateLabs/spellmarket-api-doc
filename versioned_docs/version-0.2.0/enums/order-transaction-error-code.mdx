@@ -1,0 +1,140 @@
+---
+id: order-transaction-error-code
+title: OrderTransactionErrorCode
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+A standardized error code, independent of the payment provider.
+
+```graphql
+enum OrderTransactionErrorCode {
+  CARD_DECLINED
+  CONFIG_ERROR
+  EXPIRED_CARD
+  GENERIC_ERROR
+  INCORRECT_ADDRESS
+  INCORRECT_CVC
+  INCORRECT_NUMBER
+  INCORRECT_PIN
+  INCORRECT_ZIP
+  INVALID_AMOUNT
+  INVALID_COUNTRY
+  INVALID_CVC
+  INVALID_EXPIRY_DATE
+  INVALID_NUMBER
+  PAYMENT_METHOD_UNAVAILABLE
+  WALLET_ON_WRONG_CHAIN
+  NO_WALLET_DETECTED_CHAIN
+  PICK_UP_CARD
+  PROCESSING_ERROR
+  TEST_MODE_LIVE_CARD
+  UNSUPPORTED_FEATURE
+}
+```
+
+
+### Values
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderTransactionErrorCode.<b>CARD_DECLINED</b></code>](#) 
+> The card was declined.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderTransactionErrorCode.<b>CONFIG_ERROR</b></code>](#) 
+> There is an error in the gateway configuration.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderTransactionErrorCode.<b>EXPIRED_CARD</b></code>](#) 
+> The card is expired.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderTransactionErrorCode.<b>GENERIC_ERROR</b></code>](#) 
+> There was an unknown error with processing the payment.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderTransactionErrorCode.<b>INCORRECT_ADDRESS</b></code>](#) 
+> The address does not match the card number.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderTransactionErrorCode.<b>INCORRECT_CVC</b></code>](#) 
+> The CVC does not match the card number.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderTransactionErrorCode.<b>INCORRECT_NUMBER</b></code>](#) 
+> The card number is incorrect.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderTransactionErrorCode.<b>INCORRECT_PIN</b></code>](#) 
+> The entered PIN is incorrect.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderTransactionErrorCode.<b>INCORRECT_ZIP</b></code>](#) 
+> The ZIP or postal code does not match the card number.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderTransactionErrorCode.<b>INVALID_AMOUNT</b></code>](#) 
+> The amount is either too high or too low for the provider.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderTransactionErrorCode.<b>INVALID_COUNTRY</b></code>](#) 
+> The payment method is not available in the customer's country.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderTransactionErrorCode.<b>INVALID_CVC</b></code>](#) 
+> The format of the CVC is incorrect.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderTransactionErrorCode.<b>INVALID_EXPIRY_DATE</b></code>](#) 
+> The format of the expiry date is incorrect.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderTransactionErrorCode.<b>INVALID_NUMBER</b></code>](#) 
+> The format of the card number is incorrect.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderTransactionErrorCode.<b>PAYMENT_METHOD_UNAVAILABLE</b></code>](#) 
+> The payment method is momentarily unavailable.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderTransactionErrorCode.<b>WALLET_ON_WRONG_CHAIN</b></code>](#) 
+> The wallet on wrong chain to process crypto payments.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderTransactionErrorCode.<b>NO_WALLET_DETECTED_CHAIN</b></code>](#) 
+> No wallet was connected to process crypto payments.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderTransactionErrorCode.<b>PICK_UP_CARD</b></code>](#) 
+> The card has been reported as lost or stolen, and the card issuer has requested that the merchant keep the card and call the number on the back.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderTransactionErrorCode.<b>PROCESSING_ERROR</b></code>](#) 
+> There was an error while processing the payment.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderTransactionErrorCode.<b>TEST_MODE_LIVE_CARD</b></code>](#) 
+> A real card was used but the gateway was in test mode.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderTransactionErrorCode.<b>UNSUPPORTED_FEATURE</b></code>](#) 
+> The gateway or merchant configuration doesn't support a feature, such as network tokenization.
+> 
+
+
+
+### Member of
+
+[`OrderTransaction`](/objects/order-transaction)  <Badge class="secondary" text="object"/>
+
+
+

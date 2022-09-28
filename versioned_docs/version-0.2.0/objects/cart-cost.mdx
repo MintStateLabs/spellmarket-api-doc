@@ -1,0 +1,65 @@
+---
+id: cart-cost
+title: CartCost
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+The costs that the buyer will pay at checkout.
+
+```graphql
+type CartCost {
+  subtotalAmount: Schmeckle!
+  subtotalAmountEstimated: Boolean!
+  totalAmount: Schmeckle!
+  totalAmountEstimated: Boolean!
+  totalTaxAmount: Schmeckle
+  totalTaxAmountEstimated: Boolean!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>CartCost.<b>subtotalAmount</b></code>](#)<Bullet />[`Schmeckle!`](/objects/schmeckle) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The amount, before taxes and cart-level discounts, for the customer to pay.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CartCost.<b>subtotalAmountEstimated</b></code>](#)<Bullet />[`Boolean!`](/scalars/boolean) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Whether the subtotal amount is estimated.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CartCost.<b>totalAmount</b></code>](#)<Bullet />[`Schmeckle!`](/objects/schmeckle) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The total amount for the customer to pay.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CartCost.<b>totalAmountEstimated</b></code>](#)<Bullet />[`Boolean!`](/scalars/boolean) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Whether the total amount is estimated.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CartCost.<b>totalTaxAmount</b></code>](#)<Bullet />[`Schmeckle`](/objects/schmeckle) <Badge class="secondary" text="object"/>
+> The tax amount for the customer to pay at checkout.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CartCost.<b>totalTaxAmountEstimated</b></code>](#)<Bullet />[`Boolean!`](/scalars/boolean) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Whether the total tax amount is estimated.
+> 
+
+
+
+### Member of
+
+[`Cart`](/objects/cart)  <Badge class="secondary" text="object"/>
+
+
+

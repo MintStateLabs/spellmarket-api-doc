@@ -1,0 +1,87 @@
+---
+id: external-video
+title: ExternalVideo
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Represents an externally hosted video
+
+```graphql
+type ExternalVideo implements Media {
+  id: ID!
+  alt: String
+  embedUrl: URL!
+  host: MediaHost!
+  originUrl: URL!
+  mediaContentType: MediaContentType!
+  mediaErrors: [MediaError!]!
+  mediaWarnings: [MediaWarning!]!
+  preview: MediaPreviewImage
+  status: MediaStatus!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>ExternalVideo.<b>id</b></code>](#)<Bullet />[`ID!`](/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> A globally-unique identifier.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ExternalVideo.<b>alt</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> A word or phrase to share the nature or contents of a media.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ExternalVideo.<b>embedUrl</b></code>](#)<Bullet />[`URL!`](/scalars/url) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The embed URL of the video for the respective host.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ExternalVideo.<b>host</b></code>](#)<Bullet />[`MediaHost!`](/enums/media-host) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> The host of the external video.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ExternalVideo.<b>originUrl</b></code>](#)<Bullet />[`URL!`](/scalars/url) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The origin URL of the video on the respective host.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ExternalVideo.<b>mediaContentType</b></code>](#)<Bullet />[`MediaContentType!`](/enums/media-content-type) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> The media content type.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ExternalVideo.<b>mediaErrors</b></code>](#)<Bullet />[`[MediaError!]!`](/objects/media-error) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Any errors which have occurred on the media.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ExternalVideo.<b>mediaWarnings</b></code>](#)<Bullet />[`[MediaWarning!]!`](/objects/media-warning) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The warnings attached to the media.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ExternalVideo.<b>preview</b></code>](#)<Bullet />[`MediaPreviewImage`](/objects/media-preview-image) <Badge class="secondary" text="object"/>
+> The preview image for the media.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ExternalVideo.<b>status</b></code>](#)<Bullet />[`MediaStatus!`](/enums/media-status) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> Current status of the media.
+> 
+
+### Interfaces
+
+#### [`Media`](/interfaces/media) <Badge class="secondary" text="interface"/>
+> Represents a media interface
+> 
+
+
+
+
+

@@ -1,0 +1,50 @@
+---
+id: checkout-create-payload
+title: CheckoutCreatePayload
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Return type for checkoutCreate mutation.
+
+```graphql
+type CheckoutCreatePayload {
+  checkout: Checkout
+  checkoutUserErrors: [CheckoutUserError!]!
+  queueToken: String
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>CheckoutCreatePayload.<b>checkout</b></code>](#)<Bullet />[`Checkout`](/objects/checkout) <Badge class="secondary" text="object"/>
+> The new checkout object.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CheckoutCreatePayload.<b>checkoutUserErrors</b></code>](#)<Bullet />[`[CheckoutUserError!]!`](/objects/checkout-user-error) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The list of errors that occurred from executing the mutation.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CheckoutCreatePayload.<b>queueToken</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> The checkout queue token. Available only to selected stores.
+> 
+
+
+
+### Returned by
+
+[`checkoutCreate`](/mutations/checkout-create)  <Badge class="secondary" text="mutation"/>
+
+
+

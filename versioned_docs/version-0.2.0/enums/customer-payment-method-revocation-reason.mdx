@@ -1,0 +1,80 @@
+---
+id: customer-payment-method-revocation-reason
+title: CustomerPaymentMethodRevocationReason
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+The revocation reason types for a customer payment method.
+
+```graphql
+enum CustomerPaymentMethodRevocationReason {
+  WEB3_AUTHENTICATION_ERROR
+  WEB3_GATEWAY_NOT_ENABLED
+  WEB3_PAYMENT_METHOD_NOT_DIGITAL_WALLET
+  MANUALLY_REVOKED
+  STRIPE_API_AUTHENTICATION_ERROR
+  STRIPE_API_INVALID_REQUEST_ERROR
+  STRIPE_GATEWAY_NOT_ENABLED
+  STRIPE_PAYMENT_METHOD_NOT_CARD
+  STRIPE_RETURNED_NO_PAYMENT_METHOD
+}
+```
+
+
+### Values
+
+#### [<code style={{ fontWeight: 'normal' }}>CustomerPaymentMethodRevocationReason.<b>WEB3_AUTHENTICATION_ERROR</b></code>](#) 
+> Failed to connect to web3 API.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CustomerPaymentMethodRevocationReason.<b>WEB3_GATEWAY_NOT_ENABLED</b></code>](#) 
+> The web3 payment gateway is not enabled.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CustomerPaymentMethodRevocationReason.<b>WEB3_PAYMENT_METHOD_NOT_DIGITAL_WALLET</b></code>](#) 
+> The web3 payment method type should be a wallet address
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CustomerPaymentMethodRevocationReason.<b>MANUALLY_REVOKED</b></code>](#) 
+> The payment method was manually revoked.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CustomerPaymentMethodRevocationReason.<b>STRIPE_API_AUTHENTICATION_ERROR</b></code>](#) 
+> Failed to contact the Stripe API.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CustomerPaymentMethodRevocationReason.<b>STRIPE_API_INVALID_REQUEST_ERROR</b></code>](#) 
+> Invalid request. Failed to retrieve payment method from Stripe.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CustomerPaymentMethodRevocationReason.<b>STRIPE_GATEWAY_NOT_ENABLED</b></code>](#) 
+> The Stripe payment gateway is not enabled.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CustomerPaymentMethodRevocationReason.<b>STRIPE_PAYMENT_METHOD_NOT_CARD</b></code>](#) 
+> The Stripe payment method type should be card.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CustomerPaymentMethodRevocationReason.<b>STRIPE_RETURNED_NO_PAYMENT_METHOD</b></code>](#) 
+> Stripe did not return any payment methods. Make sure that the correct Stripe account is linked.
+> 
+
+
+
+### Member of
+
+[`CustomerPaymentMethod`](/objects/customer-payment-method)  <Badge class="secondary" text="object"/>
+
+
+

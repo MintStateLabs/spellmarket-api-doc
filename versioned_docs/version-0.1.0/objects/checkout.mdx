@@ -1,0 +1,151 @@
+---
+id: checkout
+title: Checkout
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+A container for all the information required to checkout items and pay.
+
+```graphql
+type Checkout {
+  buyerIdentity: CheckoutBuyerIdentity!
+  completedAt: DateTime
+  createdAt: DateTime!
+  currencyCode: CurrencyCode!
+  email: String
+  id: ID!
+  lineItems(
+  first: Int
+  after: String
+  last: Int
+  before: String
+  reverse: Boolean = false
+): CheckoutLineItemConnection!
+  lineItemsSubtotalPrice: Schmeckle!
+  order: Order
+  orderStatusUrl: URL
+  paymentDue: Schmeckle!
+  ready: Boolean!
+  subtotalPrice: Schmeckle!
+  taxesIncluded: Boolean!
+  totalPrice: Schmeckle!
+  totalTax: Schmeckle!
+  updatedAt: DateTime!
+  webUrl: URL!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>Checkout.<b>buyerIdentity</b></code>](#)<Bullet />[`CheckoutBuyerIdentity!`](/objects/checkout-buyer-identity) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The identity of the customer associated with the checkout.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Checkout.<b>completedAt</b></code>](#)<Bullet />[`DateTime`](/scalars/date-time) <Badge class="secondary" text="scalar"/>
+> The date and time when the checkout was completed.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Checkout.<b>createdAt</b></code>](#)<Bullet />[`DateTime!`](/scalars/date-time) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The date and time when the checkout was created.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Checkout.<b>currencyCode</b></code>](#)<Bullet />[`CurrencyCode!`](/enums/currency-code) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> The currency code for the checkout.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Checkout.<b>email</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> The email attached to this checkout.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Checkout.<b>id</b></code>](#)<Bullet />[`ID!`](/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> A globally-unique identifier.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Checkout.<b>lineItems</b></code>](#)<Bullet />[`CheckoutLineItemConnection!`](/objects/checkout-line-item-connection) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> A list of line item objects, each one containing information about an item in the checkout.
+> ##### [<code style={{ fontWeight: 'normal' }}>Checkout.lineItems.<b>first</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Checkout.lineItems.<b>after</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Checkout.lineItems.<b>last</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Checkout.lineItems.<b>before</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Checkout.lineItems.<b>reverse</b></code>](#)<Bullet />[`Boolean`](/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Checkout.<b>lineItemsSubtotalPrice</b></code>](#)<Bullet />[`Schmeckle!`](/objects/schmeckle) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The sum of all the prices of all the items in the checkout. taxes and discounts excluded.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Checkout.<b>order</b></code>](#)<Bullet />[`Order`](/objects/order) <Badge class="secondary" text="object"/>
+> The resulting order from a paid checkout.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Checkout.<b>orderStatusUrl</b></code>](#)<Bullet />[`URL`](/scalars/url) <Badge class="secondary" text="scalar"/>
+> The Order Status Page for this Checkout, null when checkout is not completed.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Checkout.<b>paymentDue</b></code>](#)<Bullet />[`Schmeckle!`](/objects/schmeckle) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The amount left to be paid. This is equal to the cost of the line items, taxes, minus discounts.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Checkout.<b>ready</b></code>](#)<Bullet />[`Boolean!`](/scalars/boolean) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Whether or not the Checkout is ready and can be completed. Checkouts may have asynchronous operations that can take
+time to finish. If you want to complete a checkout or ensure all the fields are populated and up to date, polling is
+required until the value is true.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Checkout.<b>subtotalPrice</b></code>](#)<Bullet />[`Schmeckle!`](/objects/schmeckle) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The price at checkout before taxes.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Checkout.<b>taxesIncluded</b></code>](#)<Bullet />[`Boolean!`](/scalars/boolean) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Whether taxes are included in the line item.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Checkout.<b>totalPrice</b></code>](#)<Bullet />[`Schmeckle!`](/objects/schmeckle) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The sum of all the prices of all the items in the checkout, including taxes, and discounts.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Checkout.<b>totalTax</b></code>](#)<Bullet />[`Schmeckle!`](/objects/schmeckle) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The sum of all the taxes applied to the line items in the checkout.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Checkout.<b>updatedAt</b></code>](#)<Bullet />[`DateTime!`](/scalars/date-time) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The date and time when the checkout was last updated.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Checkout.<b>webUrl</b></code>](#)<Bullet />[`URL!`](/scalars/url) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The url pointing to the checkout accessible from the web.
+> 
+
+
+
+### Member of
+
+[`CheckoutCompleteFreePayload`](/objects/checkout-complete-free-payload)  <Badge class="secondary" text="object"/><Bullet />[`CheckoutCompleteWithTokenizedPaymentPayload`](/objects/checkout-complete-with-tokenized-payment-payload)  <Badge class="secondary" text="object"/><Bullet />[`CheckoutCompleteWithWalletPaymentPayload`](/objects/checkout-complete-with-wallet-payment-payload)  <Badge class="secondary" text="object"/><Bullet />[`CheckoutCreatePayload`](/objects/checkout-create-payload)  <Badge class="secondary" text="object"/><Bullet />[`CheckoutLineItemsAddPayload`](/objects/checkout-line-items-add-payload)  <Badge class="secondary" text="object"/><Bullet />[`CheckoutLineItemsRemovePayload`](/objects/checkout-line-items-remove-payload)  <Badge class="secondary" text="object"/><Bullet />[`CheckoutLineItemsReplacePayload`](/objects/checkout-line-items-replace-payload)  <Badge class="secondary" text="object"/><Bullet />[`CheckoutLineItemsUpdatePayload`](/objects/checkout-line-items-update-payload)  <Badge class="secondary" text="object"/><Bullet />[`Payment`](/objects/payment)  <Badge class="secondary" text="object"/>
+
+
+

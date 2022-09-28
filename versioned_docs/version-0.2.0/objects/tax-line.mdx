@@ -1,0 +1,61 @@
+---
+id: tax-line
+title: TaxLine
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Represents a single tax applied to the associated line item.
+
+```graphql
+type TaxLine {
+  channelLiable: Boolean
+  priceSet: SchmecklePouch
+  rate: Decimal
+  ratePercentage: Decimal
+  title: String!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>TaxLine.<b>channelLiable</b></code>](#)<Bullet />[`Boolean`](/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> Whether the channel that submitted the tax line is liable for remitting.
+A value of null indicates unknown liability for this tax line.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>TaxLine.<b>priceSet</b></code>](#)<Bullet />[`SchmecklePouch`](/objects/schmeckle-pouch) <Badge class="secondary" text="object"/>
+> The amount of tax, in shop and presentment currencies, after discounts and before returns.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>TaxLine.<b>rate</b></code>](#)<Bullet />[`Decimal`](/scalars/decimal) <Badge class="secondary" text="scalar"/>
+> The proportion of the line item price that the tax represents as a decimal.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>TaxLine.<b>ratePercentage</b></code>](#)<Bullet />[`Decimal`](/scalars/decimal) <Badge class="secondary" text="scalar"/>
+> The proportion of the line item price that the tax represents as a percentage.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>TaxLine.<b>title</b></code>](#)<Bullet />[`String!`](/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The name of the tax.
+> 
+
+
+
+### Member of
+
+[`LineItem`](/objects/line-item)  <Badge class="secondary" text="object"/><Bullet />[`Order`](/objects/order)  <Badge class="secondary" text="object"/>
+
+
+

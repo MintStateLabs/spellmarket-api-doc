@@ -1,0 +1,41 @@
+---
+id: customer-consent-collected-from
+title: CustomerConsentCollectedFrom
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+The source that collected the customer's consent to receive marketing materials.
+
+```graphql
+enum CustomerConsentCollectedFrom {
+  MSL
+  OTHER
+}
+```
+
+
+### Values
+
+#### [<code style={{ fontWeight: 'normal' }}>CustomerConsentCollectedFrom.<b>MSL</b></code>](#) 
+> The customer consent was collected by Mint State Labs.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CustomerConsentCollectedFrom.<b>OTHER</b></code>](#) 
+> The customer consent was collected outside of Mint State Labs.
+> 
+
+
+
+
+

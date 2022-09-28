@@ -1,0 +1,101 @@
+---
+id: media-image
+title: MediaImage
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+A hosted image.
+
+```graphql
+type MediaImage implements Media, File {
+  id: ID!
+  alt: String
+  createdAt: DateTime!
+  image: Image
+  fileErrors: [FileError!]!
+  fileStatus: FileStatus!
+  mediaContentType: MediaContentType!
+  mediaErrors: [MediaError!]!
+  mediaWarnings: [MediaWarning!]!
+  preview: MediaPreviewImage
+  mimeType: String
+  status: MediaStatus!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>MediaImage.<b>id</b></code>](#)<Bullet />[`ID!`](/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> A globally-unique identifier.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MediaImage.<b>alt</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> A word or phrase to share the nature or contents of a media.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MediaImage.<b>createdAt</b></code>](#)<Bullet />[`DateTime!`](/scalars/date-time) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> A date and time the file was created
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MediaImage.<b>image</b></code>](#)<Bullet />[`Image`](/objects/image) <Badge class="secondary" text="object"/>
+> The image for the media. Returns null until status is READY.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MediaImage.<b>fileErrors</b></code>](#)<Bullet />[`[FileError!]!`](/objects/file-error) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Any errors that have occurred on the file.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MediaImage.<b>fileStatus</b></code>](#)<Bullet />[`FileStatus!`](/enums/file-status) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> The status of the file.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MediaImage.<b>mediaContentType</b></code>](#)<Bullet />[`MediaContentType!`](/enums/media-content-type) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> The media content type.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MediaImage.<b>mediaErrors</b></code>](#)<Bullet />[`[MediaError!]!`](/objects/media-error) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Any errors which have occurred on the media.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MediaImage.<b>mediaWarnings</b></code>](#)<Bullet />[`[MediaWarning!]!`](/objects/media-warning) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The warnings attached to the media.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MediaImage.<b>preview</b></code>](#)<Bullet />[`MediaPreviewImage`](/objects/media-preview-image) <Badge class="secondary" text="object"/>
+> The preview image for the media.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MediaImage.<b>mimeType</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> The MIME type of the image.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MediaImage.<b>status</b></code>](#)<Bullet />[`MediaStatus!`](/enums/media-status) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> Current status of the media.
+> 
+
+### Interfaces
+
+#### [`Media`](/interfaces/media) <Badge class="secondary" text="interface"/>
+> Represents a media interface
+> 
+
+#### [`File`](/interfaces/file) <Badge class="secondary" text="interface"/>
+> A file interface.
+> 
+
+
+
+
+

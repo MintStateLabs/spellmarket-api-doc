@@ -1,0 +1,104 @@
+---
+id: staged-upload-target-generate-upload-resource
+title: StagedUploadTargetGenerateUploadResource
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+The resource type to receive
+
+```graphql
+enum StagedUploadTargetGenerateUploadResource {
+  COLLECTION_IMAGE
+  FILE
+  IMAGE
+  MODEL_3D
+  PRODUCT_IMAGE
+  APP_STORE_IMAGE
+  VIDEO
+  BULK_MUTATION_VARIABLES
+  URL_REDIRECT_IMPORT
+}
+```
+
+
+### Values
+
+#### [<code style={{ fontWeight: 'normal' }}>StagedUploadTargetGenerateUploadResource.<b>COLLECTION_IMAGE</b></code>](#) 
+> An image associated with a collection.
+
+For example, after uploading an image, you can use the
+collectionUpdate mutation to add the image to a collection.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>StagedUploadTargetGenerateUploadResource.<b>FILE</b></code>](#) 
+> Represents any file other than HTML.
+
+For example, after uploading the file, you can add the file to the
+Files page in SpellMarket admin using the fileCreate mutation.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>StagedUploadTargetGenerateUploadResource.<b>IMAGE</b></code>](#) 
+> An image.
+
+For example, after uploading an image, you can add the image to a product using the
+productCreateMedia mutation or to the Files page in SpellMarket admin using the
+fileCreate mutation.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>StagedUploadTargetGenerateUploadResource.<b>MODEL_3D</b></code>](#) 
+> A SpellMarket hosted 3d model.
+
+For example, after uploading the 3d model, you can add the 3d model to a product using the
+productCreateMedia mutation.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>StagedUploadTargetGenerateUploadResource.<b>PRODUCT_IMAGE</b></code>](#) 
+> An image that's associated with a product.
+
+For example, after uploading the image, you can add the image to a product using the
+productCreateMedia mutation.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>StagedUploadTargetGenerateUploadResource.<b>APP_STORE_IMAGE</b></code>](#) 
+> An image.
+
+For example, after uploading the image, you can add the image to the
+Files page in SpellMarket admin using the fileCreate mutation.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>StagedUploadTargetGenerateUploadResource.<b>VIDEO</b></code>](#) 
+> A SpellMarket-hosted video.
+
+For example, after uploading the video, you can add the video to a product using the
+productCreateMedia mutation or to the Files page in SpellMarket admin using the fileCreate mutation.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>StagedUploadTargetGenerateUploadResource.<b>BULK_MUTATION_VARIABLES</b></code>](#) 
+> Represents bulk mutation variables.
+
+For example, bulk mutation variables can be used for bulk operations using the
+bulkOperationRunMutation mutation.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>StagedUploadTargetGenerateUploadResource.<b>URL_REDIRECT_IMPORT</b></code>](#) 
+> Represents a redirect CSV file.
+
+Example usage: This resource can be used for creating a
+UrlRedirectImport  object for use in the urlRedirectImportCreate mutation.
+> 
+
+
+
+
+

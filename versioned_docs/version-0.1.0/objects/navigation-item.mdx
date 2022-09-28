@@ -1,0 +1,50 @@
+---
+id: navigation-item
+title: NavigationItem
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+A navigation item, holding basic link attributes.
+
+```graphql
+type NavigationItem {
+  id: ID!
+  title: String!
+  url: URL!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>NavigationItem.<b>id</b></code>](#)<Bullet />[`ID!`](/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The unique identifier of the navigation item.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>NavigationItem.<b>title</b></code>](#)<Bullet />[`String!`](/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The name of the navigation item.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>NavigationItem.<b>url</b></code>](#)<Bullet />[`URL!`](/scalars/url) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The URL of the page that the navigation item links to.
+> 
+
+
+
+### Member of
+
+[`FailedRequirement`](/objects/failed-requirement)  <Badge class="secondary" text="object"/>
+
+
+

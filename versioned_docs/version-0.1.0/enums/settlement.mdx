@@ -1,0 +1,50 @@
+---
+id: settlement
+title: Settlement
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Settlement method
+
+```graphql
+enum Settlement {
+  ETH
+  SUI
+  AWS
+}
+```
+
+
+### Values
+
+#### [<code style={{ fontWeight: 'normal' }}>Settlement.<b>ETH</b></code>](#) 
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Settlement.<b>SUI</b></code>](#) 
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Settlement.<b>AWS</b></code>](#) 
+> 
+> 
+
+
+
+### Member of
+
+[`Customer`](/objects/customer)  <Badge class="secondary" text="object"/><Bullet />[`CustomerStripeWallet`](/objects/customer-stripe-wallet)  <Badge class="secondary" text="object"/><Bullet />[`CustomerWeb3Wallet`](/objects/customer-web-3-wallet)  <Badge class="secondary" text="object"/><Bullet />[`VaultWeb3Wallet`](/objects/vault-web-3-wallet)  <Badge class="secondary" text="object"/>
+
+
+

@@ -1,0 +1,66 @@
+---
+id: image
+title: Image
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+No description
+
+```graphql
+type Image {
+  id: ID!
+  altText: String
+  height: Int
+  width: Int
+  url(
+  transform: ImageTransformInput!
+): URL
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>Image.<b>id</b></code>](#)<Bullet />[`ID!`](/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> A unique identifier for the image.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Image.<b>altText</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> A word or phrase to share the nature or contents of an image.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Image.<b>height</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> The original height of the image in pixels. Returns null if the image is not hosted by SpellMarket.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Image.<b>width</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> The original width of the image in pixels. Returns null if the image is not hosted by SpellMarket.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Image.<b>url</b></code>](#)<Bullet />[`URL`](/scalars/url) <Badge class="secondary" text="scalar"/>
+> The location of the image as a URL. If no transform options are specified, then the original image will be preserved
+including any pre-applied transforms. All transformation options are considered "best-effort". Any transformation
+that the original image type doesn't support will be ignored.
+> ##### [<code style={{ fontWeight: 'normal' }}>Image.url.<b>transform</b></code>](#)<Bullet />[`ImageTransformInput!`](/inputs/image-transform-input) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="input"/>
+> 
+> 
+
+
+
+### Member of
+
+[`Customer`](/objects/customer)  <Badge class="secondary" text="object"/><Bullet />[`ImageConnection`](/objects/image-connection)  <Badge class="secondary" text="object"/><Bullet />[`ImageEdge`](/objects/image-edge)  <Badge class="secondary" text="object"/><Bullet />[`LineItem`](/objects/line-item)  <Badge class="secondary" text="object"/><Bullet />[`MediaImage`](/objects/media-image)  <Badge class="secondary" text="object"/><Bullet />[`MediaPreviewImage`](/objects/media-preview-image)  <Badge class="secondary" text="object"/><Bullet />[`Product`](/objects/product)  <Badge class="secondary" text="object"/><Bullet />[`ProductCollection`](/objects/product-collection)  <Badge class="secondary" text="object"/><Bullet />[`ProjectStorefrontBranding`](/objects/project-storefront-branding)  <Badge class="secondary" text="object"/>
+
+
+

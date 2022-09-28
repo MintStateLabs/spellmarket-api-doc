@@ -1,0 +1,40 @@
+---
+id: node
+title: Node
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+An interface for standard IDs. This is standard naming for this type of interface in Graphql
+
+```graphql
+interface Node {
+  id: ID!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>Node.<b>id</b></code>](#)<Bullet />[`ID!`](/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> ID of the object.
+> 
+
+
+
+### Implemented by
+
+[`Cart`](/objects/cart)  <Badge class="secondary" text="object"/><Bullet />[`CartLine`](/objects/cart-line)  <Badge class="secondary" text="object"/><Bullet />[`Channel`](/interfaces/channel)  <Badge class="secondary" text="interface"/><Bullet />[`CheckoutLineItem`](/objects/checkout-line-item)  <Badge class="secondary" text="object"/><Bullet />[`Customer`](/objects/customer)  <Badge class="secondary" text="object"/><Bullet />[`CustomerPaymentMethod`](/objects/customer-payment-method)  <Badge class="secondary" text="object"/><Bullet />[`DigitalAsset`](/objects/digital-asset)  <Badge class="secondary" text="object"/><Bullet />[`FulfillmentLineItem`](/objects/fulfillment-line-item)  <Badge class="secondary" text="object"/><Bullet />[`GenericFile`](/objects/generic-file)  <Badge class="secondary" text="object"/><Bullet />[`Order`](/objects/order)  <Badge class="secondary" text="object"/><Bullet />[`OrderTransaction`](/objects/order-transaction)  <Badge class="secondary" text="object"/><Bullet />[`Payment`](/objects/payment)  <Badge class="secondary" text="object"/><Bullet />[`Product`](/objects/product)  <Badge class="secondary" text="object"/><Bullet />[`ProductCollection`](/objects/product-collection)  <Badge class="secondary" text="object"/><Bullet />[`Project`](/objects/project)  <Badge class="secondary" text="object"/><Bullet />[`SalesChannel`](/objects/sales-channel)  <Badge class="secondary" text="object"/><Bullet />[`SubChannel`](/objects/sub-channel)  <Badge class="secondary" text="object"/>
+
+
+

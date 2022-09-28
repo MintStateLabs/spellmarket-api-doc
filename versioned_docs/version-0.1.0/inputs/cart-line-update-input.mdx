@@ -1,0 +1,55 @@
+---
+id: cart-line-update-input
+title: CartLineUpdateInput
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Specifies the input fields to update a line item on a cart.
+
+```graphql
+input CartLineUpdateInput {
+  id: ID!
+  quantity: Int
+  productId: ID
+  sellingPlanId: ID
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>CartLineUpdateInput.<b>id</b></code>](#)<Bullet />[`ID!`](/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The identifier of the product line.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CartLineUpdateInput.<b>quantity</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> The quantity of the line item.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CartLineUpdateInput.<b>productId</b></code>](#)<Bullet />[`ID`](/scalars/id) <Badge class="secondary" text="scalar"/>
+> The identifier of the product for the line item.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CartLineUpdateInput.<b>sellingPlanId</b></code>](#)<Bullet />[`ID`](/scalars/id) <Badge class="secondary" text="scalar"/>
+> The identifier of the selling plan that the product is being purchased with.
+> 
+
+
+
+### Member of
+
+[`cartLinesUpdate`](/mutations/cart-lines-update)  <Badge class="secondary" text="mutation"/>
+
+
+

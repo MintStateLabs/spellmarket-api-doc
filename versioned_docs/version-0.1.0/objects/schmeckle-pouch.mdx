@@ -1,0 +1,47 @@
+---
+id: schmeckle-pouch
+title: SchmecklePouch
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+A collection of monetary values in their respective currencies. Typically used in the context of multi-currency pricing
+and transactions, when an amount in the shop's currency isconverted to the customer's currency of choice
+(the presentment currency).
+
+```graphql
+type SchmecklePouch {
+  presentmentFunds: Schmeckle!
+  settlementFunds: Schmeckle!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>SchmecklePouch.<b>presentmentFunds</b></code>](#)<Bullet />[`Schmeckle!`](/objects/schmeckle) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Amount in presentment currency.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>SchmecklePouch.<b>settlementFunds</b></code>](#)<Bullet />[`Schmeckle!`](/objects/schmeckle) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Amount in settlement currency.
+> 
+
+
+
+### Member of
+
+[`FulfillmentLineItem`](/objects/fulfillment-line-item)  <Badge class="secondary" text="object"/><Bullet />[`LineItem`](/objects/line-item)  <Badge class="secondary" text="object"/><Bullet />[`Order`](/objects/order)  <Badge class="secondary" text="object"/><Bullet />[`OrderTransaction`](/objects/order-transaction)  <Badge class="secondary" text="object"/><Bullet />[`TaxLine`](/objects/tax-line)  <Badge class="secondary" text="object"/>
+
+
+

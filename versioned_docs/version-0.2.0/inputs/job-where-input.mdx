@@ -1,0 +1,750 @@
+---
+id: job-where-input
+title: JobWhereInput
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+No description
+
+```graphql
+input JobWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  title: String
+  title_not: String
+  title_in: [String!]
+  title_not_in: [String!]
+  title_lt: String
+  title_lte: String
+  title_gt: String
+  title_gte: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  slug: String
+  slug_not: String
+  slug_in: [String!]
+  slug_not_in: [String!]
+  slug_lt: String
+  slug_lte: String
+  slug_gt: String
+  slug_gte: String
+  slug_contains: String
+  slug_not_contains: String
+  slug_starts_with: String
+  slug_not_starts_with: String
+  slug_ends_with: String
+  slug_not_ends_with: String
+  commitment: CommitmentWhereInput
+  cities_every: CityWhereInput
+  cities_some: CityWhereInput
+  cities_none: CityWhereInput
+  countries_every: CountryWhereInput
+  countries_some: CountryWhereInput
+  countries_none: CountryWhereInput
+  remotes_every: RemoteWhereInput
+  remotes_some: RemoteWhereInput
+  remotes_none: RemoteWhereInput
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  applyUrl: String
+  applyUrl_not: String
+  applyUrl_in: [String!]
+  applyUrl_not_in: [String!]
+  applyUrl_lt: String
+  applyUrl_lte: String
+  applyUrl_gt: String
+  applyUrl_gte: String
+  applyUrl_contains: String
+  applyUrl_not_contains: String
+  applyUrl_starts_with: String
+  applyUrl_not_starts_with: String
+  applyUrl_ends_with: String
+  applyUrl_not_ends_with: String
+  company: CompanyWhereInput
+  tags_every: TagWhereInput
+  tags_some: TagWhereInput
+  tags_none: TagWhereInput
+  isPublished: Boolean
+  isPublished_not: Boolean
+  isFeatured: Boolean
+  isFeatured_not: Boolean
+  locationNames: String
+  locationNames_not: String
+  locationNames_in: [String!]
+  locationNames_not_in: [String!]
+  locationNames_lt: String
+  locationNames_lte: String
+  locationNames_gt: String
+  locationNames_gte: String
+  locationNames_contains: String
+  locationNames_not_contains: String
+  locationNames_starts_with: String
+  locationNames_not_starts_with: String
+  locationNames_ends_with: String
+  locationNames_not_ends_with: String
+  userEmail: String
+  userEmail_not: String
+  userEmail_in: [String!]
+  userEmail_not_in: [String!]
+  userEmail_lt: String
+  userEmail_lte: String
+  userEmail_gt: String
+  userEmail_gte: String
+  userEmail_contains: String
+  userEmail_not_contains: String
+  userEmail_starts_with: String
+  userEmail_not_starts_with: String
+  userEmail_ends_with: String
+  userEmail_not_ends_with: String
+  postedAt: DateTime
+  postedAt_not: DateTime
+  postedAt_in: [DateTime!]
+  postedAt_not_in: [DateTime!]
+  postedAt_lt: DateTime
+  postedAt_lte: DateTime
+  postedAt_gt: DateTime
+  postedAt_gte: DateTime
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [JobWhereInput!]
+  OR: [JobWhereInput!]
+  NOT: [JobWhereInput!]
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>id</b></code>](#)<Bullet />[`ID`](/scalars/id) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>id_not</b></code>](#)<Bullet />[`ID`](/scalars/id) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>id_in</b></code>](#)<Bullet />[`[ID!]`](/scalars/id) <Badge class="secondary" text="list"/> <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>id_not_in</b></code>](#)<Bullet />[`[ID!]`](/scalars/id) <Badge class="secondary" text="list"/> <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>id_lt</b></code>](#)<Bullet />[`ID`](/scalars/id) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>id_lte</b></code>](#)<Bullet />[`ID`](/scalars/id) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>id_gt</b></code>](#)<Bullet />[`ID`](/scalars/id) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>id_gte</b></code>](#)<Bullet />[`ID`](/scalars/id) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>id_contains</b></code>](#)<Bullet />[`ID`](/scalars/id) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>id_not_contains</b></code>](#)<Bullet />[`ID`](/scalars/id) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>id_starts_with</b></code>](#)<Bullet />[`ID`](/scalars/id) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>id_not_starts_with</b></code>](#)<Bullet />[`ID`](/scalars/id) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>id_ends_with</b></code>](#)<Bullet />[`ID`](/scalars/id) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>id_not_ends_with</b></code>](#)<Bullet />[`ID`](/scalars/id) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>title</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>title_not</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>title_in</b></code>](#)<Bullet />[`[String!]`](/scalars/string) <Badge class="secondary" text="list"/> <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>title_not_in</b></code>](#)<Bullet />[`[String!]`](/scalars/string) <Badge class="secondary" text="list"/> <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>title_lt</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>title_lte</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>title_gt</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>title_gte</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>title_contains</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>title_not_contains</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>title_starts_with</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>title_not_starts_with</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>title_ends_with</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>title_not_ends_with</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>slug</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>slug_not</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>slug_in</b></code>](#)<Bullet />[`[String!]`](/scalars/string) <Badge class="secondary" text="list"/> <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>slug_not_in</b></code>](#)<Bullet />[`[String!]`](/scalars/string) <Badge class="secondary" text="list"/> <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>slug_lt</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>slug_lte</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>slug_gt</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>slug_gte</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>slug_contains</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>slug_not_contains</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>slug_starts_with</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>slug_not_starts_with</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>slug_ends_with</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>slug_not_ends_with</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>commitment</b></code>](#)<Bullet />[`CommitmentWhereInput`](/inputs/commitment-where-input) <Badge class="secondary" text="input"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>cities_every</b></code>](#)<Bullet />[`CityWhereInput`](/inputs/city-where-input) <Badge class="secondary" text="input"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>cities_some</b></code>](#)<Bullet />[`CityWhereInput`](/inputs/city-where-input) <Badge class="secondary" text="input"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>cities_none</b></code>](#)<Bullet />[`CityWhereInput`](/inputs/city-where-input) <Badge class="secondary" text="input"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>countries_every</b></code>](#)<Bullet />[`CountryWhereInput`](/inputs/country-where-input) <Badge class="secondary" text="input"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>countries_some</b></code>](#)<Bullet />[`CountryWhereInput`](/inputs/country-where-input) <Badge class="secondary" text="input"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>countries_none</b></code>](#)<Bullet />[`CountryWhereInput`](/inputs/country-where-input) <Badge class="secondary" text="input"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>remotes_every</b></code>](#)<Bullet />[`RemoteWhereInput`](/inputs/remote-where-input) <Badge class="secondary" text="input"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>remotes_some</b></code>](#)<Bullet />[`RemoteWhereInput`](/inputs/remote-where-input) <Badge class="secondary" text="input"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>remotes_none</b></code>](#)<Bullet />[`RemoteWhereInput`](/inputs/remote-where-input) <Badge class="secondary" text="input"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>description</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>description_not</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>description_in</b></code>](#)<Bullet />[`[String!]`](/scalars/string) <Badge class="secondary" text="list"/> <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>description_not_in</b></code>](#)<Bullet />[`[String!]`](/scalars/string) <Badge class="secondary" text="list"/> <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>description_lt</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>description_lte</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>description_gt</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>description_gte</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>description_contains</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>description_not_contains</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>description_starts_with</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>description_not_starts_with</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>description_ends_with</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>description_not_ends_with</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>applyUrl</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>applyUrl_not</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>applyUrl_in</b></code>](#)<Bullet />[`[String!]`](/scalars/string) <Badge class="secondary" text="list"/> <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>applyUrl_not_in</b></code>](#)<Bullet />[`[String!]`](/scalars/string) <Badge class="secondary" text="list"/> <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>applyUrl_lt</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>applyUrl_lte</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>applyUrl_gt</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>applyUrl_gte</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>applyUrl_contains</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>applyUrl_not_contains</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>applyUrl_starts_with</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>applyUrl_not_starts_with</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>applyUrl_ends_with</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>applyUrl_not_ends_with</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>company</b></code>](#)<Bullet />[`CompanyWhereInput`](/inputs/company-where-input) <Badge class="secondary" text="input"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>tags_every</b></code>](#)<Bullet />[`TagWhereInput`](/inputs/tag-where-input) <Badge class="secondary" text="input"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>tags_some</b></code>](#)<Bullet />[`TagWhereInput`](/inputs/tag-where-input) <Badge class="secondary" text="input"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>tags_none</b></code>](#)<Bullet />[`TagWhereInput`](/inputs/tag-where-input) <Badge class="secondary" text="input"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>isPublished</b></code>](#)<Bullet />[`Boolean`](/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>isPublished_not</b></code>](#)<Bullet />[`Boolean`](/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>isFeatured</b></code>](#)<Bullet />[`Boolean`](/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>isFeatured_not</b></code>](#)<Bullet />[`Boolean`](/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>locationNames</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>locationNames_not</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>locationNames_in</b></code>](#)<Bullet />[`[String!]`](/scalars/string) <Badge class="secondary" text="list"/> <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>locationNames_not_in</b></code>](#)<Bullet />[`[String!]`](/scalars/string) <Badge class="secondary" text="list"/> <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>locationNames_lt</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>locationNames_lte</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>locationNames_gt</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>locationNames_gte</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>locationNames_contains</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>locationNames_not_contains</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>locationNames_starts_with</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>locationNames_not_starts_with</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>locationNames_ends_with</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>locationNames_not_ends_with</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>userEmail</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>userEmail_not</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>userEmail_in</b></code>](#)<Bullet />[`[String!]`](/scalars/string) <Badge class="secondary" text="list"/> <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>userEmail_not_in</b></code>](#)<Bullet />[`[String!]`](/scalars/string) <Badge class="secondary" text="list"/> <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>userEmail_lt</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>userEmail_lte</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>userEmail_gt</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>userEmail_gte</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>userEmail_contains</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>userEmail_not_contains</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>userEmail_starts_with</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>userEmail_not_starts_with</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>userEmail_ends_with</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>userEmail_not_ends_with</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>postedAt</b></code>](#)<Bullet />[`DateTime`](/scalars/date-time) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>postedAt_not</b></code>](#)<Bullet />[`DateTime`](/scalars/date-time) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>postedAt_in</b></code>](#)<Bullet />[`[DateTime!]`](/scalars/date-time) <Badge class="secondary" text="list"/> <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>postedAt_not_in</b></code>](#)<Bullet />[`[DateTime!]`](/scalars/date-time) <Badge class="secondary" text="list"/> <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>postedAt_lt</b></code>](#)<Bullet />[`DateTime`](/scalars/date-time) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>postedAt_lte</b></code>](#)<Bullet />[`DateTime`](/scalars/date-time) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>postedAt_gt</b></code>](#)<Bullet />[`DateTime`](/scalars/date-time) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>postedAt_gte</b></code>](#)<Bullet />[`DateTime`](/scalars/date-time) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>createdAt</b></code>](#)<Bullet />[`DateTime`](/scalars/date-time) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>createdAt_not</b></code>](#)<Bullet />[`DateTime`](/scalars/date-time) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>createdAt_in</b></code>](#)<Bullet />[`[DateTime!]`](/scalars/date-time) <Badge class="secondary" text="list"/> <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>createdAt_not_in</b></code>](#)<Bullet />[`[DateTime!]`](/scalars/date-time) <Badge class="secondary" text="list"/> <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>createdAt_lt</b></code>](#)<Bullet />[`DateTime`](/scalars/date-time) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>createdAt_lte</b></code>](#)<Bullet />[`DateTime`](/scalars/date-time) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>createdAt_gt</b></code>](#)<Bullet />[`DateTime`](/scalars/date-time) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>createdAt_gte</b></code>](#)<Bullet />[`DateTime`](/scalars/date-time) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>updatedAt</b></code>](#)<Bullet />[`DateTime`](/scalars/date-time) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>updatedAt_not</b></code>](#)<Bullet />[`DateTime`](/scalars/date-time) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>updatedAt_in</b></code>](#)<Bullet />[`[DateTime!]`](/scalars/date-time) <Badge class="secondary" text="list"/> <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>updatedAt_not_in</b></code>](#)<Bullet />[`[DateTime!]`](/scalars/date-time) <Badge class="secondary" text="list"/> <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>updatedAt_lt</b></code>](#)<Bullet />[`DateTime`](/scalars/date-time) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>updatedAt_lte</b></code>](#)<Bullet />[`DateTime`](/scalars/date-time) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>updatedAt_gt</b></code>](#)<Bullet />[`DateTime`](/scalars/date-time) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>updatedAt_gte</b></code>](#)<Bullet />[`DateTime`](/scalars/date-time) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>AND</b></code>](#)<Bullet />[`[JobWhereInput!]`](/inputs/job-where-input) <Badge class="secondary" text="list"/> <Badge class="secondary" text="input"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>OR</b></code>](#)<Bullet />[`[JobWhereInput!]`](/inputs/job-where-input) <Badge class="secondary" text="list"/> <Badge class="secondary" text="input"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>JobWhereInput.<b>NOT</b></code>](#)<Bullet />[`[JobWhereInput!]`](/inputs/job-where-input) <Badge class="secondary" text="list"/> <Badge class="secondary" text="input"/>
+> 
+> 
+
+
+
+### Member of
+
+[`CityWhereInput`](/inputs/city-where-input)  <Badge class="secondary" text="input"/><Bullet />[`CommitmentWhereInput`](/inputs/commitment-where-input)  <Badge class="secondary" text="input"/><Bullet />[`CompanyWhereInput`](/inputs/company-where-input)  <Badge class="secondary" text="input"/><Bullet />[`CountryWhereInput`](/inputs/country-where-input)  <Badge class="secondary" text="input"/><Bullet />[`JobWhereInput`](/inputs/job-where-input)  <Badge class="secondary" text="input"/><Bullet />[`RemoteWhereInput`](/inputs/remote-where-input)  <Badge class="secondary" text="input"/><Bullet />[`TagWhereInput`](/inputs/tag-where-input)  <Badge class="secondary" text="input"/>
+
+
+

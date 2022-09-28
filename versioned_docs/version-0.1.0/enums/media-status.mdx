@@ -1,0 +1,55 @@
+---
+id: media-status
+title: MediaStatus
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+The possible statuses for a media object.
+
+```graphql
+enum MediaStatus {
+  FAILED
+  PROCESSING
+  READY
+  UPLOADED
+}
+```
+
+
+### Values
+
+#### [<code style={{ fontWeight: 'normal' }}>MediaStatus.<b>FAILED</b></code>](#) 
+> Media processing has failed.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MediaStatus.<b>PROCESSING</b></code>](#) 
+> Media is being processed.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MediaStatus.<b>READY</b></code>](#) 
+> Media is ready to be displayed.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MediaStatus.<b>UPLOADED</b></code>](#) 
+> Media has been uploaded but not yet processed.
+> 
+
+
+
+### Member of
+
+[`ExternalVideo`](/objects/external-video)  <Badge class="secondary" text="object"/><Bullet />[`Media`](/interfaces/media)  <Badge class="secondary" text="interface"/><Bullet />[`MediaImage`](/objects/media-image)  <Badge class="secondary" text="object"/><Bullet />[`MediaPreviewImage`](/objects/media-preview-image)  <Badge class="secondary" text="object"/><Bullet />[`Model3d`](/objects/model-3-d)  <Badge class="secondary" text="object"/><Bullet />[`Video`](/objects/video)  <Badge class="secondary" text="object"/>
+
+
+

@@ -1,0 +1,77 @@
+---
+id: product-sort-keys
+title: ProductSortKeys
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+The set of valid sort keys for the Product query.
+
+```graphql
+enum ProductSortKeys {
+  TITLE
+  PRODUCT_TYPE
+  PROJECT
+  INVENTORY_TOTAL
+  UPDATED_AT
+  CREATED_AT
+  PUBLISHED_AT
+  ID
+  RELEVANCE
+}
+```
+
+
+### Values
+
+#### [<code style={{ fontWeight: 'normal' }}>ProductSortKeys.<b>TITLE</b></code>](#) 
+> Sort by the title value.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ProductSortKeys.<b>PRODUCT_TYPE</b></code>](#) 
+> Sort by the product_type value.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ProductSortKeys.<b>PROJECT</b></code>](#) 
+> Sort by the project value.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ProductSortKeys.<b>INVENTORY_TOTAL</b></code>](#) 
+> Sort by the inventory_total value.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ProductSortKeys.<b>UPDATED_AT</b></code>](#) 
+> Sort by the updated_at value.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ProductSortKeys.<b>CREATED_AT</b></code>](#) 
+> Sort by the created_at value.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ProductSortKeys.<b>PUBLISHED_AT</b></code>](#) 
+> Sort by the published_at value.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ProductSortKeys.<b>ID</b></code>](#) 
+> Sort by the id value.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ProductSortKeys.<b>RELEVANCE</b></code>](#) 
+> Sort by relevance to the search terms when the query parameter is specified on the connection.
+Don't use this sort key when no search query is specified.
+> 
+
+
+
+
+

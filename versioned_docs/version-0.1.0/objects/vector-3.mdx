@@ -1,0 +1,50 @@
+---
+id: vector-3
+title: Vector3
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Representation of 3d vectors and points. It can represent either the coordinates of a point in space, a direction, or size. Presented as an object with three floating-point values.
+
+```graphql
+type Vector3 {
+  x: Float!
+  y: Float!
+  z: Float!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>Vector3.<b>x</b></code>](#)<Bullet />[`Float!`](/scalars/float) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The x coordinate of Vector3.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Vector3.<b>y</b></code>](#)<Bullet />[`Float!`](/scalars/float) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The y coordinate of Vector3.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Vector3.<b>z</b></code>](#)<Bullet />[`Float!`](/scalars/float) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The z coordinate of Vector3.
+> 
+
+
+
+### Member of
+
+[`Model3DBoundingBox`](/objects/model-3-dbounding-box)  <Badge class="secondary" text="object"/>
+
+
+

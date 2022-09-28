@@ -1,0 +1,50 @@
+---
+id: cart-line-cost
+title: CartLineCost
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+The cost of the product line that the buyer will pay at checkout.
+
+```graphql
+type CartLineCost {
+  amountPerQuantity: Schmeckle!
+  subtotalAmount: Schmeckle!
+  totalAmount: Schmeckle!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>CartLineCost.<b>amountPerQuantity</b></code>](#)<Bullet />[`Schmeckle!`](/objects/schmeckle) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The amount of the product line.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CartLineCost.<b>subtotalAmount</b></code>](#)<Bullet />[`Schmeckle!`](/objects/schmeckle) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The cost of the product line before line-level discounts.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CartLineCost.<b>totalAmount</b></code>](#)<Bullet />[`Schmeckle!`](/objects/schmeckle) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The total cost of the product line.
+> 
+
+
+
+### Member of
+
+[`CartLine`](/objects/cart-line)  <Badge class="secondary" text="object"/>
+
+
+

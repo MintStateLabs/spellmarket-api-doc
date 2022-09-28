@@ -1,0 +1,45 @@
+---
+id: cart-line-input
+title: CartLineInput
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Specifies the input fields to create a product line on a cart.
+
+```graphql
+input CartLineInput {
+  quantity: Int
+  productId: ID!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>CartLineInput.<b>quantity</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> The quantity of the product.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CartLineInput.<b>productId</b></code>](#)<Bullet />[`ID!`](/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The identifier of the product that the buyer intends to purchase.
+> 
+
+
+
+### Member of
+
+[`CartInput`](/inputs/cart-input)  <Badge class="secondary" text="input"/><Bullet />[`cartLinesAdd`](/mutations/cart-lines-add)  <Badge class="secondary" text="mutation"/>
+
+
+

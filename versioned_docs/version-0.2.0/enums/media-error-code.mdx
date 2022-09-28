@@ -1,0 +1,190 @@
+---
+id: media-error-code
+title: MediaErrorCode
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Error types for media.
+
+```graphql
+enum MediaErrorCode {
+  EXTERNAL_VIDEO_EMBED_DISABLED
+  EXTERNAL_VIDEO_EMBED_NOT_FOUND_OR_TRANSCODING
+  EXTERNAL_VIDEO_INVALID_ASPECT_RATIO
+  EXTERNAL_VIDEO_NOT_FOUND
+  EXTERNAL_VIDEO_UNLISTED
+  FILE_STORAGE_LIMIT_EXCEEDED
+  GENERIC_FILE_DOWNLOAD_FAILURE
+  GENERIC_FILE_INVALID_SIZE
+  IMAGE_DOWNLOAD_FAILURE
+  IMAGE_PROCESSING_FAILURE
+  INVALID_IMAGE_ASPECT_RATIO
+  INVALID_IMAGE_FILE_SIZE
+  INVALID_IMAGE_RESOLUTION
+  INVALID_SIGNED_URL
+  MEDIA_TIMEOUT_ERROR
+  MODEL3D_GLB_OUTPUT_CREATION_ERROR
+  MODEL3D_GLB_TO_USDZ_CONVERSION_ERROR
+  MODEL3D_PROCESSING_FAILURE
+  MODEL3D_THUMBNAIL_GENERATION_ERROR
+  MODEL3D_VALIDATION_ERROR
+  UNKNOWN
+  UNSUPPORTED_IMAGE_FILE_TYPE
+  VIDEO_INVALID_FILETYPE_ERROR
+  VIDEO_MAX_DURATION_ERROR
+  VIDEO_MAX_HEIGHT_ERROR
+  VIDEO_MAX_WIDTH_ERROR
+  VIDEO_METADATA_READ_ERROR
+  VIDEO_MIN_DURATION_ERROR
+  VIDEO_MIN_HEIGHT_ERROR
+  VIDEO_MIN_WIDTH_ERROR
+  VIDEO_VALIDATION_ERROR
+}
+```
+
+
+### Values
+
+#### [<code style={{ fontWeight: 'normal' }}>MediaErrorCode.<b>EXTERNAL_VIDEO_EMBED_DISABLED</b></code>](#) 
+> Media could not be created because embed permissions are disabled for this video.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MediaErrorCode.<b>EXTERNAL_VIDEO_EMBED_NOT_FOUND_OR_TRANSCODING</b></code>](#) 
+> Media could not be created because video is either not found or still transcoding.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MediaErrorCode.<b>EXTERNAL_VIDEO_INVALID_ASPECT_RATIO</b></code>](#) 
+> Media could not be created because the external video has an invalid aspect ratio.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MediaErrorCode.<b>EXTERNAL_VIDEO_NOT_FOUND</b></code>](#) 
+> Media could not be created because the external video could not be found.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MediaErrorCode.<b>EXTERNAL_VIDEO_UNLISTED</b></code>](#) 
+> Media could not be created because the external video is not listed or is private.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MediaErrorCode.<b>FILE_STORAGE_LIMIT_EXCEEDED</b></code>](#) 
+> Media could not be created because the cumulative file storage limit would be exceeded.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MediaErrorCode.<b>GENERIC_FILE_DOWNLOAD_FAILURE</b></code>](#) 
+> File could not be processed because the source could not be downloaded.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MediaErrorCode.<b>GENERIC_FILE_INVALID_SIZE</b></code>](#) 
+> File could not be created because the size is too large.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MediaErrorCode.<b>IMAGE_DOWNLOAD_FAILURE</b></code>](#) 
+> Media could not be processed because the image could not be downloaded.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MediaErrorCode.<b>IMAGE_PROCESSING_FAILURE</b></code>](#) 
+> Media could not be processed because the image could not be processed.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MediaErrorCode.<b>INVALID_IMAGE_ASPECT_RATIO</b></code>](#) 
+> Media could not be created because the image has an invalid aspect ratio.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MediaErrorCode.<b>INVALID_IMAGE_FILE_SIZE</b></code>](#) 
+> Media could not be created because the image size is too large.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MediaErrorCode.<b>INVALID_IMAGE_RESOLUTION</b></code>](#) 
+> Media could not be created because the image's resolution exceeds the max limit.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MediaErrorCode.<b>INVALID_SIGNED_URL</b></code>](#) 
+> Media could not be processed because the signed URL was invalid.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MediaErrorCode.<b>MEDIA_TIMEOUT_ERROR</b></code>](#) 
+> Media timed out because it is currently being modified by another operation.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MediaErrorCode.<b>MODEL3D_GLB_OUTPUT_CREATION_ERROR</b></code>](#) 
+> Media could not be created because the model file failed processing.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MediaErrorCode.<b>MODEL3D_GLB_TO_USDZ_CONVERSION_ERROR</b></code>](#) 
+> Media could not be created because the model can't be converted to USDZ format.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MediaErrorCode.<b>MODEL3D_PROCESSING_FAILURE</b></code>](#) 
+> Media could not be created because the model file failed processing.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MediaErrorCode.<b>MODEL3D_THUMBNAIL_GENERATION_ERROR</b></code>](#) 
+> Media could not be created because the model's thumbnail generation failed.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MediaErrorCode.<b>MODEL3D_VALIDATION_ERROR</b></code>](#) 
+> Model failed validation.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MediaErrorCode.<b>UNKNOWN</b></code>](#) 
+> Media error has occured for unknown reason.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MediaErrorCode.<b>UNSUPPORTED_IMAGE_FILE_TYPE</b></code>](#) 
+> Media could not be created because the image is an unsupported file type.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MediaErrorCode.<b>VIDEO_INVALID_FILETYPE_ERROR</b></code>](#) 
+> Media could not be created because it has an invalid file type.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MediaErrorCode.<b>VIDEO_MAX_DURATION_ERROR</b></code>](#) 
+> Media could not be created because it does not meet the maximum duration requirement.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MediaErrorCode.<b>VIDEO_MAX_HEIGHT_ERROR</b></code>](#) 
+> Media could not be created because it does not meet the maximum height requirement.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MediaErrorCode.<b>VIDEO_MAX_WIDTH_ERROR</b></code>](#) 
+> Media could not be created because it does not meet the maximum width requirement.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MediaErrorCode.<b>VIDEO_METADATA_READ_ERROR</b></code>](#) 
+> Media could not be created because the metadata could not be read.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MediaErrorCode.<b>VIDEO_MIN_DURATION_ERROR</b></code>](#) 
+> Media could not be created because it does not meet the minimum duration requirement.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MediaErrorCode.<b>VIDEO_MIN_HEIGHT_ERROR</b></code>](#) 
+> Media could not be created because it does not meet the minimum height requirement.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MediaErrorCode.<b>VIDEO_MIN_WIDTH_ERROR</b></code>](#) 
+> Media could not be created because it does not meet the minimum width requirement.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MediaErrorCode.<b>VIDEO_VALIDATION_ERROR</b></code>](#) 
+> Video failed validation.
+> 
+
+
+
+### Member of
+
+[`FileError`](/objects/file-error)  <Badge class="secondary" text="object"/><Bullet />[`MediaError`](/objects/media-error)  <Badge class="secondary" text="object"/>
+
+
+

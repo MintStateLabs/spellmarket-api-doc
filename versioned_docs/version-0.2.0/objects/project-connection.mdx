@@ -1,0 +1,51 @@
+---
+id: project-connection
+title: ProjectConnection
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+No description
+
+```graphql
+type ProjectConnection {
+  edges: [ProjectEdge!]!
+  nodes: [Project!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>ProjectConnection.<b>edges</b></code>](#)<Bullet />[`[ProjectEdge!]!`](/objects/project-edge) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> A list of edges.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ProjectConnection.<b>nodes</b></code>](#)<Bullet />[`[Project!]!`](/objects/project) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> A list of the nodes contained in ProjectEdge.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ProjectConnection.<b>pageInfo</b></code>](#)<Bullet />[`PageInfo!`](/objects/page-info) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Information to aid in pagination.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ProjectConnection.<b>totalCount</b></code>](#)<Bullet />[`Int!`](/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Identifies the total count of items in the connection.
+> 
+
+
+
+
+

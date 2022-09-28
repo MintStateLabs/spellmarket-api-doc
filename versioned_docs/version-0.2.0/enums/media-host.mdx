@@ -1,0 +1,45 @@
+---
+id: media-host
+title: MediaHost
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Host for a Media Resource.
+
+```graphql
+enum MediaHost {
+  VIMEO
+  YOUTUBE
+}
+```
+
+
+### Values
+
+#### [<code style={{ fontWeight: 'normal' }}>MediaHost.<b>VIMEO</b></code>](#) 
+> Host for Vimeo embedded videos.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MediaHost.<b>YOUTUBE</b></code>](#) 
+> Host for YouTube embedded videos.
+> 
+
+
+
+### Member of
+
+[`ExternalVideo`](/objects/external-video)  <Badge class="secondary" text="object"/>
+
+
+

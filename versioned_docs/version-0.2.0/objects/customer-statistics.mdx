@@ -1,0 +1,40 @@
+---
+id: customer-statistics
+title: CustomerStatistics
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+A customer's computed statistics.
+
+```graphql
+type CustomerStatistics {
+  predictedSpendTier: CustomerPredictedSpendTier
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>CustomerStatistics.<b>predictedSpendTier</b></code>](#)<Bullet />[`CustomerPredictedSpendTier`](/enums/customer-predicted-spend-tier) <Badge class="secondary" text="enum"/>
+> The predicted spend tier of a customer with a shop.
+> 
+
+
+
+### Member of
+
+[`Customer`](/objects/customer)  <Badge class="secondary" text="object"/>
+
+
+

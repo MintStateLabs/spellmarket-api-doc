@@ -1,0 +1,55 @@
+---
+id: vault-web-3-wallet
+title: VaultWeb3Wallet
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Represents a web3 wallet billing agreement payment instrument.
+
+```graphql
+type VaultWeb3Wallet {
+  connected: Boolean!
+  walletName: String!
+  walletAddress: String!
+  chains: [Settlement!]!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>VaultWeb3Wallet.<b>connected</b></code>](#)<Bullet />[`Boolean!`](/scalars/boolean) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Whether the web3 wallet connection active
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>VaultWeb3Wallet.<b>walletName</b></code>](#)<Bullet />[`String!`](/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The name for wallet account name.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>VaultWeb3Wallet.<b>walletAddress</b></code>](#)<Bullet />[`String!`](/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The wallet account email address.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>VaultWeb3Wallet.<b>chains</b></code>](#)<Bullet />[`[Settlement!]!`](/enums/settlement) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> The wallet Chains
+> 
+
+
+
+### Implemented by
+
+[`PaymentInstrument`](/unions/payment-instrument)  <Badge class="secondary" text="union"/>
+
+
+

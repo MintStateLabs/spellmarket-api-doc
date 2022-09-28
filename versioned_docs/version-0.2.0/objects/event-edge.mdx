@@ -1,0 +1,45 @@
+---
+id: event-edge
+title: EventEdge
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+No description
+
+```graphql
+type EventEdge {
+  cursor: String!
+  node: Event!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>EventEdge.<b>cursor</b></code>](#)<Bullet />[`String!`](/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> A cursor for use in pagination.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>EventEdge.<b>node</b></code>](#)<Bullet />[`Event!`](/interfaces/event) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="interface"/>
+> The item at the end of EventEdge.
+> 
+
+
+
+### Member of
+
+[`EventConnection`](/objects/event-connection)  <Badge class="secondary" text="object"/>
+
+
+

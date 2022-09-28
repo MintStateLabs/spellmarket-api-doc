@@ -1,0 +1,32 @@
+---
+id: wallet-address
+title: WalletAddress
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+A Blockchain Wallet Address
+
+```graphql
+scalar WalletAddress
+```
+
+
+
+
+### Member of
+
+[`CustomerStripeWallet`](/objects/customer-stripe-wallet)  <Badge class="secondary" text="object"/><Bullet />[`CustomerWeb3Wallet`](/objects/customer-web-3-wallet)  <Badge class="secondary" text="object"/><Bullet />[`Order`](/objects/order)  <Badge class="secondary" text="object"/><Bullet />[`WalletPaymentInput`](/inputs/wallet-payment-input)  <Badge class="secondary" text="input"/>
+
+
+

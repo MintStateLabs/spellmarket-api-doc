@@ -1,0 +1,50 @@
+---
+id: checkout-buyer-identity
+title: CheckoutBuyerIdentity
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+The identity of the customer associated with the checkout.
+
+```graphql
+type CheckoutBuyerIdentity {
+  countryCode: CountryCode
+  customer: Customer
+  email: String
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>CheckoutBuyerIdentity.<b>countryCode</b></code>](#)<Bullet />[`CountryCode`](/enums/country-code) <Badge class="secondary" text="enum"/>
+> The country code for the checkout. For example, CA.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CheckoutBuyerIdentity.<b>customer</b></code>](#)<Bullet />[`Customer`](/objects/customer) <Badge class="secondary" text="object"/>
+> The customer account associated with the checkout.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CheckoutBuyerIdentity.<b>email</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> The email address of the buyer that is interacting with the checkout.
+> 
+
+
+
+### Member of
+
+[`Checkout`](/objects/checkout)  <Badge class="secondary" text="object"/>
+
+
+

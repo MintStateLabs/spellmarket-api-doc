@@ -1,0 +1,468 @@
+---
+id: order
+title: Order
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+A customers request to purchase one or more products
+
+```graphql
+type Order implements Node {
+  alerts: [ResourceAlert!]!
+  salesChannel: SalesChannel
+  subChannel: SalesChannel
+  canNotifyCustomer: Boolean!
+  cancelReason: OrderCancelReason
+  cancelledAt: DateTime
+  cartDiscountAmountSet: SchmecklePouch
+  clientIP: String
+  closed: Boolean!
+  closedAt: DateTime
+  confirmed: Boolean!
+  createdAt: DateTime!
+  currencyCode: CurrencyCode!
+  currentCartDiscountAmountSet: SchmecklePouch!
+  currentSubtotalLineItemsQuantity: Int!
+  currentSubtotalPriceSet: SchmecklePouch!
+  currentTaxLines: TaxLine
+  currentTotalDiscountsSet: SchmecklePouch!
+  currentTotalPriceSet: SchmecklePouch!
+  currentTotalTaxSet: SchmecklePouch!
+  customer: Customer
+  customerAcceptsMarketing: Boolean!
+  customerLocale: String
+  displayAddress: WalletAddress!
+  email: String
+  estimatedTaxes: Boolean!
+  financialStatus: OrderFinancialStatus
+  fulfillable: Boolean!
+  fulfillmentStatus: OrderFulfillmentStatus!
+  fullyPaid: Boolean!
+  id: ID!
+  note: String
+  originalTotalPriceSet: SchmecklePouch!
+  paymentCollectionDetails: OrderPaymentCollectionDetails!
+  paymentGatewayNames: String!
+  presentmentCurrencyCode: CurrencyCode!
+  processedAt: DateTime
+  publication: Publication
+  registeredSourceUrl: URL
+  restockable: Boolean!
+  riskLevel: OrderRiskLevel!
+  risks: [OrderRisk!]!
+  sourceIdentifier: String
+  subtotalLineItemsQuantity: Int!
+  subtotalPriceSet: SchmecklePouch
+  tags: String!
+  taxLines: [TaxLine!]!
+  taxesIncluded: Boolean!
+  test: Boolean!
+  totalOutstandingSet: SchmecklePouch!
+  totalPriceSet: SchmecklePouch!
+  totalReceivedSet: SchmecklePouch!
+  totalTaxSet: SchmecklePouch
+  transactions(
+  first: Int
+): [OrderTransaction!]!
+  unpaid: Boolean!
+  updatedAt: DateTime!
+  events(
+  first: Int
+  after: String
+  last: Int
+  before: String
+  reverse: Boolean = false
+  sortKey: EventSortKeys = ID
+  query: String
+): EventConnection!
+  fulfillments(
+  first: Int
+  after: String
+  last: Int
+  before: String
+  reverse: Boolean = false
+): FulfillmentConnection!
+  lineItems(
+  first: Int
+  after: String
+  last: Int
+  before: String
+  reverse: Boolean = false
+): LineItemConnection!
+  nonFulfillableLineItems(
+  first: Int
+  after: String
+  last: Int
+  before: String
+  reverse: Boolean = false
+  query: String
+): LineItemConnection!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>alerts</b></code>](#)<Bullet />[`[ResourceAlert!]!`](/objects/resource-alert) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> A list of messages that appear on the order page in the dashboard admin.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>salesChannel</b></code>](#)<Bullet />[`SalesChannel`](/objects/sales-channel) <Badge class="secondary" text="object"/>
+> The SalesChannel that created the order.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>subChannel</b></code>](#)<Bullet />[`SalesChannel`](/objects/sales-channel) <Badge class="secondary" text="object"/>
+> The subchannel that created the order.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>canNotifyCustomer</b></code>](#)<Bullet />[`Boolean!`](/scalars/boolean) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Whether a customer email exists for the order.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>cancelReason</b></code>](#)<Bullet />[`OrderCancelReason`](/enums/order-cancel-reason) <Badge class="secondary" text="enum"/>
+> The reason provided when the order was canceled. Returns null if the order wasn't canceled.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>cancelledAt</b></code>](#)<Bullet />[`DateTime`](/scalars/date-time) <Badge class="secondary" text="scalar"/>
+> The date and time when the order was canceled. Returns null if the order wasn't canceled.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>cartDiscountAmountSet</b></code>](#)<Bullet />[`SchmecklePouch`](/objects/schmeckle-pouch) <Badge class="secondary" text="object"/>
+> The total order-level discount amount, before returns, in shop and presentment currencies.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>clientIP</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> The IP address of the API client that created the order.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>closed</b></code>](#)<Bullet />[`Boolean!`](/scalars/boolean) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Whether the order is closed.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>closedAt</b></code>](#)<Bullet />[`DateTime`](/scalars/date-time) <Badge class="secondary" text="scalar"/>
+> The date and time when the order was closed. Returns null if the order is not closed.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>confirmed</b></code>](#)<Bullet />[`Boolean!`](/scalars/boolean) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Whether inventory has been reserved for the order.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>createdAt</b></code>](#)<Bullet />[`DateTime!`](/scalars/date-time) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Date and time when the order was created.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>currencyCode</b></code>](#)<Bullet />[`CurrencyCode!`](/enums/currency-code) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> The shop currency when the order was placed.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>currentCartDiscountAmountSet</b></code>](#)<Bullet />[`SchmecklePouch!`](/objects/schmeckle-pouch) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The current order-level discount amount after all order updates, in shop and presentment currencies.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>currentSubtotalLineItemsQuantity</b></code>](#)<Bullet />[`Int!`](/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The sum of the quantities for all line items that contribute to the order's current subtotal price.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>currentSubtotalPriceSet</b></code>](#)<Bullet />[`SchmecklePouch!`](/objects/schmeckle-pouch) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The sum of the prices for all line items after discounts and returns, in shop and presentment currencies.
+If taxesIncluded is true, then the subtotal also includes tax.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>currentTaxLines</b></code>](#)<Bullet />[`TaxLine`](/objects/tax-line) <Badge class="secondary" text="object"/>
+> A list of all tax lines applied to line items on the order, after returns. Tax line prices represent the total price
+for all tax lines with the same rate and title.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>currentTotalDiscountsSet</b></code>](#)<Bullet />[`SchmecklePouch!`](/objects/schmeckle-pouch) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The total amount discounted on the order after returns, in shop and presentment currencies. This includes both order
+and line level discounts.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>currentTotalPriceSet</b></code>](#)<Bullet />[`SchmecklePouch!`](/objects/schmeckle-pouch) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The total price of the order, after returns, in shop and presentment currencies. This includes taxes and discounts.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>currentTotalTaxSet</b></code>](#)<Bullet />[`SchmecklePouch!`](/objects/schmeckle-pouch) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The sum of the prices of all tax lines applied to line items on the order, after returns, in shop and presentment
+currencies.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>customer</b></code>](#)<Bullet />[`Customer`](/objects/customer) <Badge class="secondary" text="object"/>
+> The customer that placed the order.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>customerAcceptsMarketing</b></code>](#)<Bullet />[`Boolean!`](/scalars/boolean) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Whether the customer agreed to receive marketing materials.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>customerLocale</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> A two-letter or three-letter language code, optionally followed by a region modifier.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>displayAddress</b></code>](#)<Bullet />[`WalletAddress!`](/scalars/wallet-address) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The primary wallet address of the customer.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>email</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> The email address associated with the customer.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>estimatedTaxes</b></code>](#)<Bullet />[`Boolean!`](/scalars/boolean) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Whether taxes on the order are estimated. This field returns false when taxes on the order are finalized and aren't
+subject to any changes.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>financialStatus</b></code>](#)<Bullet />[`OrderFinancialStatus`](/enums/order-financial-status) <Badge class="secondary" text="enum"/>
+> The financial status of the order that can be shown to the merchant.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>fulfillable</b></code>](#)<Bullet />[`Boolean!`](/scalars/boolean) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Whether there are line items that can be fulfilled. This field returns false when the order has no fulfillable line
+items. For a more granular view of the fulfillment status, refer to the FulfillmentOrder object.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>fulfillmentStatus</b></code>](#)<Bullet />[`OrderFulfillmentStatus!`](/enums/order-fulfillment-status) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> The fulfillment status for the order that can be shown to the merchant.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>fullyPaid</b></code>](#)<Bullet />[`Boolean!`](/scalars/boolean) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Whether the order has been paid in full.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>id</b></code>](#)<Bullet />[`ID!`](/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> A globally-unique identifier.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>note</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> The contents of the note associated with the order.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>originalTotalPriceSet</b></code>](#)<Bullet />[`SchmecklePouch!`](/objects/schmeckle-pouch) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The total price of the order at the time of order creation, in shop and presentment currencies.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>paymentCollectionDetails</b></code>](#)<Bullet />[`OrderPaymentCollectionDetails!`](/objects/order-payment-collection-details) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The payment collection details for the order.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>paymentGatewayNames</b></code>](#)<Bullet />[`String!`](/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> A list of the names of all payment gateways used for the order. E.g. Stripe or Web3
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>presentmentCurrencyCode</b></code>](#)<Bullet />[`CurrencyCode!`](/enums/currency-code) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> The payment CurrencyCode of the customer for the order.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>processedAt</b></code>](#)<Bullet />[`DateTime`](/scalars/date-time) <Badge class="secondary" text="scalar"/>
+> The date and time when the order was processed. This date and time might not match the date and time when the order
+was created.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>publication</b></code>](#)<Bullet />[`Publication`](/objects/publication) <Badge class="secondary" text="object"/>
+> The publication that the order was created from.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>registeredSourceUrl</b></code>](#)<Bullet />[`URL`](/scalars/url) <Badge class="secondary" text="scalar"/>
+> The URL of the source that the order originated from, if found in the domain registry.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>restockable</b></code>](#)<Bullet />[`Boolean!`](/scalars/boolean) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Whether any line item on the order can be restocked.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>riskLevel</b></code>](#)<Bullet />[`OrderRiskLevel!`](/enums/order-risk-level) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> The fraud risk level of the order.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>risks</b></code>](#)<Bullet />[`[OrderRisk!]!`](/objects/order-risk) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> A list of risks associated with the order.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>sourceIdentifier</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> A unique POS or third party order identifier.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>subtotalLineItemsQuantity</b></code>](#)<Bullet />[`Int!`](/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The sum of the quantities for all line items that contribute to the order's subtotal price.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>subtotalPriceSet</b></code>](#)<Bullet />[`SchmecklePouch`](/objects/schmeckle-pouch) <Badge class="secondary" text="object"/>
+> The sum of the prices for all line items after discounts and before returns, in shop and presentment currencies.
+If taxesIncluded is true, then the subtotal also includes tax.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>tags</b></code>](#)<Bullet />[`String!`](/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> A comma separated list of tags associated with the order. Updating tags overwrites any existing tags that were
+previously added to the order. To add new tags without overwriting existing tags, use the tagsAdd mutation.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>taxLines</b></code>](#)<Bullet />[`[TaxLine!]!`](/objects/tax-line) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> A list of all tax lines applied to line items on the order, before returns. Tax line prices represent the total
+price for all tax lines with the same rate and title.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>taxesIncluded</b></code>](#)<Bullet />[`Boolean!`](/scalars/boolean) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Whether taxes are included in the subtotal price of the order.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>test</b></code>](#)<Bullet />[`Boolean!`](/scalars/boolean) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Whether the order is a test. Test orders are made using testnet or a payment provider with test mode enabled.
+A test order cannot be converted into a real order and vice versa.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>totalOutstandingSet</b></code>](#)<Bullet />[`SchmecklePouch!`](/objects/schmeckle-pouch) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The total amount not yet transacted for the order, in shop and presentment currencies.
+A positive value indicates a difference in the merchant's favor (payment from customer to merchant).
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>totalPriceSet</b></code>](#)<Bullet />[`SchmecklePouch!`](/objects/schmeckle-pouch) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The total price of the order, before returns, in shop and presentment currencies. This includes taxes and discounts.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>totalReceivedSet</b></code>](#)<Bullet />[`SchmecklePouch!`](/objects/schmeckle-pouch) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The total amount received from the customer before returns, in shop and presentment currencies.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>totalTaxSet</b></code>](#)<Bullet />[`SchmecklePouch`](/objects/schmeckle-pouch) <Badge class="secondary" text="object"/>
+> The total tax amount before returns, in shop and presentment currencies.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>transactions</b></code>](#)<Bullet />[`[OrderTransaction!]!`](/objects/order-transaction) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> A list of transactions associated with the order.
+> ##### [<code style={{ fontWeight: 'normal' }}>Order.transactions.<b>first</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> Truncate the array result to this size.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>unpaid</b></code>](#)<Bullet />[`Boolean!`](/scalars/boolean) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Whether no payments have been made for the order.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>updatedAt</b></code>](#)<Bullet />[`DateTime!`](/scalars/date-time) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The date and time when the order was modified last.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>events</b></code>](#)<Bullet />[`EventConnection!`](/objects/event-connection) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> A list of events associated with the order.
+> ##### [<code style={{ fontWeight: 'normal' }}>Order.events.<b>first</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Order.events.<b>after</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Order.events.<b>last</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Order.events.<b>before</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Order.events.<b>reverse</b></code>](#)<Bullet />[`Boolean`](/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Order.events.<b>sortKey</b></code>](#)<Bullet />[`EventSortKeys`](/enums/event-sort-keys) <Badge class="secondary" text="enum"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Order.events.<b>query</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>fulfillments</b></code>](#)<Bullet />[`FulfillmentConnection!`](/objects/fulfillment-connection) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> List of fulfillments for the order.
+> ##### [<code style={{ fontWeight: 'normal' }}>Order.fulfillments.<b>first</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Order.fulfillments.<b>after</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Order.fulfillments.<b>last</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Order.fulfillments.<b>before</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Order.fulfillments.<b>reverse</b></code>](#)<Bullet />[`Boolean`](/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>lineItems</b></code>](#)<Bullet />[`LineItemConnection!`](/objects/line-item-connection) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> A list of the order's line items.
+> ##### [<code style={{ fontWeight: 'normal' }}>Order.lineItems.<b>first</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Order.lineItems.<b>after</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Order.lineItems.<b>last</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Order.lineItems.<b>before</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Order.lineItems.<b>reverse</b></code>](#)<Bullet />[`Boolean`](/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>nonFulfillableLineItems</b></code>](#)<Bullet />[`LineItemConnection!`](/objects/line-item-connection) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> A list of line items that can't be fulfilled.
+> ##### [<code style={{ fontWeight: 'normal' }}>Order.nonFulfillableLineItems.<b>first</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Order.nonFulfillableLineItems.<b>after</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Order.nonFulfillableLineItems.<b>last</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Order.nonFulfillableLineItems.<b>before</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Order.nonFulfillableLineItems.<b>reverse</b></code>](#)<Bullet />[`Boolean`](/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Order.nonFulfillableLineItems.<b>query</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+### Interfaces
+
+#### [`Node`](/interfaces/node) <Badge class="secondary" text="interface"/>
+> An interface for standard IDs. This is standard naming for this type of interface in Graphql
+> 
+
+
+
+### Member of
+
+[`Checkout`](/objects/checkout)  <Badge class="secondary" text="object"/><Bullet />[`Customer`](/objects/customer)  <Badge class="secondary" text="object"/><Bullet />[`OrderConnection`](/objects/order-connection)  <Badge class="secondary" text="object"/><Bullet />[`OrderEdge`](/objects/order-edge)  <Badge class="secondary" text="object"/><Bullet />[`OrderTransaction`](/objects/order-transaction)  <Badge class="secondary" text="object"/><Bullet />[`QueryRoot`](/objects/query-root)  <Badge class="secondary" text="object"/>
+
+
+

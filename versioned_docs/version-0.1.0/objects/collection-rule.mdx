@@ -1,0 +1,50 @@
+---
+id: collection-rule
+title: CollectionRule
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Represents at rule that's used to assign products to a collection.
+
+```graphql
+type CollectionRule {
+  column: CollectionRuleColumn!
+  condition: String!
+  relation: CollectionRuleRelation!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>CollectionRule.<b>column</b></code>](#)<Bullet />[`CollectionRuleColumn!`](/enums/collection-rule-column) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> The attribute that the rule focuses on. For example, title or product_type.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CollectionRule.<b>condition</b></code>](#)<Bullet />[`String!`](/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The value that the operator is applied to. For example, Hats.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CollectionRule.<b>relation</b></code>](#)<Bullet />[`CollectionRuleRelation!`](/enums/collection-rule-relation) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> The type of operator that the rule is based on. For example, equals, contains, or not_equals.
+> 
+
+
+
+### Member of
+
+[`CollectionRuleSet`](/objects/collection-rule-set)  <Badge class="secondary" text="object"/>
+
+
+

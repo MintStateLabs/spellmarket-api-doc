@@ -1,0 +1,46 @@
+---
+id: failed-requirement
+title: FailedRequirement
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Requirements that must be met before an project can be available on SpellMarket
+
+```graphql
+type FailedRequirement {
+  action: NavigationItem
+  message: [String!]!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>FailedRequirement.<b>action</b></code>](#)<Bullet />[`NavigationItem`](/objects/navigation-item) <Badge class="secondary" text="object"/>
+> Action to be taken to resolve a failed requirement, including URL link.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>FailedRequirement.<b>message</b></code>](#)<Bullet />[`[String!]!`](/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> A concise set of strings to be displayed to organizations, to guide them in resolving problems encountered with
+publishing project
+> 
+
+
+
+### Member of
+
+[`Project`](/objects/project)  <Badge class="secondary" text="object"/>
+
+
+

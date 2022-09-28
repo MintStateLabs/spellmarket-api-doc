@@ -1,0 +1,60 @@
+---
+id: cart-delivery-option
+title: CartDeliveryOption
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Information about a delivery option.
+
+```graphql
+type CartDeliveryOption {
+  code: String
+  deliveryMethodType: DeliveryMethodType!
+  description: String
+  estimatedCost: Schmeckle!
+  title: String
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>CartDeliveryOption.<b>code</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> The code of the delivery option.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CartDeliveryOption.<b>deliveryMethodType</b></code>](#)<Bullet />[`DeliveryMethodType!`](/enums/delivery-method-type) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> The method for the delivery option.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CartDeliveryOption.<b>description</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> The description of the delivery option.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CartDeliveryOption.<b>estimatedCost</b></code>](#)<Bullet />[`Schmeckle!`](/objects/schmeckle) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The estimated gas cost for delivery option.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CartDeliveryOption.<b>title</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> The title of the delivery option.
+> 
+
+
+
+### Member of
+
+[`CartDeliveryGroup`](/objects/cart-delivery-group)  <Badge class="secondary" text="object"/>
+
+
+

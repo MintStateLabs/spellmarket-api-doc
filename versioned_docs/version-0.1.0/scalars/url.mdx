@@ -1,0 +1,32 @@
+---
+id: url
+title: URL
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+A RFC 3986 and 3987 compliant URL String
+
+```graphql
+scalar URL
+```
+
+
+
+
+### Member of
+
+[`Cart`](/objects/cart)  <Badge class="secondary" text="object"/><Bullet />[`Checkout`](/objects/checkout)  <Badge class="secondary" text="object"/><Bullet />[`Customer`](/objects/customer)  <Badge class="secondary" text="object"/><Bullet />[`ExternalVideo`](/objects/external-video)  <Badge class="secondary" text="object"/><Bullet />[`GenericFile`](/objects/generic-file)  <Badge class="secondary" text="object"/><Bullet />[`Image`](/objects/image)  <Badge class="secondary" text="object"/><Bullet />[`Model3dSource`](/objects/model-3-d-source)  <Badge class="secondary" text="object"/><Bullet />[`NavigationItem`](/objects/navigation-item)  <Badge class="secondary" text="object"/><Bullet />[`Order`](/objects/order)  <Badge class="secondary" text="object"/><Bullet />[`OrderPaymentCollectionDetails`](/objects/order-payment-collection-details)  <Badge class="secondary" text="object"/><Bullet />[`Payment`](/objects/payment)  <Badge class="secondary" text="object"/><Bullet />[`Product`](/objects/product)  <Badge class="secondary" text="object"/><Bullet />[`Project`](/objects/project)  <Badge class="secondary" text="object"/><Bullet />[`ResourceAlertAction`](/objects/resource-alert-action)  <Badge class="secondary" text="object"/><Bullet />[`StagedMediaUploadTarget`](/objects/staged-media-upload-target)  <Badge class="secondary" text="object"/><Bullet />[`VideoSource`](/objects/video-source)  <Badge class="secondary" text="object"/>
+
+
+

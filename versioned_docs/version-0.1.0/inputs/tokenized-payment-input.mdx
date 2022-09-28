@@ -1,0 +1,69 @@
+---
+id: tokenized-payment-input
+title: TokenizedPaymentInput
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Specifies the fields required to complete a checkout with a tokenized payment. Used for integration with to process
+fiat via Stripe Payment Gateway.
+
+```graphql
+input TokenizedPaymentInput {
+  billingAddress: MailingAddressInput!
+  paymentAmount: SchmeckleInput!
+  idempotencyKey: String!
+  paymentData: String!
+  test: Boolean
+  type: TokenizedPaymentType!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>TokenizedPaymentInput.<b>billingAddress</b></code>](#)<Bullet />[`MailingAddressInput!`](/inputs/mailing-address-input) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="input"/>
+> The billing address for the payment.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>TokenizedPaymentInput.<b>paymentAmount</b></code>](#)<Bullet />[`SchmeckleInput!`](/inputs/schmeckle-input) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="input"/>
+> The amount and currency of the payment.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>TokenizedPaymentInput.<b>idempotencyKey</b></code>](#)<Bullet />[`String!`](/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> A unique client generated key used to avoid duplicate charges. When a duplicate payment is found,
+the original is returned instead of creating a new one. For more information, refer to Idempotent requests.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>TokenizedPaymentInput.<b>paymentData</b></code>](#)<Bullet />[`String!`](/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> A simple string or JSON containing the required payment data for the tokenized payment.
+Tokenization for via Stripe performed via their API  https://stripe.com/docs/api/tokens/create_card
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>TokenizedPaymentInput.<b>test</b></code>](#)<Bullet />[`Boolean`](/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> Whether to execute the payment in test mode, if possible. Test mode is not supported in production stores.
+Defaults to false.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>TokenizedPaymentInput.<b>type</b></code>](#)<Bullet />[`TokenizedPaymentType!`](/enums/tokenized-payment-type) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> The type of payment token.
+> 
+
+
+
+### Member of
+
+[`checkoutCompleteWithTokenizedPayment`](/mutations/checkout-complete-with-tokenized-payment)  <Badge class="secondary" text="mutation"/>
+
+
+

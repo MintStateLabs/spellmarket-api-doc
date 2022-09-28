@@ -1,0 +1,46 @@
+---
+id: project-developer-type
+title: ProjectDeveloperType
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Possible types of project developer.
+
+```graphql
+enum ProjectDeveloperType {
+  PARTNER
+  MSL
+  UNKNOWN
+}
+```
+
+
+### Values
+
+#### [<code style={{ fontWeight: 'normal' }}>ProjectDeveloperType.<b>PARTNER</b></code>](#) 
+> Indicates the project developer is a Partner with MSL.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ProjectDeveloperType.<b>MSL</b></code>](#) 
+> Indicates the project developer is Mint State Labs
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ProjectDeveloperType.<b>UNKNOWN</b></code>](#) 
+> Indicates the project developer is unknown. It is not categorized as any of the other developer types.
+> 
+
+
+
+
+

@@ -1,0 +1,64 @@
+---
+id: file
+title: File
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+A file interface.
+
+```graphql
+interface File {
+  alt: String
+  createdAt: DateTime!
+  fileErrors: [FileError!]!
+  fileStatus: FileStatus!
+  preview: MediaPreviewImage
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>File.<b>alt</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> A word or phrase to describe the contents or the function of a file.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>File.<b>createdAt</b></code>](#)<Bullet />[`DateTime!`](/scalars/date-time) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The date and time (ISO 8601 format) when the file was created.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>File.<b>fileErrors</b></code>](#)<Bullet />[`[FileError!]!`](/objects/file-error) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Any errors that have occurred on the file.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>File.<b>fileStatus</b></code>](#)<Bullet />[`FileStatus!`](/enums/file-status) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> The status of the file.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>File.<b>preview</b></code>](#)<Bullet />[`MediaPreviewImage`](/objects/media-preview-image) <Badge class="secondary" text="object"/>
+> The preview image for the media.
+> 
+
+
+
+### Member of
+
+[`FileConnection`](/objects/file-connection)  <Badge class="secondary" text="object"/><Bullet />[`FileEdge`](/objects/file-edge)  <Badge class="secondary" text="object"/>
+
+### Implemented by
+
+[`GenericFile`](/objects/generic-file)  <Badge class="secondary" text="object"/><Bullet />[`MediaImage`](/objects/media-image)  <Badge class="secondary" text="object"/><Bullet />[`Video`](/objects/video)  <Badge class="secondary" text="object"/>
+
+
+

@@ -1,0 +1,61 @@
+---
+id: model-3-d-source
+title: Model3dSource
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+A source for a hosted 3d model.
+
+Types of sources include GLB and USDZ formatted 3d models, where the former is an original 3d model and the latter has
+been converted from the original.
+
+If the original source is in GLB format and over 15 MBs in size, then both the original and the USDZ formatted source
+are optimized to reduce the file size.
+
+```graphql
+type Model3dSource {
+  filesize: Int!
+  format: String!
+  mimeType: String!
+  url: URL!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>Model3dSource.<b>filesize</b></code>](#)<Bullet />[`Int!`](/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The 3d model source's filesize.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Model3dSource.<b>format</b></code>](#)<Bullet />[`String!`](/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The 3d model source's format.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Model3dSource.<b>mimeType</b></code>](#)<Bullet />[`String!`](/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The 3d model source's MIME type.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Model3dSource.<b>url</b></code>](#)<Bullet />[`URL!`](/scalars/url) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The 3d model source's URL.
+> 
+
+
+
+### Member of
+
+[`Model3d`](/objects/model-3-d)  <Badge class="secondary" text="object"/>
+
+
+

@@ -1,0 +1,106 @@
+---
+id: video
+title: Video
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+A hosted video.
+
+```graphql
+type Video implements Media, File {
+  id: ID!
+  alt: String
+  createdAt: DateTime!
+  duration: Int
+  fileErrors: [FileError!]!
+  fileStatus: FileStatus!
+  mediaContentType: MediaContentType!
+  mediaErrors: [MediaError!]!
+  mediaWarnings: [MediaWarning!]!
+  preview: MediaPreviewImage
+  status: MediaStatus!
+  sources: [VideoSource!]!
+  source: VideoSource
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>Video.<b>id</b></code>](#)<Bullet />[`ID!`](/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> A globally-unique identifier.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Video.<b>alt</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> A word or phrase to share the nature or contents of a media.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Video.<b>createdAt</b></code>](#)<Bullet />[`DateTime!`](/scalars/date-time) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> A date and time the file was created
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Video.<b>duration</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> The video's duration in milliseconds. This value is null unless the video's status field is READY.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Video.<b>fileErrors</b></code>](#)<Bullet />[`[FileError!]!`](/objects/file-error) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Any errors that have occurred on the file.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Video.<b>fileStatus</b></code>](#)<Bullet />[`FileStatus!`](/enums/file-status) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> The status of the file.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Video.<b>mediaContentType</b></code>](#)<Bullet />[`MediaContentType!`](/enums/media-content-type) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> The media content type.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Video.<b>mediaErrors</b></code>](#)<Bullet />[`[MediaError!]!`](/objects/media-error) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Any errors which have occurred on the media.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Video.<b>mediaWarnings</b></code>](#)<Bullet />[`[MediaWarning!]!`](/objects/media-warning) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The warnings attached to the media.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Video.<b>preview</b></code>](#)<Bullet />[`MediaPreviewImage`](/objects/media-preview-image) <Badge class="secondary" text="object"/>
+> The preview image for the media.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Video.<b>status</b></code>](#)<Bullet />[`MediaStatus!`](/enums/media-status) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> Current status of the media.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Video.<b>sources</b></code>](#)<Bullet />[`[VideoSource!]!`](/objects/video-source) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The video's sources. This value is empty unless the video's status field is READY.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Video.<b>source</b></code>](#)<Bullet />[`VideoSource`](/objects/video-source) <Badge class="secondary" text="object"/>
+> The video's original source. This value is null unless the video's status field is READY.
+> 
+
+### Interfaces
+
+#### [`Media`](/interfaces/media) <Badge class="secondary" text="interface"/>
+> Represents a media interface
+> 
+
+#### [`File`](/interfaces/file) <Badge class="secondary" text="interface"/>
+> A file interface.
+> 
+
+
+
+
+

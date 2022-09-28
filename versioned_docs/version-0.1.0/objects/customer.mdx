@@ -1,0 +1,299 @@
+---
+id: customer
+title: Customer
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Represents information about a customer of the Project, such as the customer's contact details, their order
+history, and whether they've agreed to receive marketing material by email.
+
+Caution: Only use this data if it's required for your Project's functionality. will restrict access to scopes for apps that
+don't have a legitimate use for the associated data.
+
+```graphql
+type Customer implements HasEvents, Node {
+  Settlements(
+  first: Int
+): [Settlement!]!
+  amountSpent(
+  currency: CurrencyCode
+): Schmeckle!
+  averageOrderAmount: Schmeckle
+  canDelete: Boolean!
+  createdAt: DateTime!
+  displayName: String!
+  email: String
+  emailMarketingConsent: CustomerEmailMarketingConsentState
+  events(
+  first: Int
+  after: String
+  last: Int
+  before: String
+  reverse: Boolean = false
+  sortKey: EventSortKeys = ID
+  query: String
+): EventConnection!
+  firstName: String
+  id: ID!
+  image: Image!
+  lastName: String
+  lastOrder: Order
+  lifetimeDuration: String!
+  locale: String!
+  multipassIdentifier: String
+  numberOfOrders: UnsignedInt64!
+  orders(
+  first: Int
+  after: String
+  last: Int
+  before: String
+  reverse: Boolean = false
+  sortKey: OrderSortKeys = ID
+  query: String
+): OrderConnection!
+  paymentMethods(
+  showRevoked: Boolean = false
+  first: Int
+  after: String
+  last: Int
+  before: String
+  reverse: Boolean = false
+): CustomerPaymentMethodConnection!
+  state: CustomerState!
+  statistics: CustomerStatistics!
+  tags: [String!]!
+  unsubscribeUrl: URL!
+  updatedAt: DateTime!
+  validEmailAddress: Boolean!
+  verifiedEmail: Boolean!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>Customer.<b>Settlements</b></code>](#)<Bullet />[`[Settlement!]!`](/enums/settlement) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> Settlement types associated with the customer.
+> ##### [<code style={{ fontWeight: 'normal' }}>Customer.Settlements.<b>first</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Customer.<b>amountSpent</b></code>](#)<Bullet />[`Schmeckle!`](/objects/schmeckle) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The total amount that the customer has spent on orders in their lifetime.
+> ##### [<code style={{ fontWeight: 'normal' }}>Customer.amountSpent.<b>currency</b></code>](#)<Bullet />[`CurrencyCode`](/enums/currency-code) <Badge class="secondary" text="enum"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Customer.<b>averageOrderAmount</b></code>](#)<Bullet />[`Schmeckle`](/objects/schmeckle) <Badge class="secondary" text="object"/>
+> The average amount that the customer spent per order.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Customer.<b>canDelete</b></code>](#)<Bullet />[`Boolean!`](/scalars/boolean) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Whether the app can delete the customer from their store.
+
+A customer can be deleted from a store only if they have not yet made an order. After a customer makes an
+order, they can't be deleted from a store
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Customer.<b>createdAt</b></code>](#)<Bullet />[`DateTime!`](/scalars/date-time) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The date and time when the customer was added to the store.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Customer.<b>displayName</b></code>](#)<Bullet />[`String!`](/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The full name of the customer, based on the values for first_name and last_name. If the first_name and
+last_name are not available, then this falls back to the customer's email address.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Customer.<b>email</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> The customer's email address.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Customer.<b>emailMarketingConsent</b></code>](#)<Bullet />[`CustomerEmailMarketingConsentState`](/objects/customer-email-marketing-consent-state) <Badge class="secondary" text="object"/>
+> The current email marketing state for the customer.
+If the customer doesn't have an email address, then this property is null
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Customer.<b>events</b></code>](#)<Bullet />[`EventConnection!`](/objects/event-connection) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> A list of events associated with the customer.
+> ##### [<code style={{ fontWeight: 'normal' }}>Customer.events.<b>first</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Customer.events.<b>after</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Customer.events.<b>last</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Customer.events.<b>before</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Customer.events.<b>reverse</b></code>](#)<Bullet />[`Boolean`](/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Customer.events.<b>sortKey</b></code>](#)<Bullet />[`EventSortKeys`](/enums/event-sort-keys) <Badge class="secondary" text="enum"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Customer.events.<b>query</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Customer.<b>firstName</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> The customer's first name if available
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Customer.<b>id</b></code>](#)<Bullet />[`ID!`](/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> A globally-unique identifier.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Customer.<b>image</b></code>](#)<Bullet />[`Image!`](/objects/image) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The image associated with the customer.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Customer.<b>lastName</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> The customer's last name.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Customer.<b>lastOrder</b></code>](#)<Bullet />[`Order`](/objects/order) <Badge class="secondary" text="object"/>
+> The customer's last order
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Customer.<b>lifetimeDuration</b></code>](#)<Bullet />[`String!`](/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The amount of time since the customer was first added. Example: '10 days'
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Customer.<b>locale</b></code>](#)<Bullet />[`String!`](/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The customer's locale.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Customer.<b>multipassIdentifier</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> A unique identifier for the customer that's used with Multipass login. (e.g. can login to SpellMarket store from a
+game)
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Customer.<b>numberOfOrders</b></code>](#)<Bullet />[`UnsignedInt64!`](/scalars/unsigned-int-64) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The number of orders that the customer has made at the store in their lifetime.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Customer.<b>orders</b></code>](#)<Bullet />[`OrderConnection!`](/objects/order-connection) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> A list of the customer's orders.
+> ##### [<code style={{ fontWeight: 'normal' }}>Customer.orders.<b>first</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Customer.orders.<b>after</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Customer.orders.<b>last</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Customer.orders.<b>before</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Customer.orders.<b>reverse</b></code>](#)<Bullet />[`Boolean`](/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Customer.orders.<b>sortKey</b></code>](#)<Bullet />[`OrderSortKeys`](/enums/order-sort-keys) <Badge class="secondary" text="enum"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Customer.orders.<b>query</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Customer.<b>paymentMethods</b></code>](#)<Bullet />[`CustomerPaymentMethodConnection!`](/objects/customer-payment-method-connection) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> A list of the customer's payment methods.
+> ##### [<code style={{ fontWeight: 'normal' }}>Customer.paymentMethods.<b>showRevoked</b></code>](#)<Bullet />[`Boolean`](/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Customer.paymentMethods.<b>first</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Customer.paymentMethods.<b>after</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Customer.paymentMethods.<b>last</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Customer.paymentMethods.<b>before</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Customer.paymentMethods.<b>reverse</b></code>](#)<Bullet />[`Boolean`](/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Customer.<b>state</b></code>](#)<Bullet />[`CustomerState!`](/enums/customer-state) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> The state of the customer's account with SpellMarket.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Customer.<b>statistics</b></code>](#)<Bullet />[`CustomerStatistics!`](/objects/customer-statistics) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The statistics for a given customer.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Customer.<b>tags</b></code>](#)<Bullet />[`[String!]!`](/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> A comma separated list of tags that have been added to the customer.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Customer.<b>unsubscribeUrl</b></code>](#)<Bullet />[`URL!`](/scalars/url) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The URL to unsubscribe the customer from the mailing list.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Customer.<b>updatedAt</b></code>](#)<Bullet />[`DateTime!`](/scalars/date-time) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The date and time when the customer was last updated.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Customer.<b>validEmailAddress</b></code>](#)<Bullet />[`Boolean!`](/scalars/boolean) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Whether the email address is formatted correctly.
+
+Returns true when the email is formatted correctly and
+belongs to an existing domain. This doesn't guarantee that
+the email address actually exists
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Customer.<b>verifiedEmail</b></code>](#)<Bullet />[`Boolean!`](/scalars/boolean) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Whether the customer has verified their email address. Defaults to true if the customer is created through the SpellMarket admin or API.
+> 
+
+### Interfaces
+
+#### [`HasEvents`](/interfaces/has-events) <Badge class="secondary" text="interface"/>
+> Represents an object that has a list of events.
+> 
+
+#### [`Node`](/interfaces/node) <Badge class="secondary" text="interface"/>
+> An interface for standard IDs. This is standard naming for this type of interface in Graphql
+> 
+
+
+
+### Member of
+
+[`CartBuyerIdentity`](/objects/cart-buyer-identity)  <Badge class="secondary" text="object"/><Bullet />[`CheckoutBuyerIdentity`](/objects/checkout-buyer-identity)  <Badge class="secondary" text="object"/><Bullet />[`CustomerConnection`](/objects/customer-connection)  <Badge class="secondary" text="object"/><Bullet />[`CustomerEdge`](/objects/customer-edge)  <Badge class="secondary" text="object"/><Bullet />[`CustomerPaymentMethod`](/objects/customer-payment-method)  <Badge class="secondary" text="object"/><Bullet />[`Order`](/objects/order)  <Badge class="secondary" text="object"/><Bullet />[`QueryRoot`](/objects/query-root)  <Badge class="secondary" text="object"/>
+
+
+

@@ -1,0 +1,46 @@
+---
+id: file-content-type
+title: FileContentType
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+The possible content types for a file object.
+
+```graphql
+enum FileContentType {
+  IMAGE
+  FILE
+  VIDEO
+}
+```
+
+
+### Values
+
+#### [<code style={{ fontWeight: 'normal' }}>FileContentType.<b>IMAGE</b></code>](#) 
+> A MSL hosted image.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>FileContentType.<b>FILE</b></code>](#) 
+> A MSL-hosted generic file.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>FileContentType.<b>VIDEO</b></code>](#) 
+> A MSL-hosted video file. It's recommended to use this type for all video files.
+> 
+
+
+
+
+

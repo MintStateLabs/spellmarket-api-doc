@@ -1,0 +1,68 @@
+---
+id: resource-alert
+title: ResourceAlert
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+An alert message that appears in the dashboard admin about a problem with a sales channel resource, with 1
+or more actions to take. For example, you could use an alert to indicate that you're not charging taxes on some products.
+They can optionally have a specific icon and be dismissed.
+
+```graphql
+type ResourceAlert {
+  actions: ResourceAlertAction!
+  content: HTML!
+  dismissibleHandle: String
+  icon: ResourceAlertIcon
+  severity: ResourceAlertSeverity!
+  title: String!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>ResourceAlert.<b>actions</b></code>](#)<Bullet />[`ResourceAlertAction!`](/objects/resource-alert-action) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Buttons in the alert that link to related information. For example, Edit variants.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ResourceAlert.<b>content</b></code>](#)<Bullet />[`HTML!`](/scalars/html) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The secondary text in the alert that includes further information or instructions about how to solve a problem.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ResourceAlert.<b>dismissibleHandle</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> Unique identifier that appears when an alert is manually closed by the merchant. Most alerts cannot be manually
+closed.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ResourceAlert.<b>icon</b></code>](#)<Bullet />[`ResourceAlertIcon`](/enums/resource-alert-icon) <Badge class="secondary" text="enum"/>
+> An icon that is optionally displayed with the alert.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ResourceAlert.<b>severity</b></code>](#)<Bullet />[`ResourceAlertSeverity!`](/enums/resource-alert-severity) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> Indication of how important the alert is.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ResourceAlert.<b>title</b></code>](#)<Bullet />[`String!`](/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The primary text in the alert that includes information or describes the problem.
+> 
+
+
+
+### Member of
+
+[`Order`](/objects/order)  <Badge class="secondary" text="object"/>
+
+
+

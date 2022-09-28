@@ -1,0 +1,47 @@
+---
+id: media-warning-code
+title: MediaWarningCode
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Warning types for media.
+
+```graphql
+enum MediaWarningCode {
+  MODEL_LARGE_PHYSICAL_SIZE
+  MODEL_SMALL_PHYSICAL_SIZE
+}
+```
+
+
+### Values
+
+#### [<code style={{ fontWeight: 'normal' }}>MediaWarningCode.<b>MODEL_LARGE_PHYSICAL_SIZE</b></code>](#) 
+> 3D model physical size might be invalid. The dimensions of your model are very large. Consider reviewing your model
+to ensure they are correct.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MediaWarningCode.<b>MODEL_SMALL_PHYSICAL_SIZE</b></code>](#) 
+> 3D model physical size might be invalid. The dimensions of your model are very small. Consider reviewing your model
+to ensure they are correct.
+> 
+
+
+
+### Member of
+
+[`MediaWarning`](/objects/media-warning)  <Badge class="secondary" text="object"/>
+
+
+

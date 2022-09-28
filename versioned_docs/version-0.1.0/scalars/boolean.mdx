@@ -1,0 +1,32 @@
+---
+id: boolean
+title: Boolean
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+The `Boolean` scalar type represents `true` or `false`.
+
+```graphql
+scalar Boolean
+```
+
+
+
+
+### Member of
+
+[`ApiVersion`](/objects/api-version)  <Badge class="secondary" text="object"/><Bullet />[`CartCost`](/objects/cart-cost)  <Badge class="secondary" text="object"/><Bullet />[`Channel`](/interfaces/channel)  <Badge class="secondary" text="interface"/><Bullet />[`Checkout`](/objects/checkout)  <Badge class="secondary" text="object"/><Bullet />[`CollectionPublication`](/objects/collection-publication)  <Badge class="secondary" text="object"/><Bullet />[`CollectionRuleSet`](/objects/collection-rule-set)  <Badge class="secondary" text="object"/><Bullet />[`Customer`](/objects/customer)  <Badge class="secondary" text="object"/><Bullet />[`Event`](/interfaces/event)  <Badge class="secondary" text="interface"/><Bullet />[`include`](/directives/include)  <Badge class="secondary" text="directive"/><Bullet />[`LineItem`](/objects/line-item)  <Badge class="secondary" text="object"/><Bullet />[`Order`](/objects/order)  <Badge class="secondary" text="object"/><Bullet />[`OrderRisk`](/objects/order-risk)  <Badge class="secondary" text="object"/><Bullet />[`PageInfo`](/objects/page-info)  <Badge class="secondary" text="object"/><Bullet />[`Payment`](/objects/payment)  <Badge class="secondary" text="object"/><Bullet />[`Product`](/objects/product)  <Badge class="secondary" text="object"/><Bullet />[`ProductCollection`](/objects/product-collection)  <Badge class="secondary" text="object"/><Bullet />[`Project`](/objects/project)  <Badge class="secondary" text="object"/><Bullet />[`Publication`](/objects/publication)  <Badge class="secondary" text="object"/><Bullet />[`Publishable`](/interfaces/publishable)  <Badge class="secondary" text="interface"/><Bullet />[`ResourceAlertAction`](/objects/resource-alert-action)  <Badge class="secondary" text="object"/><Bullet />[`ResourcePublication`](/objects/resource-publication)  <Badge class="secondary" text="object"/><Bullet />[`SalesChannel`](/objects/sales-channel)  <Badge class="secondary" text="object"/><Bullet />[`skip`](/directives/skip)  <Badge class="secondary" text="directive"/><Bullet />[`SubChannel`](/objects/sub-channel)  <Badge class="secondary" text="object"/><Bullet />[`TaxLine`](/objects/tax-line)  <Badge class="secondary" text="object"/><Bullet />[`TokenizedPaymentInput`](/inputs/tokenized-payment-input)  <Badge class="secondary" text="input"/><Bullet />[`Transaction`](/objects/transaction)  <Badge class="secondary" text="object"/><Bullet />[`VaultWeb3Wallet`](/objects/vault-web-3-wallet)  <Badge class="secondary" text="object"/><Bullet />[`WalletPaymentInput`](/inputs/wallet-payment-input)  <Badge class="secondary" text="input"/>
+
+
+

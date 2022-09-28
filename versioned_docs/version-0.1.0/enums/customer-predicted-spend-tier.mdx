@@ -1,0 +1,51 @@
+---
+id: customer-predicted-spend-tier
+title: CustomerPredictedSpendTier
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+The valid tiers for the predicted spend of a customer.
+
+```graphql
+enum CustomerPredictedSpendTier {
+  HIGH
+  MEDIUM
+  LOW
+}
+```
+
+
+### Values
+
+#### [<code style={{ fontWeight: 'normal' }}>CustomerPredictedSpendTier.<b>HIGH</b></code>](#) 
+> The customer's spend is higher than the 70th percentile of the sale channel's customer sales.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CustomerPredictedSpendTier.<b>MEDIUM</b></code>](#) 
+> The customer's spend is between the 10th and 70th percentile of the sale channel's customer sales.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CustomerPredictedSpendTier.<b>LOW</b></code>](#) 
+> The customer's spend is lower than the 10th percentile of the sale channel's customer sales, including customers who
+didn't repurchase.
+> 
+
+
+
+### Member of
+
+[`CustomerStatistics`](/objects/customer-statistics)  <Badge class="secondary" text="object"/>
+
+
+

@@ -1,0 +1,65 @@
+---
+id: customer-email-marketing-state
+title: CustomerEmailMarketingState
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+The possible email marketing states for a customer.
+
+```graphql
+enum CustomerEmailMarketingState {
+  NOT_SUBSCRIBED
+  PENDING
+  SUBSCRIBED
+  UNSUBSCRIBED
+  REDACTED
+  INVALID
+}
+```
+
+
+### Values
+
+#### [<code style={{ fontWeight: 'normal' }}>CustomerEmailMarketingState.<b>NOT_SUBSCRIBED</b></code>](#) 
+> The customer isn't subscribed to email marketing.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CustomerEmailMarketingState.<b>PENDING</b></code>](#) 
+> The customer is in the process of subscribing to email marketing.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CustomerEmailMarketingState.<b>SUBSCRIBED</b></code>](#) 
+> The customer is subscribed to email marketing.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CustomerEmailMarketingState.<b>UNSUBSCRIBED</b></code>](#) 
+> The customer isn't currently subscribed to email marketing but was previously subscribed.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CustomerEmailMarketingState.<b>REDACTED</b></code>](#) 
+> The customer's personal data is erased. This value is internally-set and read-only.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CustomerEmailMarketingState.<b>INVALID</b></code>](#) 
+> The customerâ€™s email address marketing state is invalid.
+> 
+
+
+
+### Member of
+
+[`CustomerEmailMarketingConsentState`](/objects/customer-email-marketing-consent-state)  <Badge class="secondary" text="object"/>
+
+
+

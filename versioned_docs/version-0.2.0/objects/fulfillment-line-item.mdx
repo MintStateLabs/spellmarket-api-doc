@@ -1,0 +1,76 @@
+---
+id: fulfillment-line-item
+title: FulfillmentLineItem
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Represents a single line item in a fulfillment. There is at most one fulfillment line item for each order line item.
+
+```graphql
+type FulfillmentLineItem implements Node {
+  chain: String
+  discountedTotalSet: SchmecklePouch!
+  id: ID!
+  lineItem: LineItem!
+  originalTotalSet: SchmecklePouch!
+  quantity: Int
+  fulfillmentStatusOverall: FulfillmentLineItemStatus
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>FulfillmentLineItem.<b>chain</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> The name of the chain where the nft is stored.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>FulfillmentLineItem.<b>discountedTotalSet</b></code>](#)<Bullet />[`SchmecklePouch!`](/objects/schmeckle-pouch) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The total price after discounts are applied in shop and presentment currencies.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>FulfillmentLineItem.<b>id</b></code>](#)<Bullet />[`ID!`](/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> A globally-unique identifier.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>FulfillmentLineItem.<b>lineItem</b></code>](#)<Bullet />[`LineItem!`](/objects/line-item) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The associated order's line item.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>FulfillmentLineItem.<b>originalTotalSet</b></code>](#)<Bullet />[`SchmecklePouch!`](/objects/schmeckle-pouch) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The total price before discounts are applied in shop and presentment currencies.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>FulfillmentLineItem.<b>quantity</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> Number of line items in the fulfillment.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>FulfillmentLineItem.<b>fulfillmentStatusOverall</b></code>](#)<Bullet />[`FulfillmentLineItemStatus`](/enums/fulfillment-line-item-status) <Badge class="secondary" text="enum"/>
+> Fulfillment status of line item.
+> 
+
+### Interfaces
+
+#### [`Node`](/interfaces/node) <Badge class="secondary" text="interface"/>
+> An interface for standard IDs. This is standard naming for this type of interface in Graphql
+> 
+
+
+
+### Member of
+
+[`FulfillmentLineItemConnection`](/objects/fulfillment-line-item-connection)  <Badge class="secondary" text="object"/><Bullet />[`FulfillmentLineItemEdge`](/objects/fulfillment-line-item-edge)  <Badge class="secondary" text="object"/>
+
+
+

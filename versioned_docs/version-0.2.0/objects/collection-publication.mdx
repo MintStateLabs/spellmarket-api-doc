@@ -1,0 +1,51 @@
+---
+id: collection-publication
+title: CollectionPublication
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Represents the publications where a collection is published.
+
+```graphql
+type CollectionPublication {
+  collection: PublicationConnection!
+  isPublished: Boolean!
+  publication: Publication!
+  publishDate: DateTime!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>CollectionPublication.<b>collection</b></code>](#)<Bullet />[`PublicationConnection!`](/objects/publication-connection) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The collection to be published on the publication.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CollectionPublication.<b>isPublished</b></code>](#)<Bullet />[`Boolean!`](/scalars/boolean) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Whether the publication is published or not.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CollectionPublication.<b>publication</b></code>](#)<Bullet />[`Publication!`](/objects/publication) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The publication where the collection will be published.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CollectionPublication.<b>publishDate</b></code>](#)<Bullet />[`DateTime!`](/scalars/date-time) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The date that the publication was or is going to be published.
+> 
+
+
+
+
+

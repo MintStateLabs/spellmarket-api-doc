@@ -1,0 +1,66 @@
+---
+id: customer-payment-method
+title: CustomerPaymentMethod
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Customer's payment method.
+
+```graphql
+type CustomerPaymentMethod implements Node {
+  customer: Customer
+  id: ID!
+  instrument: CustomerPaymentInstrument!
+  revokedAt: DateTime
+  revokedReason: CustomerPaymentMethodRevocationReason
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>CustomerPaymentMethod.<b>customer</b></code>](#)<Bullet />[`Customer`](/objects/customer) <Badge class="secondary" text="object"/>
+> The customer to whom the payment method belongs.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CustomerPaymentMethod.<b>id</b></code>](#)<Bullet />[`ID!`](/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The ID of this payment method.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CustomerPaymentMethod.<b>instrument</b></code>](#)<Bullet />[`CustomerPaymentInstrument!`](/unions/customer-payment-instrument) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="union"/>
+> The instrument for this payment method.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CustomerPaymentMethod.<b>revokedAt</b></code>](#)<Bullet />[`DateTime`](/scalars/date-time) <Badge class="secondary" text="scalar"/>
+> The time that the payment method was revoked.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CustomerPaymentMethod.<b>revokedReason</b></code>](#)<Bullet />[`CustomerPaymentMethodRevocationReason`](/enums/customer-payment-method-revocation-reason) <Badge class="secondary" text="enum"/>
+> The revocation reason for this payment method.
+> 
+
+### Interfaces
+
+#### [`Node`](/interfaces/node) <Badge class="secondary" text="interface"/>
+> An interface for standard IDs. This is standard naming for this type of interface in Graphql
+> 
+
+
+
+### Member of
+
+[`CustomerPaymentMethodConnection`](/objects/customer-payment-method-connection)  <Badge class="secondary" text="object"/><Bullet />[`CustomerPaymentMethodEdge`](/objects/customer-payment-method-edge)  <Badge class="secondary" text="object"/>
+
+
+

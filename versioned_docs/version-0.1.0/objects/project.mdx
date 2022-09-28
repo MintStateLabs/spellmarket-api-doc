@@ -1,0 +1,214 @@
+---
+id: project
+title: Project
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+A Project within an organization
+
+```graphql
+type Project implements Node {
+  assets(
+  first: Int
+  after: String
+  last: Int
+  before: String
+  reverse: Boolean = false
+  query: String
+): DigitalAssetConnection!
+  collections(
+  first: Int
+  after: String
+  last: Int
+  before: String
+  reverse: Boolean = false
+  sortKey: CollectionSortKeys
+  query: String
+): ProductCollectionConnection!
+  projectStoreUrl: URL
+  projectStoreDeveloperUrl: URL
+  projectTags: [ProjectTag!]!
+  availableAccessScopes: [AccessScope!]!
+  createdAt: DateTime!
+  brandingInfo: ProjectStorefrontBranding!
+  description: String
+  developerName: String
+  failedRequirements: [FailedRequirement!]!
+  features: [String!]!
+  handle: String
+  id: ID!
+  mslDeveloped: Boolean!
+  privacyPolicyUrl: URL
+  projectVisibility: ProjectVisibility!
+  published: Boolean!
+  requestableAccessScopes: [AccessScope!]!
+  suspended: Boolean!
+  title: String!
+  updatedAt: DateTime!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>Project.<b>assets</b></code>](#)<Bullet />[`DigitalAssetConnection!`](/objects/digital-asset-connection) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Assets owned by project
+> ##### [<code style={{ fontWeight: 'normal' }}>Project.assets.<b>first</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Project.assets.<b>after</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Project.assets.<b>last</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Project.assets.<b>before</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Project.assets.<b>reverse</b></code>](#)<Bullet />[`Boolean`](/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Project.assets.<b>query</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Project.<b>collections</b></code>](#)<Bullet />[`ProductCollectionConnection!`](/objects/product-collection-connection) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Collections owned by project
+> ##### [<code style={{ fontWeight: 'normal' }}>Project.collections.<b>first</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Project.collections.<b>after</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Project.collections.<b>last</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Project.collections.<b>before</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Project.collections.<b>reverse</b></code>](#)<Bullet />[`Boolean`](/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Project.collections.<b>sortKey</b></code>](#)<Bullet />[`CollectionSortKeys`](/enums/collection-sort-keys) <Badge class="secondary" text="enum"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Project.collections.<b>query</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Project.<b>projectStoreUrl</b></code>](#)<Bullet />[`URL`](/scalars/url) <Badge class="secondary" text="scalar"/>
+> Project store page URL of the project.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Project.<b>projectStoreDeveloperUrl</b></code>](#)<Bullet />[`URL`](/scalars/url) <Badge class="secondary" text="scalar"/>
+> Project store page URL of the developer who created the app. (e.g. the website of the company who created it)
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Project.<b>projectTags</b></code>](#)<Bullet />[`[ProjectTag!]!`](/enums/project-tag) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> Tags associated with project
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Project.<b>availableAccessScopes</b></code>](#)<Bullet />[`[AccessScope!]!`](/objects/access-scope) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The access scopes available to the project on the SpellMarket API
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Project.<b>createdAt</b></code>](#)<Bullet />[`DateTime!`](/scalars/date-time) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The date and time when the project was created.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Project.<b>brandingInfo</b></code>](#)<Bullet />[`ProjectStorefrontBranding!`](/objects/project-storefront-branding) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Branding information associated with project
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Project.<b>description</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> Description of the Project.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Project.<b>developerName</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> The name of the project developer.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Project.<b>failedRequirements</b></code>](#)<Bullet />[`[FailedRequirement!]!`](/objects/failed-requirement) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Requirements that must be met before an project can be available on SpellMarket.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Project.<b>features</b></code>](#)<Bullet />[`[String!]!`](/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> A list of project features that are shown in the SpellMarket Store listing.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Project.<b>handle</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> Handle of the project. A unique name associated with the project
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Project.<b>id</b></code>](#)<Bullet />[`ID!`](/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> A globally-unique identifier.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Project.<b>mslDeveloped</b></code>](#)<Bullet />[`Boolean!`](/scalars/boolean) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Whether the project was developed by MSL.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Project.<b>privacyPolicyUrl</b></code>](#)<Bullet />[`URL`](/scalars/url) <Badge class="secondary" text="scalar"/>
+> Link to project privacy policy (e.g. the privacy policy of the games)
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Project.<b>projectVisibility</b></code>](#)<Bullet />[`ProjectVisibility!`](/enums/project-visibility) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> The visibility category for the project.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Project.<b>published</b></code>](#)<Bullet />[`Boolean!`](/scalars/boolean) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Whether the project is published to SpellMarket site/game.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Project.<b>requestableAccessScopes</b></code>](#)<Bullet />[`[AccessScope!]!`](/objects/access-scope) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The access scopes that can be requested by other project
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Project.<b>suspended</b></code>](#)<Bullet />[`Boolean!`](/scalars/boolean) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Whether project has been suspended
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Project.<b>title</b></code>](#)<Bullet />[`String!`](/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Name of the project.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Project.<b>updatedAt</b></code>](#)<Bullet />[`DateTime!`](/scalars/date-time) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The date and time when the project was updated.
+> 
+
+### Interfaces
+
+#### [`Node`](/interfaces/node) <Badge class="secondary" text="interface"/>
+> An interface for standard IDs. This is standard naming for this type of interface in Graphql
+> 
+
+
+
+### Member of
+
+[`ProjectConnection`](/objects/project-connection)  <Badge class="secondary" text="object"/><Bullet />[`ProjectEdge`](/objects/project-edge)  <Badge class="secondary" text="object"/><Bullet />[`Publication`](/objects/publication)  <Badge class="secondary" text="object"/><Bullet />[`QueryRoot`](/objects/query-root)  <Badge class="secondary" text="object"/>
+
+
+

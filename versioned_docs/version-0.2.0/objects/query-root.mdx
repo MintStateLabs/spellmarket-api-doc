@@ -1,0 +1,313 @@
+---
+id: query-root
+title: QueryRoot
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+The schemaâ€™s entry-point for queries. This acts as the public, top-level API from which all queries must start.
+
+This section focus on the buying experience
+
+```graphql
+type QueryRoot {
+  project(
+  id: ID!
+): Project
+  projectByHandle(
+  handle: String!
+): Project
+  cart(
+  id: ID!
+): Cart
+  productCollection(
+  id: ID!
+): ProductCollection
+  collectionByHandle(
+  handle: String!
+): ProductCollection
+  productCollections(
+  after: String
+  before: String
+  first: Int
+  last: Int
+  query: String
+  reverse: Boolean = false
+  sortKey: CollectionSortKeys = ID
+): ProductCollectionConnection!
+  customer(
+  id: ID!
+): Customer
+  fulfillment(
+  id: ID!
+): Fulfillment
+  order(
+  id: ID!
+): Order
+  orders(
+  after: String
+  before: String
+  first: Int
+  last: Int
+  query: String
+  reverse: Boolean = false
+  savedSearchId: ID
+  sortKey: OrderSortKeys = PROCESSED_AT
+): OrderConnection!
+  product(
+  id: ID
+): Product
+  products(
+  subChannelHandle: String
+  after: String
+  before: String
+  first: Int
+  last: Int
+  query: String
+  reverse: Boolean = false
+  sortKey: ProductSortKeys = ID
+): ProductConnection!
+  productTags(
+  first: Int!
+  subChannelID: ID
+): StringConnection!
+  productTypes(
+  first: Int!
+  subChannelID: ID
+): StringConnection!
+  publicApiVersions: [ApiVersion!]!
+  subSalesChannels(
+  after: String
+  before: String
+  first: Int
+  last: Int
+  query: String
+  reverse: Boolean = false
+): SubChannelConnection!
+  SalesChannel: SalesChannel!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>QueryRoot.<b>project</b></code>](#)<Bullet />[`Project`](/objects/project) <Badge class="secondary" text="object"/>
+> Lookup an Project by ID or return the currently authenticated Project. Returns null if the project doesn't exist.
+> ##### [<code style={{ fontWeight: 'normal' }}>QueryRoot.project.<b>id</b></code>](#)<Bullet />[`ID!`](/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The ID to lookup the Project by.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>QueryRoot.<b>projectByHandle</b></code>](#)<Bullet />[`Project`](/objects/project) <Badge class="secondary" text="object"/>
+> Fetches project by handle. Returns null if the project doesn't exist.
+> ##### [<code style={{ fontWeight: 'normal' }}>QueryRoot.projectByHandle.<b>handle</b></code>](#)<Bullet />[`String!`](/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Handle of the Project.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>QueryRoot.<b>cart</b></code>](#)<Bullet />[`Cart`](/objects/cart) <Badge class="secondary" text="object"/>
+> Retrieve a cart by its ID
+> ##### [<code style={{ fontWeight: 'normal' }}>QueryRoot.cart.<b>id</b></code>](#)<Bullet />[`ID!`](/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>QueryRoot.<b>productCollection</b></code>](#)<Bullet />[`ProductCollection`](/objects/product-collection) <Badge class="secondary" text="object"/>
+> Fetch a specific Collection by ID
+> ##### [<code style={{ fontWeight: 'normal' }}>QueryRoot.productCollection.<b>id</b></code>](#)<Bullet />[`ID!`](/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>QueryRoot.<b>collectionByHandle</b></code>](#)<Bullet />[`ProductCollection`](/objects/product-collection) <Badge class="secondary" text="object"/>
+> Return a collection by its handle.
+> ##### [<code style={{ fontWeight: 'normal' }}>QueryRoot.collectionByHandle.<b>handle</b></code>](#)<Bullet />[`String!`](/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>QueryRoot.<b>productCollections</b></code>](#)<Bullet />[`ProductCollectionConnection!`](/objects/product-collection-connection) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> List of the collections in the sales channels collections.
+> ##### [<code style={{ fontWeight: 'normal' }}>QueryRoot.productCollections.<b>after</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>QueryRoot.productCollections.<b>before</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>QueryRoot.productCollections.<b>first</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>QueryRoot.productCollections.<b>last</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>QueryRoot.productCollections.<b>query</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>QueryRoot.productCollections.<b>reverse</b></code>](#)<Bullet />[`Boolean`](/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>QueryRoot.productCollections.<b>sortKey</b></code>](#)<Bullet />[`CollectionSortKeys`](/enums/collection-sort-keys) <Badge class="secondary" text="enum"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>QueryRoot.<b>customer</b></code>](#)<Bullet />[`Customer`](/objects/customer) <Badge class="secondary" text="object"/>
+> Returns a Customer resource by ID.
+> ##### [<code style={{ fontWeight: 'normal' }}>QueryRoot.customer.<b>id</b></code>](#)<Bullet />[`ID!`](/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>QueryRoot.<b>fulfillment</b></code>](#)<Bullet />[`Fulfillment`](/objects/fulfillment) <Badge class="secondary" text="object"/>
+> Returns a Fulfillment resource by ID.
+> ##### [<code style={{ fontWeight: 'normal' }}>QueryRoot.fulfillment.<b>id</b></code>](#)<Bullet />[`ID!`](/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>QueryRoot.<b>order</b></code>](#)<Bullet />[`Order`](/objects/order) <Badge class="secondary" text="object"/>
+> Returns an Order resource by ID.
+> ##### [<code style={{ fontWeight: 'normal' }}>QueryRoot.order.<b>id</b></code>](#)<Bullet />[`ID!`](/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>QueryRoot.<b>orders</b></code>](#)<Bullet />[`OrderConnection!`](/objects/order-connection) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Returns a list of orders placed for user
+> ##### [<code style={{ fontWeight: 'normal' }}>QueryRoot.orders.<b>after</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>QueryRoot.orders.<b>before</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>QueryRoot.orders.<b>first</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>QueryRoot.orders.<b>last</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>QueryRoot.orders.<b>query</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>QueryRoot.orders.<b>reverse</b></code>](#)<Bullet />[`Boolean`](/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>QueryRoot.orders.<b>savedSearchId</b></code>](#)<Bullet />[`ID`](/scalars/id) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>QueryRoot.orders.<b>sortKey</b></code>](#)<Bullet />[`OrderSortKeys`](/enums/order-sort-keys) <Badge class="secondary" text="enum"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>QueryRoot.<b>product</b></code>](#)<Bullet />[`Product`](/objects/product) <Badge class="secondary" text="object"/>
+> Fetch a specific Product by it's id
+> ##### [<code style={{ fontWeight: 'normal' }}>QueryRoot.product.<b>id</b></code>](#)<Bullet />[`ID`](/scalars/id) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>QueryRoot.<b>products</b></code>](#)<Bullet />[`ProductConnection!`](/objects/product-connection) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> List of the subchannelâ€™s products or return the all products in saleschannel if subchannelHandle is null
+> ##### [<code style={{ fontWeight: 'normal' }}>QueryRoot.products.<b>subChannelHandle</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>QueryRoot.products.<b>after</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>QueryRoot.products.<b>before</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>QueryRoot.products.<b>first</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>QueryRoot.products.<b>last</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>QueryRoot.products.<b>query</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>QueryRoot.products.<b>reverse</b></code>](#)<Bullet />[`Boolean`](/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>QueryRoot.products.<b>sortKey</b></code>](#)<Bullet />[`ProductSortKeys`](/enums/product-sort-keys) <Badge class="secondary" text="enum"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>QueryRoot.<b>productTags</b></code>](#)<Bullet />[`StringConnection!`](/objects/string-connection) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Tags added to products.
+> ##### [<code style={{ fontWeight: 'normal' }}>QueryRoot.productTags.<b>first</b></code>](#)<Bullet />[`Int!`](/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>QueryRoot.productTags.<b>subChannelID</b></code>](#)<Bullet />[`ID`](/scalars/id) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>QueryRoot.<b>productTypes</b></code>](#)<Bullet />[`StringConnection!`](/objects/string-connection) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> List of product types for the shop's products that are published to your channel/subchannel.
+> ##### [<code style={{ fontWeight: 'normal' }}>QueryRoot.productTypes.<b>first</b></code>](#)<Bullet />[`Int!`](/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>QueryRoot.productTypes.<b>subChannelID</b></code>](#)<Bullet />[`ID`](/scalars/id) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>QueryRoot.<b>publicApiVersions</b></code>](#)<Bullet />[`[ApiVersion!]!`](/objects/api-version) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The list of public SpellMarket API versions, including supported, release candidate and unstable versions.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>QueryRoot.<b>subSalesChannels</b></code>](#)<Bullet />[`SubChannelConnection!`](/objects/sub-channel-connection) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Sub-channels associated with the Sale Channel API key
+> ##### [<code style={{ fontWeight: 'normal' }}>QueryRoot.subSalesChannels.<b>after</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>QueryRoot.subSalesChannels.<b>before</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>QueryRoot.subSalesChannels.<b>first</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>QueryRoot.subSalesChannels.<b>last</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>QueryRoot.subSalesChannels.<b>query</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>QueryRoot.subSalesChannels.<b>reverse</b></code>](#)<Bullet />[`Boolean`](/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>QueryRoot.<b>SalesChannel</b></code>](#)<Bullet />[`SalesChannel!`](/objects/sales-channel) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Associated with the Sale Channel API key
+> 
+
+
+
+
+

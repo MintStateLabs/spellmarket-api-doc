@@ -1,0 +1,47 @@
+---
+id: staged-media-upload-target
+title: StagedMediaUploadTarget
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Information about a staged upload target, which should be used to send a request to upload the file.
+
+```graphql
+type StagedMediaUploadTarget {
+  parameters: StagedUploadParameter!
+  resourceUrl: URL
+  url: URL
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>StagedMediaUploadTarget.<b>parameters</b></code>](#)<Bullet />[`StagedUploadParameter!`](/objects/staged-upload-parameter) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Parameters needed to authenticate a request to upload the file.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>StagedMediaUploadTarget.<b>resourceUrl</b></code>](#)<Bullet />[`URL`](/scalars/url) <Badge class="secondary" text="scalar"/>
+> The URL to be passed as originalSource in CreateMediaInput and FileCreateInput for the productCreateMedia and
+fileCreate mutations.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>StagedMediaUploadTarget.<b>url</b></code>](#)<Bullet />[`URL`](/scalars/url) <Badge class="secondary" text="scalar"/>
+> The URL to use when sending an request to upload the file. Should be used in conjunction with the parameters field.
+> 
+
+
+
+
+

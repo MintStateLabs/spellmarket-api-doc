@@ -1,0 +1,1263 @@
+---
+id: country-code
+title: CountryCode
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+The code designating a country/region, which generally follows ISO 3166-1 alpha-2 guidelines.If a territory doesn't have
+a country code value in the CountryCode enum, then it might be considered a subdivision of another country. For example,
+the territories associated with Spain are represented by the country code ES, and the territories associated with the
+United States of America are represented by the country code US.
+
+```graphql
+enum CountryCode {
+  AC
+  AD
+  AE
+  AF
+  AG
+  AI
+  AL
+  AM
+  AN
+  AO
+  AR
+  AT
+  AU
+  AW
+  AX
+  AZ
+  BA
+  BB
+  BD
+  BE
+  BF
+  BG
+  BH
+  BI
+  BJ
+  BL
+  BM
+  BN
+  BO
+  BQ
+  BR
+  BS
+  BT
+  BV
+  BW
+  BY
+  BZ
+  CA
+  CC
+  CD
+  CF
+  CG
+  CH
+  CI
+  CK
+  CL
+  CM
+  CN
+  CO
+  CR
+  CU
+  CV
+  CW
+  CX
+  CY
+  CZ
+  DE
+  DJ
+  DK
+  DM
+  DO
+  DZ
+  EC
+  EE
+  EG
+  EH
+  ER
+  ES
+  ET
+  FI
+  FJ
+  FK
+  FO
+  FR
+  GA
+  GB
+  GD
+  GE
+  GF
+  GG
+  GH
+  GI
+  GL
+  GM
+  GN
+  GP
+  GQ
+  GR
+  GS
+  GT
+  GW
+  GY
+  HK
+  HM
+  HN
+  HR
+  HT
+  HU
+  ID
+  IE
+  IL
+  IM
+  IN
+  IO
+  IQ
+  IR
+  IS
+  IT
+  JE
+  JM
+  JO
+  JP
+  KE
+  KG
+  KH
+  KI
+  KM
+  KN
+  KP
+  KR
+  KW
+  KY
+  KZ
+  LA
+  LB
+  LC
+  LI
+  LK
+  LR
+  LS
+  LT
+  LU
+  LV
+  LY
+  MA
+  MC
+  MD
+  ME
+  MF
+  MG
+  MK
+  ML
+  MM
+  MN
+  MO
+  MQ
+  MR
+  MS
+  MT
+  MU
+  MV
+  MW
+  MX
+  MY
+  MZ
+  NA
+  NC
+  NE
+  NF
+  NG
+  NI
+  NL
+  NO
+  NP
+  NR
+  NU
+  NZ
+  OM
+  PA
+  PE
+  PF
+  PG
+  PH
+  PK
+  PL
+  PM
+  PN
+  PS
+  PT
+  PY
+  QA
+  RE
+  RO
+  RS
+  RU
+  RW
+  SA
+  SB
+  SC
+  SD
+  SE
+  SG
+  SH
+  SI
+  SJ
+  SK
+  SL
+  SM
+  SN
+  SO
+  SR
+  SS
+  ST
+  SV
+  SX
+  SY
+  SZ
+  TA
+  TC
+  TD
+  TF
+  TG
+  TH
+  TJ
+  TK
+  TL
+  TM
+  TN
+  TO
+  TR
+  TT
+  TV
+  TW
+  TZ
+  UA
+  UG
+  UM
+  US
+  UY
+  UZ
+  VA
+  VC
+  VE
+  VG
+  VN
+  VU
+  WF
+  WS
+  XK
+  YE
+  YT
+  ZA
+  ZM
+  ZW
+  ZZ
+}
+```
+
+
+### Values
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>AC</b></code>](#) 
+> Ascension Island.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>AD</b></code>](#) 
+> Andorra.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>AE</b></code>](#) 
+> United Arab Emirates.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>AF</b></code>](#) 
+> Afghanistan.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>AG</b></code>](#) 
+> Antigua & Barbuda.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>AI</b></code>](#) 
+> Anguilla.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>AL</b></code>](#) 
+> Albania.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>AM</b></code>](#) 
+> Armenia.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>AN</b></code>](#) 
+> Netherlands Antilles.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>AO</b></code>](#) 
+> Angola.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>AR</b></code>](#) 
+> Argentina.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>AT</b></code>](#) 
+> Austria.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>AU</b></code>](#) 
+> Australia.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>AW</b></code>](#) 
+> Aruba.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>AX</b></code>](#) 
+> Ã…land Islands.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>AZ</b></code>](#) 
+> Azerbaijan.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>BA</b></code>](#) 
+> Bosnia & Herzegovina.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>BB</b></code>](#) 
+> Barbados.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>BD</b></code>](#) 
+> Bangladesh.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>BE</b></code>](#) 
+> Belgium.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>BF</b></code>](#) 
+> Burkina Faso.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>BG</b></code>](#) 
+> Bulgaria.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>BH</b></code>](#) 
+> Bahrain.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>BI</b></code>](#) 
+> Burundi.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>BJ</b></code>](#) 
+> Benin.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>BL</b></code>](#) 
+> St. BarthÃ©lemy.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>BM</b></code>](#) 
+> Bermuda.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>BN</b></code>](#) 
+> Brunei.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>BO</b></code>](#) 
+> Bolivia.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>BQ</b></code>](#) 
+> Caribbean Netherlands.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>BR</b></code>](#) 
+> Brazil.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>BS</b></code>](#) 
+> Bahamas.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>BT</b></code>](#) 
+> Bhutan.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>BV</b></code>](#) 
+> Bouvet Island.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>BW</b></code>](#) 
+> Botswana.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>BY</b></code>](#) 
+> Belarus.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>BZ</b></code>](#) 
+> Belize.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>CA</b></code>](#) 
+> Canada.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>CC</b></code>](#) 
+> Cocos (Keeling) Islands.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>CD</b></code>](#) 
+> Congo - Kinshasa.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>CF</b></code>](#) 
+> Central African Republic.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>CG</b></code>](#) 
+> Congo - Brazzaville.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>CH</b></code>](#) 
+> Switzerland.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>CI</b></code>](#) 
+> CÃ´te dâ€™Ivoire.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>CK</b></code>](#) 
+> Cook Islands.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>CL</b></code>](#) 
+> Chile.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>CM</b></code>](#) 
+> Cameroon.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>CN</b></code>](#) 
+> China.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>CO</b></code>](#) 
+> Colombia.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>CR</b></code>](#) 
+> Costa Rica.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>CU</b></code>](#) 
+> Cuba.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>CV</b></code>](#) 
+> Cape Verde.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>CW</b></code>](#) 
+> CuraÃ§ao.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>CX</b></code>](#) 
+> Christmas Island.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>CY</b></code>](#) 
+> Cyprus.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>CZ</b></code>](#) 
+> Czechia.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>DE</b></code>](#) 
+> Germany.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>DJ</b></code>](#) 
+> Djibouti.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>DK</b></code>](#) 
+> Denmark.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>DM</b></code>](#) 
+> Dominica.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>DO</b></code>](#) 
+> Dominican Republic.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>DZ</b></code>](#) 
+> Algeria.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>EC</b></code>](#) 
+> Ecuador.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>EE</b></code>](#) 
+> Estonia.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>EG</b></code>](#) 
+> Egypt.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>EH</b></code>](#) 
+> Western Sahara.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>ER</b></code>](#) 
+> Eritrea.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>ES</b></code>](#) 
+> Spain.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>ET</b></code>](#) 
+> Ethiopia.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>FI</b></code>](#) 
+> Finland.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>FJ</b></code>](#) 
+> Fiji.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>FK</b></code>](#) 
+> Falkland Islands.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>FO</b></code>](#) 
+> Faroe Islands.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>FR</b></code>](#) 
+> France.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>GA</b></code>](#) 
+> Gabon.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>GB</b></code>](#) 
+> United Kingdom.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>GD</b></code>](#) 
+> Grenada.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>GE</b></code>](#) 
+> Georgia.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>GF</b></code>](#) 
+> French Guiana.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>GG</b></code>](#) 
+> Guernsey.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>GH</b></code>](#) 
+> Ghana.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>GI</b></code>](#) 
+> Gibraltar.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>GL</b></code>](#) 
+> Greenland.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>GM</b></code>](#) 
+> Gambia.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>GN</b></code>](#) 
+> Guinea.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>GP</b></code>](#) 
+> Guadeloupe.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>GQ</b></code>](#) 
+> Equatorial Guinea.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>GR</b></code>](#) 
+> Greece.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>GS</b></code>](#) 
+> South Georgia & South Sandwich Islands.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>GT</b></code>](#) 
+> Guatemala.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>GW</b></code>](#) 
+> Guinea-Bissau.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>GY</b></code>](#) 
+> Guyana.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>HK</b></code>](#) 
+> Hong Kong SAR.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>HM</b></code>](#) 
+> Heard & McDonald Islands.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>HN</b></code>](#) 
+> Honduras.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>HR</b></code>](#) 
+> Croatia.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>HT</b></code>](#) 
+> Haiti.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>HU</b></code>](#) 
+> Hungary.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>ID</b></code>](#) 
+> Indonesia.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>IE</b></code>](#) 
+> Ireland.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>IL</b></code>](#) 
+> Israel.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>IM</b></code>](#) 
+> Isle of Man.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>IN</b></code>](#) 
+> India.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>IO</b></code>](#) 
+> British Indian Ocean Territory.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>IQ</b></code>](#) 
+> Iraq.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>IR</b></code>](#) 
+> Iran.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>IS</b></code>](#) 
+> Iceland.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>IT</b></code>](#) 
+> Italy.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>JE</b></code>](#) 
+> Jersey.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>JM</b></code>](#) 
+> Jamaica.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>JO</b></code>](#) 
+> Jordan.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>JP</b></code>](#) 
+> Japan.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>KE</b></code>](#) 
+> Kenya.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>KG</b></code>](#) 
+> Kyrgyzstan.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>KH</b></code>](#) 
+> Cambodia.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>KI</b></code>](#) 
+> Kiribati.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>KM</b></code>](#) 
+> Comoros.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>KN</b></code>](#) 
+> St. Kitts & Nevis.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>KP</b></code>](#) 
+> North Korea.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>KR</b></code>](#) 
+> South Korea.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>KW</b></code>](#) 
+> Kuwait.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>KY</b></code>](#) 
+> Cayman Islands.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>KZ</b></code>](#) 
+> Kazakhstan.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>LA</b></code>](#) 
+> Laos.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>LB</b></code>](#) 
+> Lebanon.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>LC</b></code>](#) 
+> St. Lucia.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>LI</b></code>](#) 
+> Liechtenstein.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>LK</b></code>](#) 
+> Sri Lanka.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>LR</b></code>](#) 
+> Liberia.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>LS</b></code>](#) 
+> Lesotho.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>LT</b></code>](#) 
+> Lithuania.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>LU</b></code>](#) 
+> Luxembourg.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>LV</b></code>](#) 
+> Latvia.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>LY</b></code>](#) 
+> Libya.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>MA</b></code>](#) 
+> Morocco.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>MC</b></code>](#) 
+> Monaco.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>MD</b></code>](#) 
+> Moldova.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>ME</b></code>](#) 
+> Montenegro.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>MF</b></code>](#) 
+> St. Martin.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>MG</b></code>](#) 
+> Madagascar.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>MK</b></code>](#) 
+> North Macedonia.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>ML</b></code>](#) 
+> Mali.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>MM</b></code>](#) 
+> Myanmar (Burma).
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>MN</b></code>](#) 
+> Mongolia.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>MO</b></code>](#) 
+> Macao SAR.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>MQ</b></code>](#) 
+> Martinique.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>MR</b></code>](#) 
+> Mauritania.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>MS</b></code>](#) 
+> Montserrat.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>MT</b></code>](#) 
+> Malta.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>MU</b></code>](#) 
+> Mauritius.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>MV</b></code>](#) 
+> Maldives.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>MW</b></code>](#) 
+> Malawi.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>MX</b></code>](#) 
+> Mexico
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>MY</b></code>](#) 
+> Malaysia.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>MZ</b></code>](#) 
+> Mozambique.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>NA</b></code>](#) 
+> Namibia.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>NC</b></code>](#) 
+> New Caledonia.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>NE</b></code>](#) 
+> Niger.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>NF</b></code>](#) 
+> Norfolk Island.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>NG</b></code>](#) 
+> Nigeria.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>NI</b></code>](#) 
+> Nicaragua.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>NL</b></code>](#) 
+> Netherlands.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>NO</b></code>](#) 
+> Norway.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>NP</b></code>](#) 
+> Nepal.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>NR</b></code>](#) 
+> Nauru.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>NU</b></code>](#) 
+> Niue.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>NZ</b></code>](#) 
+> New Zealand.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>OM</b></code>](#) 
+> Oman.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>PA</b></code>](#) 
+> Panama.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>PE</b></code>](#) 
+> Peru.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>PF</b></code>](#) 
+> French Polynesia.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>PG</b></code>](#) 
+> Papua New Guinea.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>PH</b></code>](#) 
+> Philippines.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>PK</b></code>](#) 
+> Pakistan.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>PL</b></code>](#) 
+> Poland.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>PM</b></code>](#) 
+> St. Pierre & Miquelon.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>PN</b></code>](#) 
+> Pitcairn Islands.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>PS</b></code>](#) 
+> Palestinian Territories.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>PT</b></code>](#) 
+> Portugal.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>PY</b></code>](#) 
+> Paraguay.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>QA</b></code>](#) 
+> Qatar.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>RE</b></code>](#) 
+> RÃ©union.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>RO</b></code>](#) 
+> Romania.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>RS</b></code>](#) 
+> Serbia.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>RU</b></code>](#) 
+> Russia.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>RW</b></code>](#) 
+> Rwanda.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>SA</b></code>](#) 
+> Saudi Arabia.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>SB</b></code>](#) 
+> Solomon Islands.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>SC</b></code>](#) 
+> Seychelles.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>SD</b></code>](#) 
+> Sudan.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>SE</b></code>](#) 
+> Sweden.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>SG</b></code>](#) 
+> Singapore.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>SH</b></code>](#) 
+> St. Helena.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>SI</b></code>](#) 
+> Slovenia.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>SJ</b></code>](#) 
+> Svalbard & Jan Mayen.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>SK</b></code>](#) 
+> Slovakia.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>SL</b></code>](#) 
+> Sierra Leone.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>SM</b></code>](#) 
+> San Marino.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>SN</b></code>](#) 
+> Senegal.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>SO</b></code>](#) 
+> Somalia.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>SR</b></code>](#) 
+> Suriname.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>SS</b></code>](#) 
+> South Sudan.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>ST</b></code>](#) 
+> SÃ£o TomÃ© & PrÃ­ncipe.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>SV</b></code>](#) 
+> El Salvador.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>SX</b></code>](#) 
+> Sint Maarten.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>SY</b></code>](#) 
+> Syria.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>SZ</b></code>](#) 
+> Eswatini.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>TA</b></code>](#) 
+> Tristan da Cunha.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>TC</b></code>](#) 
+> Turks & Caicos Islands.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>TD</b></code>](#) 
+> Chad.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>TF</b></code>](#) 
+> French Southern Territories.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>TG</b></code>](#) 
+> Togo.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>TH</b></code>](#) 
+> Thailand.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>TJ</b></code>](#) 
+> Tajikistan.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>TK</b></code>](#) 
+> Tokelau.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>TL</b></code>](#) 
+> Timor-Leste.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>TM</b></code>](#) 
+> Turkmenistan.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>TN</b></code>](#) 
+> Tunisia.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>TO</b></code>](#) 
+> Tonga.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>TR</b></code>](#) 
+> Turkey.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>TT</b></code>](#) 
+> Trinidad & Tobago.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>TV</b></code>](#) 
+> Tuvalu.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>TW</b></code>](#) 
+> Taiwan.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>TZ</b></code>](#) 
+> Tanzania.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>UA</b></code>](#) 
+> Ukraine.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>UG</b></code>](#) 
+> Uganda.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>UM</b></code>](#) 
+> U.S. Outlying Islands.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>US</b></code>](#) 
+> United States.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>UY</b></code>](#) 
+> Uruguay.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>UZ</b></code>](#) 
+> Uzbekistan.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>VA</b></code>](#) 
+> Vatican City.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>VC</b></code>](#) 
+> St. Vincent & Grenadines.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>VE</b></code>](#) 
+> Venezuela.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>VG</b></code>](#) 
+> British Virgin Islands.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>VN</b></code>](#) 
+> Vietnam.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>VU</b></code>](#) 
+> Vanuatu.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>WF</b></code>](#) 
+> Wallis & Futuna.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>WS</b></code>](#) 
+> Samoa.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>XK</b></code>](#) 
+> Kosovo.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>YE</b></code>](#) 
+> Yemen.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>YT</b></code>](#) 
+> Mayotte.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>ZA</b></code>](#) 
+> South Africa.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>ZM</b></code>](#) 
+> Zambia.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>ZW</b></code>](#) 
+> Zimbabwe.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CountryCode.<b>ZZ</b></code>](#) 
+> Unknown Region.
+> 
+
+
+
+### Member of
+
+[`CartBuyerIdentity`](/objects/cart-buyer-identity)  <Badge class="secondary" text="object"/><Bullet />[`CartBuyerIdentityInput`](/inputs/cart-buyer-identity-input)  <Badge class="secondary" text="input"/><Bullet />[`CheckoutBuyerIdentity`](/objects/checkout-buyer-identity)  <Badge class="secondary" text="object"/><Bullet />[`CheckoutBuyerIdentityInput`](/inputs/checkout-buyer-identity-input)  <Badge class="secondary" text="input"/><Bullet />[`MailingAddressInput`](/inputs/mailing-address-input)  <Badge class="secondary" text="input"/>
+
+
+

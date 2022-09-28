@@ -1,0 +1,60 @@
+---
+id: resource-alert-severity
+title: ResourceAlertSeverity
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+The possible severity levels for a resource alert.
+
+```graphql
+enum ResourceAlertSeverity {
+  CRITICAL
+  DEFAULT
+  INFO
+  SUCCESS
+  WARNING
+}
+```
+
+
+### Values
+
+#### [<code style={{ fontWeight: 'normal' }}>ResourceAlertSeverity.<b>CRITICAL</b></code>](#) 
+> Indicates a critical alert. For example, a blocked project.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ResourceAlertSeverity.<b>DEFAULT</b></code>](#) 
+> Indicates a neutral alert. For example, an accepted dispute.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ResourceAlertSeverity.<b>INFO</b></code>](#) 
+> Indicates an informative alert. For example, an escalated dispute.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ResourceAlertSeverity.<b>SUCCESS</b></code>](#) 
+> Indicates a success alert. For example, a winning a dispute.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ResourceAlertSeverity.<b>WARNING</b></code>](#) 
+> Indicates an informative alert. For example, a new dispute.
+> 
+
+
+
+### Member of
+
+[`ResourceAlert`](/objects/resource-alert)  <Badge class="secondary" text="object"/>
+
+
+

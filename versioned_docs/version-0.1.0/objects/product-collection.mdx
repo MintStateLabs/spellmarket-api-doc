@@ -1,0 +1,263 @@
+---
+id: product-collection
+title: ProductCollection
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Represents a group of products that can be displayed in online stores and other sales channels in categories,
+which makes it easy for customers to find them.
+
+Collections can be defined by conditions, such as whether they match certain product tags.
+These are called smart or automated collections.
+
+Collections can also be created for a custom group of products. These are called custom or manual collections.
+
+```graphql
+type ProductCollection implements Node, Publishable {
+  availablePublicationCount: Int!
+  description(
+  truncateAt: Int
+): String!
+  descriptionHtml: HTML!
+  handle: String!
+  hasProduct(
+  id: ID!
+): Boolean!
+  id: ID!
+  image: Image
+  products(
+  first: Int
+  after: String
+  last: Int
+  before: String
+  reverse: Boolean = false
+  sortKey: ProductCollectionSortKeys = COLLECTION_DEFAULT
+): ProductConnection!
+  productsCount: Int!
+  publicationCount(
+  onlyPublished: Boolean = true
+): Int!
+  publishedOnCurrentPublication: Boolean!
+  publishedOnPublication(
+  publicationId: ID!
+): Boolean!
+  resourcePublications(
+  onlyPublished: Boolean = true
+  first: Int
+  after: String
+  last: Int
+  before: String
+  reverse: Boolean = false
+): ResourcePublicationConnection!
+  ruleSet: CollectionRuleSet
+  seo: SEO!
+  sortOrder: CollectionSortOrder!
+  templateSuffix: String
+  title: String!
+  unpublishedPublications(
+  first: Int
+  after: String
+  last: Int
+  before: String
+  reverse: Boolean = false
+): PublicationConnection!
+  updatedAt: DateTime!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>ProductCollection.<b>availablePublicationCount</b></code>](#)<Bullet />[`Int!`](/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The number of publications a resource is published.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ProductCollection.<b>description</b></code>](#)<Bullet />[`String!`](/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> A single-line, text-only description of the collection, stripped of any HTML tags and formatting that were included
+in the description.
+> ##### [<code style={{ fontWeight: 'normal' }}>ProductCollection.description.<b>truncateAt</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ProductCollection.<b>descriptionHtml</b></code>](#)<Bullet />[`HTML!`](/scalars/html) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The description of the collection, including any HTML tags and formatting. This content is typically displayed to
+customers, such as on an online store, depending on the theme.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ProductCollection.<b>handle</b></code>](#)<Bullet />[`String!`](/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> A unique string that identifies the collection.
+If a handle isn't specified when a collection is created, it's automatically generated from the collection's
+original title, and typically includes words from the title separated by hyphens. For example, a collection that was
+created with the title Summer Catalog 2022 might have the handle summer-catalog-2022.
+
+If the title is changed, the handle doesn't automatically change.
+
+The handle can be used in themes by the Liquid templating language to refer to the collection, but using the ID is
+preferred because it never changes
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ProductCollection.<b>hasProduct</b></code>](#)<Bullet />[`Boolean!`](/scalars/boolean) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Whether the collection includes the specified product.
+> ##### [<code style={{ fontWeight: 'normal' }}>ProductCollection.hasProduct.<b>id</b></code>](#)<Bullet />[`ID!`](/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ProductCollection.<b>id</b></code>](#)<Bullet />[`ID!`](/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> A globally-unique identifier.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ProductCollection.<b>image</b></code>](#)<Bullet />[`Image`](/objects/image) <Badge class="secondary" text="object"/>
+> The image associated with the collection.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ProductCollection.<b>products</b></code>](#)<Bullet />[`ProductConnection!`](/objects/product-connection) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The products that are included in the collection.
+> ##### [<code style={{ fontWeight: 'normal' }}>ProductCollection.products.<b>first</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>ProductCollection.products.<b>after</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>ProductCollection.products.<b>last</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>ProductCollection.products.<b>before</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>ProductCollection.products.<b>reverse</b></code>](#)<Bullet />[`Boolean`](/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>ProductCollection.products.<b>sortKey</b></code>](#)<Bullet />[`ProductCollectionSortKeys`](/enums/product-collection-sort-keys) <Badge class="secondary" text="enum"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ProductCollection.<b>productsCount</b></code>](#)<Bullet />[`Int!`](/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The number of products in the collection.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ProductCollection.<b>publicationCount</b></code>](#)<Bullet />[`Int!`](/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The number of publications a resource is published on.
+> ##### [<code style={{ fontWeight: 'normal' }}>ProductCollection.publicationCount.<b>onlyPublished</b></code>](#)<Bullet />[`Boolean`](/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ProductCollection.<b>publishedOnCurrentPublication</b></code>](#)<Bullet />[`Boolean!`](/scalars/boolean) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Check to see whether the resource is published to the calling sale channel's publication.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ProductCollection.<b>publishedOnPublication</b></code>](#)<Bullet />[`Boolean!`](/scalars/boolean) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Check to see whether the resource is published to a given publication.
+> ##### [<code style={{ fontWeight: 'normal' }}>ProductCollection.publishedOnPublication.<b>publicationId</b></code>](#)<Bullet />[`ID!`](/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ProductCollection.<b>resourcePublications</b></code>](#)<Bullet />[`ResourcePublicationConnection!`](/objects/resource-publication-connection) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The list of resources that are either published or staged to be published to a publication.
+> ##### [<code style={{ fontWeight: 'normal' }}>ProductCollection.resourcePublications.<b>onlyPublished</b></code>](#)<Bullet />[`Boolean`](/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>ProductCollection.resourcePublications.<b>first</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>ProductCollection.resourcePublications.<b>after</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>ProductCollection.resourcePublications.<b>last</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>ProductCollection.resourcePublications.<b>before</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>ProductCollection.resourcePublications.<b>reverse</b></code>](#)<Bullet />[`Boolean`](/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ProductCollection.<b>ruleSet</b></code>](#)<Bullet />[`CollectionRuleSet`](/objects/collection-rule-set) <Badge class="secondary" text="object"/>
+> For a smart (automated) collection, specifies the rules that determine whether a product is included.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ProductCollection.<b>seo</b></code>](#)<Bullet />[`SEO!`](/objects/seo) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> If the default SEO fields for page title and description have been modified, contains the modified information.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ProductCollection.<b>sortOrder</b></code>](#)<Bullet />[`CollectionSortOrder!`](/enums/collection-sort-order) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> The order in which the products in the collection are displayed by default in the SpellMarket admin and in sales
+channels, such as an online store.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ProductCollection.<b>templateSuffix</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> The suffix of the Liquid template being used to show the collection in an online store. For example, if the value is
+custom, then the collection is using the collection.custom.liquid template. If the value is null, then the
+collection is using the default collection.liquid template.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ProductCollection.<b>title</b></code>](#)<Bullet />[`String!`](/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The name of the collection. It's displayed in the SpellMarket admin and is typically displayed in sales channels,
+such as an online store.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ProductCollection.<b>unpublishedPublications</b></code>](#)<Bullet />[`PublicationConnection!`](/objects/publication-connection) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The list of publications that the resource is not published to.
+> ##### [<code style={{ fontWeight: 'normal' }}>ProductCollection.unpublishedPublications.<b>first</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>ProductCollection.unpublishedPublications.<b>after</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>ProductCollection.unpublishedPublications.<b>last</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>ProductCollection.unpublishedPublications.<b>before</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>ProductCollection.unpublishedPublications.<b>reverse</b></code>](#)<Bullet />[`Boolean`](/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ProductCollection.<b>updatedAt</b></code>](#)<Bullet />[`DateTime!`](/scalars/date-time) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The date and time (ISO 8601 format) when the collection was last modified.
+> 
+
+### Interfaces
+
+#### [`Node`](/interfaces/node) <Badge class="secondary" text="interface"/>
+> An interface for standard IDs. This is standard naming for this type of interface in Graphql
+> 
+
+#### [`Publishable`](/interfaces/publishable) <Badge class="secondary" text="interface"/>
+> Represents a resource that can be published to a channel. A publishable resource can be either a Product or Collection.
+> 
+
+
+
+### Member of
+
+[`ProductCollectionConnection`](/objects/product-collection-connection)  <Badge class="secondary" text="object"/><Bullet />[`ProductCollectionEdge`](/objects/product-collection-edge)  <Badge class="secondary" text="object"/><Bullet />[`QueryRoot`](/objects/query-root)  <Badge class="secondary" text="object"/>
+
+
+

@@ -1,0 +1,45 @@
+---
+id: cart-lines-update-payload
+title: CartLinesUpdatePayload
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Return type for cartLinesUpdate mutation.
+
+```graphql
+type CartLinesUpdatePayload {
+  cart: Cart
+  userErrors: [CartUserError!]!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>CartLinesUpdatePayload.<b>cart</b></code>](#)<Bullet />[`Cart`](/objects/cart) <Badge class="secondary" text="object"/>
+> The updated cart.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CartLinesUpdatePayload.<b>userErrors</b></code>](#)<Bullet />[`[CartUserError!]!`](/objects/cart-user-error) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The list of errors that occurred from executing the mutation.
+> 
+
+
+
+### Returned by
+
+[`cartLinesUpdate`](/mutations/cart-lines-update)  <Badge class="secondary" text="mutation"/>
+
+
+

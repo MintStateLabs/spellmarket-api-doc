@@ -1,0 +1,86 @@
+---
+id: sales-channel
+title: SalesChannel
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+A SalesChannel is owned by an organization and can be associated with multiple projects. When associated with the projects,
+assets and/or collections can be published to the channel so it can be sold.
+
+```graphql
+type SalesChannel implements Node, Channel {
+  requestedAccessScopes: [AccessScope!]!
+  createdAt: DateTime!
+  handle: String
+  id: ID!
+  updatedAt: DateTime!
+  active: Boolean!
+  subChannels: SubChannelConnection!
+  publications: PublicationConnection!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>SalesChannel.<b>requestedAccessScopes</b></code>](#)<Bullet />[`[AccessScope!]!`](/objects/access-scope) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The access scopes available to the SalesChannel for the given API key
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>SalesChannel.<b>createdAt</b></code>](#)<Bullet />[`DateTime!`](/scalars/date-time) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The date and time when the SalesChannel was created.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>SalesChannel.<b>handle</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> Handle of the SalesChannel. A unique name associated with the SalesChannel
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>SalesChannel.<b>id</b></code>](#)<Bullet />[`ID!`](/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> A globally-unique identifier.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>SalesChannel.<b>updatedAt</b></code>](#)<Bullet />[`DateTime!`](/scalars/date-time) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The date and time when the SalesChannel was updated.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>SalesChannel.<b>active</b></code>](#)<Bullet />[`Boolean!`](/scalars/boolean) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Whether the Sale Channel is currently Active
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>SalesChannel.<b>subChannels</b></code>](#)<Bullet />[`SubChannelConnection!`](/objects/sub-channel-connection) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Sub Sales Channels which can be used as sub-store within the subchannel
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>SalesChannel.<b>publications</b></code>](#)<Bullet />[`PublicationConnection!`](/objects/publication-connection) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Publications that are published to a sales channel
+> 
+
+### Interfaces
+
+#### [`Node`](/interfaces/node) <Badge class="secondary" text="interface"/>
+> An interface for standard IDs. This is standard naming for this type of interface in Graphql
+> 
+
+#### [`Channel`](/interfaces/channel) <Badge class="secondary" text="interface"/>
+> 
+> 
+
+
+
+### Member of
+
+[`Order`](/objects/order)  <Badge class="secondary" text="object"/><Bullet />[`QueryRoot`](/objects/query-root)  <Badge class="secondary" text="object"/><Bullet />[`SalesChannelConnection`](/objects/sales-channel-connection)  <Badge class="secondary" text="object"/><Bullet />[`SalesChannelEdge`](/objects/sales-channel-edge)  <Badge class="secondary" text="object"/>
+
+
+

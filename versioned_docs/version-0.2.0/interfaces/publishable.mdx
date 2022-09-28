@@ -1,0 +1,130 @@
+---
+id: publishable
+title: Publishable
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Represents a resource that can be published to a channel. A publishable resource can be either a Product or Collection.
+
+```graphql
+interface Publishable {
+  availablePublicationCount: Int!
+  publicationCount(
+  onlyPublished: Boolean = true
+): Int!
+  publishedOnCurrentPublication: Boolean!
+  publishedOnPublication(
+  publicationId: ID!
+): Boolean!
+  resourcePublications(
+  onlyPublished: Boolean = true
+  first: Int
+  after: String
+  last: Int
+  before: String
+  reverse: Boolean = false
+): ResourcePublicationConnection!
+  unpublishedPublications(
+  first: Int
+  after: String
+  last: Int
+  before: String
+  reverse: Boolean = false
+): PublicationConnection!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>Publishable.<b>availablePublicationCount</b></code>](#)<Bullet />[`Int!`](/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The number of publications a resource is published to without feedback errors.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Publishable.<b>publicationCount</b></code>](#)<Bullet />[`Int!`](/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The number of publications a resource is published on.
+> ##### [<code style={{ fontWeight: 'normal' }}>Publishable.publicationCount.<b>onlyPublished</b></code>](#)<Bullet />[`Boolean`](/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Publishable.<b>publishedOnCurrentPublication</b></code>](#)<Bullet />[`Boolean!`](/scalars/boolean) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Check to see whether the resource is published to the calling project's publication.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Publishable.<b>publishedOnPublication</b></code>](#)<Bullet />[`Boolean!`](/scalars/boolean) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Check to see whether the resource is published to a given publication.
+> ##### [<code style={{ fontWeight: 'normal' }}>Publishable.publishedOnPublication.<b>publicationId</b></code>](#)<Bullet />[`ID!`](/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Publishable.<b>resourcePublications</b></code>](#)<Bullet />[`ResourcePublicationConnection!`](/objects/resource-publication-connection) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The list of resources that are either published or staged to be published to a publication.
+> ##### [<code style={{ fontWeight: 'normal' }}>Publishable.resourcePublications.<b>onlyPublished</b></code>](#)<Bullet />[`Boolean`](/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Publishable.resourcePublications.<b>first</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Publishable.resourcePublications.<b>after</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Publishable.resourcePublications.<b>last</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Publishable.resourcePublications.<b>before</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Publishable.resourcePublications.<b>reverse</b></code>](#)<Bullet />[`Boolean`](/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Publishable.<b>unpublishedPublications</b></code>](#)<Bullet />[`PublicationConnection!`](/objects/publication-connection) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The list of publications that the resource is not published to.
+> ##### [<code style={{ fontWeight: 'normal' }}>Publishable.unpublishedPublications.<b>first</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Publishable.unpublishedPublications.<b>after</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Publishable.unpublishedPublications.<b>last</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Publishable.unpublishedPublications.<b>before</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Publishable.unpublishedPublications.<b>reverse</b></code>](#)<Bullet />[`Boolean`](/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+
+
+### Member of
+
+[`ResourcePublication`](/objects/resource-publication)  <Badge class="secondary" text="object"/>
+
+### Implemented by
+
+[`Product`](/objects/product)  <Badge class="secondary" text="object"/><Bullet />[`ProductCollection`](/objects/product-collection)  <Badge class="secondary" text="object"/>
+
+
+

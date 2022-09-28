@@ -1,0 +1,46 @@
+---
+id: customer-stripe-wallet
+title: CustomerStripeWallet
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Represents a web3 wallet payment instrument.
+
+```graphql
+type CustomerStripeWallet {
+  tokenizedWal: String!
+  walletAddress: WalletAddress!
+  chains: [Settlement!]!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>CustomerStripeWallet.<b>tokenizedWal</b></code>](#)<Bullet />[`String!`](/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The name for wallet account name.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CustomerStripeWallet.<b>walletAddress</b></code>](#)<Bullet />[`WalletAddress!`](/scalars/wallet-address) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The wallet address.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CustomerStripeWallet.<b>chains</b></code>](#)<Bullet />[`[Settlement!]!`](/enums/settlement) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> The wallet Chains
+> 
+
+
+
+
+

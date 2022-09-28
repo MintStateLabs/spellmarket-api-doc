@@ -1,0 +1,45 @@
+---
+id: file-error
+title: FileError
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Represents a file error.
+
+```graphql
+type FileError {
+  code: MediaErrorCode!
+  message: String
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>FileError.<b>code</b></code>](#)<Bullet />[`MediaErrorCode!`](/enums/media-error-code) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> Code representing the type of error.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>FileError.<b>message</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> Additional details regarding the error.
+> 
+
+
+
+### Member of
+
+[`File`](/interfaces/file)  <Badge class="secondary" text="interface"/><Bullet />[`GenericFile`](/objects/generic-file)  <Badge class="secondary" text="object"/><Bullet />[`MediaImage`](/objects/media-image)  <Badge class="secondary" text="object"/><Bullet />[`Video`](/objects/video)  <Badge class="secondary" text="object"/>
+
+
+

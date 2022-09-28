@@ -1,0 +1,55 @@
+---
+id: digital-asset-connection
+title: DigitalAssetConnection
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+No description
+
+```graphql
+type DigitalAssetConnection {
+  edges: [DigitalAssetEdge!]!
+  nodes: [DigitalAsset!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>DigitalAssetConnection.<b>edges</b></code>](#)<Bullet />[`[DigitalAssetEdge!]!`](/objects/digital-asset-edge) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> A list of edges.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>DigitalAssetConnection.<b>nodes</b></code>](#)<Bullet />[`[DigitalAsset!]!`](/objects/digital-asset) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> A list of the nodes contained in ProjectEdge.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>DigitalAssetConnection.<b>pageInfo</b></code>](#)<Bullet />[`PageInfo!`](/objects/page-info) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Information to aid in pagination.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>DigitalAssetConnection.<b>totalCount</b></code>](#)<Bullet />[`Int!`](/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Identifies the total count of items in the connection.
+> 
+
+
+
+### Member of
+
+[`Project`](/objects/project)  <Badge class="secondary" text="object"/>
+
+
+

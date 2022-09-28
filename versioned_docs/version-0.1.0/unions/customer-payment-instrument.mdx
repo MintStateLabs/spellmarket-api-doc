@@ -1,0 +1,38 @@
+---
+id: customer-payment-instrument
+title: CustomerPaymentInstrument
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+No description
+
+```graphql
+union CustomerPaymentInstrument = CustomerWeb3Wallet
+```
+
+
+### Possible types
+
+#### [`CustomerWeb3Wallet`](/objects/customer-web-3-wallet) <Badge class="secondary" text="object"/>
+> Represents a web3 wallet payment instrument.
+> 
+
+
+
+### Member of
+
+[`CustomerPaymentMethod`](/objects/customer-payment-method)  <Badge class="secondary" text="object"/>
+
+
+

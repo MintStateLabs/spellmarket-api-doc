@@ -1,0 +1,265 @@
+---
+id: job
+title: Job
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+No description
+
+```graphql
+type Job {
+  id: ID!
+  title: String!
+  slug: String!
+  commitment: Commitment!
+  cities(
+  where: CityWhereInput
+  orderBy: CityOrderByInput
+  skip: Int
+  after: String
+  before: String
+  first: Int
+  last: Int
+): [City!]
+  countries(
+  where: CountryWhereInput
+  orderBy: CountryOrderByInput
+  skip: Int
+  after: String
+  before: String
+  first: Int
+  last: Int
+): [Country!]
+  remotes(
+  where: RemoteWhereInput
+  orderBy: RemoteOrderByInput
+  skip: Int
+  after: String
+  before: String
+  first: Int
+  last: Int
+): [Remote!]
+  description: String
+  applyUrl: String
+  company: Company
+  tags(
+  where: TagWhereInput
+  orderBy: TagOrderByInput
+  skip: Int
+  after: String
+  before: String
+  first: Int
+  last: Int
+): [Tag!]
+  isPublished: Boolean
+  isFeatured: Boolean
+  locationNames: String
+  userEmail: String
+  postedAt: DateTime!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>Job.<b>id</b></code>](#)<Bullet />[`ID!`](/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Job.<b>title</b></code>](#)<Bullet />[`String!`](/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Job.<b>slug</b></code>](#)<Bullet />[`String!`](/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Job.<b>commitment</b></code>](#)<Bullet />[`Commitment!`](/objects/commitment) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Job.<b>cities</b></code>](#)<Bullet />[`[City!]`](/objects/city) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> 
+> ##### [<code style={{ fontWeight: 'normal' }}>Job.cities.<b>where</b></code>](#)<Bullet />[`CityWhereInput`](/inputs/city-where-input) <Badge class="secondary" text="input"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Job.cities.<b>orderBy</b></code>](#)<Bullet />[`CityOrderByInput`](/enums/city-order-by-input) <Badge class="secondary" text="enum"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Job.cities.<b>skip</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Job.cities.<b>after</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Job.cities.<b>before</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Job.cities.<b>first</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Job.cities.<b>last</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Job.<b>countries</b></code>](#)<Bullet />[`[Country!]`](/objects/country) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> 
+> ##### [<code style={{ fontWeight: 'normal' }}>Job.countries.<b>where</b></code>](#)<Bullet />[`CountryWhereInput`](/inputs/country-where-input) <Badge class="secondary" text="input"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Job.countries.<b>orderBy</b></code>](#)<Bullet />[`CountryOrderByInput`](/enums/country-order-by-input) <Badge class="secondary" text="enum"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Job.countries.<b>skip</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Job.countries.<b>after</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Job.countries.<b>before</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Job.countries.<b>first</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Job.countries.<b>last</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Job.<b>remotes</b></code>](#)<Bullet />[`[Remote!]`](/objects/remote) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> 
+> ##### [<code style={{ fontWeight: 'normal' }}>Job.remotes.<b>where</b></code>](#)<Bullet />[`RemoteWhereInput`](/inputs/remote-where-input) <Badge class="secondary" text="input"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Job.remotes.<b>orderBy</b></code>](#)<Bullet />[`RemoteOrderByInput`](/enums/remote-order-by-input) <Badge class="secondary" text="enum"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Job.remotes.<b>skip</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Job.remotes.<b>after</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Job.remotes.<b>before</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Job.remotes.<b>first</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Job.remotes.<b>last</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Job.<b>description</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Job.<b>applyUrl</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Job.<b>company</b></code>](#)<Bullet />[`Company`](/objects/company) <Badge class="secondary" text="object"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Job.<b>tags</b></code>](#)<Bullet />[`[Tag!]`](/objects/tag) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> 
+> ##### [<code style={{ fontWeight: 'normal' }}>Job.tags.<b>where</b></code>](#)<Bullet />[`TagWhereInput`](/inputs/tag-where-input) <Badge class="secondary" text="input"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Job.tags.<b>orderBy</b></code>](#)<Bullet />[`TagOrderByInput`](/enums/tag-order-by-input) <Badge class="secondary" text="enum"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Job.tags.<b>skip</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Job.tags.<b>after</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Job.tags.<b>before</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Job.tags.<b>first</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Job.tags.<b>last</b></code>](#)<Bullet />[`Int`](/scalars/int) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Job.<b>isPublished</b></code>](#)<Bullet />[`Boolean`](/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Job.<b>isFeatured</b></code>](#)<Bullet />[`Boolean`](/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Job.<b>locationNames</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Job.<b>userEmail</b></code>](#)<Bullet />[`String`](/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Job.<b>postedAt</b></code>](#)<Bullet />[`DateTime!`](/scalars/date-time) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Job.<b>createdAt</b></code>](#)<Bullet />[`DateTime!`](/scalars/date-time) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Job.<b>updatedAt</b></code>](#)<Bullet />[`DateTime!`](/scalars/date-time) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+
+
+### Returned by
+
+[`job`](/queries/job)  <Badge class="secondary" text="query"/><Bullet />[`jobs`](/queries/jobs)  <Badge class="secondary" text="query"/><Bullet />[`postJob`](/mutations/post-job)  <Badge class="secondary" text="mutation"/><Bullet />[`updateJob`](/mutations/update-job)  <Badge class="secondary" text="mutation"/>
+
+### Member of
+
+[`City`](/objects/city)  <Badge class="secondary" text="object"/><Bullet />[`Commitment`](/objects/commitment)  <Badge class="secondary" text="object"/><Bullet />[`Company`](/objects/company)  <Badge class="secondary" text="object"/><Bullet />[`Country`](/objects/country)  <Badge class="secondary" text="object"/><Bullet />[`Remote`](/objects/remote)  <Badge class="secondary" text="object"/><Bullet />[`Tag`](/objects/tag)  <Badge class="secondary" text="object"/>
+
+
+
